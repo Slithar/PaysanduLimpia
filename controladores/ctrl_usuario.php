@@ -1,9 +1,16 @@
 <?php 
 require_once("clases/template.php");
 require_once("clases/auth.php");
-
+require 'clases/usuario.php';
 
 class ControladorUsuario extends ControladorIndex{
+
+	if(isset($_GET["key"])){
+		$key = $_GET["key"];
+	}
+	else{
+		$key = $_POST["key"];
+	}
 
 
 	function landing($param=array()){
@@ -23,6 +30,10 @@ class ControladorUsuario extends ControladorIndex{
 		$tpl->asignar('location', 'Log In');
 		$tpl->mostrar("login");
 	}	
+
+	if($key === "Validate"){
+		
+	}
 
 }
 
