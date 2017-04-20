@@ -1,29 +1,29 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-04-20 21:12:17
-         compiled from "vistas\signup.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:1844658f80d752b5502-04667526%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-04-20 22:07:07
+         compiled from "vistas\landing.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:2976558f930fb5c2c05-92729639%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    '058342efb0b0b26b44821a1f9364a58a116a44d1' => 
+    'a0706fb32bac316ed1c105ddaff132ac46c6cd1d' => 
     array (
-      0 => 'vistas\\signup.tpl',
-      1 => 1492722452,
+      0 => 'vistas\\landing.tpl',
+      1 => 1492726026,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '1844658f80d752b5502-04667526',
+  'nocache_hash' => '2976558f930fb5c2c05-92729639',
   'function' => 
   array (
   ),
   'version' => 'Smarty-3.1.21-dev',
-  'unifunc' => 'content_58f80d7543adf2_12807387',
+  'unifunc' => 'content_58f930fb5c54e3_35021362',
   'variables' => 
   array (
     'location' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_58f80d7543adf2_12807387')) {function content_58f80d7543adf2_12807387($_smarty_tpl) {?><!DOCTYPE html>
+<?php if ($_valid && !is_callable('content_58f930fb5c54e3_35021362')) {function content_58f930fb5c54e3_35021362($_smarty_tpl) {?><!DOCTYPE html>
 <html>
 <head>
 	
@@ -42,6 +42,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	<?php echo $_smarty_tpl->getSubTemplate ("footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 
 	<!-- Incluir la vista del footer último. Más abajo no debe haber más código -->
-	Sign Up
+	Landing Page.
 </body>
 </html><?php }} ?>

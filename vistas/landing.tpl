@@ -13,6 +13,6 @@
 
 	{include file="footer.tpl"}
 	<!-- Incluir la vista del footer último. Más abajo no debe haber más código -->
-	Sign Up
+	Landing Page.
 </body>
 </html>

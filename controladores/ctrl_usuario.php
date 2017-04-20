@@ -5,11 +5,23 @@ require_once("clases/auth.php");
 
 class ControladorUsuario extends ControladorIndex{
 
+
+	function landing($param=array()){
+		$tpl = Template::getInstance();
+		$tpl->asignar('location', 'Inicio');
+		$tpl->mostrar('landing');
+	}
+
 	function signup($params=array()){
-		//auth::loggedIn();
 		$tpl = Template::getInstance();
 		$tpl->asignar('location','Sign Up');
 		$tpl->mostrar("signup");
+	}
+
+	function login($params = array()){
+		$tpl = Template::getInstance();
+		$tpl->asignar('location', 'Log In');
+		$tpl->mostrar("login");
 	}	
 
 }

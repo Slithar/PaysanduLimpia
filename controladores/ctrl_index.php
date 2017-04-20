@@ -1,4 +1,5 @@
 <?php
+require_once ("config/config.php");
 class ControladorIndex{
 	//Función cargarContolador devuelve un objeto del controlador solicitado
 	//Para ello:

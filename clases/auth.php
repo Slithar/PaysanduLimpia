@@ -5,7 +5,7 @@ class Auth extends ControladorIndex{
 		Session::init();
 		if(Session::get('usuario') == null){
 			Session::destroy();
-			self::redirect("usuarios", "login");
+			self::redirect("usuario", "login");
 			exit();
 		}
 	}

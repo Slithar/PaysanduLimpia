@@ -8,14 +8,13 @@
 
 	$tpl = Template::getInstance();
 
-
-
 	if(isset($_GET["url"])){
+
 		$request = explode('/', $_GET["url"]);
 
 		$controlador = (!empty($request[0])) ? $request[0] : "usuario";
 
-		$method = (!empty($request[1])) ? $request[1] : "signup";
+		$method = (!empty($request[1])) ? $request[1] : "login";
 
 		 $params = array();
 
@@ -26,7 +25,7 @@
 	else{
 		$controlador = "usuario";
 
-		$method = "signup";
+		$method = "landing";
 
 		$params = array();
 	}
