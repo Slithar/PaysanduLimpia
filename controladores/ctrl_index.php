@@ -32,10 +32,10 @@ class ControladorIndex{
 	//Recibe los mismos parámetros que la anterior (ejecutarMetodoInterno)
 	function ejecutarAccion($controllerObj, $method, $params){
 		if(isset($method) && method_exists($controllerObj, $method)){
-			ejecutarMetodoInterno($controllerObj, $method, $params); 
+			$this->ejecutarMetodoInterno($controllerObj, $method, $params); 
 		}
 		else{
-			ejecutarMetodoInterno($controllerObj, "listado", $params);
+			$this->ejecutarMetodoInterno($controllerObj, "listado", $params);
 		}
 	}
 

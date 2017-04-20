@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>{$location} - Paysandú Limpia</title>
-	<base href="/Volquetas">
+	
+	<base href="/Volquetas/">
 	{include file="bs_js.tpl"}
+<!-- La variable $location tendrá el valor de la página a la que vamos. Paysandú Limpia es constante en todas las páginas. -->
+	<title>{$location} - Paysandú Limpia</title>
 </head>
 <body>
 	<!-- Incluir la vista del header al principio -->

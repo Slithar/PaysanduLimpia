@@ -1,5 +1,5 @@
 <?php 
-
+require "clases/session.php";
 class Auth extends ControladorIndex{
 	public static function loggedIn(){
 		Session::init();

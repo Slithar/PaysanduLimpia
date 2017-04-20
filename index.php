@@ -1,6 +1,6 @@
 <?php 	
 	require "clases/db.php";
-	require "vendor/autload.php";
+	require "vendor/autoload.php";
 	require "controladores/ctrl_index.php";
 	require_once('clases/template.php');
 
@@ -13,9 +13,9 @@
 	if(isset($_GET["url"])){
 		$request = explode('/', $_GET["url"]);
 
-		$controlador = (!empty($request[0])) ? $request[0] : "volquetas";
+		$controlador = (!empty($request[0])) ? $request[0] : "usuario";
 
-		$method = (!empty($request[1])) ? $request[1] : "listado";
+		$method = (!empty($request[1])) ? $request[1] : "signup";
 
 		 $params = array();
 
@@ -24,9 +24,9 @@
 		 }
 	}
 	else{
-		$controlador = "volquetas";
+		$controlador = "usuario";
 
-		$method = "listado";
+		$method = "signup";
 
 		$params = array();
 	}

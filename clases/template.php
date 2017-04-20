@@ -47,7 +47,7 @@ class Template{
     }
 
     function asignar($key, $value){
-    	$this->_smarty->assing($key, $value);
+    	$this->_smarty->assign($key, $value);
     }
 
 }
