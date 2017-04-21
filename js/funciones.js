@@ -7,6 +7,16 @@ jQuery(document).ready(function($) {
 	$("#formLogin").on('submit', function(event) {
 		event.preventDefault();
 		/* Act on the event */
+		$.ajax({
+			url: '/Volquetas/usuario/validate/',
+			type: 'POST',
+			dataType: 'html',
+			data: $("#formLogin").serialize(),
+		})
+		.done(function(response) {
+			alert(response);
+		});
+		
 	});
 
 });

@@ -13,19 +13,18 @@
 	{include file="header.tpl"} 
 
 	<!-- Comienzo del HTML de esta página -->
-
 	<div class="container-fluid">
 		<form id="formLogin" method="POST" accept-charset="utf-8">
 			<div class="row">
 				<div class="form-group col-sm-12">
 					<label for="cedulaUsuario">Cédula de Identidad</label>
-					<input type="text" id="cedulaUsuario" class="form-control">
+					<input type="text" id="cedulaUsuario" class="form-control" name="cedulaUsuario">
 				</div>
 			</div>
 			<div class="row">
 				<div class="form-group col-sm-12">
 					<label for="passwordUsuario">Password</label>
-					<input type="password" id="passwordUsuario" class="form-control">
+					<input type="password" id="passwordUsuario" class="form-control" name="passwordUsuario">
 				</div>
 			</div>
 			<div class="row">
@@ -35,7 +34,6 @@
 			</div>
 		</form>
 	</div>
-
 	<!-- Finl del HTML de esta página -->
 	
 	{include file="footer.tpl"}

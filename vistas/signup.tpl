@@ -9,10 +9,11 @@
 </head>
 <body>
 	<!-- Incluir la vista del header al principio -->
-	{include file="header.tpl"} 
-
+	{include file="header.tpl"}
+	<br>
+	Sign Up
+	<br>
 	{include file="footer.tpl"}
 	<!-- Incluir la vista del footer último. Más abajo no debe haber más código -->
-	Sign Up
 </body>
 </html>

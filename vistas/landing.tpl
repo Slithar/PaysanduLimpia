@@ -10,9 +10,10 @@
 <body>
 	<!-- Incluir la vista del header al principio -->
 	{include file="header.tpl"} 
-
+	<br>
+	Landing Page.
+	<br>
 	{include file="footer.tpl"}
 	<!-- Incluir la vista del footer último. Más abajo no debe haber más código -->
-	Landing Page.
 </body>
 </html>

@@ -22,6 +22,13 @@ class ControladorUsuario extends ControladorIndex{
 		$tpl->mostrar("login");
 	}	
 
+	function validate($params=array()){
+		$CI = $_POST["cedulaUsuario"];
+		$PSW = $_POST["passwordUsuario"];
+
+		echo $CI . $PSW;
+	}
+
 }
 
 ?>
