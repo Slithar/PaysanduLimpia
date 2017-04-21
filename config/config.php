@@ -1,7 +1,7 @@
 <?php
 	define("DB_HOST", "localhost");
-	define("DB_USR", "paysandulimpia");
-	define("DB_PASS", "paysandulimpia");
+	define("DB_USR", "root");
+	define("DB_PASS", "root");
 	define("DB_DB", "paysandulimpia");
 	//define(DB_TYPE, "mysql");
 

@@ -1,22 +1,34 @@
 <?php 
-
-class Usuario{
+require_once("clases/clase_base.php");
+class Usuario extends ClaseBase{
 	private $ci;
-	private $contraseña;
+	private $contrasenia;
 	private $nombre;
 	private $apellido;
 	private $email;
 	private $fotoperfil;
 	private $funcionario;
 	//private $enviarcorreo;
+	/* Constructor */
+
+	public function __construct($obj=NULL){
+		if(isset($obj)){
+			foreach ($obj as $key => $value) {
+				$this->$key=$value;
+			}
+		}
+		$tabla = "usuarios";
+
+		parent::__construct($tabla);
+	}
 
 	/* Getters */
 	public function getCi(){
 		return $this->ci;
 	}
 
-	public function getContraseña(){
-		return $this->contraseña;
+	public function getContrasenia(){
+		return $this->contrasenia;
 	}
 
 	public function getNombre(){
@@ -49,8 +61,8 @@ class Usuario{
 		$this->ci = $ci;
 	}
 
-	public function setContraseña($psw){
-		$this->contraseña = $psw;
+	public function setContrasenia($psw){
+		$this->contrasenia = $psw;
 	}
 
 	public function setNombre($nombre){

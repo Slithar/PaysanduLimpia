@@ -1,6 +1,7 @@
 <?php 
 require_once("clases/template.php");
 require_once("clases/auth.php");
+require_once("clases/usuario.php");
 
 class ControladorUsuario extends ControladorIndex{
 
@@ -23,10 +24,17 @@ class ControladorUsuario extends ControladorIndex{
 	}	
 
 	function validate($params=array()){
-		$CI = $_POST["cedulaUsuario"];
-		$PSW = $_POST["passwordUsuario"];
 
-		echo $CI . $PSW;
+		$params = array(
+					"ci"=>$_POST["cedulaUsuario"],
+					"contrasenia" =>$_POST["passwordUsuario"],
+				);
+
+		$usuario = new Usuario($params);
+
+		echo $usuario->getCi() . $usuario->getContrasenia();
+
+		//return $usuario->login();
 	}
 
 }
