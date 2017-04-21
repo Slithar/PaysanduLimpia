@@ -1,8 +1,8 @@
 <?php
 	define("DB_HOST", "localhost");
-	define("DB_USR", "volquetas");
-	define("DB_PASS", "volquetas");
-	define("DB_DB", "volquetasDB");
+	define("DB_USR", "paysandulimpia");
+	define("DB_PASS", "paysandulimpia");
+	define("DB_DB", "paysandulimpia");
 	//define(DB_TYPE, "mysql");
 
 	$template_config = 
