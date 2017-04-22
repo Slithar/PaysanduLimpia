@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-04-22 06:14:19
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-04-22 19:07:41
          compiled from "vistas\login.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1922358f92460e8c0a9-93187157%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '401838295e1283de72d08849220c4c24cc97b40a' => 
     array (
       0 => 'vistas\\login.tpl',
-      1 => 1492841654,
+      1 => 1492888060,
       2 => 'file',
     ),
   ),
@@ -44,7 +44,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	<!-- Comienzo del HTML de esta página -->
 	
 		<div class="container-fluid">
-			<form id="formLogin" method="POST" accept-charset="utf-8" class="solo-login">
+			<form id="formLogin" method="POST" accept-charset="utf-8" class="midPage login">
 				<div class="row">
 					<div class="form-group col-sm-12 has-feedback">
 						<label class="control-label" for="cedulaUsuario">Cédula de Identidad</label>
@@ -54,7 +54,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 				</div>
 				<div class="row">
 					<div class="form-group col-sm-12 has-feedback">
-						<label for="passwordUsuario">Contraseña</label>
+						<label class="control-label" for="passwordUsuario">Contraseña</label>
 						<span><a href="#">¿Ha olvidado su contraseña?</a></span>
 						<input type="password" id="passwordUsuario" class="form-control" name="passwordUsuario">
 						<span class="glyphicon glyphicon-lock form-control-feedback"></span>
@@ -62,7 +62,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 				</div>
 				<div class="row">
 					<div class="form-group col-sm-12" style="text-align: center;">
-						<input type="submit" id="enviarFormLogin" value="Ingresar" class="btn btn-success">
+						<input type="submit" id="enviarFormLogin" value="Ingresar" class="btn btn-info">
 					</div>
 				</div>
 			</form>

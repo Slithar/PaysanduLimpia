@@ -2,7 +2,7 @@ body{
 	position: absolute;
 	width: 100%;
 	height: 100%;
-	background-color: #f9f9f9;
+	background-color: white;
 }
 footer{
 	bottom:0;
@@ -14,16 +14,22 @@ footer{
 	width: 100%;
 	height: 100%;
 }
-.solo-login{
+.midPage{
 	margin: auto;
 	top:50%;
-	transform: translateY(60%);
 	padding: 15px;
 	width: 25%;
-	background-color: white;
+	background-color: #f9f9f9;
 	border-radius: 9px;
 }
 
+.login{
+	transform: translateY(60%);
+}
+
+.signup{
+	transform: translateY(25%);
+}
 .has-feedback .form-control-feedback {
     position: absolute;
     top: 3px;

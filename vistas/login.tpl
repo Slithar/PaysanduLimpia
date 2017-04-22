@@ -16,7 +16,7 @@
 	<!-- Comienzo del HTML de esta página -->
 	
 		<div class="container-fluid">
-			<form id="formLogin" method="POST" accept-charset="utf-8" class="solo-login">
+			<form id="formLogin" method="POST" accept-charset="utf-8" class="midPage login">
 				<div class="row">
 					<div class="form-group col-sm-12 has-feedback">
 						<label class="control-label" for="cedulaUsuario">Cédula de Identidad</label>
@@ -26,7 +26,7 @@
 				</div>
 				<div class="row">
 					<div class="form-group col-sm-12 has-feedback">
-						<label for="passwordUsuario">Contraseña</label>
+						<label class="control-label" for="passwordUsuario">Contraseña</label>
 						<span><a href="#">¿Ha olvidado su contraseña?</a></span>
 						<input type="password" id="passwordUsuario" class="form-control" name="passwordUsuario">
 						<span class="glyphicon glyphicon-lock form-control-feedback"></span>
@@ -34,7 +34,7 @@
 				</div>
 				<div class="row">
 					<div class="form-group col-sm-12" style="text-align: center;">
-						<input type="submit" id="enviarFormLogin" value="Ingresar" class="btn btn-success">
+						<input type="submit" id="enviarFormLogin" value="Ingresar" class="btn btn-info">
 					</div>
 				</div>
 			</form>
