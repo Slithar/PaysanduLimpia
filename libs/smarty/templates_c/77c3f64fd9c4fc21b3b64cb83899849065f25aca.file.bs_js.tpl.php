@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-04-20 22:43:34
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-04-22 05:35:03
          compiled from "vistas\bs_js.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:875158f80d754c4a77-94076578%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '77c3f64fd9c4fc21b3b64cb83899849065f25aca' => 
     array (
       0 => 'vistas\\bs_js.tpl',
-      1 => 1492728211,
+      1 => 1492839300,
       2 => 'file',
     ),
   ),
@@ -33,4 +33,5 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="css/estilos.css"><?php }} ?>
+<link rel="stylesheet" type="text/css" href="css/estilos.css">
+<link rel = "stylesheet" href = "font-awesome-4.7.0/css/font-awesome.min.css"/><?php }} ?>

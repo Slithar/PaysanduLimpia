@@ -1,18 +1,293 @@
-body{
+/*body{
 	position: absolute;
 	width: 100%;
 	height: 100%;
-}
-footer{
+}*/
+/*footer{
 	bottom:0;
 	position: fixed;
 	width: 100%;
 	text-align: center;
-}
+}*/
 .wrapper{
 	width: 100%;
 	height: 100%;
 }
-.solo-login{%;
+.solo-login{
 	width: 20%;
 }
+
+
+*{
+	padding: 0;
+	margin: 0;
+}
+body{
+	background: url('img/subtle_dots.png');				
+	font-family: sans-serif;
+}
+header{
+	width: 100%;
+	height: 77px;
+	/*background: #0F3EA1;*/
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#0f3ea1+0,1664e2+53;Blue+Flat+%232 */
+	background: #0f3ea1; /* Old browsers */
+	background: -moz-linear-gradient(top,  #0f3ea1 0%, #1664e2 53%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  #0f3ea1 0%,#1664e2 53%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  #0f3ea1 0%,#1664e2 53%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0f3ea1', endColorstr='#1664e2',GradientType=0 ); /* IE6-9 */
+	box-sizing: border-box;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+}
+.header{
+	/*border: 1px solid black;*/
+	max-width: 1100px;
+	height: 100%;
+	margin: auto;				
+	box-sizing: border-box;
+}
+.divLogo{
+	display: block;
+	float: left;
+	width: 12.1%;
+	margin-top: 7px;
+}
+.imgLogo{
+	width: 100%;
+}
+.menu{
+	display: block;
+	float: right;
+
+	width: 65.3%;
+}
+.ulMenu{
+	list-style: none;
+}
+.ulMenu > li{
+	float: left;
+	/*border: 1px solid white;*/
+	margin-top: 2%;
+	font-family: sans-serif;
+	width: 25%;
+}
+.ulMenu li a{
+	color: white;
+	text-decoration: none;
+	display: block;
+	padding:17px 17px;
+	font-size: 20px;			
+}
+.ulMenu li a:hover{
+	color: #89ACF7;			
+}
+
+#carousel{
+	margin-top: 77px;
+}
+.divMain{
+	max-width: 1100px;
+	margin: auto;
+}
+.mainTexto{
+	width: 100%;
+	text-align: center;
+	margin-top: 100px;
+	font-size: 30px;
+	font-weight: bold;
+	color: #0F3EA1;
+}
+.segundoTexto{
+	width: 100%;
+	text-align: center;
+	margin-top: 20px;
+	font-size: 28px;
+	font-weight: bold;
+	color: #B83636;
+}
+.divPasos{
+	width: 75%;
+	margin: auto;
+}
+.divP{
+	margin-top: 10%;
+}
+.divOtras{
+	margin-top: 20%;
+}
+.imgPaso1{
+	width: 25%;
+	float: left;
+	margin-right: 7%;
+}
+.imgPaso2{
+	width: 25%;
+	float: right;
+	margin-left: 7%;
+	margin-top: 20px;
+}
+.imgPaso3{
+	width: 25%;
+	float: left;
+	margin-right: 7%;
+}
+.imgPaso4{
+	width: 30%;
+	float: right;
+	margin-left: 7%;
+}
+.imgPaso5{
+	width: 25%;
+	float: left;
+	margin-right: 7%;
+}
+.imgPaso1 img{
+	width: 100%;
+}
+.imgPaso2 img{
+	width: 100%;
+}
+.imgPaso3 img{
+	width: 100%;
+}
+.imgPaso4 img{
+	width: 100%;
+}
+.imgPaso5 img{
+	width: 100%;
+}
+.titulo{
+	font-size: 28px;
+	font-weight: bold;
+	margin-top: 5%;
+}
+.textoPaso{
+	font-size: 22px;
+	width: 67%;
+	/*border: 1px solid black;*/
+	float: left;
+}
+.textoPaso4{
+	font-size: 22px;
+	width: 62%;
+	/*border: 1px solid black;*/
+	float: left;
+}
+footer{
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#b83636+0,ea4e19+77 */
+	background: #b83636; /* Old browsers */
+	background: -moz-linear-gradient(top,  #b83636 0%, #ea4e19 77%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  #b83636 0%,#ea4e19 77%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  #b83636 0%,#ea4e19 77%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b83636', endColorstr='#ea4e19',GradientType=0 ); /* IE6-9 */
+	margin-top: 15%;
+	padding: 3% 0 3% 0;
+}
+.divContacto{
+	/*border: 1px solid black;*/
+	width: 40%;
+	margin-left: 60%;
+}
+.campoFooter{
+	margin-bottom: 15px;
+}
+.tituloContacto{
+	font-size: 20px;
+	text-align: center;
+	/*border: 1px solid black;*/
+	width: 100%;
+	color: white;
+	margin-bottom: 30px;
+}
+.contenedor{
+	max-width: 1100px;
+	margin:auto;
+}
+.enviarCorreo{
+	width: 100%;
+	margin-top: 25px;
+}
+.divInformacion{
+	border-right: 1px solid white;
+	width: 50%;
+	height: 295px;
+	float: left;
+}
+.paysanduLimpia{
+	color: white;
+	text-align: center;
+	width: 100%;
+	font-size: 20px;
+	margin-top: 15%;
+}
+.sistemaPara{
+	color: white;
+	text-align: center;
+	width: 100%;
+	font-size: 17px;
+	margin-top: 15px;
+	font-weight: none;
+}
+.anio{
+	color: white;
+	text-align: center;
+	width: 100%;
+	font-size: 17px;
+	margin-top: 15px;
+}
+
+/*.loginForm{
+	border: 1px solid black;
+	width: 150%;
+}*/
+
+#ci{
+	width: 25%;
+	display: inline-block;
+	margin-right: 2%;
+}
+
+#contrasenia{
+	width: 25%;
+	display: inline-block;	
+	margin-right: 4%;
+}
+
+#lblRecordarme{
+	color: white;
+	font-size: 14px;
+	font-weight: normal;
+}
+
+#lblRecordarme{
+	margin-right: 4%;
+}
+
+
+
+#spanAtras{
+	margin-right: 4%;
+	cursor: pointer;
+	color: white;
+}
+
+#spanAtras:hover{
+	color: #89ACF7;
+}
+
+.loginForm{
+	position: absolute;
+	/*border: 1px solid black;*/
+	width: 37%;
+	top: 35%;
+	display: none;
+	/*left: 0;*/
+}
+
+#btnSubmitLogin{
+	font-weight: bold;
+}
+

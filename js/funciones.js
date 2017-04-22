@@ -19,4 +19,17 @@ jQuery(document).ready(function($) {
 		
 	});
 
+	$("#opcionIngresar").on('click', function(){
+		$('.ulMenu').fadeOut(function(){
+			$('.loginForm').fadeIn();
+			$('#ci').focus();
+		});
+	});
+
+	$('#spanAtras').on('click', function(){
+		$('.loginForm').fadeOut(function(){
+			$('.ulMenu').fadeIn();
+		});
+	})
+
 });

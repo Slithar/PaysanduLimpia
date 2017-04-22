@@ -7,3 +7,4 @@
 
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="css/estilos.css">
+<link rel = "stylesheet" href = "font-awesome-4.7.0/css/font-awesome.min.css"/>
