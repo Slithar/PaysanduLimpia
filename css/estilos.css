@@ -2,6 +2,7 @@ body{
 	position: absolute;
 	width: 100%;
 	height: 100%;
+	background-color: #f9f9f9;
 }
 footer{
 	bottom:0;
@@ -13,6 +14,23 @@ footer{
 	width: 100%;
 	height: 100%;
 }
-.solo-login{%;
-	width: 20%;
+.solo-login{
+	margin: auto;
+	top:50%;
+	transform: translateY(60%);
+	padding: 15px;
+	width: 25%;
+	background-color: white;
+	border-radius: 9px;
+}
+
+.has-feedback .form-control-feedback {
+    position: absolute;
+    top: 3px;
+    right: 12px;
+    display: block;
+    width: 34px;
+    height: 34px;
+    line-height: 34px;
+    text-align: center;
 }

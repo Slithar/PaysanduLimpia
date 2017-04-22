@@ -16,27 +16,28 @@
 	<!-- Comienzo del HTML de esta página -->
 	
 		<div class="container-fluid">
-			<div align="center"">
-				<form id="formLogin" method="POST" accept-charset="utf-8" class="solo-login">
-					<div class="row">
-						<div class="form-group col-sm-12">
-							<label for="cedulaUsuario">Cédula de Identidad</label>
-							<input type="text" id="cedulaUsuario" class="form-control" name="cedulaUsuario">
-						</div>
+			<form id="formLogin" method="POST" accept-charset="utf-8" class="solo-login">
+				<div class="row">
+					<div class="form-group col-sm-12 has-feedback">
+						<label class="control-label" for="cedulaUsuario">Cédula de Identidad</label>
+						<input type="text" id="cedulaUsuario" class="form-control" name="cedulaUsuario">
+						<span class="glyphicon glyphicon-user form-control-feedback"></span>
 					</div>
-					<div class="row">
-						<div class="form-group col-sm-12">
-							<label for="passwordUsuario">Password</label>
-							<input type="password" id="passwordUsuario" class="form-control" name="passwordUsuario">
-						</div>
+				</div>
+				<div class="row">
+					<div class="form-group col-sm-12 has-feedback">
+						<label for="passwordUsuario">Contraseña</label>
+						<span><a href="#">¿Ha olvidado su contraseña?</a></span>
+						<input type="password" id="passwordUsuario" class="form-control" name="passwordUsuario">
+						<span class="glyphicon glyphicon-lock form-control-feedback"></span>
 					</div>
-					<div class="row">
-						<div class="form-group col-sm-12" style="text-align: center;">
-							<input type="submit" id="enviarFormLogin" value="Ingresar" class="btn btn-primary">
-						</div>
+				</div>
+				<div class="row">
+					<div class="form-group col-sm-12" style="text-align: center;">
+						<input type="submit" id="enviarFormLogin" value="Ingresar" class="btn btn-success">
 					</div>
-				</form>
-			</div>
+				</div>
+			</form>
 		</div>		
 	</div>
 
