@@ -23,7 +23,7 @@
 	margin: 0;
 }
 body{
-	background: url('img/subtle_dots.png');				
+	background: url('../img/subtle_dots.png');	
 	font-family: sans-serif;
 }
 header{
