@@ -1,0 +1,18 @@
+body{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+footer{
+	bottom:0;
+	position: fixed;
+	width: 100%;
+	text-align: center;
+}
+.wrapper{
+	width: 100%;
+	height: 100%;
+}
+.solo-login{%;
+	width: 20%;
+}

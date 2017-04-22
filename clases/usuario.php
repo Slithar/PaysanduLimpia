@@ -91,8 +91,6 @@ class Usuario extends ClaseBase{
 		$sql = "SELECT * FROM usuarios WHERE ci=? AND contrasenia = ?";
 		
 		$stmt = DB::conexion()->prepare($sql);
-
-		echo $this->ci . $this->contrasenia;
 		
 		$stmt->bind_param("is", $this->ci, $this->contrasenia);
 
@@ -100,7 +98,7 @@ class Usuario extends ClaseBase{
 		
 		$stmt->store_result();
 		
-		echo $stmt->num_rows();
+		return $stmt->num_rows();
 
 	}
 

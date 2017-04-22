@@ -32,7 +32,7 @@ class ControladorUsuario extends ControladorIndex{
 
 		$usuario = new Usuario($params);
 
-		$usuario->login();
+		echo $usuario->login();
 	}
 
 }
