@@ -1,5 +1,6 @@
 <?php 
 require_once("clases/clase_base.php");
+require_once("clases/db.php");
 class Usuario extends ClaseBase{
 	private $ci;
 	private $contrasenia;
@@ -83,6 +84,24 @@ class Usuario extends ClaseBase{
 
 	public function setFuncionario($funcionario){
 		$this->funcionario = $funcionario;
+	}
+
+	public function login(){
+
+		$sql = "SELECT * FROM usuarios WHERE ci=? AND contrasenia = ?";
+		
+		$stmt = DB::conexion()->prepare($sql);
+
+		echo $this->ci . $this->contrasenia;
+		
+		$stmt->bind_param("is", $this->ci, $this->contrasenia);
+
+		$stmt->execute();
+		
+		$stmt->store_result();
+		
+		echo $stmt->num_rows();
+
 	}
 
 } 

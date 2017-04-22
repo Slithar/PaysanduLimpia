@@ -32,9 +32,7 @@ class ControladorUsuario extends ControladorIndex{
 
 		$usuario = new Usuario($params);
 
-		echo $usuario->getCi() . $usuario->getContrasenia();
-
-		//return $usuario->login();
+		$usuario->login();
 	}
 
 }
