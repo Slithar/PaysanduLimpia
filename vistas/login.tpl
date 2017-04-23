@@ -34,7 +34,7 @@
 				</div>
 				<div class="row">
 					<div class="form-group col-sm-12" style="text-align: center;">
-						<input type="submit" id="enviarFormLogin" value="Ingresar" class="btn btn-info">
+						<input type="submit" id="enviarFormLogin" value="Ingresar" class="btn btn-success">
 					</div>
 				</div>
 			</form>

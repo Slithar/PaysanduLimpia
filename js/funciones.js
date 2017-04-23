@@ -20,7 +20,7 @@ jQuery(document).ready(function($) {
 			$.ajax({
 				url: '/Volquetas/usuario/validate/',
 				type: 'POST',
-				dataType: 'json',
+				dataType: 'html',
 				data: $("#formLogin").serialize(),
 			})
 			.done(function(response) {

@@ -101,7 +101,5 @@ class Usuario extends ClaseBase{
 		return $stmt->num_rows();
 
 	}
-
 } 
-
 ?>

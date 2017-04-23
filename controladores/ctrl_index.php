@@ -47,7 +47,7 @@ class ControladorIndex{
 		foreach ($params as $key => $value) {
 			$url.= $value . "/";
 		}
-		header("Location:".$url);
+		header("Location: ".$url);
 	}	
 
 	//	Función para obtener la URL de una función (?);
