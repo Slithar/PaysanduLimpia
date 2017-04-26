@@ -69,14 +69,25 @@ class Volqueta extends ClaseBase{
 											"latitud" => $fila->latitud,
 											"longitud" => $fila->longitud,
 											"ubicacion" => $fila->ubicacion,
-											"calleX" => $fila->calleX,
-											"calleY" => $fila->calleY,
-											"calleZ" => $fila->calleZ,
+											"calleX" => htmlentities($fila->calleX, ENT_QUOTES),
+											"calleY" => htmlentities($fila->calleY, ENT_QUOTES),
+											"calleZ" => htmlentities($fila->calleZ, ENT_QUOTES),
 											"estado" => $fila->estado,));
 			$volquetas[] = $volqueta;
 		}
 
 		return $volquetas;
+	}
+
+	public function convertToArray(){
+		return array("numero" => $this->numero,
+					"latitud" => $this->latitud,
+					"longitud" => $this->longitud,
+					"ubicacion" => $this->ubicacion,
+					"calleX" => $this->calleX,
+					"calleY" => $this->calleY,
+					"calleZ" => $this->calleZ,
+					"estado" => $this->estado,);
 	}
 
 }

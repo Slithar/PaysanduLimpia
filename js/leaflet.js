@@ -29,40 +29,46 @@ var red = 0;
 
 $.ajax({
 	url : '/Volquetas/volqueta/getVolquetas',
-	type : 'POST'
+	type : 'POST',
+	dataType : 'json'
 })
 .done(function(response){
 	//alert(hola);
-	response = response.replace("Array", "");
-	var responseSplit = response.split(':');
-	for(var i = 0; i < responseSplit.length; i++){
+	//console.log(response);
+	//response = response.replace("Array", "");
+	if(response["code"] == "ok"){
+		//var responseSplit = response.split(':');
+		var volquetas = response["content"];
+		for(var i = 0; i < volquetas.length; i++){
 
-		var datos = responseSplit[i].split(';');
-		var marker = L.marker([datos[1], datos[2]], {draggable: false});
-		marker.bindPopup("Volqueta Nº: " + datos[0]);
-		marker.on('mouseover', function (e) {
-	        this.openPopup();
-	    });
-	    marker.on('mouseout', function (e) {
-	        this.closePopup();
-	    });
-	    if(datos[7] == "Sin incidencias"){
-	    	marker.setIcon(greenMarker);
-	    	green++;
-	    }
-		else if(datos[7] == "Con incidencias pendientes"){
-			marker.setIcon(redMarker);
-			red++;
-		}
-		else{
-			marker.setIcon(orangeMarker);
-			orange++;
-		}
-		marker.addTo(map);
+			//var datos = responseSplit[i].split(';');
+			var marker = L.marker([volquetas[i]["latitud"], volquetas[i]["longitud"]], {draggable: false});
+			marker.bindPopup("Volqueta Nº: " + volquetas[i]["numero"]);
+			marker.on('mouseover', function (e) {
+		        this.openPopup();
+		    });
+		    marker.on('mouseout', function (e) {
+		        this.closePopup();
+		    });
+		    if(volquetas[i]["estado"] == "Sin incidencias"){
+		    	marker.setIcon(greenMarker);
+		    	green++;
+		    }
+			else if(volquetas[i]["estado"] == "Con incidencias pendientes"){
+				marker.setIcon(redMarker);
+				red++;
+			}
+			else{
+				marker.setIcon(orangeMarker);
+				orange++;
+			}
+			marker.addTo(map);
 
-		$('#lblCantidadGreen').html("Cantidad de volquetas: " + green);
-		$('#lblCantidadOrange').html("Cantidad de volquetas: " + orange);
-		$('#lblCantidadRed').html("Cantidad de volquetas: " + red);
+			$('#lblCantidadGreen').html("Cantidad de volquetas: " + green);
+			$('#lblCantidadOrange').html("Cantidad de volquetas: " + orange);
+			$('#lblCantidadRed').html("Cantidad de volquetas: " + red);
+		}
 	}
+	
 });
 

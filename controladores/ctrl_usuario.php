@@ -32,10 +32,22 @@ class ControladorUsuario extends ControladorIndex{
 					"ci"=>$_POST["cedulaUsuario"],
 					"contrasenia" =>$_POST["passwordUsuario"],
 				);
-
 		$usuario = new Usuario($params);
 
-		echo $usuario->login();
+		if($usuario->login() == 0){
+			$code = "error";
+			$message = "Los datos ingresados son incorrectos";
+		}
+		else{
+			$code = "ok";
+			$message = "";
+		}
+
+		$result = new Respuesta(array("code" => $code,
+									"message" => $message,
+									"content" => "",));
+
+		echo $result->getResult();
 	}
 
 }
