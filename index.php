@@ -8,6 +8,10 @@
 
 	$tpl = Template::getInstance();
 
+	//$usuario = Auth::getUsuarioLogueado();
+	
+	$tpl->asignar('logueado', 'si');
+
 	if(isset($_GET["url"])){
 
 		$request = explode('/', $_GET["url"]);

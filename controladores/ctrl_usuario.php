@@ -8,6 +8,8 @@ class ControladorUsuario extends ControladorIndex{
 	function landing($param=array()){
 		$tpl = Template::getInstance();
 		$tpl->asignar('location', 'Inicio');
+		//$tpl->asignar('logueado', 'no');
+		$tpl->asignar('landing', 'si');
 		$tpl->mostrar('landing');
 	}
 
@@ -20,6 +22,7 @@ class ControladorUsuario extends ControladorIndex{
 	function login($params = array()){
 		$tpl = Template::getInstance();
 		$tpl->asignar('location', 'Log In');
+		$tpl->asignar('landing', 'no');
 		$tpl->mostrar("login");
 	}	
 

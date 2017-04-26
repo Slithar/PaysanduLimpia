@@ -57,7 +57,15 @@ header{
 }
 .imgLogo{
 	width: 100%;
+	cursor: pointer;
 }
+
+.imgLogo:hover{
+	content: url('../img/LogoPaysandúLimpia6.png');	
+}
+/*#espacio{
+	height: 77px;
+}*/
 .menu{
 	display: block;
 	float: right;
@@ -79,15 +87,18 @@ header{
 	text-decoration: none;
 	display: block;
 	padding:17px 17px;
-	font-size: 20px;			
+	font-size: 20px;
+	text-align: right;
+	cursor: pointer;			
 }
 .ulMenu li a:hover{
-	color: #89ACF7;			
+	color: #89ACF7;
+	cursor: pointer;			
 }
 
-#carousel{
+/*#carousel{
 	margin-top: 77px;
-}
+}*/
 .divMain{
 	max-width: 1100px;
 	margin: auto;
@@ -183,9 +194,14 @@ footer{
 	background: -webkit-linear-gradient(top,  #b83636 0%,#ea4e19 77%); /* Chrome10-25,Safari5.1-6 */
 	background: linear-gradient(to bottom,  #b83636 0%,#ea4e19 77%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b83636', endColorstr='#ea4e19',GradientType=0 ); /* IE6-9 */
+	
+}
+
+.footerLanding{
 	margin-top: 15%;
 	padding: 3% 0 3% 0;
 }
+
 .divContacto{
 	/*border: 1px solid black;*/
 	width: 40%;
@@ -245,15 +261,11 @@ footer{
 }*/
 
 #ci{
-	width: 25%;
-	display: inline-block;
-	margin-right: 2%;
+	margin-right: 10px;
 }
 
 #contrasenia{
-	width: 25%;
-	display: inline-block;	
-	margin-right: 4%;
+	margin-right: 20px;
 }
 
 #lblRecordarme{
@@ -263,10 +275,8 @@ footer{
 }
 
 #lblRecordarme{
-	margin-right: 4%;
+	margin-right: 20px;
 }
-
-
 
 #spanAtras{
 	margin-right: 4%;
@@ -289,5 +299,180 @@ footer{
 
 #btnSubmitLogin{
 	font-weight: bold;
+}
+
+.secondHeader{
+	width: 100%;
+	height: 33px;
+	background: #3F87FB;
+}
+
+.ulMenuHorizontal{
+	max-width: 1100px;
+	margin: auto;
+	list-style: none;
+}
+
+.opcionSubmenu{
+	float: left;
+	width: 20%;
+	box-sizing: border-box;
+	padding-top: 5px;
+}
+
+.opcionSubmenu a{
+	color: white;
+	text-decoration: none;
+	display: block;
+	padding: 0 12px;
+	text-align: center;
+	box-sizing: border-box;
+	font-size: 14.7px;
+}
+
+.opcionSubmenu a:hover{
+	color: #0f3ea1;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.divPerfil{
+	margin-left: 7%;
+	width: 41%;
+	/*border: 1px solid black;*/
+	float: left;
+	margin-top: 2.1%;
+}
+
+.divFotoPerfil{
+	float: left;
+	/*border: 1px solid black;*/
+	width: 18.5%;
+	float: right;
+	margin-right: 15px;
+}
+
+.fotoPerfil{
+	width: 100%;
+	border-radius: 50%;
+	
+}
+
+.nombreLogueado{
+	float: left;
+	/*width: 50%;*/
+	/*border: 1px solid black;*/
+	margin-top: 5%;
+	color: white;
+	font-size: 20px;
+	float: right;
+}
+
+.submenuIncidencias{
+	list-style: none;
+	position: absolute;	
+	margin-top: 8px;
+	display: none;
+}
+
+.submenuIncidencias > li{
+	position: relative;
+	width: 100%;
+	padding: 5px 10px;
+	background: #72A7FC;
+	border-bottom: 1px solid white;
+
+}
+
+#iconoDesplegar{
+	font-size: 12px;
+	position: relative;
+	top: -2px;
+}
+
+#map{
+	width: 100%;
+	height: 100%;
+}
+
+.lblFooterNoLanding{
+	width: 100%;
+	color:white;
+	text-align: center;
+	font-size: 14px;
+	margin-top: 7px;
+}
+
+.referencias{
+	width: 17%;
+	height: 65%;
+	position: absolute;
+	background: rgba(255, 255, 255, .85);
+	border-radius: 15px;
+	margin-left: 73%;
+	margin-top: 3%;
+}
+
+.greenMarker{
+	width: 15%;
+	margin-left: 42%;
+	margin-top: 12%;
+}
+
+.lblGreenMarker{
+	display: block;
+	margin-top: 10px;
+	font-weight: bold;
+	font-size: 18px;
+	text-align: center;
+
+}
+
+#lblCantidadGreen{
+	font-weight: normal;
+	display: block;
+	text-align: center;
+}
+
+.orangeMarker{
+	width: 15%;
+	margin-left: 42%;
+	margin-top: 20%;
+}
+
+.lblOrangeMarker{
+	display: block;
+	margin-top: 10px;
+	font-weight: bold;
+	font-size: 18px;
+	text-align: center;
+
+}
+
+#lblCantidadOrange{
+	font-weight: normal;
+	display: block;
+	text-align: center;
+}
+
+.redMarker{
+	width: 15%;
+	margin-left: 42%;
+	margin-top: 22%;
+}
+
+.lblRedMarker{
+	display: block;
+	margin-top: 10px;
+	font-weight: bold;
+	font-size: 18px;
+	text-align: center;
+
+}
+
+#lblCantidadRed{
+	font-weight: normal;
+	display: block;
+	text-align: center;
 }
 
