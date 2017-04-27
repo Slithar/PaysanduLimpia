@@ -30,7 +30,4 @@ $.ajax({
 		}
 	}
 	
-})
-.fail(function(error, err, e){
-	alert(e);
 });
