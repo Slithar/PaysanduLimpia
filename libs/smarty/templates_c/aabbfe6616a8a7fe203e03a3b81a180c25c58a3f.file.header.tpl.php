@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-04-27 04:24:13
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-04-27 15:13:39
          compiled from "vistas\header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:415658f80da01afe57-50846233%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'aabbfe6616a8a7fe203e03a3b81a180c25c58a3f' => 
     array (
       0 => 'vistas\\header.tpl',
-      1 => 1493267050,
+      1 => 1493306010,
       2 => 'file',
     ),
   ),
@@ -89,7 +89,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
           <li class = "opcionSubmenu" id = "opcionIncidencias"><a><span class = "fa fa-bug"></span>&nbsp;&nbsp;Incidencias&nbsp;&nbsp;<span class = "fa fa-chevron-down" id = "iconoDesplegarIncidencias"></span></a>
             <ul class = "submenu submenuIncidencias">
               <li class = "opcionSubmenuIncidencias"><a href = "#">Mis incidencias</a></li>
-              <li class = "opcionSubmenuIncidencias"><a href = "#">Nueva incidencia</a></li>
+              <li class = "opcionSubmenuIncidencias"><a href = "/Volquetas/incidencia/nuevaIncidencia">Nueva incidencia</a></li>
               <li class = "opcionSubmenuIncidencias"><a href = "#">Ver todas las incidencias</a></li>
             </ul>    
           </li>

@@ -34,8 +34,8 @@
 			<label id = "lblCantidadRed"></label>
 		</div>
 	</div>
-
-	<script src = "js/leaflet.js"></script>
+	<script src = "js/markers.js"></script>
+	<script src = "js/leafletVerVolquetas.js"></script>
 	<!-- Incluir la vista del footer último. Más abajo no debe haber más código -->	
 	{include file = "footer.tpl"}
 </body>

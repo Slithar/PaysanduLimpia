@@ -2,6 +2,7 @@
 require_once("clases/template.php");
 require_once("clases/auth.php");
 require_once("clases/usuario.php");
+require_once("clases/respuesta.php");
 
 class ControladorUsuario extends ControladorIndex{
 

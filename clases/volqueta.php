@@ -69,10 +69,10 @@ class Volqueta extends ClaseBase{
 											"latitud" => $fila->latitud,
 											"longitud" => $fila->longitud,
 											"ubicacion" => $fila->ubicacion,
-											"calleX" => htmlentities($fila->calleX, ENT_QUOTES),
-											"calleY" => htmlentities($fila->calleY, ENT_QUOTES),
-											"calleZ" => htmlentities($fila->calleZ, ENT_QUOTES),
-											"estado" => $fila->estado,));
+											"calleX" => utf8_encode($fila->calleX),
+											"calleY" => utf8_encode($fila->calleY),
+											"calleZ" => utf8_encode($fila->calleZ),
+											"estado" => utf8_encode($fila->estado),));
 			$volquetas[] = $volqueta;
 		}
 

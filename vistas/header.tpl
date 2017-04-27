@@ -64,7 +64,7 @@
           <li class = "opcionSubmenu" id = "opcionIncidencias"><a><span class = "fa fa-bug"></span>&nbsp;&nbsp;Incidencias&nbsp;&nbsp;<span class = "fa fa-chevron-down" id = "iconoDesplegarIncidencias"></span></a>
             <ul class = "submenu submenuIncidencias">
               <li class = "opcionSubmenuIncidencias"><a href = "#">Mis incidencias</a></li>
-              <li class = "opcionSubmenuIncidencias"><a href = "#">Nueva incidencia</a></li>
+              <li class = "opcionSubmenuIncidencias"><a href = "/Volquetas/incidencia/nuevaIncidencia">Nueva incidencia</a></li>
               <li class = "opcionSubmenuIncidencias"><a href = "#">Ver todas las incidencias</a></li>
             </ul>    
           </li>
