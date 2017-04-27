@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-04-26 19:48:18
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-04-27 04:24:13
          compiled from "vistas\header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:415658f80da01afe57-50846233%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'aabbfe6616a8a7fe203e03a3b81a180c25c58a3f' => 
     array (
       0 => 'vistas\\header.tpl',
-      1 => 1493236093,
+      1 => 1493267050,
       2 => 'file',
     ),
   ),
@@ -86,15 +86,20 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       <div class = "menuHorizontal">
         <ul class = "ulMenuHorizontal"> 
           <li class = "opcionSubmenu"><a href = "/Volquetas"><span class = "fa fa-home"></span>&nbsp;&nbsp;Inicio</a></li>        
-          <li class = "opcionSubmenu" id = "opcionIncidencias"><a><span class = "fa fa-bug"></span>&nbsp;&nbsp;Incidencias&nbsp;&nbsp;<span class = "fa fa-chevron-down" id = "iconoDesplegar"></span></a>
-            <ul class = "submenuIncidencias">
+          <li class = "opcionSubmenu" id = "opcionIncidencias"><a><span class = "fa fa-bug"></span>&nbsp;&nbsp;Incidencias&nbsp;&nbsp;<span class = "fa fa-chevron-down" id = "iconoDesplegarIncidencias"></span></a>
+            <ul class = "submenu submenuIncidencias">
               <li class = "opcionSubmenuIncidencias"><a href = "#">Mis incidencias</a></li>
               <li class = "opcionSubmenuIncidencias"><a href = "#">Nueva incidencia</a></li>
               <li class = "opcionSubmenuIncidencias"><a href = "#">Ver todas las incidencias</a></li>
             </ul>    
           </li>
           <li class = "opcionSubmenu"><a href = "#"><span class = "fa fa-bar-chart"></span>&nbsp;&nbsp;Estadísticas</a></li>
-          <li class = "opcionSubmenu"><a href = "#"><span class = "fa fa-user"></span>&nbsp;&nbsp;Mi perfil</a></li>
+          <li class = "opcionSubmenu" id = "opcionUsuarios"><a><span class = "fa fa-user"></span>&nbsp;&nbsp;Cuentas de usuarios&nbsp;&nbsp;<span class = "fa fa-chevron-down" id = iconoDesplegarUsuarios></span></a>
+            <ul class = "submenu submenuUsuarios">
+              <li class = "opcionSubmenuUsuarios"><a href = "#">Mi perfil</a></li>
+              <li class = "opcionSubmenuUsuarios"><a href = "#">Agregar funcionario</a></li>
+            </ul> 
+          </li>
           <li class = "opcionSubmenu"><a href = "#"><span class = "fa fa-sign-out"></span>&nbsp;&nbsp;Cerrar sesión</a></li>
         </ul>
     </div>

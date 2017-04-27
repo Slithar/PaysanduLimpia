@@ -1,6 +1,6 @@
 jQuery(document).ready(function($) {
-	var visible = false;
-
+	var visibleIncidencias = false;
+	var visibleUsuarios = false;
 	/*
 		Función para el submit del formulario de Log In.
 	*/
@@ -33,19 +33,32 @@ jQuery(document).ready(function($) {
 	});
 
 	$('#opcionIncidencias').on('click', function(){
-		
-
-		if(visible == false){			
+		if(visibleIncidencias == false){			
 			$('.submenuIncidencias').fadeIn();
-			$('#iconoDesplegar').removeClass('fa-chevron-down');
-			$('#iconoDesplegar').addClass('fa-chevron-up');
-			visible = true;
+			$('#iconoDesplegarIncidencias').removeClass('fa-chevron-down');
+			$('#iconoDesplegarIncidencias').addClass('fa-chevron-up');
+			visibleIncidencias = true;
 		}
 		else{
 			$('.submenuIncidencias').fadeOut();			
-			$('#iconoDesplegar').removeClass('fa-chevron-up');
-			$('#iconoDesplegar').addClass('fa-chevron-down');
-			visible = false;
+			$('#iconoDesplegarIncidencias').removeClass('fa-chevron-up');
+			$('#iconoDesplegarIncidencias').addClass('fa-chevron-down');
+			visibleIncidencias = false;
+		}
+	});
+
+	$('#opcionUsuarios').on('click', function(){
+		if(visibleUsuarios == false){			
+			$('.submenuUsuarios').fadeIn();
+			$('#iconoDesplegarUsuarios').removeClass('fa-chevron-down');
+			$('#iconoDesplegarUsuarios').addClass('fa-chevron-up');
+			visibleUsuarios = true;
+		}
+		else{
+			$('.submenuUsuarios').fadeOut();			
+			$('#iconoDesplegarUsuarios').removeClass('fa-chevron-up');
+			$('#iconoDesplegarUsuarios').addClass('fa-chevron-down');
+			visibleUsuarios = false;
 		}
 	});
 

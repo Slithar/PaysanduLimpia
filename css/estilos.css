@@ -384,7 +384,23 @@ footer{
 
 }
 
-#iconoDesplegar{
+.submenuUsuarios{
+	list-style: none;
+	position: absolute;	
+	margin-top: 8px;
+	display: none;
+}
+
+.submenuUsuarios > li{
+	position: relative;
+	width: 135%;
+	padding: 5px 10px;
+	background: #72A7FC;
+	border-bottom: 1px solid white;
+
+}
+
+.iconoDesplegar{
 	font-size: 12px;
 	position: relative;
 	top: -2px;
