@@ -56,7 +56,7 @@ class Volqueta extends ClaseBase{
 	}
 
 	public function getAllVolquetas(){
-		$sql = "SELECT * FROM volquetas";
+		$sql = "SELECT * FROM volquetas ORDER BY calleX, calleY, numero";
 
 		$stmt = DB::conexion()->prepare($sql);
 

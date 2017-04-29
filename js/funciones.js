@@ -64,6 +64,6 @@ jQuery(document).ready(function($) {
 
 	$('.imgLogo').on('click', function(){
 		location.href = "/Volquetas";
-	})
-
+	});
+	
 });

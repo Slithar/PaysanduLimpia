@@ -3,25 +3,6 @@ L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '
 	maxZoom: 18}).addTo(map);
 L.control.scale().addTo(map);
 
-
-/*var redMarker = L.AwesomeMarkers.icon({
-    icon: 'ion-alert-circled',
-    markerColor: 'red'
-});
-
-var orangeMarker = L.AwesomeMarkers.icon({
-    icon: 'ion-man',
-    markerColor: 'orange'
-});
-
-var greenMarker = L.AwesomeMarkers.icon({
-    icon: 'ion-checkmark-circled',
-    markerColor: 'green'
-});*/
-
-
-/*var marker = L.marker([-32.31733057826686, -58.0839228630066],{icon : redMarker}, {draggable: false});
-marker.addTo(map);*/
 var green = 0;
 var orange = 0;
 var red = 0;
