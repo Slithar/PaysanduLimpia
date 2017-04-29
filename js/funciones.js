@@ -65,5 +65,45 @@ jQuery(document).ready(function($) {
 	$('.imgLogo').on('click', function(){
 		location.href = "/Volquetas";
 	});
-	
+
+	$('#formNuevaIncidencia').on('submit', function(e){
+		//alert("aca");
+		var success = true;
+		e.preventDefault();
+
+		if($('#descripcion').val() == ""){
+			$('#descripcion').css('border', '2px solid #b83636');
+			$('#descripcion').focus();
+			success = false;
+		}
+
+		if($('#resumen').val() == ""){
+			$('#resumen').css('border', '2px solid #b83636');
+			$('#resumen').focus();
+			success = false;
+		}
+
+		if(!success){
+			$('#dangerNuevaIncidencia').fadeIn();
+			/*$('html,body').animate({
+			    scrollTop: $("#dangerNuevaIncidencia").offset().top
+			}, 2000);*/
+			$('body').scrollTo($('#dangerNuevaIncidencia').heigth());
+		}
+		else{
+			$.ajax({
+				url : '/Volquetas/incidencia/agregar',
+				method : 'POST',
+				data : $('#formNuevaIncidencia').serialize()
+			})
+			.done(function(response){
+				alert(response);
+			})
+			.fail(function(error, err, e){
+				alert(e);
+			});
+			//document.getElementById('formNuevaIncidencia').submit();
+		}
+	});
+
 });

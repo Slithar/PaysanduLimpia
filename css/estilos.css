@@ -654,7 +654,7 @@ textarea{
 }
 
 #btnCerrar:hover{
-	color: red;
+	color: #b83636;
 }
 
 #submitIncidencia{
@@ -662,4 +662,8 @@ textarea{
 	width: 30%;
 	margin: auto;
 	display: block;
+}
+
+#dangerNuevaIncidencia{
+	display: none;
 }

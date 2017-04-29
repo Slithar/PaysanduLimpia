@@ -3,7 +3,8 @@
 	require "vendor/autoload.php";
 	require "controladores/ctrl_index.php";
 	require_once('clases/template.php');
-
+	error_reporting(E_ERROR);
+	ini_set("display_errors", 1);
 	$controlIndex = new ControladorIndex();
 
 	$tpl = Template::getInstance();

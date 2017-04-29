@@ -68,6 +68,14 @@ class Incidencia extends ClaseBase{
 	public function getFechaHoraSolucion(){
 		return $this->fechaHoraSolucion;
 	}
+
+	public function insert(){
+		$sql = "insert into incidencias (ciUsuario, numeroVolqueta, ubicacionCorrecta, categoria, severidad, estado, resumen, descripcion, fechaHoraReporte) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		$stmt = DB::conexion()->prepare($sql);
+		$stmt->bind_param('iibssssss', $ci = 48704743, $v = 81, $a = true, $this->categoria, $this->severidad, $this->estado, $this->resumen, $this->descripcion, $this->fechaHoraReporte);
+		return $stmt->execute();
+		/*return $this->ciUsuario." ".$this->numeroVolqueta." ".$this->ubicacionCorrecta." ".$this->categoria." ".$this->severidad." ".$this->estado." ".$this->resumen." ".$this->descripcion." ".$this->fechaHoraReporte;*/
+	}
 }
 
 ?>
