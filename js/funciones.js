@@ -98,4 +98,9 @@ jQuery(document).ready(function($) {
 		}
 	});
 
+	$('body').on('keyup', function(e){
+		if(e.which == 27)
+			$('.fondoNegro').fadeOut();
+	});
+
 });
