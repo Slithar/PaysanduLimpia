@@ -41,15 +41,7 @@
 				</div>
 				<label class = "lblCheckbox"><input type="checkbox" checked name = "ubicacionCorrecta"/>&nbsp;&nbsp;¿La volqueta se encuentra en el lugar indicado en el plano?</label>
 				<p class = "pasoIncidencia" style = "margin-top: 75px;">2. Datos de la volqueta seleccionada</p>
-				<div id = "categoriaIncidencia">
-					<label>Categoría:</label>
-					<br>
-					<select class = "form-control" id = "selectCategoria" name = "categoria">
-						{foreach from = $categorias item = categoria}							
-								<option value = "{$categoria.codigo}">{$categoria.descripcion}</option>					
-						{/foreach}
-					</select>
-				</div>
+				
 				<div id = "severidadIncidencia">
 					<label>Severidad:</label>
 					<br>
@@ -57,6 +49,15 @@
 						{foreach from = $severidades item = severidad}
 							
 								<option value = "{$severidad.codigo}">{$severidad.descripcion}</option>					
+						{/foreach}
+					</select>
+				</div>
+				<div id = "categoriaIncidencia">
+					<label>Categoría:</label>
+					<br>
+					<select class = "form-control" id = "selectCategoria" name = "categoria">
+						{foreach from = $categorias item = categoria}							
+								<option value = "{$categoria.codigo}">{$categoria.descripcion}</option>					
 						{/foreach}
 					</select>
 				</div>

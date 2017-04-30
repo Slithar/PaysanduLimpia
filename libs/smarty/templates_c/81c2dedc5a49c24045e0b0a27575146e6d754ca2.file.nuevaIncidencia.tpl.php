@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-04-30 20:15:34
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-04-30 20:27:35
          compiled from "vistas\nuevaIncidencia.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2534759020b0516a345-85315128%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '81c2dedc5a49c24045e0b0a27575146e6d754ca2' => 
     array (
       0 => 'vistas\\nuevaIncidencia.tpl',
-      1 => 1493583332,
+      1 => 1493584040,
       2 => 'file',
     ),
   ),
@@ -22,10 +22,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'location' => 0,
     'success' => 0,
     'codigo' => 0,
-    'categorias' => 0,
-    'categoria' => 0,
     'severidades' => 0,
     'severidad' => 0,
+    'categorias' => 0,
+    'categoria' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -76,21 +76,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 				</div>
 				<label class = "lblCheckbox"><input type="checkbox" checked name = "ubicacionCorrecta"/>&nbsp;&nbsp;¿La volqueta se encuentra en el lugar indicado en el plano?</label>
 				<p class = "pasoIncidencia" style = "margin-top: 75px;">2. Datos de la volqueta seleccionada</p>
-				<div id = "categoriaIncidencia">
-					<label>Categoría:</label>
-					<br>
-					<select class = "form-control" id = "selectCategoria" name = "categoria">
-						<?php  $_smarty_tpl->tpl_vars['categoria'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['categoria']->_loop = false;
- $_from = $_smarty_tpl->tpl_vars['categorias']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
-foreach ($_from as $_smarty_tpl->tpl_vars['categoria']->key => $_smarty_tpl->tpl_vars['categoria']->value) {
-$_smarty_tpl->tpl_vars['categoria']->_loop = true;
-?>							
-								<option value = "<?php echo $_smarty_tpl->tpl_vars['categoria']->value['codigo'];?>
-"><?php echo $_smarty_tpl->tpl_vars['categoria']->value['descripcion'];?>
-</option>					
-						<?php } ?>
-					</select>
-				</div>
+				
 				<div id = "severidadIncidencia">
 					<label>Severidad:</label>
 					<br>
@@ -103,6 +89,21 @@ $_smarty_tpl->tpl_vars['severidad']->_loop = true;
 							
 								<option value = "<?php echo $_smarty_tpl->tpl_vars['severidad']->value['codigo'];?>
 "><?php echo $_smarty_tpl->tpl_vars['severidad']->value['descripcion'];?>
+</option>					
+						<?php } ?>
+					</select>
+				</div>
+				<div id = "categoriaIncidencia">
+					<label>Categoría:</label>
+					<br>
+					<select class = "form-control" id = "selectCategoria" name = "categoria">
+						<?php  $_smarty_tpl->tpl_vars['categoria'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['categoria']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['categorias']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['categoria']->key => $_smarty_tpl->tpl_vars['categoria']->value) {
+$_smarty_tpl->tpl_vars['categoria']->_loop = true;
+?>							
+								<option value = "<?php echo $_smarty_tpl->tpl_vars['categoria']->value['codigo'];?>
+"><?php echo $_smarty_tpl->tpl_vars['categoria']->value['descripcion'];?>
 </option>					
 						<?php } ?>
 					</select>
