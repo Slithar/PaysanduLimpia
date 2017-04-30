@@ -72,7 +72,7 @@ class Incidencia extends ClaseBase{
 	public function insert(){
 		$sql = "insert into incidencias (ciUsuario, numeroVolqueta, ubicacionCorrecta, categoria, severidad, estado, resumen, descripcion, fechaHoraReporte) values (?, ?, ?, ?, ?, ?, ?, ?, now())";
 		$stmt = DB::conexion()->prepare($sql);
-		$stmt->bind_param('iiisssss', $this->ciUsuario, $this->numeroVolqueta, $this->ubicacionCorrecta, $this->categoria, $this->severidad, $this->estado, $this->resumen, $this->descripcion);
+		$stmt->bind_param('iiiiiiss', $this->ciUsuario, $this->numeroVolqueta, $this->ubicacionCorrecta, $this->categoria, $this->severidad, $this->estado, $this->resumen, $this->descripcion);
 		return $stmt->execute();
 	}
 
@@ -86,7 +86,18 @@ class Incidencia extends ClaseBase{
 			$numero = $fila->codigo;
 		}
 		return $numero;
-		//return $stmt->get_result()->codigo;
+	}
+
+	function getIncidencias(){
+		$sql = "select * from incidencias";
+		$stmt = DB::conexion()->prepare($sql);
+		$stmt->execute();
+		$result = $stmt->get_result();
+		$res = "";
+		while($fila = $result->fetch_object()){
+			$res .= htmlentities($fila->categoria, ENT_QUOTES).";";
+		}
+		return $res;
 	}
 }
 

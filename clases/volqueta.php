@@ -93,7 +93,7 @@ class Volqueta extends ClaseBase{
 	public function updateEstado(){
 		$sql = "update volquetas set estado = ? where numero = ?";
 		$stmt = DB::conexion()->prepare($sql);
-		$stmt->bind_param('si', $this->estado, $this->numero);
+		$stmt->bind_param('ii', $this->estado, $this->numero);
 		return $stmt->execute();
 	}
 

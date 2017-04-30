@@ -6,6 +6,8 @@
 	<title>{$location} - Paysandú Limpia</title>
 </head>
 <body>
+
+
 	{include file = "header.tpl"}
 	<div class = "main" style = "position: fixed; width: 100%; height: 85.3%; overflow-y: auto">
 		<div class = "contenedor">
@@ -39,27 +41,26 @@
 				</div>
 				<label class = "lblCheckbox"><input type="checkbox" checked name = "ubicacionCorrecta"/>&nbsp;&nbsp;¿La volqueta se encuentra en el lugar indicado en el plano?</label>
 				<p class = "pasoIncidencia" style = "margin-top: 75px;">2. Datos de la volqueta seleccionada</p>
-				<div id = "severidadIncidencia">
-					<label>Severidad:</label>
-					<br>
-					<select class = "form-control" id = "selectSeveridad" name = "severidad">
-						<option value = "Baja">Baja</option>
-						<option value = "Media">Media</option>
-						<option value = "Alta">Alta</option>
-						<option value = "Urgente">Urgente</option>
-					</select>
-				</div>
 				<div id = "categoriaIncidencia">
 					<label>Categoría:</label>
 					<br>
 					<select class = "form-control" id = "selectCategoria" name = "categoria">
-						<option value = "La volqueta está llena">Volqueta llena</option>
-						<option value = "La volqueta huele mal">La volqueta huele mal</option>
-						<option value = "La volqueta se está incendiando">La volqueta se está incendiando</option>
-						<option value = "La volqueta se ha dañado">La volqueta se ha dañado</option>
-						<option value = "Otra">Otra</option>
+						{foreach from = $categorias item = categoria}							
+								<option value = "{$categoria.codigo}">{$categoria.descripcion}</option>					
+						{/foreach}
 					</select>
 				</div>
+				<div id = "severidadIncidencia">
+					<label>Severidad:</label>
+					<br>
+					<select class = "form-control" id = "selectSeveridad" name = "severidad">						
+						{foreach from = $severidades item = severidad}
+							
+								<option value = "{$severidad.codigo}">{$severidad.descripcion}</option>					
+						{/foreach}
+					</select>
+				</div>
+				
 				<label for = "resumen" class = "lblResumenDescripcion">Resúmen:</label>
 				<input type = text name = "resumen" id = "resumen" class = "form-control" name = "resumen"/>
 				<label for = "descripcion" class = "lblResumenDescripcion">Descripción:</label>

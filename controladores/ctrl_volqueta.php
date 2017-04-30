@@ -4,6 +4,7 @@ require_once("clases/template.php");
 require_once("clases/auth.php");
 require_once("clases/volqueta.php");
 require_once("clases/respuesta.php");
+require_once("clases/estadoVolqueta.php");
 
 class ControladorVolqueta extends ControladorIndex{
 	function verVolquetas($params = array()){
@@ -37,6 +38,16 @@ class ControladorVolqueta extends ControladorIndex{
 										"estado" => $estado,));
 		return $volqueta->updateEstado();
 	}
+
+	/*public function getEstados(){
+		$estado = new EstadoVolqueta();
+		$estados = $estado->getEstadosVolqueta();
+		foreach ($estados as $e) {
+			$result[] = $e->convertToArray();
+		}
+
+		return $result;
+	}*/
 }
 
 ?>

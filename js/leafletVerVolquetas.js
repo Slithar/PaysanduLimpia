@@ -30,11 +30,11 @@ $.ajax({
 		    marker.on('mouseout', function (e) {
 		        this.closePopup();
 		    });
-		    if(volquetas[i]["estado"] == "Sin incidencias"){
+		    if(volquetas[i]["estado"] == 1){
 		    	marker.setIcon(greenMarker);
 		    	green++;
 		    }
-			else if(volquetas[i]["estado"] == "Con incidencias pendientes"){
+			else if(volquetas[i]["estado"] == 3){
 				marker.setIcon(redMarker);
 				red++;
 			}

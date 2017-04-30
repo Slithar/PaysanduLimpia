@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-04-30 05:53:05
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-04-30 20:15:34
          compiled from "vistas\nuevaIncidencia.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2534759020b0516a345-85315128%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '81c2dedc5a49c24045e0b0a27575146e6d754ca2' => 
     array (
       0 => 'vistas\\nuevaIncidencia.tpl',
-      1 => 1493531562,
+      1 => 1493583332,
       2 => 'file',
     ),
   ),
@@ -22,6 +22,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'location' => 0,
     'success' => 0,
     'codigo' => 0,
+    'categorias' => 0,
+    'categoria' => 0,
+    'severidades' => 0,
+    'severidad' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -35,6 +39,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
  - Paysandú Limpia</title>
 </head>
 <body>
+
+
 	<?php echo $_smarty_tpl->getSubTemplate ("header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 
 	<div class = "main" style = "position: fixed; width: 100%; height: 85.3%; overflow-y: auto">
@@ -70,27 +76,38 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 				</div>
 				<label class = "lblCheckbox"><input type="checkbox" checked name = "ubicacionCorrecta"/>&nbsp;&nbsp;¿La volqueta se encuentra en el lugar indicado en el plano?</label>
 				<p class = "pasoIncidencia" style = "margin-top: 75px;">2. Datos de la volqueta seleccionada</p>
-				<div id = "severidadIncidencia">
-					<label>Severidad:</label>
-					<br>
-					<select class = "form-control" id = "selectSeveridad" name = "severidad">
-						<option value = "Baja">Baja</option>
-						<option value = "Media">Media</option>
-						<option value = "Alta">Alta</option>
-						<option value = "Urgente">Urgente</option>
-					</select>
-				</div>
 				<div id = "categoriaIncidencia">
 					<label>Categoría:</label>
 					<br>
 					<select class = "form-control" id = "selectCategoria" name = "categoria">
-						<option value = "La volqueta está llena">Volqueta llena</option>
-						<option value = "La volqueta huele mal">La volqueta huele mal</option>
-						<option value = "La volqueta se está incendiando">La volqueta se está incendiando</option>
-						<option value = "La volqueta se ha dañado">La volqueta se ha dañado</option>
-						<option value = "Otra">Otra</option>
+						<?php  $_smarty_tpl->tpl_vars['categoria'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['categoria']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['categorias']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['categoria']->key => $_smarty_tpl->tpl_vars['categoria']->value) {
+$_smarty_tpl->tpl_vars['categoria']->_loop = true;
+?>							
+								<option value = "<?php echo $_smarty_tpl->tpl_vars['categoria']->value['codigo'];?>
+"><?php echo $_smarty_tpl->tpl_vars['categoria']->value['descripcion'];?>
+</option>					
+						<?php } ?>
 					</select>
 				</div>
+				<div id = "severidadIncidencia">
+					<label>Severidad:</label>
+					<br>
+					<select class = "form-control" id = "selectSeveridad" name = "severidad">						
+						<?php  $_smarty_tpl->tpl_vars['severidad'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['severidad']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['severidades']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['severidad']->key => $_smarty_tpl->tpl_vars['severidad']->value) {
+$_smarty_tpl->tpl_vars['severidad']->_loop = true;
+?>
+							
+								<option value = "<?php echo $_smarty_tpl->tpl_vars['severidad']->value['codigo'];?>
+"><?php echo $_smarty_tpl->tpl_vars['severidad']->value['descripcion'];?>
+</option>					
+						<?php } ?>
+					</select>
+				</div>
+				
 				<label for = "resumen" class = "lblResumenDescripcion">Resúmen:</label>
 				<input type = text name = "resumen" id = "resumen" class = "form-control" name = "resumen"/>
 				<label for = "descripcion" class = "lblResumenDescripcion">Descripción:</label>

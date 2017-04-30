@@ -7,6 +7,9 @@ require_once("clases/respuesta.php");
 require_once("clases/incidencia.php");
 require_once("clases/imagenDeIncidencia.php");
 require_once("controladores/ctrl_volqueta.php");
+require_once("clases/severidad.php");
+require_once("clases/categoria.php");
+require_once("clases/estadoIncidencia.php");
 
 class ControladorIncidencia extends ControladorIndex{
 	public function nuevaIncidencia($params = array()){
@@ -21,6 +24,9 @@ class ControladorIncidencia extends ControladorIndex{
 		/*$date = getdate();
 		$fechaHoraReporte = $date[year]."-".$date[mon]."-".$date[mday]." ".$date[hours].":".$date[minutes].":".$date[seconds];*/
 		//La forma de fecha anterior no la uso porque no tiene la hora nuestra
+
+		//html_entity_decode($name, ENT_QUOTES | ENT_HTML401, "UTF-8");
+		//echo $_POST['severidad'];
 		$ubicacionCorrecta = 1;
 		if(!$_POST['ubicacionCorrecta'])
 			$ubicacionCorrecta = 0;
@@ -29,7 +35,7 @@ class ControladorIncidencia extends ControladorIndex{
 											"ubicacionCorrecta" => $ubicacionCorrecta,
 											"categoria" => $_POST['categoria'],
 											"severidad" => $_POST['severidad'],
-											"estado" => "Pendiente",
+											"estado" => 1,
 											"resumen" => $_POST['resumen'],
 											"descripcion" => $_POST['descripcion'],));
 		
@@ -49,7 +55,7 @@ class ControladorIncidencia extends ControladorIndex{
 				$imagen->insert();
 			}
 		}
-		if(ControladorVolqueta::changeState($_POST['numero'], "Con incidencias pendientes")){
+		if(ControladorVolqueta::changeState($_POST['numero'], 3)){
 			$tpl = Template::getInstance();
 			$tpl->asignar('location', 'Nueva incidencia');
 			$tpl->asignar('landing', 'no');
@@ -59,6 +65,39 @@ class ControladorIncidencia extends ControladorIndex{
 			//$this->redirect('incidencia', 'nuevaIncidencia');
 		}
 	}
+
+	public function getIncidencias(){
+		$incidencia = new Incidencia();
+		echo $incidencia->getIncidencias();
+	}
+
+	/*public function getSeveridades(){
+		$severidad = new Severidad();
+		$severidades = $severidad->getSeveridades();
+		foreach ($severidades as $s) {
+			$result[] = $s->convertToArray();
+		}
+
+		return $result;
+	}*/
+	/*public function getCategorias(){
+		$estado = new EstadoVolqueta();
+		$estados = $estado->getEstadosVolqueta();
+		foreach ($estados as $e) {
+			$result[] = $e->convertToArray();
+		}
+
+		return $result;
+	}
+	public function getEstados(){
+		$estado = new EstadoVolqueta();
+		$estados = $estado->getEstadosVolqueta();
+		foreach ($estados as $e) {
+			$result[] = $e->convertToArray();
+		}
+
+		return $result;
+	}*/
 }
 
 ?>
