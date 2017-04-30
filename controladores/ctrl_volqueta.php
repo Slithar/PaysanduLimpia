@@ -31,6 +31,12 @@ class ControladorVolqueta extends ControladorIndex{
 		echo $result;*/
 		echo $result->getResult();
 	}
+
+	public static function changeState($numero, $estado){
+		$volqueta = new Volqueta(array("numero" => $numero,
+										"estado" => $estado,));
+		return $volqueta->updateEstado();
+	}
 }
 
 ?>

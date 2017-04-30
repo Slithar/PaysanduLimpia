@@ -84,25 +84,17 @@ jQuery(document).ready(function($) {
 		}
 
 		if(!success){
-			$('#dangerNuevaIncidencia').fadeIn();
-			/*$('html,body').animate({
-			    scrollTop: $("#dangerNuevaIncidencia").offset().top
-			}, 2000);*/
-			$('body').scrollTo($('#dangerNuevaIncidencia').heigth());
+			$("#dangerNuevaIncidencia").fadeIn();
+			//alert($("#dangerNuevaIncidencia").offset().top);
+			$(".main").animate({ scrollTop : $("#dangerNuevaIncidencia").offset().top + 100 }, 750 );
+			//$('.main').scrollTop();
+			setTimeout(function(){				
+				$("#dangerNuevaIncidencia").fadeOut();
+			}, 5000);
+			//$('.contenedor').scroll($('.contenedor').height());
 		}
 		else{
-			$.ajax({
-				url : '/Volquetas/incidencia/agregar',
-				method : 'POST',
-				data : $('#formNuevaIncidencia').serialize()
-			})
-			.done(function(response){
-				alert(response);
-			})
-			.fail(function(error, err, e){
-				alert(e);
-			});
-			//document.getElementById('formNuevaIncidencia').submit();
+			document.getElementById('formNuevaIncidencia').submit();
 		}
 	});
 

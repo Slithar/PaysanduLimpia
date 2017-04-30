@@ -634,14 +634,7 @@ textarea{
 	height: 100%;
 	background: rgba(0, 0, 0, .9);
 	display: none;
-}
-
-#imgModal{
-	width: 50%;
-	margin: auto;
-	display: block;
-	margin-top: 7%;
-	border: 11px solid white;
+	overflow-y: auto;
 }
 
 #btnCerrar{
@@ -650,7 +643,7 @@ textarea{
 	cursor: pointer;
 	position: absolute;
 	left: 81%;
-	top: 7%;
+	top: 3%;
 }
 
 #btnCerrar:hover{

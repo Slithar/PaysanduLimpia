@@ -184,14 +184,42 @@ function quitarFiles(){
 	$('.galeria_item').remove();
 }
 
-/*function mostrarModal(e){	
-	$('#imgModal').attr('src', e.target.src);
-	$('.fondoNegro').fadeIn();
-}*/
-
 $('body').on('click', '.galeria_img', function(e){
-	$('#imgModal').attr('src', e.target.src);
+	var img = document.createElement("img");
+	img.src = e.target.src;
+
 	$('.fondoNegro').fadeIn();
+	/*var altoFondoNegro = $('#fondoNegro').css('height').replace("px", "");
+	alert(altoFondoNegro);*/
+	if(img.height > img.width){
+		//var ancho = img.width * 2;
+		//(img.height > ancho){
+
+		$('#imgModal').css({'width': '25%',
+						'margin': 'auto',
+						'display': 'block',
+						'margin-top': '3%',
+						'border': '11px solid white',
+						'margin-bottom' : '50px'});
+		/*}
+		else{
+			$('#imgModal').css({'width': '25%',
+							'margin': 'auto',
+							'display': 'block',
+							'margin-top': '8%',
+							'border': '11px solid white'});
+		}*/
+		
+	}
+	else{
+		$('#imgModal').css({'width': '55%',
+							'margin': 'auto',
+							'display': 'block',
+							'margin-top': '7%',
+							'border': '11px solid white',
+							'margin-bottom' : '50px'});
+	}
+	$('#imgModal').attr('src', e.target.src);	
 });
 
 function cerrarModal(){

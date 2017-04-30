@@ -70,11 +70,23 @@ class Incidencia extends ClaseBase{
 	}
 
 	public function insert(){
-		$sql = "insert into incidencias (ciUsuario, numeroVolqueta, ubicacionCorrecta, categoria, severidad, estado, resumen, descripcion, fechaHoraReporte) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		$sql = "insert into incidencias (ciUsuario, numeroVolqueta, ubicacionCorrecta, categoria, severidad, estado, resumen, descripcion, fechaHoraReporte) values (?, ?, ?, ?, ?, ?, ?, ?, now())";
 		$stmt = DB::conexion()->prepare($sql);
-		$stmt->bind_param('iibssssss', $ci = 48704743, $v = 81, $a = true, $this->categoria, $this->severidad, $this->estado, $this->resumen, $this->descripcion, $this->fechaHoraReporte);
+		$stmt->bind_param('iiisssss', $this->ciUsuario, $this->numeroVolqueta, $this->ubicacionCorrecta, $this->categoria, $this->severidad, $this->estado, $this->resumen, $this->descripcion);
 		return $stmt->execute();
-		/*return $this->ciUsuario." ".$this->numeroVolqueta." ".$this->ubicacionCorrecta." ".$this->categoria." ".$this->severidad." ".$this->estado." ".$this->resumen." ".$this->descripcion." ".$this->fechaHoraReporte;*/
+	}
+
+	public function getCodigoGenerado(){
+		$sql = "select max(codigo) codigo from incidencias";
+		$stmt = DB::conexion()->prepare($sql);
+		$stmt->execute();
+		$result = $stmt->get_result();
+		$numero = 0;
+		while($fila = $result->fetch_object()){
+			$numero = $fila->codigo;
+		}
+		return $numero;
+		//return $stmt->get_result()->codigo;
 	}
 }
 
