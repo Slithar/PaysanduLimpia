@@ -660,3 +660,11 @@ textarea{
 #dangerNuevaIncidencia{
 	display: none;
 }
+
+.galeria_img{
+	border-radius: 10.5px;
+}
+
+#imgModal{
+	border-radius: 15px;
+}
