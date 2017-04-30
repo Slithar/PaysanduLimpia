@@ -52,7 +52,6 @@
 						{/foreach}
 					</select>
 				</div>
-				
 				<div id = "categoriaIncidencia">
 					<label>Categoría:</label>
 					<br>
