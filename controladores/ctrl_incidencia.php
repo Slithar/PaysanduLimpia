@@ -16,17 +16,18 @@ class ControladorIncidencia extends ControladorIndex{
 		$tpl = Template::getInstance();
 		$tpl->asignar('location', 'Nueva incidencia');
 		$tpl->asignar('landing', 'no');
-		$tpl->asignar('success', 'no');
+		if(isset($params[0]) && $params[0] == "success"){
+			$tpl->asignar('success', 'si');
+			$tpl->asignar('codigo', $params[1]);
+		}
+		else{		
+			$tpl->asignar('success', 'no');
+			$tpl->asignar('codigo', '');
+		}
 		$tpl->mostrar('nuevaIncidencia');
 	}
 
 	public function agregar(){
-		/*$date = getdate();
-		$fechaHoraReporte = $date[year]."-".$date[mon]."-".$date[mday]." ".$date[hours].":".$date[minutes].":".$date[seconds];*/
-		//La forma de fecha anterior no la uso porque no tiene la hora nuestra
-
-		//html_entity_decode($name, ENT_QUOTES | ENT_HTML401, "UTF-8");
-		//echo $_POST['severidad'];
 		$ubicacionCorrecta = 1;
 		if(!$_POST['ubicacionCorrecta'])
 			$ubicacionCorrecta = 0;
@@ -44,9 +45,7 @@ class ControladorIncidencia extends ControladorIndex{
 		$imagenes = $_FILES['imagenes'];
 		$extensionesAceptadas = array(".JPG", ".JPEG", ".PNG", ".GIF", ".BMP");
 		for($i = 0; $i < count($imagenes); $i++){
-			//echo $imagenes['name'][$i];
 			$extension = substr($imagenes['name'][$i], strrpos($imagenes['name'][$i], "."));
-			//echo $extension;
 			if(in_array(strtoupper($extension), $extensionesAceptadas)){
 				$cant = $i + 1;
 				copy($imagenes['tmp_name'][$i], "img/Incidencias/".$codigoGenerado."-".$cant.$extension);
@@ -56,48 +55,15 @@ class ControladorIncidencia extends ControladorIndex{
 			}
 		}
 		if(ControladorVolqueta::changeState($_POST['numero'], 3)){
-			$tpl = Template::getInstance();
-			$tpl->asignar('location', 'Nueva incidencia');
-			$tpl->asignar('landing', 'no');
-			$tpl->asignar('success', 'si');
-			$tpl->asignar('codigo', $codigoGenerado);
-			$tpl->mostrar('nuevaIncidencia');
-			//$this->redirect('incidencia', 'nuevaIncidencia');
+			$this->redirect('incidencia', 'nuevaIncidencia/success/'.$codigoGenerado);
 		}
+		
 	}
 
 	public function getIncidencias(){
 		$incidencia = new Incidencia();
 		echo $incidencia->getIncidencias();
 	}
-
-	/*public function getSeveridades(){
-		$severidad = new Severidad();
-		$severidades = $severidad->getSeveridades();
-		foreach ($severidades as $s) {
-			$result[] = $s->convertToArray();
-		}
-
-		return $result;
-	}*/
-	/*public function getCategorias(){
-		$estado = new EstadoVolqueta();
-		$estados = $estado->getEstadosVolqueta();
-		foreach ($estados as $e) {
-			$result[] = $e->convertToArray();
-		}
-
-		return $result;
-	}
-	public function getEstados(){
-		$estado = new EstadoVolqueta();
-		$estados = $estado->getEstadosVolqueta();
-		foreach ($estados as $e) {
-			$result[] = $e->convertToArray();
-		}
-
-		return $result;
-	}*/
 }
 
 ?>

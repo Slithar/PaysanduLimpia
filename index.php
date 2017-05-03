@@ -17,17 +17,15 @@
 	$estadosIncidencia = $estadoIncidencia->getEstadosIncidencia();
 	$estadoVolqueta = new EstadoVolqueta();
 	$estadosVolqueta = $estadoVolqueta->getEstadosVolqueta();
-	//echo count($severidades);
-	/*$categorias = new Categoria()->getCategorias();
-	$estadosIncidencia = new EstadoIncidencia()->getEstadosIncidencia();
-	$estadosVolqueta = new EstadoVolqueta()->getEstadosVolqueta();*/
 	$controlIndex = new ControladorIndex();
 
 	$tpl = Template::getInstance();
-
-	//$usuario = Auth::getUsuarioLogueado();
-	
-	$tpl->asignar('logueado', 'si');
+	/*unset($_COOKIE['ciUsuario']);
+	setcookie('ciUsuario', null, -1, '/');*/
+	if(isset($_COOKIE['ciUsuario']))
+		$tpl->asignar('logueado', 'si');
+	else
+		$tpl->asignar('logueado', 'no');
 	$tpl->asignar('severidades', $severidades);
 	$tpl->asignar('categorias', $categorias);
 	$tpl->asignar('estadosIncidencia', $estadosIncidencia);

@@ -2,7 +2,7 @@
 
 class Utils{
 
-	public function enviarEmail($email,$nombre_completo){
+	public function enviarCorreoContacto($email,$asunto,$mensaje){
 
 	
 	//Create a new PHPMailer instance
@@ -33,30 +33,30 @@ class Utils{
 	$mail->SMTPAuth = true;
 
 	//Username to use for SMTP authentication - use full email address for gmail
-	$mail->Username = "tipwebphp@gmail.com";
+	$mail->Username = "paysandulimpia@gmail.com";
 
 	//Password to use for SMTP authentication
-	$mail->Password = "phpwebtip";
+	$mail->Password = "Paysandulimpia2017";
 
 	//Set who the message is to be sent from
-	$mail->setFrom('tipwebphp@gmail.com', 'Apps Web TIP');
+	$mail->setFrom('paysandulimpia@gmail.com', 'Paysandu Limpia');
 
 	//Set an alternative reply-to address
-	$mail->addReplyTo('tipwebphp@gmail.com', 'Apps Web TIP');
+	$mail->addReplyTo('paysandulimpia@gmail.com', 'Paysandu Limpia');
 
 	//Set who the message is to be sent to
-	$mail->addAddress($email, $nombre_completo);
+	$mail->addAddress('paysandulimpia@gmail.com', 'Paysandu Limpia');
 
 	//Set the subject line
-	$mail->Subject = 'Welcome';
+	$mail->Subject = $asunto;;
 
 	//Read an HTML message body from an external file, convert referenced images to embedded,
 	//convert HTML into a basic plain-text alternative body
 	//$mail->msgHTML(file_get_contents('contents.html'), dirname(__FILE__));
-	$mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+	$mail->Body    = "Se ha recibido el siguiente correo de contacto de parte de un usuario del sistema: <b>'".$mensaje."'</b>.<br><br>Correo electrónico: ".$email;
 
 	//Replace the plain text body with one created manually
-	$mail->AltBody = 'This is a plain-text message body';
+	$mail->AltBody = "Se ha recibido el siguiente correo de contacto de parte de un usuario del sistema: <b>'".$mensaje."'</b>.<br><br>Correo electrónico: ".$email;
 
 	
 	//send the message, check for errors

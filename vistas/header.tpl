@@ -23,7 +23,7 @@
         <li class = "opcion"><a href = "/Volquetas/volqueta/verVolquetas"><span class = "fa fa-map-marker"></span>&nbsp;&nbsp;Ver volquetas</a></li>
         {if $logueado eq 'no'}
           <li class = "opcion"><a href = "#"><span class = "fa fa-user-plus"></span>&nbsp;&nbsp;Registrarse</a></li>
-          <li class = "opcion" id = "opcionIngresar"><a href = "#"><span class = "fa fa-sign-in"></span>&nbsp;&nbsp;Iniciar sesión</a></li>
+          <li class = "opcion" id = "opcionIngresar"><a><span class = "fa fa-sign-in"></span>&nbsp;&nbsp;Iniciar sesión</a></li>
         {else}
           <div class = "divPerfil">
             <p class = "nombreLogueado">
@@ -71,7 +71,7 @@
           <li class = "opcionSubmenu"><a href = "#"><span class = "fa fa-bar-chart"></span>&nbsp;&nbsp;Estadísticas</a></li>
           <li class = "opcionSubmenu" id = "opcionUsuarios"><a><span class = "fa fa-user"></span>&nbsp;&nbsp;Cuentas de usuarios&nbsp;&nbsp;<span class = "fa fa-chevron-down" id = iconoDesplegarUsuarios></span></a>
             <ul class = "submenu submenuUsuarios">
-              <li class = "opcionSubmenuUsuarios"><a href = "#">Mi perfil</a></li>
+              <li class = "opcionSubmenuUsuarios"><a href = "/Volquetas/usuario/verPerfil">Mi perfil</a></li>
               <li class = "opcionSubmenuUsuarios"><a href = "#">Agregar funcionario</a></li>
             </ul> 
           </li>

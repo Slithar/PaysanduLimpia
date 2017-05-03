@@ -14,7 +14,7 @@ jQuery(document).ready(function($) {
 			data: $("#formLogin").serialize(),
 		})
 		.done(function(response) {
-			alert(response);
+			alert(response["code"]);
 		});
 		
 	});
@@ -101,6 +101,60 @@ jQuery(document).ready(function($) {
 	$('body').on('keyup', function(e){
 		if(e.which == 27)
 			$('.fondoNegro').fadeOut();
+	});
+
+	$('#btnEnviarCorreo').on('click', function(e){
+		//alert("aca");
+		e.preventDefault();
+		$.ajax({
+			url : '/Volquetas/usuario/contacto',
+			type : 'POST',
+			dataType : 'json',
+			data : $('#formContacto').serialize(),
+			beforeSend : function(){
+				/*$('#btnEnviarCorreo').fadeOut(function(){
+					$('#spinnerEnviar').fadeIn();
+				});*/
+				$('#btnEnviarCorreo').css('display', 'none');
+				$('#spinnerEnviar').css('display', 'block');
+
+			}
+		})
+		.done(function(response){
+			if(response['code'] == "ok"){
+				$('#btnEnviarCorreo').css('display', 'none');
+				$('#spinnerEnviar').css('display', 'none');
+				$('#alertContacto').css('display', 'block');
+				$('#alertContacto').addClass('alert-success');
+				$('#alertContacto').html('<strong><center>¡ÉXITO!</center></strong><center>' + response['message'] + '</center>');
+				//});
+				setTimeout(function(){				
+					$("#spinnerEnviar").css('display', 'none');
+					$("#alertContacto").css('display', 'none');
+					$('#btnEnviarCorreo').css('display', 'block');
+					$('#correo').val("");
+					$('#asunto').val("");
+					$('#mensaje').val("");
+				}, 5000);
+			}
+			else{
+				$('#btnEnviarCorreo').css('display', 'none');
+				$('#spinnerEnviar').css('display', 'none');
+				$('#alertContacto').css('display', 'block');
+				$('#alertContacto').addClass('alert-danger');
+				$('#alertContacto').html('<strong><center>ERROR</center></strong><center>' + response['message'] + '</center>');
+				//});
+				setTimeout(function(){				
+					$("#spinnerEnviar").css('display', 'none');
+					$("#alertContacto").css('display', 'none');
+					$('#btnEnviarCorreo').css('display', 'block');
+				}, 5000);
+			}
+		})
+		.fail(function(error, err, e){
+			alert(e);
+		});
+		//<strong><center>¡ÉXITO!</center></strong><center></center>
 	});
 
 });

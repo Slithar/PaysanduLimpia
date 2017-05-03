@@ -194,12 +194,17 @@ footer{
 	background: -webkit-linear-gradient(top,  #b83636 0%,#ea4e19 77%); /* Chrome10-25,Safari5.1-6 */
 	background: linear-gradient(to bottom,  #b83636 0%,#ea4e19 77%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b83636', endColorstr='#ea4e19',GradientType=0 ); /* IE6-9 */
+	/*box-sizing: border-box;*/
 	
 }
 
 .footerLanding{
 	margin-top: 15%;
-	padding: 3% 0 3% 0;
+	padding: 3% 0;
+	box-sizing: border-box;
+	/*height: 5%;*/
+	height: 521px;
+	/*border: 1px solid black;*/
 }
 
 .divContacto{
@@ -229,7 +234,7 @@ footer{
 .divInformacion{
 	border-right: 1px solid white;
 	width: 50%;
-	height: 295px;
+	height: 349px;
 	float: left;
 }
 .paysanduLimpia{
@@ -667,4 +672,14 @@ textarea{
 
 #imgModal{
 	border-radius: 15px;
+}
+
+#spinnerEnviar{
+	width: 100%;
+	text-align: center;
+	/*border: 1px solid black;*/
+	font-size: 38px;
+	color: white;
+	margin-top: 25px;
+	display: none;
 }

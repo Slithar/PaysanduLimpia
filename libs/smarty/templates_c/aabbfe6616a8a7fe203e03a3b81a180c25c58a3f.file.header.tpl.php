@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-04-27 21:58:10
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-05-03 15:56:46
          compiled from "vistas\header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:415658f80da01afe57-50846233%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'aabbfe6616a8a7fe203e03a3b81a180c25c58a3f' => 
     array (
       0 => 'vistas\\header.tpl',
-      1 => 1493330222,
+      1 => 1493827003,
       2 => 'file',
     ),
   ),
@@ -48,7 +48,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         <li class = "opcion"><a href = "/Volquetas/volqueta/verVolquetas"><span class = "fa fa-map-marker"></span>&nbsp;&nbsp;Ver volquetas</a></li>
         <?php if ($_smarty_tpl->tpl_vars['logueado']->value=='no') {?>
           <li class = "opcion"><a href = "#"><span class = "fa fa-user-plus"></span>&nbsp;&nbsp;Registrarse</a></li>
-          <li class = "opcion" id = "opcionIngresar"><a href = "#"><span class = "fa fa-sign-in"></span>&nbsp;&nbsp;Iniciar sesión</a></li>
+          <li class = "opcion" id = "opcionIngresar"><a><span class = "fa fa-sign-in"></span>&nbsp;&nbsp;Iniciar sesión</a></li>
         <?php } else { ?>
           <div class = "divPerfil">
             <p class = "nombreLogueado">
@@ -96,7 +96,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
           <li class = "opcionSubmenu"><a href = "#"><span class = "fa fa-bar-chart"></span>&nbsp;&nbsp;Estadísticas</a></li>
           <li class = "opcionSubmenu" id = "opcionUsuarios"><a><span class = "fa fa-user"></span>&nbsp;&nbsp;Cuentas de usuarios&nbsp;&nbsp;<span class = "fa fa-chevron-down" id = iconoDesplegarUsuarios></span></a>
             <ul class = "submenu submenuUsuarios">
-              <li class = "opcionSubmenuUsuarios"><a href = "#">Mi perfil</a></li>
+              <li class = "opcionSubmenuUsuarios"><a href = "/Volquetas/usuario/verPerfil">Mi perfil</a></li>
               <li class = "opcionSubmenuUsuarios"><a href = "#">Agregar funcionario</a></li>
             </ul> 
           </li>
