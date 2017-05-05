@@ -194,7 +194,7 @@ footer{
 	background: -webkit-linear-gradient(top,  #b83636 0%,#ea4e19 77%); /* Chrome10-25,Safari5.1-6 */
 	background: linear-gradient(to bottom,  #b83636 0%,#ea4e19 77%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b83636', endColorstr='#ea4e19',GradientType=0 ); /* IE6-9 */
-	/*box-sizing: border-box;*/
+	box-sizing: border-box;
 	
 }
 
@@ -203,7 +203,7 @@ footer{
 	padding: 3% 0;
 	box-sizing: border-box;
 	/*height: 5%;*/
-	height: 521px;
+	height: 571px;
 	/*border: 1px solid black;*/
 }
 
@@ -234,7 +234,7 @@ footer{
 .divInformacion{
 	border-right: 1px solid white;
 	width: 50%;
-	height: 349px;
+	height: 441px;
 	float: left;
 }
 .paysanduLimpia{
@@ -682,4 +682,45 @@ textarea{
 	color: white;
 	margin-top: 25px;
 	display: none;
+}
+
+.linkFacebook{
+	color: white;
+	font-size: 32px;
+	/*border: 1px solid white;*/
+	width: 42px;
+	height: 42px;
+	float: right;
+	text-align: center;
+	margin-top: 2%;
+	cursor: pointer;
+
+}
+
+.linkFacebook:hover{
+	color: #89ACF7;
+}
+
+.wrapper{
+	width: 100%;
+	height: 100%;
+}
+.midPage{
+	margin: auto;
+	top:50%;
+	padding: 15px;
+	width: 25%;
+	background-color: #f9f9f9;
+	border-radius: 9px;
+}
+
+.has-feedback .form-control-feedback {
+    position: absolute;
+    top: 3px;
+    right: 12px;
+    display: block;
+    width: 34px;
+    height: 34px;
+    line-height: 34px;
+    text-align: center;
 }

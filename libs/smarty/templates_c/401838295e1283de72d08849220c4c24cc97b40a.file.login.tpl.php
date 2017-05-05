@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-04-22 05:10:47
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-05-05 00:03:53
          compiled from "vistas\login.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1922358f92460e8c0a9-93187157%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '401838295e1283de72d08849220c4c24cc97b40a' => 
     array (
       0 => 'vistas\\login.tpl',
-      1 => 1492837822,
+      1 => 1493942327,
       2 => 'file',
     ),
   ),
@@ -20,6 +20,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'variables' => 
   array (
     'location' => 0,
+    'alert' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -43,29 +44,38 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 	<!-- Comienzo del HTML de esta página -->
 	
-		<div class="container-fluid">
-			<div align="center"">
-				<form id="formLogin" method="POST" accept-charset="utf-8" class="solo-login">
+		<div class="container-fluid midPage login">
+			<div class="row">
+				<form id="formLogin" method="POST" accept-charset="utf-8" class="col-sm-12">
 					<div class="row">
-						<div class="form-group col-sm-12">
-							<label for="cedulaUsuario">Cédula de Identidad</label>
+						<div class="form-group col-sm-12 has-feedback">
+							<label class="control-label" for="cedulaUsuario">Cédula de Identidad</label>
 							<input type="text" id="cedulaUsuario" class="form-control" name="cedulaUsuario">
+							<span class="glyphicon glyphicon-user form-control-feedback"></span>
 						</div>
 					</div>
 					<div class="row">
-						<div class="form-group col-sm-12">
-							<label for="passwordUsuario">Password</label>
+						<div class="form-group col-sm-12 has-feedback">
+							<label class="control-label" for="passwordUsuario">Contraseña</label>
 							<input type="password" id="passwordUsuario" class="form-control" name="passwordUsuario">
+							<span class="glyphicon glyphicon-lock form-control-feedback"></span>
 						</div>
 					</div>
 					<div class="row">
 						<div class="form-group col-sm-12" style="text-align: center;">
-							<input type="submit" id="enviarFormLogin" value="Ingresar" class="btn btn-primary">
+							<input type="submit" id="enviarFormLogin" value="Ingresar" class="btn btn-success">
 						</div>
 					</div>
 				</form>
 			</div>
-		</div>		
+			<div class="alert alert-danger row" style="visibility:<?php echo $_smarty_tpl->tpl_vars['alert']->value;?>
+; text-align:center;">
+				<div class="col-sm-12">
+					Los datos ingresados son incorrectos. Por favor intente de nuevo.<br>
+					<span><a href="#">¿Ha olvidado su contraseña?</a></span>
+				</div>	
+			</div>	
+		</div>
 	</div>
 
 	<!-- Finl del HTML de esta página -->

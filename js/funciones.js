@@ -4,20 +4,91 @@ jQuery(document).ready(function($) {
 	/*
 		Función para el submit del formulario de Log In.
 	*/
+	$('#selectDireccion').select2();
+
+	setTimeout(function(){
+		$('#successNuevaIncidencia').fadeOut();
+	}, 5000);
+
 	$("#formLogin").on('submit', function(event) {
 		event.preventDefault();
 		/* Act on the event */
-		$.ajax({
-			url: '/Volquetas/usuario/validate/',
-			type: 'POST',
-			dataType: 'json',
-			data: $("#formLogin").serialize(),
-		})
-		.done(function(response) {
-			alert(response["code"]);
+		var error = false;
+
+		$("#formLogin :input").map(function(){
+			if(!$(this).val()){
+				error = true;
+				$(this).parent().addClass('has-error');
+			}
 		});
+
+		if(!error){
+			$.ajax({
+				url: '/Volquetas/usuario/validate/',
+				type: 'POST',
+				dataType: 'html',
+				data: $("#formLogin").serialize(),
+			})
+			.done(function(response) {
+				response = response.replace(/\s+/g , "");
+				if(response == "false"){
+					window.location.href = "/Volquetas/usuario/login/error";
+				}
+				else{
+					window.location.href = "/Volquetas/usuario/landing"
+				}
+
+			});
+		}	
 		
 	});
+
+	$("#imgInp").change(function(){
+    	readURL(this);
+	});
+
+	$("#subBoton").on('click', function(event) {
+		event.preventDefault();
+		/* Act on the event */
+
+		var error = false;
+
+		$("#formSignup").find('input[type="text"],input[type="password"], input[type="email"]').each(function(index, el) {
+			if($(this).val() == ""){
+				error = true;
+				$("#alerta").css('visibility', 'visible');
+				$("#alerta").html("<strong>Error!</strong> Los campos marcados en ROJO son obligatorios.")
+				$(this).parent().addClass("has-error");
+			}	
+		});
+
+		if($("input[name=contraseniaUsuario]").val().length <= 6 || $("input[name=contraseniaUsuario]").val() != $("input[name=contraseniaUsuario2]").val()){
+		 	$("input[name=contraseniaUsuario]").parent().addClass('has-error');
+		 	$("input[name=contraseniaUsuario2]").parent().addClass('has-error');
+		 	error = true;
+		}
+		alert($('#formSignup #ci').val());
+		if($('#formSignup #ci').val().length < 8){
+			$('#formSignup #ci').parent().addClass('has-error');
+			error = true;
+		}
+
+		if(!error){
+			$("#formSignup").submit();
+		}
+	});
+
+	function readURL(input) {
+	    if (input.files && input.files[0]) {
+	        var reader = new FileReader();
+
+	        reader.onload = function (e) {
+	            $('#imagenPreview').attr('src', e.target.result);
+	        }
+
+	        reader.readAsDataURL(input.files[0]);
+	    }
+	}
 
 	$("#opcionIngresar").on('click', function(){
 		$('.ulMenu').fadeOut(function(){
@@ -72,14 +143,9 @@ jQuery(document).ready(function($) {
 		e.preventDefault();
 
 		if($('#descripcion').val() == ""){
-			$('#descripcion').css('border', '2px solid #b83636');
+			//$('.lblResumenDescripcion').addClass('has-class');
+			$('#divDescripcion').addClass('has-error');
 			$('#descripcion').focus();
-			success = false;
-		}
-
-		if($('#resumen').val() == ""){
-			$('#resumen').css('border', '2px solid #b83636');
-			$('#resumen').focus();
 			success = false;
 		}
 
@@ -125,8 +191,10 @@ jQuery(document).ready(function($) {
 				$('#btnEnviarCorreo').css('display', 'none');
 				$('#spinnerEnviar').css('display', 'none');
 				$('#alertContacto').css('display', 'block');
-				$('#alertContacto').addClass('alert-success');
-				$('#alertContacto').html('<strong><center>¡ÉXITO!</center></strong><center>' + response['message'] + '</center>');
+				$('#alertContacto').addClass(response['message']['alert']);
+				//$('#alertContacto').removeClass('alert-danger');
+				$('#alertContacto').html(response['message']['content']);
+				$('.footerLanding').css('height', '631px');
 				//});
 				setTimeout(function(){				
 					$("#spinnerEnviar").css('display', 'none');
@@ -135,19 +203,27 @@ jQuery(document).ready(function($) {
 					$('#correo').val("");
 					$('#asunto').val("");
 					$('#mensaje').val("");
+					$('.footerLanding').css('height', '571px');
+					$('#alertContacto').removeClass(response['message']['alert']);
+					$('#captcha').remove();
+					//grecaptcha.reset();
 				}, 5000);
 			}
 			else{
 				$('#btnEnviarCorreo').css('display', 'none');
 				$('#spinnerEnviar').css('display', 'none');
 				$('#alertContacto').css('display', 'block');
-				$('#alertContacto').addClass('alert-danger');
-				$('#alertContacto').html('<strong><center>ERROR</center></strong><center>' + response['message'] + '</center>');
+				$('#alertContacto').addClass(response['message']['alert']);
+				//$('#alertContacto').removeClass('alert-danger');
+				$('#alertContacto').html(response['message']['content']);
+				$('.footerLanding').css('height', '631px');
 				//});
 				setTimeout(function(){				
 					$("#spinnerEnviar").css('display', 'none');
 					$("#alertContacto").css('display', 'none');
 					$('#btnEnviarCorreo').css('display', 'block');
+					$('.footerLanding').css('height', '571px');
+					$('#alertContacto').removeClass(response['message']['alert']);
 				}, 5000);
 			}
 		})

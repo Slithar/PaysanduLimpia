@@ -1,0 +1,37 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+body{
+	background: url('../img/subtle_dots.png');	
+	font-family: sans-serif;
+	width: 100%;
+	height: 100%;
+}
+
+header{
+	width: 100%;
+	height: 77px;
+	/*background: #0F3EA1;*/
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#0f3ea1+0,1664e2+53;Blue+Flat+%232 */
+	background: #0f3ea1; /* Old browsers */
+	background: -moz-linear-gradient(top,  #0f3ea1 0%, #1664e2 53%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  #0f3ea1 0%,#1664e2 53%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  #0f3ea1 0%,#1664e2 53%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0f3ea1', endColorstr='#1664e2',GradientType=0 ); /* IE6-9 */
+	box-sizing: border-box;
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+footer{
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#b83636+0,ea4e19+77 */
+	background: #b83636; /* Old browsers */
+	background: -moz-linear-gradient(top,  #b83636 0%, #ea4e19 77%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  #b83636 0%,#ea4e19 77%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  #b83636 0%,#ea4e19 77%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b83636', endColorstr='#ea4e19',GradientType=0 ); /* IE6-9 */
+	box-sizing: border-box;
+	
+}

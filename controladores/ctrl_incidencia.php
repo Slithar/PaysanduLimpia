@@ -37,7 +37,6 @@ class ControladorIncidencia extends ControladorIndex{
 											"categoria" => $_POST['categoria'],
 											"severidad" => $_POST['severidad'],
 											"estado" => 1,
-											"resumen" => $_POST['resumen'],
 											"descripcion" => $_POST['descripcion'],));
 		
 		$incidencia->insert();

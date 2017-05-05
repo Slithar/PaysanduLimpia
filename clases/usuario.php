@@ -92,14 +92,60 @@ class Usuario extends ClaseBase{
 		
 		$stmt = DB::conexion()->prepare($sql);
 		
-		$stmt->bind_param("is", $this->ci, $this->contrasenia);
+		$stmt->bind_param("is", $this->ci, sha1($this->contrasenia));
 
-		$stmt->execute();
+		$result = $stmt->execute();
 		
 		$stmt->store_result();
 		
 		return $stmt->num_rows();
 
+	}
+
+	public function signUp(){
+		$sql = "INSERT INTO usuarios VALUES (?,?,?,?,?,?,?,?)";
+
+		$stmt = DB::conexion()->prepare($sql);
+
+		$stmt->bind_param("isssssii", $this->ci,sha1($this->contrasenia),$this->nombre,$this->apellido, $this->email, $this->fotoperfil, $this->funcionario ,$this->enviarcorreo);
+
+		$rc=$stmt->execute();
+
+		if($rc === false){
+			  die('execute() failed: ' . htmlspecialchars($stmt->error));
+		}
+		else{
+			return true;
+		}
+
+	}
+
+	public function existeCedula(){
+		$sql = "SELECT * FROM usuarios WHERE ci=?";
+
+		$stmt = DB::conexion()->prepare($sql);
+
+		$stmt->bind_param("i", $this->ci);
+
+		$stmt->execute();
+
+		$stmt->store_result();
+
+		return $stmt->num_rows();
+	}
+
+	public function existeMail(){
+		$sql = "SELECT * FROM usuarios WHERE email=?";
+
+		$stmt = DB::conexion()->prepare($sql);
+
+		$stmt->bind_param("s", $this->email);
+
+		$stmt->execute();
+
+		$stmt->store_result();
+
+		return $stmt->num_rows();
 	}
 
 	public function seleccionarUsuario(){

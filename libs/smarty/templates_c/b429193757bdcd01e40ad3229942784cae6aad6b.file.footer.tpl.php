@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-05-02 02:54:36
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-05-04 18:00:19
          compiled from "vistas\footer.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2502958f80da01e1242-84629123%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'b429193757bdcd01e40ad3229942784cae6aad6b' => 
     array (
       0 => 'vistas\\footer.tpl',
-      1 => 1493693665,
+      1 => 1493919464,
       2 => 'file',
     ),
   ),
@@ -40,6 +40,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 					<input type = "text" class = "form-control campoFooter" placeholder = "Correo electrónico" name = "correo" id = "correo"/>
 					<input type = "text" class = "form-control campoFooter" placeholder = "Asunto" name = "asunto" id = "asunto"/>
 					<textarea class = "form-control campoFooter" placeholder = "Mensaje" name = "mensaje" id = "mensaje"></textarea>
+					<center><div class="g-recaptcha" data-sitekey="6Le85B8UAAAAAAiydVde9mFTPUpUheJbRUmc1JJm" id = "recaptcha"></div></center><br>
 					<button type="button" class="btn btn-default enviarCorreo" id = "btnEnviarCorreo">Enviar</button>
 					<div id = "spinnerEnviar">
 						<span class = "fa fa-spinner fa-spin"></span>

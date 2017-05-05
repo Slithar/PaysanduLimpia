@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-05-03 15:56:46
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-05-05 22:40:34
          compiled from "vistas\header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:415658f80da01afe57-50846233%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'aabbfe6616a8a7fe203e03a3b81a180c25c58a3f' => 
     array (
       0 => 'vistas\\header.tpl',
-      1 => 1493827003,
+      1 => 1494023972,
       2 => 'file',
     ),
   ),
@@ -42,17 +42,20 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     <div class = "divLogo">
       <img src = "img/LogoPaysandúLimpia5.png" class = "imgLogo"/>
     </div>
+    <?php if ($_smarty_tpl->tpl_vars['logueado']->value=='no') {?>
+      <div class = "facebook"><span class = "fa fa-facebook-square"></span></div>
+    <?php }?>
     <div class = "menu">
       <ul class = "ulMenu"> 
         <li class = "opcion"><a href = "#"><span class = "fa fa-question-circle"></span>&nbsp;&nbsp;Ayuda</a></li>        
         <li class = "opcion"><a href = "/Volquetas/volqueta/verVolquetas"><span class = "fa fa-map-marker"></span>&nbsp;&nbsp;Ver volquetas</a></li>
         <?php if ($_smarty_tpl->tpl_vars['logueado']->value=='no') {?>
-          <li class = "opcion"><a href = "#"><span class = "fa fa-user-plus"></span>&nbsp;&nbsp;Registrarse</a></li>
+          <li class = "opcion"><a href = "/Volquetas/usuario/signup"><span class = "fa fa-user-plus"></span>&nbsp;&nbsp;Registrarse</a></li>
           <li class = "opcion" id = "opcionIngresar"><a><span class = "fa fa-sign-in"></span>&nbsp;&nbsp;Iniciar sesión</a></li>
         <?php } else { ?>
           <div class = "divPerfil">
             <p class = "nombreLogueado">
-              Guille
+              El weon
             </p>
             <div class = "divFotoPerfil">
               <img src = "img/sinFoto.png" class = "fotoPerfil"/>
@@ -110,6 +113,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <?php } else { ?>
   <div id = "espacio" style = "margin-top: 57px"></div>
 <?php }?>
+
+
 <!--
 <div class="loginForm" id="loginData">
   <form class="form-group" id="form_login" method = "POST" action="logear.php">

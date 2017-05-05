@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-04-26 01:02:52
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-05-05 21:00:44
          compiled from "vistas\landing.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2976558f930fb5c2c05-92729639%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'a0706fb32bac316ed1c105ddaff132ac46c6cd1d' => 
     array (
       0 => 'vistas\\landing.tpl',
-      1 => 1493168555,
+      1 => 1494018033,
       2 => 'file',
     ),
   ),
@@ -127,5 +127,22 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	<?php echo $_smarty_tpl->getSubTemplate ("footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 
 	<!-- Incluir la vista del footer último. Más abajo no debe haber más código -->
+
+	<?php echo '<script'; ?>
+>
+  // Load the SDK asynchronously
+    	(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.1";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+   <?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src = "js/facebook.js"><?php echo '</script'; ?>
+>
+
 </body>
 </html><?php }} ?>

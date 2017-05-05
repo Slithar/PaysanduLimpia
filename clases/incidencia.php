@@ -10,7 +10,6 @@ class Incidencia extends ClaseBase{
 	private $categoria;
 	private $severidad;
 	private $estado;
-	private $resumen;
 	private $descripcion;
 	private $fechaHoraReporte;
 	private $fechaHoraSolucion;
@@ -53,10 +52,6 @@ class Incidencia extends ClaseBase{
 		return $this->estado;
 	}
 
-	public function getResumen(){
-		return $this->resumen;
-	}
-
 	public function getDescripcion(){
 		return $this->descripcion;
 	}
@@ -70,9 +65,9 @@ class Incidencia extends ClaseBase{
 	}
 
 	public function insert(){
-		$sql = "insert into incidencias (ciUsuario, numeroVolqueta, ubicacionCorrecta, categoria, severidad, estado, resumen, descripcion, fechaHoraReporte) values (?, ?, ?, ?, ?, ?, ?, ?, now())";
+		$sql = "insert into incidencias (ciUsuario, numeroVolqueta, ubicacionCorrecta, categoria, severidad, estado, descripcion, fechaHoraReporte) values (?, ?, ?, ?, ?, ?, ?, now())";
 		$stmt = DB::conexion()->prepare($sql);
-		$stmt->bind_param('iiiiiiss', $this->ciUsuario, $this->numeroVolqueta, $this->ubicacionCorrecta, $this->categoria, $this->severidad, $this->estado, $this->resumen, $this->descripcion);
+		$stmt->bind_param('iiiiiis', $this->ciUsuario, $this->numeroVolqueta, $this->ubicacionCorrecta, $this->categoria, $this->severidad, $this->estado, $this->descripcion);
 		return $stmt->execute();
 	}
 

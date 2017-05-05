@@ -61,11 +61,12 @@
 						{/foreach}
 					</select>
 				</div>
+				<div class = "form-group" id = "divDescripcion">
+					<label for = "descripcion" class = "lblResumenDescripcion control-label">Descripción:</label>
+					<textarea id = "descripcion" class = "form-control" name = "descripcion"></textarea>
+				</div>
 				
-				<label for = "resumen" class = "lblResumenDescripcion">Resúmen:</label>
-				<input type = text name = "resumen" id = "resumen" class = "form-control" name = "resumen"/>
-				<label for = "descripcion" class = "lblResumenDescripcion">Descripción:</label>
-				<textarea id = "descripcion" class = "form-control" name = "descripcion"></textarea>
+				
 				<p class = "pasoIncidencia" style = "margin-top: 75px;">3. Adjuntar fotos y/o imágenes (opcional)</p>
 				
 				<label class="btn btn-default btn-file" id ="lblBuscar">

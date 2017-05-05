@@ -15,29 +15,37 @@
 
 	<!-- Comienzo del HTML de esta página -->
 	
-		<div class="container-fluid">
-			<div align="center"">
-				<form id="formLogin" method="POST" accept-charset="utf-8" class="solo-login">
+		<div class="container-fluid midPage login">
+			<div class="row">
+				<form id="formLogin" method="POST" accept-charset="utf-8" class="col-sm-12">
 					<div class="row">
-						<div class="form-group col-sm-12">
-							<label for="cedulaUsuario">Cédula de Identidad</label>
+						<div class="form-group col-sm-12 has-feedback">
+							<label class="control-label" for="cedulaUsuario">Cédula de Identidad</label>
 							<input type="text" id="cedulaUsuario" class="form-control" name="cedulaUsuario">
+							<span class="glyphicon glyphicon-user form-control-feedback"></span>
 						</div>
 					</div>
 					<div class="row">
-						<div class="form-group col-sm-12">
-							<label for="passwordUsuario">Password</label>
+						<div class="form-group col-sm-12 has-feedback">
+							<label class="control-label" for="passwordUsuario">Contraseña</label>
 							<input type="password" id="passwordUsuario" class="form-control" name="passwordUsuario">
+							<span class="glyphicon glyphicon-lock form-control-feedback"></span>
 						</div>
 					</div>
 					<div class="row">
 						<div class="form-group col-sm-12" style="text-align: center;">
-							<input type="submit" id="enviarFormLogin" value="Ingresar" class="btn btn-primary">
+							<input type="submit" id="enviarFormLogin" value="Ingresar" class="btn btn-success">
 						</div>
 					</div>
 				</form>
 			</div>
-		</div>		
+			<div class="alert alert-danger row" style="visibility:{$alert}; text-align:center;">
+				<div class="col-sm-12">
+					Los datos ingresados son incorrectos. Por favor intente de nuevo.<br>
+					<span><a href="#">¿Ha olvidado su contraseña?</a></span>
+				</div>	
+			</div>	
+		</div>
 	</div>
 
 	<!-- Finl del HTML de esta página -->

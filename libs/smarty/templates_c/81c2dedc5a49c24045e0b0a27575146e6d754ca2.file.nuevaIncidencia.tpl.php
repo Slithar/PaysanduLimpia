@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-04-30 20:34:45
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-05-05 22:17:51
          compiled from "vistas\nuevaIncidencia.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2534759020b0516a345-85315128%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '81c2dedc5a49c24045e0b0a27575146e6d754ca2' => 
     array (
       0 => 'vistas\\nuevaIncidencia.tpl',
-      1 => 1493584318,
+      1 => 1494022462,
       2 => 'file',
     ),
   ),
@@ -108,11 +108,12 @@ $_smarty_tpl->tpl_vars['categoria']->_loop = true;
 						<?php } ?>
 					</select>
 				</div>
+				<div class = "form-group" id = "divDescripcion">
+					<label for = "descripcion" class = "lblResumenDescripcion control-label">Descripción:</label>
+					<textarea id = "descripcion" class = "form-control" name = "descripcion"></textarea>
+				</div>
 				
-				<label for = "resumen" class = "lblResumenDescripcion">Resúmen:</label>
-				<input type = text name = "resumen" id = "resumen" class = "form-control" name = "resumen"/>
-				<label for = "descripcion" class = "lblResumenDescripcion">Descripción:</label>
-				<textarea id = "descripcion" class = "form-control" name = "descripcion"></textarea>
+				
 				<p class = "pasoIncidencia" style = "margin-top: 75px;">3. Adjuntar fotos y/o imágenes (opcional)</p>
 				
 				<label class="btn btn-default btn-file" id ="lblBuscar">

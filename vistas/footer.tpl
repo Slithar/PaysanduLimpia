@@ -15,6 +15,7 @@
 					<input type = "text" class = "form-control campoFooter" placeholder = "Correo electrónico" name = "correo" id = "correo"/>
 					<input type = "text" class = "form-control campoFooter" placeholder = "Asunto" name = "asunto" id = "asunto"/>
 					<textarea class = "form-control campoFooter" placeholder = "Mensaje" name = "mensaje" id = "mensaje"></textarea>
+					<center><div class="g-recaptcha" data-sitekey="6Le85B8UAAAAAAiydVde9mFTPUpUheJbRUmc1JJm" id = "recaptcha"></div></center><br>
 					<button type="button" class="btn btn-default enviarCorreo" id = "btnEnviarCorreo">Enviar</button>
 					<div id = "spinnerEnviar">
 						<span class = "fa fa-spinner fa-spin"></span>

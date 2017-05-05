@@ -17,17 +17,20 @@
     <div class = "divLogo">
       <img src = "img/LogoPaysandúLimpia5.png" class = "imgLogo"/>
     </div>
+    {if $logueado eq 'no'}
+      <div class = "facebook"><span class = "fa fa-facebook-square"></span></div>
+    {/if}
     <div class = "menu">
       <ul class = "ulMenu"> 
         <li class = "opcion"><a href = "#"><span class = "fa fa-question-circle"></span>&nbsp;&nbsp;Ayuda</a></li>        
         <li class = "opcion"><a href = "/Volquetas/volqueta/verVolquetas"><span class = "fa fa-map-marker"></span>&nbsp;&nbsp;Ver volquetas</a></li>
         {if $logueado eq 'no'}
-          <li class = "opcion"><a href = "#"><span class = "fa fa-user-plus"></span>&nbsp;&nbsp;Registrarse</a></li>
+          <li class = "opcion"><a href = "/Volquetas/usuario/signup"><span class = "fa fa-user-plus"></span>&nbsp;&nbsp;Registrarse</a></li>
           <li class = "opcion" id = "opcionIngresar"><a><span class = "fa fa-sign-in"></span>&nbsp;&nbsp;Iniciar sesión</a></li>
         {else}
           <div class = "divPerfil">
             <p class = "nombreLogueado">
-              Guille
+              El weon
             </p>
             <div class = "divFotoPerfil">
               <img src = "img/sinFoto.png" class = "fotoPerfil"/>
@@ -85,6 +88,8 @@
 {else}
   <div id = "espacio" style = "margin-top: 57px"></div>
 {/if}
+
+
 <!--
 <div class="loginForm" id="loginData">
   <form class="form-group" id="form_login" method = "POST" action="logear.php">
