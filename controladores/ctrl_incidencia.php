@@ -10,12 +10,14 @@ require_once("controladores/ctrl_volqueta.php");
 require_once("clases/severidad.php");
 require_once("clases/categoria.php");
 require_once("clases/estadoIncidencia.php");
+require_once("clases/session.php");
 
 class ControladorIncidencia extends ControladorIndex{
 	public function nuevaIncidencia($params = array()){
-		$tpl = Template::getInstance();
+		$tpl = Template::getInstance();		
 		$tpl->asignar('location', 'Nueva incidencia');
-		$tpl->asignar('landing', 'no');
+		$tpl->asignar('landing', 'no');		
+		$tpl->asignar('classMain', 'mainNoLanding');
 		if(isset($params[0]) && $params[0] == "success"){
 			$tpl->asignar('success', 'si');
 			$tpl->asignar('codigo', $params[1]);
@@ -28,11 +30,34 @@ class ControladorIncidencia extends ControladorIndex{
 	}
 
 	public function agregar(){
+		Session::init();
+		$aplicacion = Session::get('tipo');
+		/*$ci = Session::get('ci');
+		$idAplicacion = "null";
+		$nombreUsuario = "null";*/
+		if($aplicacion == "paysandulimpia"){
+			$ci = Session::get('ci');
+			$idAplicacion = 0;
+			$nombreUsuario = 'null';
+		}
+		if($aplicacion == "facebook"){
+			$ci = 1;
+			$idAplicacion = Session::get('id');
+			$nombreUsuario = Session::get('nombre');
+		}
+		if($aplicacion == "google"){
+			$ci = 2;			
+			$idAplicacion = Session::get('id');
+			$nombreUsuario = Session::get('nombre');
+		}
 		$ubicacionCorrecta = 1;
 		if(!$_POST['ubicacionCorrecta'])
 			$ubicacionCorrecta = 0;
-		$incidencia = new Incidencia(array("ciUsuario" => 48704743,
+		$incidencia = new Incidencia(array("ciUsuario" => $ci,
 											"numeroVolqueta" => $_POST['numero'],
+											"aplicacion" => $aplicacion,
+											"idAplicacion" => $idAplicacion,
+											"nombreUsuario" => $nombreUsuario,
 											"ubicacionCorrecta" => $ubicacionCorrecta,
 											"categoria" => $_POST['categoria'],
 											"severidad" => $_POST['severidad'],

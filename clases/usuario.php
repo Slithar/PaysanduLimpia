@@ -9,7 +9,7 @@ class Usuario extends ClaseBase{
 	private $email;
 	private $fotoperfil;
 	private $funcionario;
-	//private $enviarcorreo;
+	private $enviarcorreo;
 	/* Constructor */
 
 	public function __construct($obj=NULL){
@@ -91,8 +91,8 @@ class Usuario extends ClaseBase{
 		$sql = "SELECT * FROM usuarios WHERE ci=? AND contrasenia = ?";
 		
 		$stmt = DB::conexion()->prepare($sql);
-		
-		$stmt->bind_param("is", $this->ci, sha1($this->contrasenia));
+		$pass = sha1($this->contrasenia);
+		$stmt->bind_param("is", $this->ci, $pass);
 
 		$result = $stmt->execute();
 		
@@ -106,8 +106,9 @@ class Usuario extends ClaseBase{
 		$sql = "INSERT INTO usuarios VALUES (?,?,?,?,?,?,?,?)";
 
 		$stmt = DB::conexion()->prepare($sql);
+		$pass = sha1($this->contrasenia);
 
-		$stmt->bind_param("isssssii", $this->ci,sha1($this->contrasenia),$this->nombre,$this->apellido, $this->email, $this->fotoperfil, $this->funcionario ,$this->enviarcorreo);
+		$stmt->bind_param("isssssii", $this->ci, $pass,$this->nombre,$this->apellido, $this->email, $this->fotoperfil, $this->funcionario ,$this->enviarcorreo);
 
 		$rc=$stmt->execute();
 
@@ -157,12 +158,12 @@ class Usuario extends ClaseBase{
 		$usr = $result->fetch_object();
 		$usuario= new Usuario(array("ci" =>$usr->ci,
 									 "contrasenia"=>$usr->contrasenia,
-									 "nombre"=>$usr->nombre,
-									 "apellido"=>$usr->apellido,
+									 "nombre"=>utf8_encode($usr->nombre),
+									 "apellido"=>utf8_encode($usr->apellido),
 									 "email"=>$usr->email,
 									 "fotoperfil"=>$usr->fotoPerfil,
 									 "funcionario"=>$usr->funcionario,
-									 "enviarcorreo"=>$usr->enviarcorreo,));
+									 "enviarcorreo"=>$usr->enviarCorreo,));
 
 		return $usuario;
 		

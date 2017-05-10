@@ -1,0 +1,222 @@
+.solo-login{
+	width: 20%;
+}
+
+.divLogo{
+	display: block;
+	float: left;
+	width: 12.1%;
+	margin-top: 7px;
+}
+.imgLogo{
+	width: 100%;
+	cursor: pointer;
+}
+
+.imgLogo:hover{
+	content: url('../img/LogoPaysandúLimpia6.png');	
+}
+/*#espacio{
+	height: 77px;
+}*/
+.menu{
+	display: block;
+	float: right;
+
+	width: 65.3%;
+}
+.ulMenu{
+	list-style: none;
+}
+.ulMenu > li{
+	float: left;
+	/*border: 1px solid white;*/
+	margin-top: 2%;
+	font-family: sans-serif;
+	width: 25%;
+}
+.ulMenu li a{
+	color: white;
+	text-decoration: none;
+	display: block;
+	padding:17px 17px;
+	font-size: 20px;
+	text-align: right;
+	cursor: pointer;			
+}
+.ulMenu li a:hover{
+	color: #89ACF7;
+	cursor: pointer;			
+}
+
+
+#ci{
+	margin-right: 10px;
+}
+
+#contrasenia{
+	margin-right: 20px;
+}
+
+#lblRecordarme{
+	color: white;
+	font-size: 14px;
+	font-weight: normal;
+}
+
+#lblRecordarme{
+	margin-right: 20px;
+}
+
+#spanAtras{
+	margin-right: 4%;
+	cursor: pointer;
+	color: white;
+}
+
+#spanAtras:hover{
+	color: #89ACF7;
+}
+
+.loginForm{
+	position: absolute;
+	/*border: 1px solid black;*/
+	width: 37%;
+	top: 35%;
+	display: none;
+	/*left: 0;*/
+}
+
+#btnSubmitLogin{
+	font-weight: bold;
+}
+
+.secondHeader{
+	width: 100%;
+	height: 33px;
+	background: #3F87FB;
+}
+
+.ulMenuHorizontal{
+	max-width: 1100px;
+	margin: auto;
+	list-style: none;
+}
+
+.opcionSubmenu{
+	float: left;
+	width: 20%;
+	box-sizing: border-box;
+	padding-top: 5px;
+}
+
+.opcionSubmenu a{
+	color: white;
+	text-decoration: none;
+	display: block;
+	padding: 0 12px;
+	text-align: center;
+	box-sizing: border-box;
+	font-size: 14.7px;
+}
+
+.opcionSubmenu a:hover{
+	color: #0f3ea1;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.divPerfil{
+	margin-left: 7%;
+	width: 41%;
+	/*border: 1px solid black;*/
+	float: left;
+	margin-top: 2.1%;
+}
+
+.divFotoPerfil{
+	float: left;
+	/*border: 1px solid black;*/
+	width: 55px;
+	height: 55px;
+	float: right;
+	margin-right: 15px;
+}
+
+.fotoPerfil{
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	
+}
+
+.nombreLogueado{
+	float: left;
+	/*width: 50%;*/
+	/*border: 1px solid black;*/
+	margin-top: 5%;
+	color: white;
+	font-size: 20px;
+	float: right;
+}
+
+.submenuIncidencias{
+	list-style: none;
+	position: absolute;	
+	margin-top: 8px;
+	display: none;
+	width: 12%;
+}
+
+.submenuIncidencias > li{
+	position: relative;
+	width: 100%;
+	padding: 5px 10px;
+	background: #72A7FC;
+	border-bottom: 1px solid white;
+
+}
+
+.submenuUsuarios{
+	list-style: none;
+	position: absolute;	
+	margin-top: 8px;
+	display: none;
+	width: 8.37%;
+}
+
+.submenuUsuarios > li{
+	position: relative;
+	width: 135%;
+	padding: 5px 10px;
+	background: #72A7FC;
+	border-bottom: 1px solid white;
+
+}
+
+.iconoDesplegar{
+	font-size: 12px;
+	position: relative;
+	top: -2px;
+}
+
+.facebook{
+	color: white;
+	font-size: 32px;
+	/*border: 1px solid white;*/
+	width: 42px;
+	height: 42px;
+	float: right;
+	text-align: center;
+	margin-top: 2%;
+	cursor: pointer;
+
+}
+
+.facebook:hover{
+	color: #89ACF7;
+}
+
+.fa-facebook{
+	font-size: 18px;
+}

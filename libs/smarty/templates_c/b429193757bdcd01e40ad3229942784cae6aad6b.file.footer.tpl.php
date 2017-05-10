@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-05-04 18:00:19
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-05-07 20:02:59
          compiled from "vistas\footer.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2502958f80da01e1242-84629123%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'b429193757bdcd01e40ad3229942784cae6aad6b' => 
     array (
       0 => 'vistas\\footer.tpl',
-      1 => 1493919464,
+      1 => 1494186659,
       2 => 'file',
     ),
   ),
@@ -53,7 +53,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		</div>
 	</footer>
 <?php } else { ?>
-	<footer class = "footerNoLanding" style = "position:fixed;	width: 100%; height: 3.5%; bottom: 0">
+	<footer class = "footerNoLanding">
 		<label class = "lblFooterNoLanding">Sistema para control de estado y asistencia de volquetas recolectoras de residuos | 2017</label>
 	</footer>
 <?php }?><?php }} ?>

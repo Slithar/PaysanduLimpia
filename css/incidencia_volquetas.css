@@ -1,0 +1,249 @@
+#map{
+	width: 100%;
+	height: 100%;
+}
+
+.referencias{
+	width: 17%;
+	height: 65%;
+	position: absolute;
+	background: rgba(255, 255, 255, .85);
+	border-radius: 15px;
+	left: 73%;
+	top: 21%;
+}
+
+.greenMarker{
+	width: 15%;
+	margin-left: 42%;
+	margin-top: 12%;
+}
+
+.lblGreenMarker{
+	display: block;
+	margin-top: 10px;
+	font-weight: bold;
+	font-size: 18px;
+	text-align: center;
+
+}
+
+#lblCantidadGreen{
+	font-weight: normal;
+	display: block;
+	text-align: center;
+}
+
+.orangeMarker{
+	width: 15%;
+	margin-left: 42%;
+	margin-top: 20%;
+}
+
+.lblOrangeMarker{
+	display: block;
+	margin-top: 10px;
+	font-weight: bold;
+	font-size: 18px;
+	text-align: center;
+
+}
+
+#lblCantidadOrange{
+	font-weight: normal;
+	display: block;
+	text-align: center;
+}
+
+.redMarker{
+	width: 15%;
+	margin-left: 42%;
+	margin-top: 22%;
+}
+
+.lblRedMarker{
+	display: block;
+	margin-top: 10px;
+	font-weight: bold;
+	font-size: 18px;
+	text-align: center;
+
+}
+
+#lblCantidadRed{
+	font-weight: normal;
+	display: block;
+	text-align: center;
+}
+
+.contenedor{
+	max-width: 1100px;
+	/*border: 1px solid black;*/
+	margin: auto;
+	padding: 50px 0;
+}
+
+.pasoIncidencia{
+	font-weight: bold;
+	font-size: 24px;
+	text-align: center;
+
+}
+
+#mapNuevaIncidencia{
+	width: 100%;
+	height: 550px;
+	/*border: 1px solid black;*/
+	margin-top: 5%;
+}
+
+#ubiacionIncidencia{
+	/*border: 1px solid black;*/
+	margin-top: 35px;
+	width: 20%;
+	float: left;
+}
+
+#ubiacionIncidencia label{
+	font-size: 14px;
+}
+#direccionIncidencia{
+	/*border: 1px solid black;*/
+	margin-top: 35px;
+	margin-left: 5%;
+	width: 50%;
+	float: left;
+}
+
+#direccionIncidencia label{
+	font-size: 14px;
+}
+
+#numeroIncidencia{
+	/*border: 1px solid black;*/
+	margin-top: 35px;
+	margin-left: 5%;
+	width: 20%;
+	float: left;
+}
+
+#numeroIncidencia label{
+	font-size: 14px;
+}
+
+.lblCheckbox{
+	margin-top: 24px;
+	font-size: 14px;
+}
+
+#severidadIncidencia{
+	/*border: 1px solid black;*/
+	margin-top: 35px;
+	/*margin-left: 5%;*/
+	width: 30%;
+	float: left;
+}
+
+#severidadIncidencia label{
+	font-size: 14px;
+}
+
+#categoriaIncidencia{
+	/*border: 1px solid black;*/
+	margin-top: 35px;
+	margin-left: 5%;
+	width: 65%;
+	float: left;
+}
+
+#categoriaIncidencia label{
+	font-size: 14px;
+}
+
+.lblResumenDescripcion{
+	margin-top: 35px;
+	font-size: 14px;
+}
+
+#descripcion{
+	min-height: 175px;
+}
+
+#fileImagen{
+	display: none;
+}
+
+.btn-file{
+	font-weight: bold;
+	width: 15%;
+	margin-top: 35px;
+}
+
+#lblBuscar{
+	margin-left: 33%;
+	margin-right: 37px;
+}
+
+.galeria{
+	margin-top: 35px;
+	width: 100%;
+	display: flex;
+	list-style: none;
+	flex-wrap: wrap;
+	margin-bottom: 100px;
+}
+
+.galeria_item{
+	width: 22%;
+	margin: 20px 16.5px;
+}
+
+.galeria_img{
+	width: 100%;
+	height: 200px;
+	cursor: pointer;
+}
+
+.fondoNegro{
+	z-index: 10000;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, .9);
+	display: none;
+	overflow-y: auto;
+}
+
+#btnCerrar{
+	font-size: 58px;
+	color: white;
+	cursor: pointer;
+	position: absolute;
+	left: 81%;
+	top: 3%;
+}
+
+#btnCerrar:hover{
+	color: #b83636;
+}
+
+#submitIncidencia{
+	font-weight: bold;
+	width: 30%;
+	margin: auto;
+	display: block;
+}
+
+#dangerNuevaIncidencia{
+	display: none;
+}
+
+.galeria_img{
+	border-radius: 10.5px;
+}
+
+#imgModal{
+	border-radius: 15px;
+}

@@ -6,6 +6,9 @@ class Incidencia extends ClaseBase{
 	private $codigo;
 	private $ciUsuario;
 	private $numeroVolqueta;
+	private $aplicacion;
+	private $idAplicacion;
+	private $nombreUsuario;
 	private $ubicacionCorrecta;
 	private $categoria;
 	private $severidad;
@@ -20,7 +23,7 @@ class Incidencia extends ClaseBase{
 				$this->$key = $value;
 			}
 		}
-		$tabla = "volquetas";
+		$tabla = "incidencias";
 		parent::__construct($tabla);
 	}
 
@@ -34,6 +37,18 @@ class Incidencia extends ClaseBase{
 
 	public function getNumeroVolqueta(){
 		return $this->numeroVolqueta;
+	}
+
+	public function getAplicacion(){
+		return $this->aplicacion;
+	}
+
+	public function getIdAplicacion(){
+		return $this->idAplicacion;
+	}
+
+	public function getNombreUsuario(){
+		return $this->nombreUsuario;
 	}
 
 	public function getUbicacionCorrecta(){
@@ -65,9 +80,10 @@ class Incidencia extends ClaseBase{
 	}
 
 	public function insert(){
-		$sql = "insert into incidencias (ciUsuario, numeroVolqueta, ubicacionCorrecta, categoria, severidad, estado, descripcion, fechaHoraReporte) values (?, ?, ?, ?, ?, ?, ?, now())";
+		echo $this->idAplicacion;
+		$sql = "insert into incidencias (ciUsuario, numeroVolqueta, aplicacion, idAplicacion, nombreUsuario, ubicacionCorrecta, categoria, severidad, estado, descripcion, fechaHoraReporte) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now())";
 		$stmt = DB::conexion()->prepare($sql);
-		$stmt->bind_param('iiiiiis', $this->ciUsuario, $this->numeroVolqueta, $this->ubicacionCorrecta, $this->categoria, $this->severidad, $this->estado, $this->descripcion);
+		$stmt->bind_param('iisssiiiis', $this->ciUsuario, $this->numeroVolqueta, $this->aplicacion, $this->idAplicacion, $this->nombreUsuario, $this->ubicacionCorrecta, $this->categoria, $this->severidad, $this->estado, $this->descripcion);
 		return $stmt->execute();
 	}
 

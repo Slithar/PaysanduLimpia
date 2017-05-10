@@ -1,4 +1,6 @@
 <?php 	
+	ini_set("display_errors", 1);
+	error_reporting(E_ALL);
 	require "clases/db.php";
 	require "vendor/autoload.php";
 	require "controladores/ctrl_index.php";
@@ -7,8 +9,9 @@
 	require_once("clases/categoria.php");
 	require_once("clases/estadoIncidencia.php");
 	require_once("clases/estadoVolqueta.php");
-	error_reporting(E_ERROR);
-	ini_set("display_errors", 1);
+	require_once("clases/session.php");
+	require_once("clases/usuario.php");
+	
 	$severidad = new Severidad();
 	$severidades = $severidad->getSeveridades();
 	$categoria = new Categoria();
@@ -20,12 +23,67 @@
 	$controlIndex = new ControladorIndex();
 
 	$tpl = Template::getInstance();
+	//Session::init();
+	/*session_start();
+	if(isset($_SESSION['ci']))
+ 		echo $_SESSION['ci'];
+ 	else
+ 		echo "noo";*/
+	//echo "aca";
+	Session::init();
+	//echo "aca";
+	if(Session::exists('tipo')){
+		if(Session::get('tipo') == 'paysandulimpia'){
+			$tpl->asignar('ci', Session::get('ci'));			
+			$tpl->asignar('funcionario', Session::get('funcionario'));
+		}
+		else{
+			$tpl->asignar('funcionario', 'false');
+		}
+		$tpl->asignar('nombre', Session::get('nombre'));
+		$tpl->asignar('fotoPerfil', Session::get('fotoPerfil'));		
+		$tpl->asignar('logueado', 'si');		
+		$tpl->asignar('classLogueado', 'logueado');
+		$tpl->asignar('tipo', Session::get('tipo'));
+		//echo "aca";
+	}
+	else{		
+		$tpl->asignar('logueado', 'no');
+		$tpl->asignar('classLogueado', 'noLogueado');
+		$tpl->asignar('nombre', '');
+		$tpl->asignar('fotoPerfil', '');
+		$tpl->asignar('funcionario', 'false');		
+		$tpl->asignar('tipo', '');
+		//echo "aca2";
+		if(isset($_COOKIE['ciUsuario'])){
+			//echo("La CI es: ".$_COOKIE['ciUsuario']);
+			$tpl->asignar('logueado', 'si');		
+			$tpl->asignar('classLogueado', 'logueado');
+			Session::set('ci', $_COOKIE['ciUsuario']);
+
+			$u = new Usuario(array("ci" => $_COOKIE['ciUsuario']));
+			$user = $u->seleccionarUsuario();
+			$funcionario = $user->getFuncionario() ? "true" : "false";
+			Session::set('funcionario', $funcionario);
+			//echo "Nombre: ".$user->getNombre();
+			Session::set('nombre', $user->getNombre()." ".$user->getApellido());
+			Session::set('fotoPerfil', $user->getFotoperfil());
+			$tpl->asignar('ci', Session::get('ci'));
+			$tpl->asignar('nombre', $user->getNombre()." ".$user->getApellido());
+			$tpl->asignar('fotoPerfil', $user->getFotoperfil());
+			$tpl->asignar('funcionario', $funcionario);		
+		}
+	}
 	/*unset($_COOKIE['ciUsuario']);
 	setcookie('ciUsuario', null, -1, '/');*/
-	if(isset($_COOKIE['ciUsuario']))
-		$tpl->asignar('logueado', 'si');
-	else
+	/*if(isset($_COOKIE['ciUsuario'])){
+		$tpl->asignar('logueado', 'no');		
+		$tpl->asignar('classLogueado', 'noLogueado');
+	}
+	else{
 		$tpl->asignar('logueado', 'no');
+		$tpl->asignar('classLogueado', 'noLogueado');
+	}*/
 	$tpl->asignar('severidades', $severidades);
 	$tpl->asignar('categorias', $categorias);
 	$tpl->asignar('estadosIncidencia', $estadosIncidencia);
@@ -37,7 +95,7 @@
 
 		$controlador = (!empty($request[0])) ? $request[0] : "usuario";
 
-		$method = (!empty($request[1])) ? $request[1] : "login";
+		$method = (!empty($request[1])) ? $request[1] : "landing";
 
 		 $params = array();
 
@@ -53,7 +111,9 @@
 		$params = array();
 	}
 
+		//echo $objetoControlador;
 	$objetoControlador = $controlIndex->cargarControlador($controlador);
 
+	
 	$controlIndex->ejecutarAccion($objetoControlador, $method, $params);
 ?>	

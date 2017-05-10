@@ -7,10 +7,13 @@ class ControladorIndex{
 	//	- El nombre de la clase de un controlador debe tener el prefijo Controlador(up c)
 	function cargarControlador($controller){
 		$controladorArchivo = "ctrl_".$controller;
+
+		
 		$controladorClase = "Controlador".ucfirst($controller);
 		$pathControlador = "controladores/".$controladorArchivo.".php";
-
+		
 		if(!is_file($pathControlador)){
+
 			$controladorClase = "ControladorVolquetas";
 			$pathControlador = "controladores/ctrl_volquetas.php";
 		}

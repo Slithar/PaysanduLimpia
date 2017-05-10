@@ -11,6 +11,7 @@ class ControladorVolqueta extends ControladorIndex{
 		$tpl = Template::getInstance();
 		$tpl->asignar('location', 'Ver volquetas');
 		$tpl->asignar('landing', 'no');
+		$tpl->asignar('classMain', 'mainNoLanding');
 		$tpl->mostrar('verVolquetas');
 	}
 

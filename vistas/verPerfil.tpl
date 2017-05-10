@@ -49,5 +49,8 @@
     </div>
 
   </div>
+  {if $classLogueado eq "noLogueado"}
+	<script src = "js/facebook.js"></script>
+  {/if}
 </div>
 </html>

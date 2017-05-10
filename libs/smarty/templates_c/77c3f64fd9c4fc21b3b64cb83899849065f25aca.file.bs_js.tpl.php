@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-05-05 21:00:44
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-05-10 03:03:37
          compiled from "vistas\bs_js.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:875158f80d754c4a77-94076578%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '77c3f64fd9c4fc21b3b64cb83899849065f25aca' => 
     array (
       0 => 'vistas\\bs_js.tpl',
-      1 => 1494018029,
+      1 => 1494385406,
       2 => 'file',
     ),
   ),
@@ -23,40 +23,63 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 <link rel="shortcut icon" type="image/ico" href="img/iconoPaysanduLimpia.ico" />
 
+
+
+
 <?php echo '<script'; ?>
  src="js/jquery-3.2.1.js"><?php echo '</script'; ?>
 >
 <?php echo '<script'; ?>
  src="js/bootstrap.js"><?php echo '</script'; ?>
 >
-<?php echo '<script'; ?>
- src="js/funciones.js"><?php echo '</script'; ?>
->
-<?php echo '<script'; ?>
- src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"><?php echo '</script'; ?>
->
-<?php echo '<script'; ?>
- src = "leaflet/leaflet.awesome-markers.js"><?php echo '</script'; ?>
->
-<?php echo '<script'; ?>
- src = "https://cdn.rawgit.com/jashkenas/underscore/1.8.3/underscore-min.js"><?php echo '</script'; ?>
->
-<?php echo '<script'; ?>
- src='https://www.google.com/recaptcha/api.js'><?php echo '</script'; ?>
->
+<!-- Select2 -->
 <?php echo '<script'; ?>
  src = "select2-4.0.2/dist/js/select2.min.js"><?php echo '</script'; ?>
 >
-<link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
-<link rel="stylesheet" type="text/css" href="css/estilos.css"/>
-<link rel = "stylesheet" href = "font-awesome-4.7.0/css/font-awesome.min.css"/>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
-<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css"/>
-<link rel = "stylesheet" href = "leaflet/leaflet.awesome-markers.css"/> 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
 <link rel = "stylesheet" href = "select2-4.0.2/dist/css/select2.min.css"/>
+<?php echo '<script'; ?>
+ src="js/funciones.js"><?php echo '</script'; ?>
+>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+<link rel = "stylesheet" type = "text/css" href = "css/base.css"/>
+<link rel = "stylesheet" type = "text/css" href = "css/header_menu.css"/>
+
+<!-- Font Awesome (fa fa) -->
+<link rel = "stylesheet" href = "font-awesome-4.7.0/css/font-awesome.min.css"/>
+
+<!-- Underscore -->
+<?php echo '<script'; ?>
+ src = "https://cdn.rawgit.com/jashkenas/underscore/1.8.3/underscore-min.js"><?php echo '</script'; ?>
+>
+
+<!-- Catpcha -->
+<?php echo '<script'; ?>
+ src='https://www.google.com/recaptcha/api.js'><?php echo '</script'; ?>
+>	
+<!--
+<?php echo '<script'; ?>
+ src="//connect.facebook.net/en_US/sdk.js" id = "facebook-jssdk"><?php echo '</script'; ?>
+>-->
+
+<?php echo '<script'; ?>
+>
+	(function(d, s, id) {
+	    var js, fjs = d.getElementsByTagName(s)[0];
+	    if (d.getElementById(id)) return;
+	    js = d.createElement(s); js.id = id;
+	    js.src = "//connect.facebook.net/en_US/sdk.js";
+	    fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+<?php echo '</script'; ?>
+>
 
 
-
-
-	<?php }} ?>
+<?php echo '<script'; ?>
+ type="text/javascript" src = "js/facebook.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="https://apis.google.com/js/platform.js" async defer><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ type="text/javascript" src = "js/google.js"><?php echo '</script'; ?>
+><?php }} ?>

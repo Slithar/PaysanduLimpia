@@ -28,7 +28,7 @@
 		</div>
 	</footer>
 {else}
-	<footer class = "footerNoLanding" style = "position:fixed;	width: 100%; height: 3.5%; bottom: 0">
+	<footer class = "footerNoLanding">
 		<label class = "lblFooterNoLanding">Sistema para control de estado y asistencia de volquetas recolectoras de residuos | 2017</label>
 	</footer>
 {/if}

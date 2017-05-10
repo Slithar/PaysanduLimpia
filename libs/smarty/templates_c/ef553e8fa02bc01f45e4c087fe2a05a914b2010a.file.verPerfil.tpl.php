@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-05-03 15:56:58
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-05-09 14:34:15
          compiled from "vistas\verPerfil.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:98985909fdca410ba6-42760465%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ef553e8fa02bc01f45e4c087fe2a05a914b2010a' => 
     array (
       0 => 'vistas\\verPerfil.tpl',
-      1 => 1493776389,
+      1 => 1494312223,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.21-dev',
+  'unifunc' => 'content_5909fdca5f78c8_36831065',
   'variables' => 
   array (
     'location' => 0,
@@ -24,10 +26,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'email' => 0,
     'fotoPerfil' => 0,
     'funcionario' => 0,
+    'classLogueado' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.21-dev',
-  'unifunc' => 'content_5909fdca5f78c8_36831065',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5909fdca5f78c8_36831065')) {function content_5909fdca5f78c8_36831065($_smarty_tpl) {?><!DOCTYPE html>
 <html>
@@ -91,5 +92,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     </div>
 
   </div>
+  <?php if ($_smarty_tpl->tpl_vars['classLogueado']->value=="noLogueado") {?>
+	<?php echo '<script'; ?>
+ src = "js/facebook.js"><?php echo '</script'; ?>
+>
+  <?php }?>
 </div>
 </html><?php }} ?>
