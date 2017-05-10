@@ -98,8 +98,5 @@
 		{include file="footer.tpl"}
 		<!-- Incluir la vista del footer último. Más abajo no debe haber más código -->
 	</div>
-	{if $classLogueado eq "noLogueado"}
-		<script src = "js/facebook.js"></script>
-	{/if}
 </body>
 </html>

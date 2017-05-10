@@ -101,8 +101,5 @@
 		{include file="footer.tpl"}
 	</div>
 	<!-- Incluir la vista del footer último. Más abajo no debe haber más código -->
-
-	
-
 </body>
 </html>
