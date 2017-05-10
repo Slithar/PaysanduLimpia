@@ -199,7 +199,7 @@ class ControladorUsuario extends ControladorIndex{
 				$this::redirect("usuario","login/success");	
 			}		
 		}
-		else{
+		else{			
 			$message = array("codigo" => "error",
 							 "message" => "<strong>ERROR: </strong>El perfil seleccionado no es una imagen",
 							 "content" => array(), 
