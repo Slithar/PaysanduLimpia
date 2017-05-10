@@ -155,8 +155,9 @@ class Usuario extends ClaseBase{
 		$stmt ->bind_param('i',$this->ci);
 		$stmt->execute();
 		$result = $stmt->get_result();
-		$usr = $result->fetch_object();
-		$usuario= new Usuario(array("ci" =>$usr->ci,
+		//$usuario = "";
+		while($usr = $result->fetch_object()){
+			$usuario= new Usuario(array("ci" =>$usr->ci,
 									 "contrasenia"=>$usr->contrasenia,
 									 "nombre"=>utf8_encode($usr->nombre),
 									 "apellido"=>utf8_encode($usr->apellido),
@@ -164,10 +165,9 @@ class Usuario extends ClaseBase{
 									 "fotoperfil"=>$usr->fotoPerfil,
 									 "funcionario"=>$usr->funcionario,
 									 "enviarcorreo"=>$usr->enviarCorreo,));
-
-		return $usuario;
-		
-}
+			return $usuario;
+		}	
+	}
 
 	public function convertToArray(){
 		return array("ci" =>$usr->ci,
@@ -178,6 +178,15 @@ class Usuario extends ClaseBase{
 									 "fotoperfil"=>$this->fotoperfil,
 									 "funcionario"=>$this->funcionario,
 									 "enviarcorreo"=>$this->enviarcorreo,);
+	}
+
+	public function update (){
+		$sql = "UPDATE usuarios SET nombre=?, apellido =?, email=? WHERE ci=?";
+		$stmt = DB::conexion()->prepare($sql);
+		$stmt ->bind_param('sssi',$this->nombre,$this->apellido,$this->email,$this->ci);
+		$stmt->execute();
+		//$result = $stmt->get_result();
+
 	}
 
 } 

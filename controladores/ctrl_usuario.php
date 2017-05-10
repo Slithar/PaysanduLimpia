@@ -292,7 +292,7 @@ class ControladorUsuario extends ControladorIndex{
 	}
 
 	public function verPerfil($params = array()){
-		$usuario= new Usuario(array("ci"=>48704743));
+		$usuario= new Usuario(array("ci"=>11111111));
 		$user=$usuario->seleccionarUsuario();
 		$tpl = Template::getInstance();
 		$tpl->asignar('location', 'Ver perfil');
@@ -304,6 +304,8 @@ class ControladorUsuario extends ControladorIndex{
 		$tpl->asignar('fotoPerfil',$user->getFotoperfil());
 		$tpl->asignar('funcionario',$user->getFuncionario());
 		$tpl->asignar('enviarCorreo',$user->getEnviarcorreo());
+		$tpl->asignar('classMain', 'mainNoLanding');
+		$tpl->asignar('landing', 'no');
 		//echo count($user);
 		$tpl->mostrar('verPerfil');
 	}
@@ -421,6 +423,32 @@ class ControladorUsuario extends ControladorIndex{
 
 		$this->redirect('usuario', 'landing');
 	}
+
+	public function modificar (){
+	  $usuario = new Usuario(array("ci"=>11111111,
+	  							 "nombre"=>htmlentities($_POST['nombre'], ENT_QUOTES),
+	  							 "apellido"=>htmlentities($_POST['apellido'], ENT_QUOTES),
+	  							 "email"=>$_POST['email']));
+	  $usuario->update();
+	  //echo "listo";
+	  $this->redirect('usuario', 'verPerfil');
+	  /*$tpl->asignar('location', 'Ver perfil');
+	  $tpl->asignar('landing', 'no');
+	  $tpl->asignar('nombre',$usuario->setNombre($_POST['nombre']));
+	  $tpl->asignar('apellido',$usuario->setApellido($_POST['apellido']));
+	  $tpl->asignar('email',$usuario->setEmail($_POST['email']));
+	 	$tpl->mostrar('verVolquetas');*/
+	  /* $usuario = new Usuario(array("ci" =>  $_POST['ci'],
+	   								"nombre" =>  $_POST['nombre'],
+	   								"apellido" =>  $_POST['apellido'],
+	   								"contrasenia"=>  $_POST['contrasenia'],
+	   								"email"=>  $_POST['email'],
+	   								"fotoPerfil"=>  $_POST['fotoPerfil'],
+	   								"funcionario"=>  $_POST['funcionario'],
+	   								"enviarcorreo"=>  $_POST['enviarCorreo'],))*/
+
+
+	 }	
 }
 
 ?>

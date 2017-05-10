@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-05-09 14:34:00
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-05-10 20:44:02
          compiled from "vistas\nuevaIncidencia.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2534759020b0516a345-85315128%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '81c2dedc5a49c24045e0b0a27575146e6d754ca2' => 
     array (
       0 => 'vistas\\nuevaIncidencia.tpl',
-      1 => 1494312207,
+      1 => 1494442380,
       2 => 'file',
     ),
   ),
@@ -153,10 +153,5 @@ $_smarty_tpl->tpl_vars['categoria']->_loop = true;
 		<span class = "fa fa-times-circle-o" id = "btnCerrar" onclick = "cerrarModal();"></span>
 		<img src = "img/img1.jpg" id = "imgModal"/>
 	</div>
-	<?php if ($_smarty_tpl->tpl_vars['classLogueado']->value=="noLogueado") {?>
-		<?php echo '<script'; ?>
- src = "js/facebook.js"><?php echo '</script'; ?>
->
-	<?php }?>
 </body>
 </html><?php }} ?>

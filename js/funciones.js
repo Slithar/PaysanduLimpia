@@ -324,6 +324,21 @@ jQuery(document).ready(function($) {
 			alert(e);
 		});
 	});
+/*
+	$('#btnModificar').on('click', function(e){
+		e.preventDefault();
+		$.ajax({
+			url : '/Volquetas/usuario/modificar',
+			type : 'POST',
+			data : $('#formModificar').serialize()
+		})
+		.done(function(response){
+			alert(response);
+		})
+		.fail(function(error, err, e){
+			alert(e);
+		});
+	});*/
 });
 
 /*function removeError(){

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-05-09 14:37:11
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-05-10 20:42:15
          compiled from "vistas\signup.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1844658f80d752b5502-04667526%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '058342efb0b0b26b44821a1f9364a58a116a44d1' => 
     array (
       0 => 'vistas\\signup.tpl',
-      1 => 1494312213,
+      1 => 1494447947,
       2 => 'file',
     ),
   ),
@@ -110,7 +110,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 				<div class="row">
 					<div class="col-sm-12">
 						<center><label class="btn btn-primary btn-file">
-						    <span class = "fa fa-folder"></span>&nbsp;&nbsp;Buscar foto de perfil<input id="fotoPerfil" name="fotoPerfil" type="file" style="display: none;" onchange="readURL(this);"/>
+						    <span class = "fa fa-folder"></span>&nbsp;&nbsp;Buscar foto de perfil<input id="fotoPerfil" name="fotoPerfil" type="file" style="display: none;" onchange="readURL(this);" accept="image/jpg,image/png,image/jpg,image/gif,image/jpg,image/jpeg,image/bmp"/>
 						</label></center>
 					</div>
 				</div>
@@ -139,10 +139,5 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 		<!-- Incluir la vista del footer último. Más abajo no debe haber más código -->
 	</div>
-	<?php if ($_smarty_tpl->tpl_vars['classLogueado']->value=="noLogueado") {?>
-		<?php echo '<script'; ?>
- src = "js/facebook.js"><?php echo '</script'; ?>
->
-	<?php }?>
 </body>
 </html><?php }} ?>

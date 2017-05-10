@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-05-09 14:33:38
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-05-10 18:53:54
          compiled from "vistas\verVolquetas.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:530958fff7b674be24-08114819%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '2eb37e6a527d97622d89a4b8da1a29074efbaddb' => 
     array (
       0 => 'vistas\\verVolquetas.tpl',
-      1 => 1494312227,
+      1 => 1494442380,
       2 => 'file',
     ),
   ),
@@ -81,10 +81,5 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		<?php echo $_smarty_tpl->getSubTemplate ("footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 
 	</div>
-	<?php if ($_smarty_tpl->tpl_vars['classLogueado']->value=="noLogueado") {?>
-		<?php echo '<script'; ?>
- src = "js/facebook.js"><?php echo '</script'; ?>
->
-	<?php }?>
 </body>
 </html><?php }} ?>

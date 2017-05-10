@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-05-10 03:03:37
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-05-10 18:53:54
          compiled from "vistas\bs_js.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:875158f80d754c4a77-94076578%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '77c3f64fd9c4fc21b3b64cb83899849065f25aca' => 
     array (
       0 => 'vistas\\bs_js.tpl',
-      1 => 1494385406,
+      1 => 1494442380,
       2 => 'file',
     ),
   ),
