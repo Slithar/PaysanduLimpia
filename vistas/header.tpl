@@ -19,7 +19,7 @@
     </div>
     <div class = "menu">
       <ul class = "ulMenu"> 
-        <li class = "opcion"><a href = "#"><span class = "fa fa-question-circle"></span>&nbsp;&nbsp;Ayuda</a></li>        
+        <li class = "opcion"><a href = "/Volquetas/usuario/ayuda"><span class = "fa fa-question-circle"></span>&nbsp;&nbsp;Ayuda</a></li>        
         <li class = "opcion"><a href = "/Volquetas/volqueta/verVolquetas"><span class = "fa fa-map-marker"></span>&nbsp;&nbsp;Ver volquetas</a></li>
         {if $logueado eq 'no'}
           <li class = "opcion"><a href = "/Volquetas/usuario/signup"><span class = "fa fa-user-plus"></span>&nbsp;&nbsp;Registrarse</a></li>
@@ -45,7 +45,7 @@
           <li class = "opcionSubmenu"><a href = "/Volquetas"><span class = "fa fa-home"></span>&nbsp;&nbsp;Inicio</a></li>        
           <li class = "opcionSubmenu" id = "opcionIncidencias"><a><span class = "fa fa-bug"></span>&nbsp;&nbsp;Incidencias&nbsp;&nbsp;<span class = "fa fa-chevron-down" id = "iconoDesplegarIncidencias"></span></a>
             <ul class = "submenu submenuIncidencias">
-              <li class = "opcionSubmenuIncidencias"><a href = "#">Mis incidencias</a></li>
+              <li class = "opcionSubmenuIncidencias"><a href = "/Volquetas/incidencia/misIncidencias">Mis incidencias</a></li>
               <li class = "opcionSubmenuIncidencias"><a href = "/Volquetas/incidencia/nuevaIncidencia">Nueva incidencia</a></li>
               {if $funcionario eq "true"}
                 <li class = "opcionSubmenuIncidencias"><a href = "#">Ver todas las incidencias</a></li>

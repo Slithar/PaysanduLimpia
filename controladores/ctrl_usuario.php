@@ -16,18 +16,24 @@ class ControladorUsuario extends ControladorIndex{
 		//$tpl->asignar('logueado', 'no');
 		$tpl->asignar('landing', 'si');
 		$tpl->asignar('classMain', 'mainLanding');
-		$tpl->asignar('facebookURL', $this->loginFacebook());
-
 		$tpl->mostrar('landing');
 	}
 
 	function signup($params=array()){
 		$tpl = Template::getInstance();
-		//$this->definirSesion();
 		$tpl->asignar('location','Sign Up');
 		$tpl->asignar('classMain', 'mainNoLanding');
 		$tpl->asignar('landing', 'no');
 		$tpl->mostrar("signup");
+	}
+
+	public function ayuda($params = array()){
+		$tpl = Template::getInstance();
+		//$this->definirSesion();
+		$tpl->asignar('location','Ayuda');
+		$tpl->asignar('classMain', 'mainNoLanding');
+		$tpl->asignar('landing', 'no');
+		$tpl->mostrar("ayuda");
 	}
 
 	function login($params = array()){
@@ -86,21 +92,10 @@ class ControladorUsuario extends ControladorIndex{
 				}
 				Session::set('fotoPerfil', $file);
 			}
+			Session::set('funcionario', 'false');
 			
 			$this->redirect('usuario', 'landing');
-		}
-		/*if(isset($_POST['api'])){
-			Session::init();
-			Session::set('tipo', $_POST['api']);
-			Session::set('id', $_POST['id']);
-			Session::set('nombre', $_POST['nombre']);
-			Session::set('fotoPerfil', 'http://graph.facebook.com/'.$_POST['id'].'/picture?type=large');
-			$respuesta = new Respuesta(array("code" => "ok",
-												"message" => "",
-												"content" => ""));
-				
-			echo $respuesta->getResult();
-		}*/
+		}		
 		else{
 			$usuario = new Usuario(array(
 					"ci" => $_POST["cedulaUsuario"],
@@ -110,19 +105,22 @@ class ControladorUsuario extends ControladorIndex{
 			$res = $usuario->login();
 
 			if($res == 1){
+				$recordar = "no";
 				if(isset($_POST['recordarme'])){
-					setcookie('ciUsuario', $_POST["cedulaUsuario"], time() + 365 * 24 * 60 * 60, '/');
+					setcookie('ciUsuario', $_POST["cedulaUsuario"], time()+(60*60*24*365), '/');
+					//setcookie('ciUsuario', $_POST["cedulaUsuario"]);
+					$recordar = "si";
 				}
 				Session::init();
 				Session::set('tipo', 'paysandulimpia');
 				Session::set('ci', $_POST["cedulaUsuario"]);
 				$user = $usuario->seleccionarUsuario();
-				Session::set('nombre', $user->getNombre()." ".$user->getApellido());
+				Session::set('nombre', $user->getNombre());
 				Session::set('fotoPerfil', $user->getFotoperfil());
 				$funcionario = $user->getFuncionario() ? "true" : "false";
 				Session::set('funcionario', $funcionario);
 				$respuesta = new Respuesta(array("code" => "ok",
-													"message" => "",
+													"message" => $recordar,
 													"content" => ""));
 					
 				echo $respuesta->getResult();
@@ -160,7 +158,7 @@ class ControladorUsuario extends ControladorIndex{
 
 		$destination = "img/sinFoto.png";
 
-		if($hasimage && $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"){	
+		if($hasimage && $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" && $imageFileType != "bmp"){	
 			$message = array("codigo" => "error",
 							 "message" => "Formato de imagen incorrecto",
 							 "information" => array(), 
@@ -292,163 +290,144 @@ class ControladorUsuario extends ControladorIndex{
 	}
 
 	public function verPerfil($params = array()){
-		$usuario= new Usuario(array("ci"=>11111111));
+		Auth::loggedIn();
+		Session::init();
+		$usuario= new Usuario(array("ci"=>Session::get('ci')));
 		$user=$usuario->seleccionarUsuario();
 		$tpl = Template::getInstance();
 		$tpl->asignar('location', 'Ver perfil');
 		$tpl->asignar('landing', 'no');
-		$tpl->asignar('nombre',$user->getNombre());
-		$tpl->asignar('apellido',$user->getApellido());
-		$tpl->asignar('email',$user->getEmail());
-		$tpl->asignar('ci',$user->getCi());
-		$tpl->asignar('fotoPerfil',$user->getFotoperfil());
-		$tpl->asignar('funcionario',$user->getFuncionario());
-		$tpl->asignar('enviarCorreo',$user->getEnviarcorreo());
+		if(Session::get('tipo') == 'paysandulimpia'){
+			$tpl->asignar('nombreModificar',$user->getNombre());
+			$tpl->asignar('apellidoModificar',$user->getApellido());
+			$tpl->asignar('email',$user->getEmail());
+			$tpl->asignar('ci',$user->getCi());
+			$tpl->asignar('fotoPerfil',$user->getFotoperfil());
+			$funcionario = $user->getFuncionario() ? "true" : "false";
+			$tpl->asignar('funcionario', $funcionario);
+			$tpl->asignar('enviarCorreo',$user->getEnviarcorreo());
+			if(isset($params[0]) && $params[0] == "success"){
+				$tpl->asignar('success', 'si');
+			}
+			else{
+				$tpl->asignar('success', 'no');
+			}
+		}
+		
 		$tpl->asignar('classMain', 'mainNoLanding');
 		$tpl->asignar('landing', 'no');
+		$tpl->asignar('tipo', Session::get('tipo'));
+
+		//echo Session::get('nombre');
 		//echo count($user);
 		$tpl->mostrar('verPerfil');
 	}
 
-	public function loginFacebook(){
-		$fb = new Facebook\Facebook([
-		  'app_id' => '229434740874734', 
-		  'app_secret' => '1a46ccfac93f7806b261c7320c1f98da',
-		  'default_graph_version' => 'v2.2'
-		]);
-
-		$helper = $fb->getRedirectLoginHelper();
-
-		try{
-			$access_token = $helper->getAccessToken();
-		}
-		catch(Facebook\Exceptions\FacebookResponseException $ex){
-			$ex->getMessage();
-			exit;
-		}
-		catch(Facebook\Exceptions\FacebookSDKException $ex){
-			$ex->getMessage();
-			exit;
-		}
-
-		if(!isset($access_token)){
-
-			//echo "otra vez";
-			$permission = ['email'];
-			$facebookURL = $helper->getLoginUrl("http://localhost/Volquetas/index.php", $permission);
-			return $facebookURL;
-		}
-		else{
-			$fb->setDefaultAccessToken($accessToken);
-			try {
-			  $response = $fb->get('/me?fields=email,name');
-			  $userNode = $response->getGraphUser();
-			}catch(Facebook\Exceptions\FacebookResponseException $e) {
-			  // When Graph returns an error
-			  echo 'Graph returned an error: ' . $e->getMessage();
-			  exit;
-			} catch(Facebook\Exceptions\FacebookSDKException $e) {
-			  // When validation fails or other local issues
-			  echo 'Facebook SDK returned an error: ' . $e->getMessage();
-			  exit;
-			}
-			// Print the user Details
-			echo "Welcome !<br><br>";
-			echo 'Name: ' . $userNode->getName().'<br>';
-			echo 'User ID: ' . $userNode->getId().'<br>';
-			echo 'Email: ' . $userNode->getProperty('email').'<br><br>';
-			$image = 'https://graph.facebook.com/'.$userNode->getId().'/picture?width=200';
-			echo "Picture<br>";
-			echo "<img src='$image' /><br><br>";
-		}
-		/*try{
-			$session = $helper->getSessionFromRedirect();
-
-			if($session){
-				Session::init();
-				Session::set('facebook', $session->getToken());
-			}
-		}	
-		catch(FacebookRequestException $ex){
-
-		}	
-		catch(\Exception $ex){
-
-		}*/
-	}
-
-	public function definirSesion(){
-		$tpl = Template::getInstance();
-		Session::init();
-		if(Session::get('ci')){
-			$tpl->asignar('ci', Session::get('ci'));
-			$tpl->asignar('nombre', Session::get('nombre'));
-			$tpl->asignar('fotoPerfil', Session::get('fotoPerfil'));		
-			$tpl->asignar('logueado', 'si');		
-			$tpl->asignar('classLogueado', 'logueado');
-		}
-		else{		
-			$tpl->asignar('logueado', 'no');
-			$tpl->asignar('classLogueado', 'noLogueado');
-		}
-	/*unset($_COOKIE['ciUsuario']);
-	setcookie('ciUsuario', null, -1, '/');*/
-	/*if(isset($_COOKIE['ciUsuario'])){
-		$tpl->asignar('logueado', 'si');		
-		$tpl->asignar('classLogueado', 'logueado');
-	}
-	else{
-		$tpl->asignar('logueado', 'no');
-		$tpl->asignar('classLogueado', 'noLogueado');
-	}*/
-	}
-
 	public function logout(){
+		Auth::loggedIn();
 		Session::init();
 		unset($_COOKIE['ciUsuario']);
-		setcookie('ciUsuario', null, -1, '/');
-		/*Session::logout('tipo');
-		if(Session::exists('ci')){			
-			Session::logout(Session::get('ci'));
-			
-			Session::logout(Session::get('nombre'));
-			Session::logout(Session::get('fotoPerfil'));
-			Session::destroy();
-		}
-		else{
-			Session::logout(Session::get('id'));
-		}*/
-		Session::destroy();		
-		//Session::init();
-
+		setcookie('ciUsuario', null, -1, '/');		
+		Session::destroy();	
 		$this->redirect('usuario', 'landing');
 	}
 
 	public function modificar (){
-	  $usuario = new Usuario(array("ci"=>11111111,
-	  							 "nombre"=>htmlentities($_POST['nombre'], ENT_QUOTES),
-	  							 "apellido"=>htmlentities($_POST['apellido'], ENT_QUOTES),
-	  							 "email"=>$_POST['email']));
-	  $usuario->update();
-	  //echo "listo";
-	  $this->redirect('usuario', 'verPerfil');
-	  /*$tpl->asignar('location', 'Ver perfil');
-	  $tpl->asignar('landing', 'no');
-	  $tpl->asignar('nombre',$usuario->setNombre($_POST['nombre']));
-	  $tpl->asignar('apellido',$usuario->setApellido($_POST['apellido']));
-	  $tpl->asignar('email',$usuario->setEmail($_POST['email']));
-	 	$tpl->mostrar('verVolquetas');*/
-	  /* $usuario = new Usuario(array("ci" =>  $_POST['ci'],
-	   								"nombre" =>  $_POST['nombre'],
-	   								"apellido" =>  $_POST['apellido'],
-	   								"contrasenia"=>  $_POST['contrasenia'],
-	   								"email"=>  $_POST['email'],
-	   								"fotoPerfil"=>  $_POST['fotoPerfil'],
-	   								"funcionario"=>  $_POST['funcionario'],
-	   								"enviarcorreo"=>  $_POST['enviarCorreo'],))*/
+		Session::init();
+		$imagenes = $_FILES['fotoPerfil'];
+		$extensionesAceptadas = array(".JPG", ".JPEG", ".PNG", ".GIF", ".BMP");
+		$cantidad = empty($imagenes['name']) ? 0 : 1;
+		if($cantidad == 0){
+			$fotoPerfil=Session::get('fotoPerfil');
+		}
+		else{
+			$extension = substr($imagenes['name'], strrpos($imagenes['name'], "."));
+			if(in_array(strtoupper($extension), $extensionesAceptadas)){
+				if(file_exists("img/Perfiles/".Session::get('ci').$extension))
+					unlink("img/Perfiles/".Session::get('ci').$extension);
+				copy($imagenes['tmp_name'], "img/Perfiles/".Session::get('ci').$extension);
+				$fotoPerfil = "img/Perfiles/".Session::get('ci').$extension;
+			}
+			else{
+				$fotoPerfil = Session::get('fotoPerfil');
+			}
+		}
+		//echo $fotoPerfil;
+		$usuario= new Usuario(array("ci"=>Session::get('ci'),
+									 "nombre"=>htmlentities($_POST['nombre'], ENT_QUOTES),
+									 "apellido"=>htmlentities($_POST['apellido'], ENT_QUOTES),
+									 "email"=>$_POST['email'],
+									 "fotoperfil"=>$fotoPerfil,
+									 "enviarcorreo"=>$_POST['enviarEmail'],));
+		$usuario->update();
+		//echo "listo";
+		$usuario= new Usuario(array("ci"=>Session::get('ci')));
+		$user=$usuario->seleccionarUsuario();
+		Session::set('nombre', $user->getNombre());
+		Session::set('fotoPerfil', $user->getFotoperfil());
+		$this->redirect('usuario', 'verPerfil/success');
+	}
+	public function modificarCon(){
+		Session::init();
+		$usuario= new Usuario(array("ci"=>Session::get('ci'),
+									"contrasenia"=>$_POST['contrasenia']));
+		$usuario->modificarContra();
 
+		$this->redirect('usuario', 'verPerfil/success');
 
-	 }	
+	}
+	public function existeCon(){
+		Session::init();
+		$usuario= new Usuario(array("ci"=>Session::get('ci'),
+									"contrasenia"=>$_POST['contravieja']));
+
+		$existeContra = $usuario->existeContra() > 0 ? true : false;
+		if($existeContra){
+				$respuesta = new Respuesta(array("code" => "ok",
+												"message" => "",
+												"content" => "",));
+		}
+		else{
+					$respuesta = new Respuesta(array("code" => "error",
+												"message" => array("alert" => "alert-danger",													
+																	"content" => "<strong>ERROR: </strong>La contraseña actual ingresada no es correcta.",),
+												"content" => "",));
+
+		}
+		echo $respuesta->getResult();
+
+	}
+
+		
+	public function existeEmail(){
+		Session::init();
+		$usuario= new Usuario(array("ci"=>Session::get('ci'),
+									"email"=>$_POST['email']));
+		//$contra=$_POST['contrasenia'];
+		$existeEmail = $usuario->existeEmail() > 0 ? true : false;
+		if(!$existeEmail){
+			$respuesta = new Respuesta(array("code" => "ok",
+											"message" => "",
+											"content" => "",));
+		}
+		else{
+			$respuesta = new Respuesta(array("code" => "error",
+										"message" => array("alert" => "alert-danger",													
+															"content" => "<strong>ERROR: </strong>El correo electrónico ingresado ya existe.",),
+										"content" => "",));
+
+		}
+		echo $respuesta->getResult();
+
+	}
+	public function banneado(){
+		Session::init();
+		$usuario= new Usuario(array("ci"=>Session::get('ci'),
+									"contrasenia"=>$_POST['contrasenia']));
+		$usuario->banneado();
+		$this->redirect('usuario', 'logout');
+
+	}	
 }
 
 ?>

@@ -1,0 +1,20 @@
+.titulo{
+	text-align: center;
+	font-weight: bold;
+	font-size: 24px;
+	width: 100%;
+	margin-bottom: 50px;
+	margin-top: 30px;
+}
+
+.logoPaysanduLimpia{
+	width: 35%;
+	margin: 0 auto;
+	float: left;
+	margin-right: 40px;
+}
+
+p{
+	text-align: justify;
+	font-size: 18px;
+}

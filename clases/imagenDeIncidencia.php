@@ -31,6 +31,21 @@ class ImagenDeIncidencia extends ClaseBase{
 		$stmt->bind_param('is', $this->codigoIncidencia, $this->rutaImagen);
 		return $stmt->execute();
 	}
+
+	public function getImagenesIncidencia(){
+		$sql = "select * from imagenesDeIncidencia where codigoIncidencia = ?";
+		$stmt = DB::conexion()->prepare($sql);
+		$stmt->bind_param('i', $this->codigoIncidencia);
+		$stmt->execute();
+		$result = $stmt->get_result();
+		while($fila = $result->fetch_object()){
+			$imagen = new ImagenDeIncidencia(array("codigoIncidencia" => $this->codigoIncidencia,
+												"rutaImagen" => $fila->rutaImagen));
+			$imagenes[] = $imagen;
+		}
+
+		return $imagenes;
+	}
 }
 
 ?>

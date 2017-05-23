@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-05-10 18:53:54
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-05-18 14:21:15
          compiled from "vistas\header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:415658f80da01afe57-50846233%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'aabbfe6616a8a7fe203e03a3b81a180c25c58a3f' => 
     array (
       0 => 'vistas\\header.tpl',
-      1 => 1494442380,
+      1 => 1495117270,
       2 => 'file',
     ),
   ),
@@ -48,7 +48,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     </div>
     <div class = "menu">
       <ul class = "ulMenu"> 
-        <li class = "opcion"><a href = "#"><span class = "fa fa-question-circle"></span>&nbsp;&nbsp;Ayuda</a></li>        
+        <li class = "opcion"><a href = "/Volquetas/usuario/ayuda"><span class = "fa fa-question-circle"></span>&nbsp;&nbsp;Ayuda</a></li>        
         <li class = "opcion"><a href = "/Volquetas/volqueta/verVolquetas"><span class = "fa fa-map-marker"></span>&nbsp;&nbsp;Ver volquetas</a></li>
         <?php if ($_smarty_tpl->tpl_vars['logueado']->value=='no') {?>
           <li class = "opcion"><a href = "/Volquetas/usuario/signup"><span class = "fa fa-user-plus"></span>&nbsp;&nbsp;Registrarse</a></li>
@@ -76,7 +76,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
           <li class = "opcionSubmenu"><a href = "/Volquetas"><span class = "fa fa-home"></span>&nbsp;&nbsp;Inicio</a></li>        
           <li class = "opcionSubmenu" id = "opcionIncidencias"><a><span class = "fa fa-bug"></span>&nbsp;&nbsp;Incidencias&nbsp;&nbsp;<span class = "fa fa-chevron-down" id = "iconoDesplegarIncidencias"></span></a>
             <ul class = "submenu submenuIncidencias">
-              <li class = "opcionSubmenuIncidencias"><a href = "#">Mis incidencias</a></li>
+              <li class = "opcionSubmenuIncidencias"><a href = "/Volquetas/incidencia/misIncidencias">Mis incidencias</a></li>
               <li class = "opcionSubmenuIncidencias"><a href = "/Volquetas/incidencia/nuevaIncidencia">Nueva incidencia</a></li>
               <?php if ($_smarty_tpl->tpl_vars['funcionario']->value=="true") {?>
                 <li class = "opcionSubmenuIncidencias"><a href = "#">Ver todas las incidencias</a></li>

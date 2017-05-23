@@ -59,7 +59,7 @@
 						<br>
 						<select class = "form-control" id = "selectCategoria" name = "categoria">
 							{foreach from = $categorias item = categoria}							
-									<option value = "{$categoria.codigo}">{$categoria.descripcion}</option>					
+								<option value = "{$categoria.codigo}">{$categoria.descripcion}</option>					
 							{/foreach}
 						</select>
 					</div>

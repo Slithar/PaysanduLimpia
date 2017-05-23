@@ -181,13 +181,46 @@ class Usuario extends ClaseBase{
 	}
 
 	public function update (){
-		$sql = "UPDATE usuarios SET nombre=?, apellido =?, email=? WHERE ci=?";
+		$sql = "UPDATE usuarios SET nombre=?, apellido =?, email=?, fotoPerfil = ? WHERE ci=?";
 		$stmt = DB::conexion()->prepare($sql);
-		$stmt ->bind_param('sssi',$this->nombre,$this->apellido,$this->email,$this->ci);
+		$stmt ->bind_param('ssssi',$this->nombre,$this->apellido,$this->email,$this->fotoperfil, $this->ci);
 		$stmt->execute();
 		//$result = $stmt->get_result();
 
 	}
+
+	public function modificarContra(){
+		$pass = sha1($this->contrasenia);
+		$sql="UPDATE usuarios SET contrasenia=? WHERE ci=?";
+		$stmt = DB::conexion()->prepare($sql);
+		$stmt->bind_param('si',$pass,$this->ci);
+		$stmt->execute();
+	}
+	public function existeContra(){
+		$sql="SELECT * from usuarios WHERE ci=? and contrasenia = ?";
+		$pass = sha1($this->contrasenia);
+		$stmt = DB::conexion()->prepare($sql);
+		$stmt->bind_param('is',$this->ci,$pass);
+		$stmt->execute();
+		$stmt->store_result();
+		return $stmt->num_rows();
+
+	}
+	public function banneado(){
+		$sql="DELETE  FROM usuarios WHERE ci=?";
+		$stmt = DB::conexion()->prepare($sql);
+		$stmt->bind_param('i',$this->ci);
+		$stmt->execute();
+	}
+	public function existeEmail(){
+		$sql="SELECT * from usuarios WHERE ci<>? and email = ?";
+		$stmt = DB::conexion()->prepare($sql);
+		$stmt->bind_param('is',$this->ci,$this->email);
+		$stmt->execute();
+		$stmt->store_result();
+		return $stmt->num_rows();
+
+	}		
 
 } 
 

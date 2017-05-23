@@ -99,6 +99,65 @@ class Incidencia extends ClaseBase{
 		return $numero;
 	}
 
+	public function getAllIncidencias(){
+		$sql = "SELECT i.codigo, i.numeroVolqueta, i.ubicacionCorrecta, c.descripcion categoria, s.descripcion severidad, e.descripcion estado, i.descripcion, DATE_FORMAT(i.fechaHoraReporte, '%d/%m/%Y %H:%s') fecha FROM incidencias i, categorias c, severidades s, estadosincidencia e WHERE i.categoria = c.codigo AND i.severidad = s.codigo AND i.estado = e.codigo AND ciUsuario = ? AND aplicacion = ? AND idAplicacion = ? ORDER BY i.fechaHoraReporte DESC";
+		$stmt = DB::conexion()->prepare($sql);
+		$stmt->bind_param('iss', $this->ciUsuario, $this->aplicacion, $this->idAplicacion);
+		$stmt->execute();
+		$result = $stmt->get_result();
+		while($fila = $result->fetch_object()){
+			$incidencia = new Incidencia(array("codigo" => $fila->codigo,
+												"numeroVolqueta" => $fila->numeroVolqueta,
+												"ubicacionCorrecta" => $fila->ubicacionCorrecta,
+												"categoria" => utf8_encode($fila->categoria),
+												"severidad" => utf8_encode($fila->severidad),
+												"estado" => utf8_encode($fila->estado),
+												"descripcion" => utf8_encode($fila->descripcion),
+												"fechaHoraReporte" => $fila->fecha));
+			$incidencias[] = $incidencia;
+		}
+
+		return $incidencias;
+	}
+
+	public function getIncidenciasPorEstado($estado){
+		$sql = "SELECT i.codigo, i.numeroVolqueta, i.ubicacionCorrecta, c.descripcion categoria, s.descripcion severidad, e.descripcion estado, i.descripcion, DATE_FORMAT(i.fechaHoraReporte, '%d/%m/%Y %H:%s') fecha FROM incidencias i, categorias c, severidades s, estadosincidencia e WHERE i.categoria = c.codigo AND i.severidad = s.codigo AND i.estado = e.codigo AND ciUsuario = ? AND aplicacion = ? AND idAplicacion = ? AND i.estado = ? ORDER BY i.fechaHoraReporte DESC";
+		$stmt = DB::conexion()->prepare($sql);
+		$stmt->bind_param('issi', $this->ciUsuario, $this->aplicacion, $this->idAplicacion, $estado);
+		$stmt->execute();
+		$result = $stmt->get_result();
+		while($fila = $result->fetch_object()){
+			$incidencia = new Incidencia(array("codigo" => $fila->codigo,
+												"numeroVolqueta" => $fila->numeroVolqueta,
+												"ubicacionCorrecta" => $fila->ubicacionCorrecta,
+												"categoria" => utf8_encode($fila->categoria),
+												"severidad" => utf8_encode($fila->severidad),
+												"estado" => utf8_encode($fila->estado),
+												"descripcion" => utf8_encode($fila->descripcion),
+												"fechaHoraReporte" => $fila->fecha));
+			$incidencias[] = $incidencia;
+		}
+
+		return $incidencias;
+	}
+
+	public function convertToArray(){
+		//private $nombreUsuario;
+		return array("codigo" => $this->codigo,
+					"ciUsuario" => $this->ciUsuario,
+					"numeroVolqueta" => $this->numeroVolqueta,
+					"aplicacion" => $this->aplicacion,
+					"idAplicacion" => $this->idAplicacion,
+					"nombreUsuario" => $this->nombreUsuario,
+					"ubicacionCorrecta" => $this->ubicacionCorrecta,
+					"categoria" => $this->categoria,
+					"severidad" => $this->severidad,
+					"estado" => $this->estado,
+					"descripcion" => $this->descripcion,
+					"fechaHoraReporte" => $this->fechaHoraReporte,
+					"fechaHoraSolucion" => $this->fechaHoraSolucion);
+	}
+
 	function getIncidencias(){
 		$sql = "select * from incidencias";
 		$stmt = DB::conexion()->prepare($sql);
@@ -110,6 +169,27 @@ class Incidencia extends ClaseBase{
 		}
 		return $res;
 	}
+
+	public function getIncidenciaPorCodigo(){
+		$sql = "SELECT i.codigo, i.numeroVolqueta, i.ubicacionCorrecta, c.descripcion categoria, s.descripcion severidad, e.descripcion estado, i.descripcion, DATE_FORMAT(i.fechaHoraReporte, '%d/%m/%Y %H:%s') fecha FROM incidencias i, categorias c, severidades s, estadosincidencia e WHERE i.categoria = c.codigo AND i.severidad = s.codigo AND i.estado = e.codigo AND i.codigo = ?";
+		$stmt = DB::conexion()->prepare($sql);
+		$stmt->bind_param('i', $this->codigo);
+		$stmt->execute();
+		$result = $stmt->get_result();
+		while($fila = $result->fetch_object()){
+			$incidencia = new Incidencia(array("codigo" => $fila->codigo,
+												"numeroVolqueta" => $fila->numeroVolqueta,
+												"ubicacionCorrecta" => $fila->ubicacionCorrecta,
+												"categoria" => utf8_encode($fila->categoria),
+												"severidad" => utf8_encode($fila->severidad),
+												"estado" => utf8_encode($fila->estado),
+												"descripcion" => htmlentities($fila->descripcion, ENT_QUOTES),
+												"fechaHoraReporte" => $fila->fecha));
+		}
+
+		return $incidencia;
+	}
+
 }
 
 ?>

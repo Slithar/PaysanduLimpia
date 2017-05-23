@@ -79,6 +79,30 @@ class Volqueta extends ClaseBase{
 		return $volquetas;
 	}
 
+	public function getVolquetaPorNumero(){
+		$sql = "SELECT * FROM volquetas WHERE numero = ? ORDER BY calleX, calleY, numero";
+
+		$stmt = DB::conexion()->prepare($sql);
+		$stmt->bind_param('i', $this->numero);
+		$stmt->execute();
+
+		$result = $stmt->get_result();
+
+		while($fila = $result->fetch_object()){
+			$volqueta = new Volqueta(array("numero" => $fila->numero,
+											"latitud" => $fila->latitud,
+											"longitud" => $fila->longitud,
+											"ubicacion" => $fila->ubicacion,
+											"calleX" => utf8_encode($fila->calleX),
+											"calleY" => utf8_encode($fila->calleY),
+											"calleZ" => utf8_encode($fila->calleZ),
+											"estado" => utf8_encode($fila->estado),));
+			$volquetas[] = $volqueta;
+		}
+
+		return $volquetas;
+	}
+
 	public function convertToArray(){
 		return array("numero" => $this->numero,
 					"latitud" => $this->latitud,

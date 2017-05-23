@@ -21,17 +21,12 @@
 	$estadoVolqueta = new EstadoVolqueta();
 	$estadosVolqueta = $estadoVolqueta->getEstadosVolqueta();
 	$controlIndex = new ControladorIndex();
-
-	$tpl = Template::getInstance();
-	//Session::init();
-	/*session_start();
-	if(isset($_SESSION['ci']))
- 		echo $_SESSION['ci'];
- 	else
- 		echo "noo";*/
-	//echo "aca";
+	/*if(isset($_COOKIE['ciUsuario']))
+		echo "si";
+	else
+		echo "no";*/
+    $tpl = Template::getInstance();
 	Session::init();
-	//echo "aca";
 	if(Session::exists('tipo')){
 		if(Session::get('tipo') == 'paysandulimpia'){
 			$tpl->asignar('ci', Session::get('ci'));			
@@ -45,7 +40,6 @@
 		$tpl->asignar('logueado', 'si');		
 		$tpl->asignar('classLogueado', 'logueado');
 		$tpl->asignar('tipo', Session::get('tipo'));
-		//echo "aca";
 	}
 	else{		
 		$tpl->asignar('logueado', 'no');
@@ -54,9 +48,7 @@
 		$tpl->asignar('fotoPerfil', '');
 		$tpl->asignar('funcionario', 'false');		
 		$tpl->asignar('tipo', '');
-		//echo "aca2";
 		if(isset($_COOKIE['ciUsuario'])){
-			//echo("La CI es: ".$_COOKIE['ciUsuario']);
 			$tpl->asignar('logueado', 'si');		
 			$tpl->asignar('classLogueado', 'logueado');
 			Session::set('ci', $_COOKIE['ciUsuario']);
@@ -66,24 +58,14 @@
 			$funcionario = $user->getFuncionario() ? "true" : "false";
 			Session::set('funcionario', $funcionario);
 			//echo "Nombre: ".$user->getNombre();
-			Session::set('nombre', $user->getNombre()." ".$user->getApellido());
+			Session::set('nombre', $user->getNombre());
 			Session::set('fotoPerfil', $user->getFotoperfil());
 			$tpl->asignar('ci', Session::get('ci'));
-			$tpl->asignar('nombre', $user->getNombre()." ".$user->getApellido());
+			$tpl->asignar('nombre', $user->getNombre());
 			$tpl->asignar('fotoPerfil', $user->getFotoperfil());
 			$tpl->asignar('funcionario', $funcionario);		
 		}
 	}
-	/*unset($_COOKIE['ciUsuario']);
-	setcookie('ciUsuario', null, -1, '/');*/
-	/*if(isset($_COOKIE['ciUsuario'])){
-		$tpl->asignar('logueado', 'no');		
-		$tpl->asignar('classLogueado', 'noLogueado');
-	}
-	else{
-		$tpl->asignar('logueado', 'no');
-		$tpl->asignar('classLogueado', 'noLogueado');
-	}*/
 	$tpl->asignar('severidades', $severidades);
 	$tpl->asignar('categorias', $categorias);
 	$tpl->asignar('estadosIncidencia', $estadosIncidencia);
@@ -111,7 +93,6 @@
 		$params = array();
 	}
 
-		//echo $objetoControlador;
 	$objetoControlador = $controlIndex->cargarControlador($controlador);
 
 	

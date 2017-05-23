@@ -6,8 +6,11 @@ jQuery(document).ready(function($) {
 		Función para el submit del formulario de Log In.
 	*/
 	$('#selectDireccion').select2();
-	setTimeout(function(){
+	/*setTimeout(function(){
 		$('#successNuevaIncidencia').fadeOut();
+	}, 5000);*/
+	setTimeout(function(){
+		$('.alert').fadeOut();
 	}, 5000);
 
 	//alert("aca");
@@ -31,6 +34,7 @@ jQuery(document).ready(function($) {
 		});
 		if(!error){
 			//alert("aca");
+			//alert($('#formLogin').serialize());
 			$.ajax({
 				url: '/Volquetas/usuario/validate/',
 				type: 'POST',
@@ -38,7 +42,7 @@ jQuery(document).ready(function($) {
 				data: $('#formLogin').serialize()
 			})
 			.done(function(response) {
-				//alert(response["code"]);
+				//alert(response["message"]);
 				if(response["code"] == "error"){
 					window.location.href = "/Volquetas/usuario/login/error/" + $('#cedulaUsuario').val().replace('undefined', '');
 				}
@@ -324,21 +328,206 @@ jQuery(document).ready(function($) {
 			alert(e);
 		});
 	});
-/*
-	$('#btnModificar').on('click', function(e){
+
+	$('#btnRegistrarPerfil').on('click', function(){
+		if($(this).hasClass('facebook')){
+			logout();
+		}
+		else{
+			LogOutGoogle();
+		}
+	});
+
+	$("#cambiarPass").on("click",function(e){
 		e.preventDefault();
-		$.ajax({
-			url : '/Volquetas/usuario/modificar',
-			type : 'POST',
-			data : $('#formModificar').serialize()
-		})
-		.done(function(response){
-			alert(response);
-		})
-		.fail(function(error, err, e){
-			alert(e);
+		var error = false;
+		
+		$("#cambiarContra").find('input[type="password"]').each(function(index, el) {
+			if($(this).val() == ""){
+				error = true;
+				$("#alertaContrasenia").css('display', 'block');
+				$("#alertaContrasenia").html("<strong>ERROR: </strong>No se han completado campos obligatorios");
+				$(this).parent().addClass("has-error");
+				setTimeout(function(){
+					$("#alerta").css('display', 'none');
+				}, 5000);
+			}	
+		});	
+	});
+		
+	$("#btnModificarb").on("click",function(e){
+		e.preventDefault();
+		var error = false;
+		removeErrorEdit();
+		$("#formModificar").find('input[type="text"],input[type="email"]').each(function(index, el) {
+			if($(this).val() == ""){
+				error = true;
+				$("#alerta").css('display', 'block');
+				$("#alerta").html("<strong>ERROR: </strong>No se han completado campos obligatorios");
+				$(this).parent().addClass("has-error");
+				setTimeout(function(){
+					$("#alerta").css('display', 'none');
+				}, 5000);
+			}
 		});
-	});*/
+
+		if(!error){
+			$.ajax({
+				url : '/Volquetas/usuario/existeEmail',
+				type : 'POST',
+				dataType : 'json',
+				data : $('#formModificar').serialize()
+			})
+			.done(function(response){
+				//alert(response);
+				if(response["code"] == "error"){
+					removeErrorEdit();	
+					
+					$('input[type="email"]').parent().addClass('has-error');
+					error = true;
+					$("#alerta").css('display', 'block');
+					$("#alerta").html(response["message"]["content"]);
+					//$(this).parent().addClass("has-error");
+					$('input[type="email"]').focus();
+					setTimeout(function(){
+						$("#alerta").css('display', 'none');
+					}, 5000);
+					
+				}
+				else{
+					$('#formModificar').submit();
+				}
+			});
+			/*.fail(function(error, err, e){
+				alert(e);
+			});*/
+		}	
+	});
+
+	$("#cambiarPass").on("click",function(e){
+		e.preventDefault();
+		var error = false;
+		removeErrorChangePassword();
+		$("#formCambiarcontra").find('input[type="password"]').each(function(index, el) {
+			if($(this).val() == ""){
+		 		error = true;
+				$("#alertaContrasenia").css('display', 'block');
+				$("#alertaContrasenia").html("<strong>ERROR:</strong> No se han completado campos obligatorios");
+				$(this).parent().addClass("has-error");
+				setTimeout(function(){
+					$("#alertaContrasenia").css('display', 'none');
+				}, 5000);
+
+			}
+		});
+
+		if(!error && $("input[name='contrasenia']").val().length <= 6){
+			//alert("1");
+			removeErrorChangePassword();
+		 	$("input[name='contrasenia']").parent().addClass('has-error');
+		 	error = true;
+		 	$("#alertaContrasenia").css('display', 'block');
+			$("#alertaContrasenia").html("<strong>ERROR: </strong>La contraseña debe tener más de 6 dígitos");
+			$("input[name='contrasenia']").focus();
+			//$(this).parent().addClass("has-error");
+			setTimeout(function(){
+				$("#alertaContrasenia").css('display', 'none');
+			}, 5000);
+		}
+
+
+		if(!error && $("input[name='contrasenia']").val() != $("input[name='contrasenia2']").val()){
+			//alert("2");
+			removeErrorChangePassword();
+		 	$("input[name=contrasenia]").parent().addClass('has-error');
+		 	$("input[name=contrasenia2]").parent().addClass('has-error');
+		 	error = true;
+		 	$("#alertaContrasenia").css('display', 'block');
+			$("#alertaContrasenia").html("<strong>ERROR: </strong>La contraseña ingresada no coincide con su confirmación");
+			//$(this).parent().addClass("has-error");
+			$("input[name='contrasenia']").focus();
+			setTimeout(function(){
+				$("#alertaContrasenia").css('display', 'none');
+			}, 5000);
+		}
+			
+	
+		
+
+		if(!error){
+			//alert($('#formCambiarcontra').serialize());
+			$.ajax({
+				url : '/Volquetas/usuario/existeCon',
+				type : 'POST',
+				dataType : 'json',
+				data : $('#formCambiarcontra').serialize()
+			})
+			.done(function(response){
+				//alert(response);
+				if(response["code"] == "error"){
+					$("input[name='contravieja']").focus();
+					error = true;
+					$("#alertaContrasenia").css('display', 'block');
+					$("#alertaContrasenia").html(response["message"]["content"]);
+					setTimeout(function(){
+						$("#alertaContrasenia").css('display', 'none');
+					}, 5000);
+					
+				}
+				else{
+					//alert("listo!");
+					$('#formCambiarcontra').submit();
+				}
+			});
+
+		}	
+	});
+
+	$('body').on('click', '.galeria_img', function(e){
+		//alert("aqui");
+		var img = document.createElement("img");
+		img.src = e.target.src;
+
+		$('.fondoNegro').fadeIn();
+		if(img.height > img.width){
+
+			$('#imgModal').css({'width': '25%',
+							'margin': 'auto',
+							'display': 'block',
+							'margin-top': '3%',
+							'border': '11px solid white',
+							'margin-bottom' : '50px'});
+			
+			
+		}
+		else{
+			$('#imgModal').css({'width': '55%',
+								'margin': 'auto',
+								'display': 'block',
+								'margin-top': '7%',
+								'border': '11px solid white',
+								'margin-bottom' : '50px'});
+		}
+		$('#imgModal').attr('src', e.target.src);	
+	});
+
+	$('body').on('click', '#btnCerrar', function(){
+		//alert("aqui");
+		$('.fondoNegro').fadeOut();
+	});
+
+	$('#comboEstado').on('change', function(){
+		window.location.href = "/Volquetas/incidencia/misIncidencias/" + $('#comboEstado').val() + "/" + $('#txtBusqueda').val();
+	});
+
+	$('#btnBuscar').on('click', function(){
+		window.location.href = "/Volquetas/incidencia/misIncidencias/" + $('#comboEstado').val() + "/" + $('#txtBusqueda').val();
+	});
+
+	$('#txtBusqueda').on('keyup', function(e){
+		if(e.which == 13)
+			window.location.href = "/Volquetas/incidencia/misIncidencias/" + $('#comboEstado').val() + "/" + $('#txtBusqueda').val();
+	});
 });
 
 /*function removeError(){

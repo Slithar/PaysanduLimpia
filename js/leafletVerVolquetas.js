@@ -7,6 +7,8 @@ var green = 0;
 var orange = 0;
 var red = 0;
 
+//alert("Buuu te asusto");
+
 $.ajax({
 	url : '/Volquetas/volqueta/getVolquetas',
 	type : 'POST',
@@ -23,7 +25,7 @@ $.ajax({
 
 			//var datos = responseSplit[i].split(';');
 			var marker = L.marker([volquetas[i]["latitud"], volquetas[i]["longitud"]], {draggable: false});
-			marker.bindPopup("Volqueta Nº: " + volquetas[i]["numero"]);
+			marker.bindPopup("<center><b>Volqueta Nº: " + volquetas[i]["numero"] + "</b><center><br><br><img class = 'imgVolqueta' src = 'img/Volquetas/" + volquetas[i]["numero"] + ".png'>");
 			marker.on('mouseover', function (e) {
 		        this.openPopup();
 		    });

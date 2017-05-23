@@ -184,16 +184,12 @@ function quitarFiles(){
 	$('.galeria_item').remove();
 }
 
-$('body').on('click', '.galeria_img', function(e){
+/*$('body').on('click', '.galeria_img', function(e){
 	var img = document.createElement("img");
 	img.src = e.target.src;
 
 	$('.fondoNegro').fadeIn();
-	/*var altoFondoNegro = $('#fondoNegro').css('height').replace("px", "");
-	alert(altoFondoNegro);*/
 	if(img.height > img.width){
-		//var ancho = img.width * 2;
-		//(img.height > ancho){
 
 		$('#imgModal').css({'width': '25%',
 						'margin': 'auto',
@@ -201,14 +197,7 @@ $('body').on('click', '.galeria_img', function(e){
 						'margin-top': '3%',
 						'border': '11px solid white',
 						'margin-bottom' : '50px'});
-		/*}
-		else{
-			$('#imgModal').css({'width': '25%',
-							'margin': 'auto',
-							'display': 'block',
-							'margin-top': '8%',
-							'border': '11px solid white'});
-		}*/
+		
 		
 	}
 	else{
@@ -224,7 +213,7 @@ $('body').on('click', '.galeria_img', function(e){
 
 function cerrarModal(){
 	$('.fondoNegro').fadeOut();
-}
+}*/
 refreshSelectDirecciones($('#selectUbicacion').val());
 refreshSelectNumeros($('#selectDireccion').val());
 marcarVolqueta();

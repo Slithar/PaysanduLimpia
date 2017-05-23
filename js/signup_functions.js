@@ -13,3 +13,15 @@ function removeError(){
 		$(this).parent().removeClass("has-error");
 	});
 }
+
+function removeErrorChangePassword(){
+    $("#formCambiarcontra").find('input[type="text"],input[type="password"], input[type="email"]').each(function(index, el) {
+        $(this).parent().removeClass("has-error");
+    });
+}
+
+function removeErrorEdit(){
+    $("#formModificar").find('input[type="text"],input[type="password"], input[type="email"]').each(function(index, el) {
+        $(this).parent().removeClass("has-error");
+    });
+}
