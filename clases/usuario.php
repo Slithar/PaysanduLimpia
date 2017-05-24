@@ -181,9 +181,14 @@ class Usuario extends ClaseBase{
 	}
 
 	public function update (){
-		$sql = "UPDATE usuarios SET nombre=?, apellido =?, email=?, fotoPerfil = ? WHERE ci=?";
+		$enviarcorreo = isset($this->enviarcorreo) ? 1 : 0;
+		var_dump($this);
+		$sql = "UPDATE usuarios SET nombre=?, apellido =?, email=?, fotoPerfil=?, enviarCorreo=? WHERE ci=?";
 		$stmt = DB::conexion()->prepare($sql);
-		$stmt ->bind_param('ssssi',$this->nombre,$this->apellido,$this->email,$this->fotoperfil, $this->ci);
+		//$a='A';
+		$foto=$this->fotoperfil;
+		//exit;
+		$stmt->bind_param('ssssii',$this->nombre,$this->apellido,$this->email,$foto,$enviarcorreo,$this->ci);
 		$stmt->execute();
 		//$result = $stmt->get_result();
 
