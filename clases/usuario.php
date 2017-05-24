@@ -190,7 +190,6 @@ class Usuario extends ClaseBase{
 		//exit;
 		$stmt->bind_param('ssssii',$this->nombre,$this->apellido,$this->email,$foto,$enviarcorreo,$this->ci);
 		$stmt->execute();
-		//$result = $stmt->get_result();
 
 	}
 
