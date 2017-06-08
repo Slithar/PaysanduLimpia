@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-05-10 18:54:37
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-06-08 00:41:27
          compiled from "vistas\landing.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2976558f930fb5c2c05-92729639%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'a0706fb32bac316ed1c105ddaff132ac46c6cd1d' => 
     array (
       0 => 'vistas\\landing.tpl',
-      1 => 1494442380,
+      1 => 1496882485,
       2 => 'file',
     ),
   ),
@@ -129,6 +129,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 					</div>
 				</div>
 			</div>
+			<br><br>
+			<button class = "btn btn-primary" style = "margin: auto;display: block; width: 22%; font-size: 17px; font-weight: bold; margin-top: 150px;" onclick = "window.location.href = '/Volquetas/incidencia/nuevaIncidencia'"><span class = "fa fa-bug"></span>&nbsp;&nbsp;¡Reporta tu incidencia!</button>
 		</div>
 		<?php echo $_smarty_tpl->getSubTemplate ("footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 

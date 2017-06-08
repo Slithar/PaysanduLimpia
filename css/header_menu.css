@@ -132,6 +132,11 @@
 	/*border: 1px solid black;*/
 	float: left;
 	margin-top: 2.1%;
+	cursor: pointer;
+}
+
+.divPerfil:hover > .nombreLogueado{
+	color: #89ACF7;
 }
 
 .divFotoPerfil{
@@ -219,4 +224,19 @@
 
 .fa-facebook{
 	font-size: 18px;
+}
+
+.notificaciones{
+	color: white;
+	font-size: 24px;
+	cursor: pointer;
+	/*border: 1px solid black;*/
+	display: inline-block;
+	margin-top: 2.5%;
+	margin-left: 17%;
+}
+
+.notificaciones:hover{
+	color: #89ACF7;
+	cursor: pointer;
 }

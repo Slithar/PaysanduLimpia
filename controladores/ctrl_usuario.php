@@ -21,9 +21,14 @@ class ControladorUsuario extends ControladorIndex{
 
 	function signup($params=array()){
 		$tpl = Template::getInstance();
+		if(isset($params[0]) && $params[0] != "")
+			$success = "si";
+		else
+			$success = "no";
 		$tpl->asignar('location','Sign Up');
 		$tpl->asignar('classMain', 'mainNoLanding');
 		$tpl->asignar('landing', 'no');
+		$tpl->asignar('success', $success);
 		$tpl->mostrar("signup");
 	}
 
@@ -194,7 +199,10 @@ class ControladorUsuario extends ControladorIndex{
 
 			$usuario = new Usuario($data);
 			if($usuario ->signUp()){
-				$this::redirect("usuario","login/success");	
+				if(Session::exists('ci'))
+					$this::redirect("usuario","signup/success");	
+				else
+					$this::redirect("usuario","login/success");	
 			}		
 		}
 		else{			

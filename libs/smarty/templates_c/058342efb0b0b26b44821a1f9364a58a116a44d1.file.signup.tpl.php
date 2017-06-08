@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-05-10 21:36:31
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-06-07 22:30:39
          compiled from "vistas\signup.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1844658f80d752b5502-04667526%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '058342efb0b0b26b44821a1f9364a58a116a44d1' => 
     array (
       0 => 'vistas\\signup.tpl',
-      1 => 1494451109,
+      1 => 1496874624,
       2 => 'file',
     ),
   ),
@@ -22,6 +22,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'location' => 0,
     'classMain' => 0,
     'classLogueado' => 0,
+    'success' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -61,12 +62,17 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 		<div id = "main" class="container-fluid <?php echo $_smarty_tpl->tpl_vars['classMain']->value;?>
  <?php echo $_smarty_tpl->tpl_vars['classLogueado']->value;?>
-">
+">		
 			<form id="formSignup" action="/Volquetas/usuario/registrar" method="POST" enctype="multipart/form-data" accept-charset="utf-8" class="midPage signup">
+				<?php if ($_smarty_tpl->tpl_vars['success']->value=='si') {?>
+					<div class = "alert alert-success">
+						<strong>¡ÉXITO!</strong> Se ha agregado el nuevo usuario de manera correcta
+					</div>
+				<?php }?>
 				<div class="row">
 					<div class="form-group col-sm-12">
 						<label for="ci" class="control-label">Cédula de identidad</label>
-						<input type="text" id="ci" name="cedulaUsuario" class="form-control" placeholder="12345678">
+						<input type="text" id="ci" name="cedulaUsuario" class="form-control" maxlength="8" placeholder="12345678">
 					</div>
 				</div>	
 				<div class="row">

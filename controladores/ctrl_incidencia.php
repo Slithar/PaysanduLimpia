@@ -12,7 +12,6 @@ require_once("clases/severidad.php");
 require_once("clases/categoria.php");
 require_once("clases/estadoIncidencia.php");
 require_once("clases/session.php");
-require_once("clases/asignada.php");
 
 class ControladorIncidencia extends ControladorIndex{
 	public function nuevaIncidencia($params = array()){
@@ -56,6 +55,23 @@ class ControladorIncidencia extends ControladorIndex{
 		$ubicacionCorrecta = 1;
 		if(!$_POST['ubicacionCorrecta'])
 			$ubicacionCorrecta = 0;
+		$incidencia = new Incidencia(array("numeroVolqueta" => $_POST['numero'],
+											"categoria" => $_POST['categoria']));
+		$incidenciasPendientes = $incidencia->getEstadoVolquetaPendiente();
+		$incidenciasEnCurso = $incidencia->getEstadoVolquetaEnCurso();
+
+		$estado = 1;		
+
+		if($incidenciasPendientes > 0){
+			$estado = 1;
+		}
+		else{
+			if($incidenciasEnCurso > 0)
+				$estado = 2;			
+			else
+				$estado = 1;
+			
+		}
 		$incidencia = new Incidencia(array("ciUsuario" => $ci,
 											"numeroVolqueta" => $_POST['numero'],
 											"aplicacion" => $aplicacion,
@@ -64,12 +80,12 @@ class ControladorIncidencia extends ControladorIndex{
 											"ubicacionCorrecta" => $ubicacionCorrecta,
 											"categoria" => $_POST['categoria'],
 											"severidad" => $_POST['severidad'],
-											"estado" => 1,
+											"estado" => $estado,
 											"descripcion" => $_POST['descripcion'],));
 		
 		$incidencia->insert();
 		$codigoGenerado = $incidencia->getCodigoGenerado();
-		$imagenes = $_FILES['imagenes'];
+		$imagenes = $_POST['cantidadImagenes'] != "0" ? $_FILES['imagenes'] : array();
 		$extensionesAceptadas = array(".JPG", ".JPEG", ".PNG", ".GIF", ".BMP");
 		for($i = 0; $i < count($imagenes); $i++){
 			$extension = substr($imagenes['name'][$i], strrpos($imagenes['name'][$i], "."));
@@ -81,10 +97,43 @@ class ControladorIncidencia extends ControladorIndex{
 				$imagen->insert();
 			}
 		}
-		if(ControladorVolqueta::changeState($_POST['numero'], 3)){
+		if($estado == 1){
+			if(ControladorVolqueta::changeState($_POST['numero'], 3)){
+				$this->redirect('incidencia', 'nuevaIncidencia/success/'.$codigoGenerado);
+			}
+		}
+		else{
 			$this->redirect('incidencia', 'nuevaIncidencia/success/'.$codigoGenerado);
 		}
 		
+		
+	}
+
+	public function getEstadoNuevaIncidencia(){
+		$incidencia = new Incidencia(array("numeroVolqueta" => $_POST['numeroVolqueta'],
+											"categoria" => $_POST['categoria']));
+		$incidenciasPendientes = $incidencia->getEstadoVolquetaPendiente();
+		$incidenciasEnCurso = $incidencia->getEstadoVolquetaEnCurso();
+
+		if($incidenciasPendientes > 0){
+			$respuesta = new Respuesta(array("code" => "ok",
+											"message" => "<span class = 'incidenciaPendiente'>Pendiente</span>",
+											"content" => ""));
+		}
+		else{
+			if($incidenciasEnCurso > 0){
+				$respuesta = new Respuesta(array("code" => "ok",
+											"message" => "<span class = 'incidenciaEn'>En curso</span>",
+											"content" => ""));
+			}
+			else{
+				$respuesta = new Respuesta(array("code" => "ok",
+											"message" => "<span class = 'incidenciaPendiente'>Pendiente</span>",
+											"content" => ""));
+			}
+		}
+
+		echo $respuesta->getResult(); 
 	}
 
 	public function getIncidencias(){
@@ -207,6 +256,13 @@ class ControladorIncidencia extends ControladorIndex{
 				$direccion = $v->getCalleX()." entre ".$v->getCalleY()." y ".$v->getCalleZ();
 			}
 
+			if(isset($params[1]) && $params[1] == "success"){
+				$success = "si";
+			}
+			else{
+				$success = "no";
+			}
+
 			$datosIncidencia = array("codigo" => $result->getCodigo(),
 										"numeroVolqueta" => $result->getNumeroVolqueta(),
 										"ubicacionCorrecta" => $result->getUbicacionCorrecta(),
@@ -216,7 +272,7 @@ class ControladorIncidencia extends ControladorIndex{
 										"descripcion" => $result->getDescripcion(),
 										"fecha" => $result->getFechaHoraReporte(),
 										"direccion" => $direccion);
-			$asignada = new Asignada(array("codigoIncidencia" => $result->getCodigo()));
+			/*$asignada = new Asignada(array("codigoIncidencia" => $result->getCodigo()));
 			if(count($asginada) == 0){
 				$a = "Sin asignar";
 			}
@@ -226,7 +282,7 @@ class ControladorIncidencia extends ControladorIndex{
 					$u = $user->seleccionarUsuario()->getNombre()." ".$user->seleccionarUsuario()->getApellido();
 					$a .= ", ".$u;
 				}
-			}
+			}*/
 
 			$imagen = new ImagenDeIncidencia(array("codigoIncidencia" => $result->getCodigo()));
 			$imagenes = $imagen->getImagenesIncidencia();
@@ -241,6 +297,9 @@ class ControladorIncidencia extends ControladorIndex{
 			}
 			
 		}
+		else{
+			$success = "no";
+		}
 		$tpl = Template::getInstance();
 		$tpl->asignar('location', 'Ver incidencia');
 		$tpl->asignar('landing', 'no');		
@@ -254,12 +313,294 @@ class ControladorIncidencia extends ControladorIndex{
 		$tpl->asignar('descripcion', $datosIncidencia['descripcion']);
 		$tpl->asignar('fecha', $datosIncidencia['fecha']);
 		$tpl->asignar('direccion', $datosIncidencia['direccion']);
-		$tpl->asignar('asignada', $a);
+		//$tpl->asignar('asignada', $a);
 		//echo(count($imagenes));
 		$tpl->asignar('imagenes', $imgs);
 		$tpl->asignar('cantidadImagenes', count($imagenes));
+		$tpl->asignar('success', $success);
 		//$tpl->asignar('codigo', $params[0]);
 		$tpl->mostrar('verIncidencia');
+	}
+
+	public function agregarFotos($params = array()){
+		$codigoGenerado = $_POST['codigo'];
+		$img = new ImagenDeIncidencia(array("codigoIncidencia" => $codigoGenerado));
+		$cantidad = $img->getCantidadImagenes() + 1;
+		$imagenes = $_FILES['imagenes'];
+		$extensionesAceptadas = array(".JPG", ".JPEG", ".PNG", ".GIF", ".BMP");
+		for($i = 0; $i < count($imagenes); $i++){
+			$extension = substr($imagenes['name'][$i], strrpos($imagenes['name'][$i], "."));
+			if(in_array(strtoupper($extension), $extensionesAceptadas)){
+				$cant = $i + $cantidad;
+				copy($imagenes['tmp_name'][$i], "img/Incidencias/".$codigoGenerado."-".$cant.$extension);
+				$imagen = new ImagenDeIncidencia(array("codigoIncidencia" => $codigoGenerado,
+														"rutaImagen" => "img/Incidencias/".$codigoGenerado."-".$cant.$extension,));
+				$imagen->insert();
+			}
+		}
+		$this->redirect('incidencia', 'verIncidencia/'.$codigoGenerado.'/success');
+	}
+
+	public function editarDescripcionIncidencia(){
+		$codigoGenerado = $_POST['codigo'];
+		$incidencia = new Incidencia(array("codigo" => $codigoGenerado,
+											"descripcion" => $_POST['descripcion']));
+		$incidencia->editarDescripcion();
+		//$this->redirect('incidencia', 'verIncidencia/'.$codigoGenerado.'/success');
+	}
+
+	public function eliminarIncidencia($params = array()){
+		if(isset($params[0]) && $params[0] != ""){
+			
+			$imagenIncidencia = new ImagenDeIncidencia(array("codigoIncidencia" => $params[0]));
+			$imagenIncidencia->deleteImagenesIncidencia();
+
+			$incidencia = new Incidencia(array("codigo" => $params[0]));
+
+			$result = $incidencia->getIncidenciaPorCodigo();
+
+			$i = new Incidencia(array("numeroVolqueta" => $result->getNumeroVolqueta(),
+									"categoria" => $result->getCategoria()));
+
+			$incidencia->deleteIncidencia();
+
+
+			$incidenciasPendientes = $i->getEstadoPendienteTodasIncidencias();
+			$incidenciasEnCurso = $i->getEstadoEnCursoTodasIncidencias();
+			//echo $incidenciasPendientes." - ".$incidenciasEnCurso;
+			if($incidenciasPendientes == 0 && $incidenciasEnCurso == 0){
+				ControladorVolqueta::changeState($i->getNumeroVolqueta(), 1);
+			}
+			else{
+				if($incidenciasPendientes > 0)
+					ControladorVolqueta::changeState($i->getNumeroVolqueta(), 3);
+				else if($incidenciasPendientes == 0 && $incidenciasEnCurso > 0)					
+					ControladorVolqueta::changeState($i->getNumeroVolqueta(), 2);
+			}
+
+			/*$estado = 1;		
+
+			if($incidenciasPendientes > 0){
+				$estado = 1;
+			}
+			else{
+				if($incidenciasEnCurso > 0)
+					$estado = 2;			
+				else
+					$estado = 1;
+				
+			}*/
+
+			$this->redirect('incidencia', 'misIncidencias/0');
+		}
+	}
+
+	public function verTodasLasIncidencias($params = array()){
+		Auth::loggedIn();
+		$tpl = Template::getInstance();		
+		$tpl->asignar('location', 'Ver todas las incidencias');
+		$tpl->asignar('landing', 'no');		
+		$tpl->asignar('classMain', 'mainNoLanding');
+		$estado = "0";
+		if(isset($params[0]) && $params[0] != ""){
+			$tpl->asignar('estado', $params[0]);
+			$estado = $params[0];
+		}
+		else{
+			$tpl->asignar('estado', '1');
+			$estado = "1";
+		}
+
+		if(isset($params[1]) && $params[1] != ""){
+			$tpl->asignar('orden', $params[1]);
+			$orden = $params[1];
+		}
+		else{
+			$tpl->asignar('orden', 'asc');
+			$orden = "asc";
+		}
+		$busqueda = false;
+		if(isset($params[2]) && $params[2] != ""){
+			$tpl->asignar('busqueda', $params[2]);
+			$busqueda = true;
+		}
+		else{
+			$tpl->asignar('busqueda', '');
+		}
+		$incidencia = new Incidencia(array());
+		if($estado == "0")
+			$incidencias = $incidencia->getAllIncidenciasAgrupadas($orden);
+		else
+			$incidencias = $incidencia->getIncidenciasAgrupadasPorEstado($estado, $orden);
+		if(count($incidencias) > 0){
+			foreach ($incidencias as $i) {
+				if($busqueda){
+					if(mb_stristr($i->getNumeroVolqueta(), $params[2]) != false || strpos($i->getCategoria(), $params[1]) != false){
+						$incidenciasActuales[] = array("numeroVolqueta" => $i->getNumeroVolqueta(),
+													"categoria" => $i->getCategoria(),
+													"fechaHoraReporte" => $i->getFechaHoraReporte(),
+													"fechaHoraSolucion" => $i->getFechaHoraSolucion(),
+													"estado" => $i->getEstado(),
+													"cantidad" => $i->getCantidad(),
+													"codigoCategoria" => $i->getCodigo());
+					}
+				}
+				else{
+
+					$incidenciasActuales[] = array("numeroVolqueta" => $i->getNumeroVolqueta(),
+													"categoria" => $i->getCategoria(),
+													"fechaHoraReporte" => $i->getFechaHoraReporte(),
+													"fechaHoraSolucion" => $i->getFechaHoraSolucion(),
+													"estado" => $i->getEstado(),
+													"cantidad" => $i->getCantidad(),
+													"codigoCategoria" => $i->getCodigo());
+					}
+			}
+		}
+
+		$tpl->asignar('incidenciasActuales', $incidenciasActuales);
+		$tpl->mostrar('verTodasLasIncidencias');
+	}
+
+	public function verIncidenciasReportadas($params = array()){
+		$tpl = Template::getInstance();
+		$tpl->asignar('location', 'Ver incidencias');
+		$tpl->asignar('landing', 'no');		
+		$tpl->asignar('classMain', 'mainNoLanding');
+		if(isset($params[3]) && $params[3] != "")
+			$fecha = $params[3];
+		else
+			$fecha = NULL;
+		$incidencia = new Incidencia(array("numeroVolqueta" => $params[0],
+											"categoria" => $params[1],
+											"estado" => $params[2],
+											"fechaHoraSolucion" => $fecha));
+		$result = $incidencia->getVolquetasAgrupadas();
+
+		foreach($result as $r){
+			$volqueta = new Volqueta(array("numero" => $r->getNumeroVolqueta()));
+			$v = $volqueta->getVolquetaPorNumero()[0];
+			if($v->getUbicacion() == "Esquina"){
+				if($v->getCalleY() != "Independencia"){
+					$direccion = $v->getCalleX()." y ".$v->getCalleY();
+				}
+				else{
+					$direccion = $v->getCalleX()." e ".$v->getCalleY();
+				}
+			}
+			else{
+				$direccion = $v->getCalleX()." entre ".$v->getCalleY()." y ".$v->getCalleZ();
+			}
+			$datosIncidencia = array("codigo" => $r->getCodigo(),
+									"numeroVolqueta" => $r->getNumeroVolqueta(),
+									"ubicacionCorrecta" => $r->getUbicacionCorrecta(),
+									"categoria" => $r->getCategoria(),
+									"severidad" => $r->getSeveridad(),
+									"estado" => $r->getEstado(),
+									"descripcion" => $r->getDescripcion(),
+									"fecha" => $r->getFechaHoraReporte(),									
+									"direccion" => $direccion);
+			
+			$i[] = $datosIncidencia;
+			
+		}
+		$tpl->asignar('incidencias', $i);
+		$tpl->mostrar('verIncidenciasReportadas');
+	}
+
+	public function verIncidenciaDatos($params = array()){
+		if(isset($params[0]) && $params[0] != ""){
+			$incidencia = new Incidencia(array("codigo" => $params[0]));
+			$result = $incidencia->getIncidenciaPorCodigo();
+
+			$volqueta = new Volqueta(array("numero" => $result->getNumeroVolqueta()));
+			//Tengo la volqueta de la incidencia
+			$v = $volqueta->getVolquetaPorNumero()[0];
+			//var_dump($v);	
+			if($v->getUbicacion() == "Esquina"){
+				if($v->getCalleY() != "Independencia"){
+					$direccion = $v->getCalleX()." y ".$v->getCalleY();
+				}
+				else{
+					$direccion = $v->getCalleX()." e ".$v->getCalleY();
+				}
+			}
+			else{
+				$direccion = $v->getCalleX()." entre ".$v->getCalleY()." y ".$v->getCalleZ();
+			}
+
+			if(isset($params[1]) && $params[1] == "success"){
+				$success = "si";
+			}
+			else{
+				$success = "no";
+			}
+
+			$datosIncidencia = array("codigo" => $result->getCodigo(),
+										"ciUsuario" => $result->getCiUsuario(),
+										"numeroVolqueta" => $result->getNumeroVolqueta(),
+										"aplicacion" => $result->getAplicacion(),
+										"nombreUsuario" => $result->getNombreUsuario(),
+										"ubicacionCorrecta" => $result->getUbicacionCorrecta(),
+										"categoria" => $result->getCategoria(),
+										"severidad" => $result->getSeveridad(),
+										"estado" => $result->getEstado(),
+										"descripcion" => $result->getDescripcion(),
+										"fecha" => $result->getFechaHoraReporte(),
+										"fechaSolucion" => $result->getFechaHoraSolucion(),
+										"direccion" => $direccion);
+			$usuario = new Usuario(array("ci" => $datosIncidencia['ciUsuario']));
+			$u = $usuario->seleccionarUsuario();
+			$imagenPerfil = $u->getFotoperfil();
+			$nombre = $u->getNombre()." ".$u->getApellido();
+			if($datosIncidencia['ciUsuario'] == "1" || $datosIncidencia['ciUsuario'] == "2"){				
+				$nombre .= " (".$datosIncidencia['nombreUsuario'].")";
+			}
+			$imagen = new ImagenDeIncidencia(array("codigoIncidencia" => $result->getCodigo()));
+			$imagenes = $imagen->getImagenesIncidencia();
+			if(count($imagenes) > 0){
+				foreach ($imagenes as $img) {
+					$imgs[] = array("codigoIncidencia" => $result->getCodigo(),
+									"rutaImagen" => $img->getRutaImagen());
+				}
+			}
+			else{
+				$imgs = array();
+			}
+			
+		}
+		else{
+			$success = "no";
+		}
+		$tpl = Template::getInstance();
+		$tpl->asignar('location', 'Ver incidencia');
+		$tpl->asignar('landing', 'no');		
+		$tpl->asignar('classMain', 'mainNoLanding');
+		$tpl->asignar('codigo', $datosIncidencia['codigo']);
+		$tpl->asignar('numeroVolqueta', $datosIncidencia['numeroVolqueta']);
+		$tpl->asignar('ubicacionCorrecta', $datosIncidencia['ubicacionCorrecta']);
+		$tpl->asignar('categoria', $datosIncidencia['categoria']);
+		$tpl->asignar('severidad', $datosIncidencia['severidad']);
+		$tpl->asignar('estado', $datosIncidencia['estado']);
+		$tpl->asignar('descripcion', $datosIncidencia['descripcion']);
+		$tpl->asignar('fecha', $datosIncidencia['fecha']);
+
+		if(isset($datosIncidencia['fechaSolucion'])){
+			$fechaSolucion = $datosIncidencia['fechaSolucion'];
+		}
+		else{
+			$fechaSolucion = "Incidencia no resuelta";
+		}
+		$tpl->asignar('fechaSolucion', $fechaSolucion);
+		$tpl->asignar('direccion', $datosIncidencia['direccion']);
+		//$tpl->asignar('asignada', $a);
+		//echo(count($imagenes));
+		$tpl->asignar('imagenes', $imgs);
+		$tpl->asignar('cantidadImagenes', count($imagenes));
+		$tpl->asignar('imagenPerfil', $imagenPerfil);
+		$tpl->asignar('nombreIncidencia', $nombre);
+		$tpl->asignar('success', $success);
+		$tpl->mostrar('verIncidenciaDatos');
 	}
 }
 

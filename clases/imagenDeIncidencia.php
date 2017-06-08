@@ -46,6 +46,28 @@ class ImagenDeIncidencia extends ClaseBase{
 
 		return $imagenes;
 	}
+
+
+
+	public function getCantidadImagenes(){
+		$sql = "select count(*) cantidad from imagenesDeIncidencia where codigoIncidencia = ?";
+		$stmt = DB::conexion()->prepare($sql);
+		$stmt->bind_param('i', $this->codigoIncidencia);
+		$stmt->execute();
+		$result = $stmt->get_result();
+		while($fila = $result->fetch_object()){
+			$cantidad = $fila->cantidad;
+		}
+
+		return $cantidad;
+	}
+
+	public function deleteImagenesIncidencia(){
+		$sql = "delete from imagenesDeIncidencia where codigoIncidencia = ?";
+		$stmt = DB::conexion()->prepare($sql);
+		$stmt->bind_param('i', $this->codigoIncidencia);
+		$stmt->execute();
+	}
 }
 
 ?>

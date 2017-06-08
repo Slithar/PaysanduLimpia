@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-05-10 18:54:04
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-06-08 00:41:34
          compiled from "vistas\login.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1922358f92460e8c0a9-93187157%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '401838295e1283de72d08849220c4c24cc97b40a' => 
     array (
       0 => 'vistas\\login.tpl',
-      1 => 1494442380,
+      1 => 1496874633,
       2 => 'file',
     ),
   ),
@@ -79,7 +79,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 						<div class="row">
 							<div class="form-group col-sm-12 has-feedback <?php if ($_smarty_tpl->tpl_vars['success']->value=='no') {?>has-error<?php }?>">
 								<label class="control-label" for="cedulaUsuario">Cédula de Identidad</label>
-								<input type="text" id="cedulaUsuario" class="form-control" name="cedulaUsuario" value = "<?php echo $_smarty_tpl->tpl_vars['ci']->value;?>
+								<input type="text" id="cedulaUsuario" class="form-control" name="cedulaUsuario" maxlength="8" value = "<?php echo $_smarty_tpl->tpl_vars['ci']->value;?>
 "/>
 								<span class="glyphicon glyphicon-user form-control-feedback"></span>
 							</div>
@@ -113,7 +113,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 					<div class="col-sm-12">
 						<?php if ($_smarty_tpl->tpl_vars['success']->value=="si") {?>
 							<center><strong>¡ÉXITO!</strong><center>
-							<center><p>El nuevo usuario ha sido agreado de manera correcta</p></center>
+							<center><p>El nuevo usuario ha sido agregado de manera correcta</p></center>
 						<?php }?>
 						<?php if ($_smarty_tpl->tpl_vars['error']->value=="empty") {?>
 							<center><strong>ERROR</strong><center>

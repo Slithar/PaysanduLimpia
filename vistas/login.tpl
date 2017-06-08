@@ -39,7 +39,7 @@
 						<div class="row">
 							<div class="form-group col-sm-12 has-feedback {if $success eq 'no'}has-error{/if}">
 								<label class="control-label" for="cedulaUsuario">Cédula de Identidad</label>
-								<input type="text" id="cedulaUsuario" class="form-control" name="cedulaUsuario" value = "{$ci}"/>
+								<input type="text" id="cedulaUsuario" class="form-control" name="cedulaUsuario" maxlength="8" value = "{$ci}"/>
 								<span class="glyphicon glyphicon-user form-control-feedback"></span>
 							</div>
 						</div>
@@ -70,7 +70,7 @@
 					<div class="col-sm-12">
 						{if $success eq "si"}
 							<center><strong>¡ÉXITO!</strong><center>
-							<center><p>El nuevo usuario ha sido agreado de manera correcta</p></center>
+							<center><p>El nuevo usuario ha sido agregado de manera correcta</p></center>
 						{/if}
 						{if $error eq "empty"}
 							<center><strong>ERROR</strong><center>

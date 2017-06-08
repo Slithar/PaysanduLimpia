@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-05-22 22:21:19
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-06-06 06:26:52
          compiled from "vistas\nuevaIncidencia.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2534759020b0516a345-85315128%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '81c2dedc5a49c24045e0b0a27575146e6d754ca2' => 
     array (
       0 => 'vistas\\nuevaIncidencia.tpl',
-      1 => 1495487857,
+      1 => 1496730399,
       2 => 'file',
     ),
   ),
@@ -103,7 +103,7 @@ $_smarty_tpl->tpl_vars['severidad']->_loop = true;
 					<div id = "categoriaIncidencia">
 						<label>Categoría:</label>
 						<br>
-						<select class = "form-control" id = "selectCategoria" name = "categoria">
+						<select class = "form-control" id = "selectCategoria" name = "categoria" onchange="refreshEstado();">
 							<?php  $_smarty_tpl->tpl_vars['categoria'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['categoria']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['categorias']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['categoria']->key => $_smarty_tpl->tpl_vars['categoria']->value) {
@@ -115,8 +115,14 @@ $_smarty_tpl->tpl_vars['categoria']->_loop = true;
 							<?php } ?>
 						</select>
 					</div>
-					<div class = "form-group" id = "divDescripcion">
-						<label for = "descripcion" class = "lblResumenDescripcion control-label">Descripción:</label>
+					<div id = "estadoIncidencia">
+						<label>Estado:</label>
+						<br>
+						<label id = "lblEstado"><span class = "incidenciaPendiente">Pendiente</span></label>
+						<br>
+					</div>
+					<div class = "form-group" id = "divDescripcion" style = "margin-top: 15px;">
+						<label for = "descripcion" class = "lblResumenDescripcion control-label" style = " margin-left: 0; width: 100%">Descripción:</label>
 						<textarea id = "descripcion" class = "form-control" name = "descripcion"></textarea>
 					</div>
 					
@@ -129,6 +135,7 @@ $_smarty_tpl->tpl_vars['categoria']->_loop = true;
 					<label class="btn btn-default btn-file" id ="lblQuitar" onclick = "quitarFiles();"><span class = "fa fa-times"></span>&nbsp;&nbsp;<b>Quitar adjuntos</b></label>
 					<ul class = "galeria">
 					</ul>
+					<input type = "hidden" name = "cantidadImagenes" id = "cantidadImagenes" value = "0">
 
 					
 					<button type = "submit" id = "submitIncidencia" class = "btn btn-success"><span class = "fa fa-check-circle-o"></span>&nbsp;&nbsp;Aceptar</button>

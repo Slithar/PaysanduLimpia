@@ -1,6 +1,7 @@
 jQuery(document).ready(function($) {
 	var visibleIncidencias = false;
 	var visibleUsuarios = false;
+
 	//alert("hola");
 	/*
 		Función para el submit del formulario de Log In.
@@ -528,6 +529,75 @@ jQuery(document).ready(function($) {
 		if(e.which == 13)
 			window.location.href = "/Volquetas/incidencia/misIncidencias/" + $('#comboEstado').val() + "/" + $('#txtBusqueda').val();
 	});
+
+	$('#comboEstadoTodasIncidencias').on('change', function(){
+		window.location.href = "/Volquetas/incidencia/verTodasLasIncidencias/" + $('#comboEstadoTodasIncidencias').val() + "/" + $('#comboOrden').val() + "/" + $('#txtBusquedaTodasIncidencias').val();
+	});
+
+	$('#comboOrden').on('change', function(){
+		window.location.href = "/Volquetas/incidencia/verTodasLasIncidencias/" + $('#comboEstadoTodasIncidencias').val() + "/" + $('#comboOrden').val() + "/" + $('#txtBusquedaTodasIncidencias').val();
+	});
+
+	$('#btnBuscarTodasIncidencias').on('click', function(){
+		window.location.href = "/Volquetas/incidencia/verTodasLasIncidencias/" + $('#comboEstadoTodasIncidencias').val() + "/" + $('#comboOrden').val() + "/" + $('#txtBusquedaTodasIncidencias').val();
+	});
+
+	$('#txtBusquedaTodasIncidencias').on('keyup', function(e){
+		if(e.which == 13)
+			window.location.href = "/Volquetas/incidencia/verTodasLasIncidencias/" + $('#comboEstadoTodasIncidencias').val() + "/" + $('#comboOrden').val() + "/" + $('#txtBusquedaTodasIncidencias').val();
+	});
+
+	$('#lblSubir').on('click', function(){
+		$('#frmVerIncidencia').submit();
+	});
+
+	$('#btnModificarIncidencia').on('click', function(){
+		//alert("aca");
+		var success = true;
+		if($('#descripcion').val() == ""){
+			$('#divDescripcion').addClass('has-error');
+			$('#descripcion').focus();
+			success = false;
+		}
+
+		if(!success){
+			$("#dangerVerIncidencia").css('display', 'block');
+			$("#main").animate({ scrollTop : $("#dangerVerIncidencia").offset().top + 100 }, 750 );
+			setTimeout(function(){				
+				$("#dangerVerIncidencia").css('display', 'none');
+			}, 5000);
+		}
+		else{
+			//$('#formNuevaIncidencia').submit();
+			//alert("aca");
+			$.ajax({
+				url : '/Volquetas/incidencia/editarDescripcionIncidencia',
+				type : 'POST',
+				data : {'codigo' : $('#codigo').val(),
+						'descripcion' : $('#descripcion').val()}
+			})
+			.done(function(response){
+				window.location.href = '/Volquetas/incidencia/verIncidencia/' + $('#codigo').val() + '/success';
+			})
+		}
+	});
+
+	$('.cmbEstadoIncidencia').on('change', function(){
+		//alert("aca");
+		if($(this).val() == "1"){
+			$(this).css('color', '#E71D1D');
+		}
+		else if($(this).val() == "2"){
+			$(this).css('color', '#E7B81D');
+		}
+		else{
+			$(this).css('color', '#269C1B');
+		}
+	});
+
+	$('.divPerfil').on('click', function(){
+		window.location.href = "/Volquetas/usuario/verPerfil";
+	});	
 });
 
 /*function removeError(){

@@ -17,6 +17,11 @@
     <div class = "divLogo">
       <img src = "img/LogoPaysandúLimpia5.png" class = "imgLogo"/>
     </div>
+    {if $logueado eq 'si'}
+      <div class = "notificaciones">
+        <span class = "fa fa-bell"></span>
+      </div>
+    {/if}
     <div class = "menu">
       <ul class = "ulMenu"> 
         <li class = "opcion"><a href = "/Volquetas/usuario/ayuda"><span class = "fa fa-question-circle"></span>&nbsp;&nbsp;Ayuda</a></li>        
@@ -48,7 +53,7 @@
               <li class = "opcionSubmenuIncidencias"><a href = "/Volquetas/incidencia/misIncidencias">Mis incidencias</a></li>
               <li class = "opcionSubmenuIncidencias"><a href = "/Volquetas/incidencia/nuevaIncidencia">Nueva incidencia</a></li>
               {if $funcionario eq "true"}
-                <li class = "opcionSubmenuIncidencias"><a href = "#">Ver todas las incidencias</a></li>
+                <li class = "opcionSubmenuIncidencias"><a href = "/Volquetas/incidencia/verTodasLasIncidencias">Ver todas las incidencias</a></li>
               {/if}
             </ul>    
           </li>

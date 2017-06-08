@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-05-16 02:04:36
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-05-24 22:33:34
          compiled from "vistas\verPerfil.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:98985909fdca410ba6-42760465%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ef553e8fa02bc01f45e4c087fe2a05a914b2010a' => 
     array (
       0 => 'vistas\\verPerfil.tpl',
-      1 => 1494900266,
+      1 => 1495665212,
       2 => 'file',
     ),
   ),
@@ -113,11 +113,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 					<br><br>
 					<div class="row">
 						<center>
-							<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalCambiarContrasenia" style = "width: 35%; margin-left: 0"><span class = "fa fa-lock"></span>&nbsp;&nbsp;<b>Cambiar contraseña</b></button>
+							<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalCambiarContrasenia" style = "width: 35%; margin-left: 0"><span class = "fa fa-lock"></span>&nbsp;&nbsp;<b>Cambiar contraseña</b></button>
 							&nbsp;&nbsp;&nbsp;&nbsp;
 					 		<button type="submit" class="btn btn-success" id = "btnModificarb" style = "width: 17%;"><span class = "fa fa-pencil"></span>&nbsp;&nbsp;<b>Modificar</b></button>
 					 		&nbsp;&nbsp;&nbsp;&nbsp;	
-					 		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#eliminarUsuario" style = "width: 17%;"><span class = "fa fa-times"></span>&nbsp;&nbsp;<b>Eliminar</b></button>
+					 		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#eliminarUsuario" style = "width: 25%;"><span class = "fa fa-times"></span>&nbsp;&nbsp;<b>Borrar mi cuenta</b></button>
 				 		</center>
 					</div>
 					<br>
@@ -136,8 +136,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 					<label style = "font-size: 18px; text-align: center; width: 100%;">En caso de no tener  dicha cuenta, por favor cerrar sesión actual para luego registrar.</label>
 					<br><br><br><br>
 					<div style = "width: 100%; display: block;" id = "divOpciones">
-						<button type = "button" class = "btn btn-danger" style = "margin: 0 auto; font-size: 18px; margin-left: 25%;"  <?php if ($_smarty_tpl->tpl_vars['tipo']->value=="google") {?>onclick = "LogOutGoogle();"<?php } else { ?>onclick = "logout();"<?php }?> id = "btnRegistrarPerfil"><span class = "fa fa-sign-out"></span>&nbsp;&nbsp;<b>Cerrar sesión</b></button>&nbsp;&nbsp;
-						<button type = "button" class = "btn btn-default" style = "margin: 0 auto; font-size: 18px" onclick = "window.location.href = '/Volquetas/usuario/landing'"><span class = "fa fa-user"></span>&nbsp;&nbsp;<b>Permanecer con cuenta externa</b></button>
+						<button type = "button" class = "btn btn-danger" style = "margin: 0 auto; font-size: 18px; margin-left: 33%; width: 18%"  <?php if ($_smarty_tpl->tpl_vars['tipo']->value=="google") {?>onclick = "LogOutGoogle();"<?php } else { ?>onclick = "logout();"<?php }?> id = "btnRegistrarPerfil"><span class = "fa fa-sign-out"></span>&nbsp;&nbsp;<b>Cerrar sesión</b></button>&nbsp;&nbsp;
+						<button type = "button" class = "btn btn-success" style = "margin: 0 auto; font-size: 18px; width: 18%" onclick = "window.location.href = '/Volquetas/usuario/landing'"><span class = "fa fa-check"></span>&nbsp;&nbsp;<b>Aceptar</b></button>
 						
 					</div>
 					

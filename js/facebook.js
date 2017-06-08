@@ -13,7 +13,7 @@ window.fbAsyncInit = function() {
 	    var accessToken = response.authResponse.accessToken;
 	        login();
 	  } else if (response.status === 'not_authorized') { // La aplicacion no esta atoriada
-	        logout();
+	        //logout();
 	  } else { // No esta conectado
 	       
 	  }

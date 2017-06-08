@@ -57,14 +57,20 @@
 					<div id = "categoriaIncidencia">
 						<label>Categoría:</label>
 						<br>
-						<select class = "form-control" id = "selectCategoria" name = "categoria">
+						<select class = "form-control" id = "selectCategoria" name = "categoria" onchange="refreshEstado();">
 							{foreach from = $categorias item = categoria}							
 								<option value = "{$categoria.codigo}">{$categoria.descripcion}</option>					
 							{/foreach}
 						</select>
 					</div>
-					<div class = "form-group" id = "divDescripcion">
-						<label for = "descripcion" class = "lblResumenDescripcion control-label">Descripción:</label>
+					<div id = "estadoIncidencia">
+						<label>Estado:</label>
+						<br>
+						<label id = "lblEstado"><span class = "incidenciaPendiente">Pendiente</span></label>
+						<br>
+					</div>
+					<div class = "form-group" id = "divDescripcion" style = "margin-top: 15px;">
+						<label for = "descripcion" class = "lblResumenDescripcion control-label" style = " margin-left: 0; width: 100%">Descripción:</label>
 						<textarea id = "descripcion" class = "form-control" name = "descripcion"></textarea>
 					</div>
 					
@@ -77,6 +83,7 @@
 					<label class="btn btn-default btn-file" id ="lblQuitar" onclick = "quitarFiles();"><span class = "fa fa-times"></span>&nbsp;&nbsp;<b>Quitar adjuntos</b></label>
 					<ul class = "galeria">
 					</ul>
+					<input type = "hidden" name = "cantidadImagenes" id = "cantidadImagenes" value = "0">
 
 					
 					<button type = "submit" id = "submitIncidencia" class = "btn btn-success"><span class = "fa fa-check-circle-o"></span>&nbsp;&nbsp;Aceptar</button>

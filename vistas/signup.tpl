@@ -21,12 +21,17 @@
 	
 	<div class="wrapper">
 		{include file="header.tpl"}
-		<div id = "main" class="container-fluid {$classMain} {$classLogueado}">
+		<div id = "main" class="container-fluid {$classMain} {$classLogueado}">		
 			<form id="formSignup" action="/Volquetas/usuario/registrar" method="POST" enctype="multipart/form-data" accept-charset="utf-8" class="midPage signup">
+				{if $success eq 'si'}
+					<div class = "alert alert-success">
+						<strong>¡ÉXITO!</strong> Se ha agregado el nuevo usuario de manera correcta
+					</div>
+				{/if}
 				<div class="row">
 					<div class="form-group col-sm-12">
 						<label for="ci" class="control-label">Cédula de identidad</label>
-						<input type="text" id="ci" name="cedulaUsuario" class="form-control" placeholder="12345678">
+						<input type="text" id="ci" name="cedulaUsuario" class="form-control" maxlength="8" placeholder="12345678">
 					</div>
 				</div>	
 				<div class="row">

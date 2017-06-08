@@ -97,6 +97,8 @@
 					</div>
 				</div>
 			</div>
+			<br><br>
+			<button class = "btn btn-primary" style = "margin: auto;display: block; width: 22%; font-size: 17px; font-weight: bold; margin-top: 150px;" onclick = "window.location.href = '/Volquetas/incidencia/nuevaIncidencia'"><span class = "fa fa-bug"></span>&nbsp;&nbsp;¡Reporta tu incidencia!</button>
 		</div>
 		{include file="footer.tpl"}
 	</div>

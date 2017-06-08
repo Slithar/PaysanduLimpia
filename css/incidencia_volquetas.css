@@ -152,12 +152,28 @@
 	/*border: 1px solid black;*/
 	margin-top: 35px;
 	margin-left: 5%;
-	width: 65%;
+	width: 45%;
 	float: left;
 }
 
 #categoriaIncidencia label{
 	font-size: 14px;
+}
+
+#estadoIncidencia{
+	/*border: 1px solid black;*/
+	margin-top: 35px;
+	margin-left: 5%;
+	width: 15%;
+	float: left;
+}
+
+#estadoIncidencia label{
+	font-size: 14px;
+}
+
+#lblEstado span{
+	font-size: 18px;
 }
 
 .lblResumenDescripcion{
@@ -170,6 +186,10 @@
 }
 
 #fileImagen{
+	display: none;
+}
+
+#fileFotosNuevas{
 	display: none;
 }
 
@@ -261,6 +281,16 @@
 	display: inline-block;
 }
 
+#comboEstadoTodasIncidencias{
+	width: 15%;
+	display: inline-block;
+}
+
+#comboOrden{
+	width: 23.5%;
+	display: inline-block;
+}
+
 .busquedaIncidencia{
 	width: 55%;
 	float: right;
@@ -290,19 +320,15 @@
 	color: #E71D1D;
 }
 
-.incidenciaAgendada{
-	font-weight: bold;
-	color: #F29A2D;
-}
 
 .incidenciaEn{
 	font-weight: bold;
 	color: #E7B81D;
 }
 
-.incidenciaResuelta{
+.incidenciaFinalizada{
 	font-weight: bold;
-	color: #047204;
+	color: #269C1B;
 }
 
 .incidenciaCerrada{
@@ -329,4 +355,27 @@
 
 .col3{
 	width: 33%;
+}
+
+#tblVerTodasLasIncidencias th{
+	padding: 15px 10px;
+}
+
+#tblVerTodasLasIncidencias td{
+	padding: 15px 10px;
+}
+
+.iconoVerTodasLasIncidencias{
+	font-size: 18px;
+	position: relative;
+	top: -2px;
+	color: grey;
+}
+
+.iconoVerGrupoIncidencias:hover{
+	color: blue;
+}
+
+.iconoConfirmarIncidencia:hover{
+	color: #269C1B;
 }

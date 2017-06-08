@@ -113,6 +113,10 @@ function refreshSelectDirecciones(ubicacion){
 	});
 
 	$('#selectDireccion').html(content);
+	var $select = $('#selectDireccion').select2();
+	$select.val($('#selectDireccion').find(':selected').val()).trigger("change");
+	//$('#selectDireccion option')[0].selected = true;
+	//refreshSelectNumeros($('#selectDireccion').val());
 	//alert("listo!");
 }
 
@@ -130,6 +134,7 @@ function refreshSelectNumeros(direccion){
 	});
 
 	$('#selectNumero').html(content);
+	refreshEstado();
 }
 
 function cargarDirecciones(){
@@ -161,7 +166,11 @@ function onMarkerClick(e){
 	var volqueta = getVolquetaPorLatitudLongitiud(e.latlng.lat.toString(), e.latlng.lng.toString());
 	$('#selectUbicacion').val(volqueta["ubicacion"]);
 	refreshSelectDirecciones($('#selectUbicacion').val());
-	$('#selectDireccion').val(getDireccion(volqueta));	
+	//$('#selectDireccion').val(getDireccion(volqueta));
+	var $select = $('#selectDireccion').select2();
+	$select.val(getDireccion(volqueta)).trigger("change");
+	//$('#selectDireccion').select2("val", getDireccion(volqueta));
+	//console.log(getDireccion(volqueta));	
 	refreshSelectNumeros($('#selectDireccion').val());
 	$('#selectNumero').val(volqueta["numero"]);	
 
@@ -177,43 +186,31 @@ function readURL(input) {
 		     	$('.galeria').append('<li class = "galeria_item"><img src = "' + e.target.result + '" class = "galeria_img"/></li>');
 		    }
 		    reader.readAsDataURL(input.files[i]);
+		    $('#cantidadImagenes').val(i + 1);
 		}		
 	}
 }
 function quitarFiles(){
 	$('.galeria_item').remove();
+	$('#cantidadImagenes').val("0");
 }
 
-/*$('body').on('click', '.galeria_img', function(e){
-	var img = document.createElement("img");
-	img.src = e.target.src;
+function refreshEstado(){
+	$.ajax({
+		url : '/Volquetas/incidencia/getEstadoNuevaIncidencia',
+		type : 'POST',
+		dataType : 'json',
+		data : {'numeroVolqueta' : $('#selectNumero').val(),
+				'categoria' : $('#selectCategoria').val()}
+	})
+	.done(function(response){
+		//alert(response);
+		if(response['code'] == "ok"){
+			$('#lblEstado').html(response['message']);
+		}
+	});
+}
 
-	$('.fondoNegro').fadeIn();
-	if(img.height > img.width){
-
-		$('#imgModal').css({'width': '25%',
-						'margin': 'auto',
-						'display': 'block',
-						'margin-top': '3%',
-						'border': '11px solid white',
-						'margin-bottom' : '50px'});
-		
-		
-	}
-	else{
-		$('#imgModal').css({'width': '55%',
-							'margin': 'auto',
-							'display': 'block',
-							'margin-top': '7%',
-							'border': '11px solid white',
-							'margin-bottom' : '50px'});
-	}
-	$('#imgModal').attr('src', e.target.src);	
-});
-
-function cerrarModal(){
-	$('.fondoNegro').fadeOut();
-}*/
 refreshSelectDirecciones($('#selectUbicacion').val());
 refreshSelectNumeros($('#selectDireccion').val());
 marcarVolqueta();

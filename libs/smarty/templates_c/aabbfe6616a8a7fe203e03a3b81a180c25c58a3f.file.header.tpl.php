@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-05-18 14:21:15
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-06-06 00:32:03
          compiled from "vistas\header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:415658f80da01afe57-50846233%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'aabbfe6616a8a7fe203e03a3b81a180c25c58a3f' => 
     array (
       0 => 'vistas\\header.tpl',
-      1 => 1495117270,
+      1 => 1496709120,
       2 => 'file',
     ),
   ),
@@ -46,6 +46,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     <div class = "divLogo">
       <img src = "img/LogoPaysandúLimpia5.png" class = "imgLogo"/>
     </div>
+    <?php if ($_smarty_tpl->tpl_vars['logueado']->value=='si') {?>
+      <div class = "notificaciones">
+        <span class = "fa fa-bell"></span>
+      </div>
+    <?php }?>
     <div class = "menu">
       <ul class = "ulMenu"> 
         <li class = "opcion"><a href = "/Volquetas/usuario/ayuda"><span class = "fa fa-question-circle"></span>&nbsp;&nbsp;Ayuda</a></li>        
@@ -79,7 +84,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
               <li class = "opcionSubmenuIncidencias"><a href = "/Volquetas/incidencia/misIncidencias">Mis incidencias</a></li>
               <li class = "opcionSubmenuIncidencias"><a href = "/Volquetas/incidencia/nuevaIncidencia">Nueva incidencia</a></li>
               <?php if ($_smarty_tpl->tpl_vars['funcionario']->value=="true") {?>
-                <li class = "opcionSubmenuIncidencias"><a href = "#">Ver todas las incidencias</a></li>
+                <li class = "opcionSubmenuIncidencias"><a href = "/Volquetas/incidencia/verTodasLasIncidencias">Ver todas las incidencias</a></li>
               <?php }?>
             </ul>    
           </li>
