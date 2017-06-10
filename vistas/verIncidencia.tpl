@@ -78,6 +78,30 @@
 							</ul>
 						{/if}
 					</div>
+					<div class = "contenedorIncidencia" style = "height:auto; margin-top: 40px; padding: 25px 45px; box-sizing: border-box;">
+						<p style = "font-size: 24px; color: #0F3EA1; font-weight: bold; text-align: center;">Comentarios</p>
+						<br><br>
+						<div id = "divComentarios">
+							{if $cantidadComentarios eq 0}
+								<div style = "height: 75px; text-align: center; padding-top: 25px; box-sizing: border-box;">
+									<p style = "font-size: 14px;">No hay comentarios para esta incidencia</p>								
+								</div>
+							{else}
+								{foreach from = $todosLosComentarios item = c}
+									<div style = "border-bottom: 2px solid #D8D8D8; padding-top: 25px; box-sizing: border-box; height: auto;">
+										<div class = "contenedorComentario">
+											<img src = "{$c.fotoPerfil}" style = "width: 80px; height: 80px; border-radius: 50%;"/>
+										</div>
+										<div class = "datosComentario">
+											<b>{$c.nombreUsuario}</b> | <span style = "font-size: 12px">{$c.fechaHora}</span>
+											<br><br>
+											{$c.comentario}
+										</div>
+									</div>
+								{/foreach}
+							{/if}
+						</div>					
+					</div>
 
 				</form>
 				{if $estado eq "Pendiente"}

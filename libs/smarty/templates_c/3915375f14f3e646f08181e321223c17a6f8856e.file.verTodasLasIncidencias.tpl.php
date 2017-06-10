@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-06-07 00:12:44
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-06-09 20:05:06
          compiled from "vistas\verTodasLasIncidencias.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:10825935f82015f786-36142992%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '3915375f14f3e646f08181e321223c17a6f8856e' => 
     array (
       0 => 'vistas\\verTodasLasIncidencias.tpl',
-      1 => 1496794357,
+      1 => 1497038693,
       2 => 'file',
     ),
   ),
@@ -43,6 +43,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	<?php echo $_smarty_tpl->getSubTemplate ("leaflet_plugins.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 
 	<link rel = "stylesheet" href = "css/incidencia_volquetas.css"/>
+	<?php echo '<script'; ?>
+ src = "js/incidencias.js"><?php echo '</script'; ?>
+>
 </head>
 <body>
 
@@ -109,7 +112,8 @@ $_smarty_tpl->tpl_vars['incidencia']->_loop = true;
 								<td><?php echo $_smarty_tpl->tpl_vars['incidencia']->value['fechaHoraSolucion'];?>
 </td>
 								<td>
-									<select class = "form-control cmbEstadoIncidencia" style = "margin-top: -7px; <?php if ($_smarty_tpl->tpl_vars['incidencia']->value['estado']=="1") {?>color: #E71D1D<?php }
+									<select class = "form-control cmbEstadoIncidencia" id = "select<?php echo $_smarty_tpl->tpl_vars['incidencia']->value['numeroOrden'];?>
+" style = "margin-top: -7px; <?php if ($_smarty_tpl->tpl_vars['incidencia']->value['estado']=="1") {?>color: #E71D1D<?php }
 if ($_smarty_tpl->tpl_vars['incidencia']->value['estado']=="2") {?>color: #E7B81D<?php }
 if ($_smarty_tpl->tpl_vars['incidencia']->value['estado']=="3") {?>color: #269C1B<?php }?>">
 										<?php  $_smarty_tpl->tpl_vars['estado'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['estado']->_loop = false;
@@ -130,7 +134,12 @@ $_smarty_tpl->tpl_vars['estado']->_loop = true;
 /<?php echo $_smarty_tpl->tpl_vars['incidencia']->value['estado'];?>
 /<?php echo $_smarty_tpl->tpl_vars['incidencia']->value['fechaHoraSolucion'];?>
 " class = "iconoVerTodasLasIncidencias iconoVerGrupoIncidencias"><span class = "fa fa-eye"></span></a></td>
-								<td style = "text-align: center;"><a href = "#" class = "iconoVerTodasLasIncidencias iconoConfirmarIncidencia"><span class = "fa fa-pencil"></span></a></td>
+								<td style = "text-align: center;"><a onclick = "confirmarEstado(<?php echo preg_replace('!\s+!u', '',substr($_smarty_tpl->tpl_vars['incidencia']->value['numeroVolqueta'],0,3));?>
+,<?php echo $_smarty_tpl->tpl_vars['incidencia']->value['codigoCategoria'];?>
+, <?php echo $_smarty_tpl->tpl_vars['incidencia']->value['estado'];?>
+, <?php echo $_smarty_tpl->tpl_vars['incidencia']->value['numeroOrden'];?>
+, '<?php echo $_smarty_tpl->tpl_vars['incidencia']->value['fechaHoraSolucion'];?>
+');" class = "iconoVerTodasLasIncidencias iconoConfirmarIncidencia"><span class = "fa fa-pencil"></span></a></td>
 							</tr>
 						<?php } ?>
 						

@@ -17,10 +17,26 @@
     <div class = "divLogo">
       <img src = "img/LogoPaysandúLimpia5.png" class = "imgLogo"/>
     </div>
-    {if $logueado eq 'si'}
+    {if $logueado eq 'si'}      
       <div class = "notificaciones">
         <span class = "fa fa-bell"></span>
+        <span class = "pendientes">9</span>
       </div>
+      <ul class = "lstNotificaciones">
+        <li>
+          <span class = "fa fa-trash" style = "font-size: 42px; position: relative; top: 15px"></span>
+          La incidencia número 81 paso de estado "Pendiente" a "En curso"
+          <span class="subtexto">Notificado hace un rato</span>
+        </li>
+        <li>
+          Ocurrió un evento
+          <span class="subtexto">Notificado a las 10:00</span>
+        </li>
+        <li>
+          Se incendia una moto
+          <span class="subtexto">Notificado a las 9:30</span>
+        </li>
+  </ul>       
     {/if}
     <div class = "menu">
       <ul class = "ulMenu"> 

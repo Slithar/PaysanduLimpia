@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-06-08 01:25:52
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-06-09 03:09:58
          compiled from "vistas\verIncidenciaDatos.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:31907593880ca85f889-10177373%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'f85bc80c759b8390a3d29c48f80ac0b87ed98146' => 
     array (
       0 => 'vistas\\verIncidenciaDatos.tpl',
-      1 => 1496885151,
+      1 => 1496977782,
       2 => 'file',
     ),
   ),
@@ -37,6 +37,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'cantidadImagenes' => 0,
     'imagenes' => 0,
     'imagen' => 0,
+    'cantidadComentarios' => 0,
+    'todosLosComentarios' => 0,
+    'c' => 0,
+    'fotoPerfil' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -144,24 +148,51 @@ $_smarty_tpl->tpl_vars['imagen']->_loop = true;
 					<div class = "contenedorIncidencia" style = "height:auto; margin-top: 40px; padding: 25px 45px; box-sizing: border-box;">
 						<p style = "font-size: 24px; color: #0F3EA1; font-weight: bold; text-align: center;">Comentarios</p>
 						<br><br>
-						<label>Fotos y/o imágenes:</label>
-						
-						<?php if ($_smarty_tpl->tpl_vars['cantidadImagenes']->value==0) {?>
-							<br>
-							Sin imágenes
-							<br><br>
-						<?php } else { ?>
-							<ul class = "galeria" style = "margin-bottom: 0; margin-top: 0">
-								<?php  $_smarty_tpl->tpl_vars['imagen'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['imagen']->_loop = false;
- $_from = $_smarty_tpl->tpl_vars['imagenes']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
-foreach ($_from as $_smarty_tpl->tpl_vars['imagen']->key => $_smarty_tpl->tpl_vars['imagen']->value) {
-$_smarty_tpl->tpl_vars['imagen']->_loop = true;
+						<div id = "divComentarios">
+							<?php if ($_smarty_tpl->tpl_vars['cantidadComentarios']->value==0) {?>
+								<div style = "border-bottom: 2px solid #D8D8D8; height: 75px; text-align: center; padding-top: 25px; box-sizing: border-box;">
+									<p style = "font-size: 14px;">No hay comentarios para esta incidencia</p>								
+								</div>
+							<?php } else { ?>
+								<?php  $_smarty_tpl->tpl_vars['c'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['c']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['todosLosComentarios']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['c']->key => $_smarty_tpl->tpl_vars['c']->value) {
+$_smarty_tpl->tpl_vars['c']->_loop = true;
 ?>
-									<li class = "galeria_item" style = "width: 20.5%"><img src = "<?php echo $_smarty_tpl->tpl_vars['imagen']->value['rutaImagen'];?>
-" class = "galeria_img"/></li>
+									<div style = "border-bottom: 2px solid #D8D8D8; padding-top: 25px; box-sizing: border-box; height: auto;">
+										<div class = "contenedorComentario">
+											<img src = "<?php echo $_smarty_tpl->tpl_vars['c']->value['fotoPerfil'];?>
+" style = "width: 80px; height: 80px; border-radius: 50%;"/>
+										</div>
+										<div class = "datosComentario">
+											<b><?php echo $_smarty_tpl->tpl_vars['c']->value['nombreUsuario'];?>
+</b> | <span style = "font-size: 12px"><?php echo $_smarty_tpl->tpl_vars['c']->value['fechaHora'];?>
+</span>
+											<br><br>
+											<?php echo $_smarty_tpl->tpl_vars['c']->value['comentario'];?>
+
+										</div>
+									</div>
 								<?php } ?>
-							</ul>
-						<?php }?>
+							<?php }?>
+						</div>
+						<div style = "height: 210px;">
+							<div>
+								<img src = "<?php echo $_smarty_tpl->tpl_vars['fotoPerfil']->value;?>
+" style = "width:80px; height: 80px; border-radius: 50%; float: left; margin-top: 25px"/>
+							</div> 
+							<form>
+								<div class = "form-group">
+									<textarea style = "width: calc(100% - 125px); float: right; margin-top: 25px; min-height: 80px; max-height: 125px;" class = "form-control" placeholder="Escribe tu comentario" id = "txtComentario"></textarea>		
+								</div>					
+								<button class = "btn btn-success" style = "width: 15%; float: right; margin-top: 25px;" id = "btnComentar"><span class = "fa fa-comment"></span>&nbsp;&nbsp;Comentar</button>
+							</form>
+						</div>
+						<div id = "contenedorAlert">							
+							<div class = "alert alert-danger" id = "alertComentario" style = "display:none;">
+								<strong>ERROR: </strong>No se ha ingresado comentario
+							</div>
+						</div>
 					</div>
 				</form>
 					

@@ -12,6 +12,7 @@ require_once("clases/severidad.php");
 require_once("clases/categoria.php");
 require_once("clases/estadoIncidencia.php");
 require_once("clases/session.php");
+require_once('clases/comentario.php');
 
 class ControladorIncidencia extends ControladorIndex{
 	public function nuevaIncidencia($params = array()){
@@ -272,18 +273,6 @@ class ControladorIncidencia extends ControladorIndex{
 										"descripcion" => $result->getDescripcion(),
 										"fecha" => $result->getFechaHoraReporte(),
 										"direccion" => $direccion);
-			/*$asignada = new Asignada(array("codigoIncidencia" => $result->getCodigo()));
-			if(count($asginada) == 0){
-				$a = "Sin asignar";
-			}
-			else{
-				foreach ($asignada as $asig) {
-					$user = new Usuario(array("ci" => $asig->getCiUsuario()));
-					$u = $user->seleccionarUsuario()->getNombre()." ".$user->seleccionarUsuario()->getApellido();
-					$a .= ", ".$u;
-				}
-			}*/
-
 			$imagen = new ImagenDeIncidencia(array("codigoIncidencia" => $result->getCodigo()));
 			$imagenes = $imagen->getImagenesIncidencia();
 			if(count($imagenes) > 0){
@@ -295,7 +284,26 @@ class ControladorIncidencia extends ControladorIndex{
 			else{
 				$imgs = array();
 			}
-			
+			$comentario = new Comentario(array("codigoIncidencia" => $params[0],));
+			//echo count($comentarios)." ".$params[0];
+			$comentarios = $comentario->getComentarios();
+			if(count($comentarios) > 0){
+				foreach ($comentarios as $c) {
+					$ciUsuario = $c->getCiUsuario();
+					$usuario = new Usuario(array("ci" => $ciUsuario));
+					$u = $usuario->seleccionarUsuario();
+					$nombreUsuario = $u->getNombre()." ".$u->getApellido();
+					$fotoPerfil = $u->getFotoperfil();
+					$datosComentario = array("comentario" => $c->getComentario(),
+											"fechaHora" => $c->getFechaHora(),
+											"nombreUsuario" => $nombreUsuario,
+											"fotoPerfil" => $fotoPerfil);
+					$todosLosComentarios[] = $datosComentario;
+				}
+			}
+			else{
+				$todosLosComentarios = array();
+			}			
 		}
 		else{
 			$success = "no";
@@ -318,6 +326,9 @@ class ControladorIncidencia extends ControladorIndex{
 		$tpl->asignar('imagenes', $imgs);
 		$tpl->asignar('cantidadImagenes', count($imagenes));
 		$tpl->asignar('success', $success);
+		$tpl->asignar('todosLosComentarios', $todosLosComentarios);
+		$tpl->asignar('cantidadComentarios', count($todosLosComentarios));
+		//var_dump($todosLasComentarios);
 		//$tpl->asignar('codigo', $params[0]);
 		$tpl->mostrar('verIncidencia');
 	}
@@ -433,7 +444,7 @@ class ControladorIncidencia extends ControladorIndex{
 		else
 			$incidencias = $incidencia->getIncidenciasAgrupadasPorEstado($estado, $orden);
 		if(count($incidencias) > 0){
-			foreach ($incidencias as $i) {
+			/*foreach ($incidencias as $i) {
 				if($busqueda){
 					if(mb_stristr($i->getNumeroVolqueta(), $params[2]) != false || strpos($i->getCategoria(), $params[1]) != false){
 						$incidenciasActuales[] = array("numeroVolqueta" => $i->getNumeroVolqueta(),
@@ -455,6 +466,31 @@ class ControladorIncidencia extends ControladorIndex{
 													"cantidad" => $i->getCantidad(),
 													"codigoCategoria" => $i->getCodigo());
 					}
+			}*/
+			for($i = 0; $i < count($incidencias); $i++){
+				if($busqueda){
+					if(mb_stristr($incidencias[$i]->getNumeroVolqueta(), $params[2]) != false || strpos($incidencias[$i]->getCategoria(), $params[1]) != false){
+						$incidenciasActuales[] = array("numeroVolqueta" => $incidencias[$i]->getNumeroVolqueta(),
+													"categoria" => $incidencias[$i]->getCategoria(),
+													"fechaHoraReporte" => $incidencias[$i]->getFechaHoraReporte(),
+													"fechaHoraSolucion" => $incidencias[$i]->getFechaHoraSolucion(),
+													"estado" => $incidencias[$i]->getEstado(),
+													"cantidad" => $incidencias[$i]->getCantidad(),
+													"codigoCategoria" => $incidencias[$i]->getCodigo(),
+													"numeroOrden" => $i);
+					}
+				}
+				else{
+
+					$incidenciasActuales[] = array("numeroVolqueta" => $incidencias[$i]->getNumeroVolqueta(),
+													"categoria" => $incidencias[$i]->getCategoria(),
+													"fechaHoraReporte" => $incidencias[$i]->getFechaHoraReporte(),
+													"fechaHoraSolucion" => $incidencias[$i]->getFechaHoraSolucion(),
+													"estado" => $incidencias[$i]->getEstado(),
+													"cantidad" => $incidencias[$i]->getCantidad(),
+													"codigoCategoria" => $incidencias[$i]->getCodigo(),
+													"numeroOrden" => $i + 1);
+				}
 			}
 		}
 
@@ -468,7 +504,7 @@ class ControladorIncidencia extends ControladorIndex{
 		$tpl->asignar('landing', 'no');		
 		$tpl->asignar('classMain', 'mainNoLanding');
 		if(isset($params[3]) && $params[3] != "")
-			$fecha = $params[3];
+			$fecha = $params[3]."/".$params[4]."/".$params[5];
 		else
 			$fecha = NULL;
 		$incidencia = new Incidencia(array("numeroVolqueta" => $params[0],
@@ -567,7 +603,25 @@ class ControladorIncidencia extends ControladorIndex{
 			else{
 				$imgs = array();
 			}
-			
+			$comentario = new Comentario(array("codigoIncidencia" => $datosIncidencia['codigo'],));
+			$comentarios = $comentario->getComentarios();
+			if(count($comentarios) > 0){
+				foreach ($comentarios as $c) {
+					$ciUsuario = $c->getCiUsuario();
+					$usuario = new Usuario(array("ci" => $ciUsuario));
+					$u = $usuario->seleccionarUsuario();
+					$nombreUsuario = $u->getNombre()." ".$u->getApellido();
+					$fotoPerfil = $u->getFotoperfil();
+					$datosComentario = array("comentario" => $c->getComentario(),
+											"fechaHora" => $c->getFechaHora(),
+											"nombreUsuario" => $nombreUsuario,
+											"fotoPerfil" => $fotoPerfil);
+					$todosLosComentarios[] = $datosComentario;
+				}
+			}
+			else{
+				$todosLosComentarios = array();
+			}			
 		}
 		else{
 			$success = "no";
@@ -599,8 +653,86 @@ class ControladorIncidencia extends ControladorIndex{
 		$tpl->asignar('cantidadImagenes', count($imagenes));
 		$tpl->asignar('imagenPerfil', $imagenPerfil);
 		$tpl->asignar('nombreIncidencia', $nombre);
+		$tpl->asignar('todosLosComentarios', $todosLosComentarios);
+		$tpl->asignar('cantidadComentarios', count($todosLosComentarios));
 		$tpl->asignar('success', $success);
+		//echo $datosIncidencia['estado'];
 		$tpl->mostrar('verIncidenciaDatos');
+	}
+
+	public function	agregarComentario($params = array()){
+		$comentario = new Comentario(array("codigoIncidencia" => $_POST['codigo'],
+											"comentario" =>$_POST['comentario'],
+											"ciUsuario" =>Session::get('ci')));
+		$comentario->insertarComentario();
+
+		//una vez que está pronto el agregar, vamos a traer todos los datos de los comentarios
+		$comentarios = $comentario->getComentarios();
+		if($comentarios > 0){
+			foreach ($comentarios as $c) {
+				$ciUsuario = $c->getCiUsuario();
+				$usuario = new Usuario(array("ci" => $ciUsuario));
+				$u = $usuario->seleccionarUsuario();
+				$nombreUsuario = $u->getNombre()." ".$u->getApellido();
+				$fotoPerfil = $u->getFotoperfil();
+				$datosComentario = array("comentario" => $c->getComentario(),
+										"fechaHora" => $c->getFechaHora(),
+										"nombreUsuario" => $nombreUsuario,
+										"fotoPerfil" => $fotoPerfil);
+				$todosLosComentarios[] = $datosComentario;
+			}
+		}
+		else{
+			$todosLosComentarios = array();
+		}
+		$respuesta = new Respuesta(array("code" => "ok",
+										"message" => $todosLosComentarios,
+										"content" => ""));
+		echo $respuesta->getResult();
+	}
+
+	public function confirmarEstado($params = array()){
+		if(isset($_POST['fechaHoraSolucion']) && $_POST['fechaHoraSolucion'] != ""){
+			$fechaHoraSolucion = $_POST['fechaHoraSolucion'];
+		}
+		else{
+			$fechaHoraSolucion = NULL;
+		}
+		if($_POST['estado'] != $_POST['estadoUpdate']){
+			$incidencia = new Incidencia(array("numeroVolqueta" => $_POST['numeroVolqueta'],
+											"categoria" => $_POST['categoria'],
+											"estado" => $_POST['estado'],
+											"estadoUpdate" => $_POST['estadoUpdate'],
+											"fechaHoraSolucion" => $fechaHoraSolucion));
+
+		
+			/*$estado = $incidencia->getEstadoGrupo();
+			$incidencia->setEstado($estado);*/
+			$incidencia->updateEstado();
+			$incidenciasPendientes = $incidencia->getEstadoPendienteTodasIncidencias();
+			$incidenciasEnCurso = $incidencia->getEstadoEnCursoTodasIncidencias();
+			if($incidenciasPendientes == 0 && $incidenciasEnCurso == 0){
+				ControladorVolqueta::changeState($incidencia->getNumeroVolqueta(), 1);
+			}
+			else{
+				if($incidenciasPendientes > 0)
+					ControladorVolqueta::changeState($incidencia->getNumeroVolqueta(), 3);
+				else if($incidenciasPendientes == 0 && $incidenciasEnCurso > 0)					
+					ControladorVolqueta::changeState($incidencia->getNumeroVolqueta(), 2);
+			}
+			$respuesta = new Respuesta(array("code" => "ok",
+											"message" => "",
+											"content" => ""));
+		}
+		else{
+			$respuesta = new Respuesta(array("code" => "error",
+											"message" => "",
+											"content" => ""));
+		}
+		
+		echo $respuesta->getResult();
+		//$this->redirect('incidencia', 'verTodasLasIncidencias');
+
 	}
 }
 

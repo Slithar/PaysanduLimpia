@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-06-06 00:32:03
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-06-10 02:00:39
          compiled from "vistas\header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:415658f80da01afe57-50846233%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'aabbfe6616a8a7fe203e03a3b81a180c25c58a3f' => 
     array (
       0 => 'vistas\\header.tpl',
-      1 => 1496709120,
+      1 => 1497060037,
       2 => 'file',
     ),
   ),
@@ -46,10 +46,26 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     <div class = "divLogo">
       <img src = "img/LogoPaysandúLimpia5.png" class = "imgLogo"/>
     </div>
-    <?php if ($_smarty_tpl->tpl_vars['logueado']->value=='si') {?>
+    <?php if ($_smarty_tpl->tpl_vars['logueado']->value=='si') {?>      
       <div class = "notificaciones">
         <span class = "fa fa-bell"></span>
+        <span class = "pendientes">9</span>
       </div>
+      <ul class = "lstNotificaciones">
+        <li>
+          <span class = "fa fa-trash" style = "font-size: 42px; position: relative; top: 15px"></span>
+          La incidencia número 81 paso de estado "Pendiente" a "En curso"
+          <span class="subtexto">Notificado hace un rato</span>
+        </li>
+        <li>
+          Ocurrió un evento
+          <span class="subtexto">Notificado a las 10:00</span>
+        </li>
+        <li>
+          Se incendia una moto
+          <span class="subtexto">Notificado a las 9:30</span>
+        </li>
+  </ul>       
     <?php }?>
     <div class = "menu">
       <ul class = "ulMenu"> 

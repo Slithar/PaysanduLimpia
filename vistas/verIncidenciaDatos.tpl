@@ -76,19 +76,42 @@
 					<div class = "contenedorIncidencia" style = "height:auto; margin-top: 40px; padding: 25px 45px; box-sizing: border-box;">
 						<p style = "font-size: 24px; color: #0F3EA1; font-weight: bold; text-align: center;">Comentarios</p>
 						<br><br>
-						<label>Fotos y/o imágenes:</label>
-						
-						{if $cantidadImagenes eq 0}
-							<br>
-							Sin imágenes
-							<br><br>
-						{else}
-							<ul class = "galeria" style = "margin-bottom: 0; margin-top: 0">
-								{foreach from = $imagenes item = imagen}
-									<li class = "galeria_item" style = "width: 20.5%"><img src = "{$imagen.rutaImagen}" class = "galeria_img"/></li>
+						<div id = "divComentarios">
+							{if $cantidadComentarios eq 0}
+								<div style = "border-bottom: 2px solid #D8D8D8; height: 75px; text-align: center; padding-top: 25px; box-sizing: border-box;">
+									<p style = "font-size: 14px;">No hay comentarios para esta incidencia</p>								
+								</div>
+							{else}
+								{foreach from = $todosLosComentarios item = c}
+									<div style = "border-bottom: 2px solid #D8D8D8; padding-top: 25px; box-sizing: border-box; height: auto;">
+										<div class = "contenedorComentario">
+											<img src = "{$c.fotoPerfil}" style = "width: 80px; height: 80px; border-radius: 50%;"/>
+										</div>
+										<div class = "datosComentario">
+											<b>{$c.nombreUsuario}</b> | <span style = "font-size: 12px">{$c.fechaHora}</span>
+											<br><br>
+											{$c.comentario}
+										</div>
+									</div>
 								{/foreach}
-							</ul>
-						{/if}
+							{/if}
+						</div>
+						<div style = "height: 210px;">
+							<div>
+								<img src = "{$fotoPerfil}" style = "width:80px; height: 80px; border-radius: 50%; float: left; margin-top: 25px"/>
+							</div> 
+							<form>
+								<div class = "form-group">
+									<textarea style = "width: calc(100% - 125px); float: right; margin-top: 25px; min-height: 80px; max-height: 125px;" class = "form-control" placeholder="Escribe tu comentario" id = "txtComentario"></textarea>		
+								</div>					
+								<button class = "btn btn-success" style = "width: 15%; float: right; margin-top: 25px;" id = "btnComentar"><span class = "fa fa-comment"></span>&nbsp;&nbsp;Comentar</button>
+							</form>
+						</div>
+						<div id = "contenedorAlert">							
+							<div class = "alert alert-danger" id = "alertComentario" style = "display:none;">
+								<strong>ERROR: </strong>No se ha ingresado comentario
+							</div>
+						</div>
 					</div>
 				</form>
 					

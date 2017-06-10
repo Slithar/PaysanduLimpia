@@ -598,6 +598,41 @@ jQuery(document).ready(function($) {
 	$('.divPerfil').on('click', function(){
 		window.location.href = "/Volquetas/usuario/verPerfil";
 	});	
+
+	$('#btnComentar').on('click', function(e){
+		e.preventDefault();
+		if($('#txtComentario').val() == "" ){
+			$('#alertComentario').css('display', 'block');
+			$('#txtComentario').parent().addClass('has-error');
+			//$("#main").animate({ scrollTop : $("#contenedorAlert").offset().top }, 750 );
+			setTimeout(function(){
+				$('#alertComentario').css('display', 'none');
+				$('#txtComentario').parent().removeClass('has-error');
+			}, 5000);
+
+		}
+		else{
+			$.ajax({
+				url: '/Volquetas/incidencia/agregarComentario',
+				type:'POST',
+				dataType :'json',
+				data : {'codigo' : $('#codigo').val(),
+						 'comentario':$('#txtComentario').val(),}
+			})
+			.done(function(response){
+				if(response['code'] == "ok"){
+					var comentarios = response['message'];
+					var content = "";
+					for(var i = 0; i < comentarios.length; i++){
+						content = content + '<div class = "contenedorComentario"><img src = "' + comentarios[i]['fotoPerfil'] + '" style = "width: 80px; height: 80px; border-radius: 50%;"/></div><div class = "datosComentario"><b>' + comentarios[i]['nombreUsuario'] + '</b> | <span style = "font-size: 12px">' + comentarios[i]['fechaHora'] + '</span><br><br>' + comentarios[i]['comentario'] + '</div>';
+					}
+					$('#divComentarios').html(content);
+					$('#txtComentario').val("");
+				}
+			});
+			
+		}
+	});
 });
 
 /*function removeError(){

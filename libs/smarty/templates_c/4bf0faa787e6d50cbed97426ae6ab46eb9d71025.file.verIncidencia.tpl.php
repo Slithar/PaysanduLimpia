@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-06-06 06:08:12
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-06-08 08:41:15
          compiled from "vistas\verIncidencia.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:18977591f66066ac479-07021860%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '4bf0faa787e6d50cbed97426ae6ab46eb9d71025' => 
     array (
       0 => 'vistas\\verIncidencia.tpl',
-      1 => 1496716698,
+      1 => 1496911263,
       2 => 'file',
     ),
   ),
@@ -35,6 +35,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'cantidadImagenes' => 0,
     'imagenes' => 0,
     'imagen' => 0,
+    'cantidadComentarios' => 0,
+    'todosLosComentarios' => 0,
+    'c' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -141,6 +144,38 @@ $_smarty_tpl->tpl_vars['imagen']->_loop = true;
 							<ul class = "galeria" id = "galeriaFotosNuevas" style = "margin-bottom: 0; margin-top: 0">
 							</ul>
 						<?php }?>
+					</div>
+					<div class = "contenedorIncidencia" style = "height:auto; margin-top: 40px; padding: 25px 45px; box-sizing: border-box;">
+						<p style = "font-size: 24px; color: #0F3EA1; font-weight: bold; text-align: center;">Comentarios</p>
+						<br><br>
+						<div id = "divComentarios">
+							<?php if ($_smarty_tpl->tpl_vars['cantidadComentarios']->value==0) {?>
+								<div style = "height: 75px; text-align: center; padding-top: 25px; box-sizing: border-box;">
+									<p style = "font-size: 14px;">No hay comentarios para esta incidencia</p>								
+								</div>
+							<?php } else { ?>
+								<?php  $_smarty_tpl->tpl_vars['c'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['c']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['todosLosComentarios']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['c']->key => $_smarty_tpl->tpl_vars['c']->value) {
+$_smarty_tpl->tpl_vars['c']->_loop = true;
+?>
+									<div style = "padding-top: 25px; box-sizing: border-box; height: auto;">
+										<div class = "contenedorComentario">
+											<img src = "<?php echo $_smarty_tpl->tpl_vars['c']->value['fotoPerfil'];?>
+" style = "width: 80px; height: 80px; border-radius: 50%;"/>
+										</div>
+										<div class = "datosComentario">
+											<b><?php echo $_smarty_tpl->tpl_vars['c']->value['nombreUsuario'];?>
+</b> | <span style = "font-size: 12px"><?php echo $_smarty_tpl->tpl_vars['c']->value['fechaHora'];?>
+</span>
+											<br><br>
+											<?php echo $_smarty_tpl->tpl_vars['c']->value['comentario'];?>
+
+										</div>
+									</div>
+								<?php } ?>
+							<?php }?>
+						</div>					
 					</div>
 
 				</form>

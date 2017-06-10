@@ -240,3 +240,48 @@
 	color: #89ACF7;
 	cursor: pointer;
 }
+
+.pendientes{
+	background: red;
+	font-size: 14px;
+	padding: 3px 7px;
+	border-radius: 50%;
+	position: relative;
+	left: -15px;
+}
+
+.lstNotificaciones {
+	list-style: none;
+	width: 300px;
+	padding: 0;
+	margin: 4px 0 0 0;
+	max-height: 250px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	position: fixed;
+	left: 31%;
+	top: 73px;
+	display: none;
+}
+
+.lstNotificaciones li {
+	width: 100%;
+	height: auto;
+	border-bottom: solid 1px #666;
+	background: #d3d3d3;
+	padding: 1em;
+	cursor: pointer;
+}
+
+.lstNotificaciones li:last-child {
+	border-bottom: none;
+}
+
+.subtexto {
+	display: block;
+	font-size: 80%;
+	color: #999;
+	margin-top: 10px;
+}
+
+

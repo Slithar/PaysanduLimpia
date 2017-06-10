@@ -17,6 +17,7 @@ class Incidencia extends ClaseBase{
 	private $fechaHoraReporte;
 	private $fechaHoraSolucion;
 	private $cantidad;
+	private $estadoUpdate;
 
 	public function __construct($obj=NULL){
 		if(isset($obj)){
@@ -84,6 +85,10 @@ class Incidencia extends ClaseBase{
 		return $this->cantidad;
 	}
 
+	public function setEstado($estado){
+		$this->estado = $estado;
+	}
+
 	public function insert(){
 		echo $this->idAplicacion;
 		$sql = "insert into incidencias (ciUsuario, numeroVolqueta, aplicacion, idAplicacion, nombreUsuario, ubicacionCorrecta, categoria, severidad, estado, descripcion, fechaHoraReporte) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now())";
@@ -105,7 +110,7 @@ class Incidencia extends ClaseBase{
 	}
 
 	public function getAllIncidencias(){
-		$sql = "SELECT i.codigo, i.numeroVolqueta, i.ubicacionCorrecta, c.descripcion categoria, s.descripcion severidad, e.descripcion estado, i.descripcion, DATE_FORMAT(i.fechaHoraReporte, '%d/%m/%Y %H:%s') fecha FROM incidencias i, categorias c, severidades s, estadosincidencia e WHERE i.categoria = c.codigo AND i.severidad = s.codigo AND i.estado = e.codigo AND ciUsuario = ? AND aplicacion = ? AND idAplicacion = ? ORDER BY i.fechaHoraReporte DESC";
+		$sql = "SELECT i.codigo, i.numeroVolqueta, i.ubicacionCorrecta, c.descripcion categoria, s.descripcion severidad, e.descripcion estado, i.descripcion, DATE_FORMAT(i.fechaHoraReporte, '%d/%m/%Y %H:%i') fecha FROM incidencias i, categorias c, severidades s, estadosincidencia e WHERE i.categoria = c.codigo AND i.severidad = s.codigo AND i.estado = e.codigo AND ciUsuario = ? AND aplicacion = ? AND idAplicacion = ? ORDER BY i.fechaHoraReporte DESC";
 		$stmt = DB::conexion()->prepare($sql);
 		$stmt->bind_param('iss', $this->ciUsuario, $this->aplicacion, $this->idAplicacion);
 		$stmt->execute();
@@ -126,7 +131,7 @@ class Incidencia extends ClaseBase{
 	}
 
 	public function getIncidenciasPorEstado($estado){
-		$sql = "SELECT i.codigo, i.numeroVolqueta, i.ubicacionCorrecta, c.descripcion categoria, s.descripcion severidad, e.descripcion estado, i.descripcion, DATE_FORMAT(i.fechaHoraReporte, '%d/%m/%Y %H:%s') fecha FROM incidencias i, categorias c, severidades s, estadosincidencia e WHERE i.categoria = c.codigo AND i.severidad = s.codigo AND i.estado = e.codigo AND ciUsuario = ? AND aplicacion = ? AND idAplicacion = ? AND i.estado = ? ORDER BY i.fechaHoraReporte DESC";
+		$sql = "SELECT i.codigo, i.numeroVolqueta, i.ubicacionCorrecta, c.descripcion categoria, s.descripcion severidad, e.descripcion estado, i.descripcion, DATE_FORMAT(i.fechaHoraReporte, '%d/%m/%Y %H:%i') fecha FROM incidencias i, categorias c, severidades s, estadosincidencia e WHERE i.categoria = c.codigo AND i.severidad = s.codigo AND i.estado = e.codigo AND ciUsuario = ? AND aplicacion = ? AND idAplicacion = ? AND i.estado = ? ORDER BY i.fechaHoraReporte DESC";
 		$stmt = DB::conexion()->prepare($sql);
 		$stmt->bind_param('issi', $this->ciUsuario, $this->aplicacion, $this->idAplicacion, $estado);
 		$stmt->execute();
@@ -176,7 +181,7 @@ class Incidencia extends ClaseBase{
 	}
 
 	public function getIncidenciaPorCodigo(){
-		$sql = "SELECT i.codigo, i.ciUsuario, i.numeroVolqueta, i.aplicacion, i.nombreUsuario, i.ubicacionCorrecta, c.descripcion categoria, s.descripcion severidad, e.descripcion estado, i.descripcion, DATE_FORMAT(i.fechaHoraReporte, '%d/%m/%Y %H:%s') fecha, DATE_FORMAT(i.fechaHoraSolucion, '%d/%m/%Y %H:%s') fechaSolucion FROM incidencias i, categorias c, severidades s, estadosincidencia e WHERE i.categoria = c.codigo AND i.severidad = s.codigo AND i.estado = e.codigo AND i.codigo = ?";
+		$sql = "SELECT i.codigo, i.ciUsuario, i.numeroVolqueta, i.aplicacion, i.nombreUsuario, i.ubicacionCorrecta, c.descripcion categoria, s.descripcion severidad, e.descripcion estado, i.descripcion, DATE_FORMAT(i.fechaHoraReporte, '%d/%m/%Y %H:%i') fecha, DATE_FORMAT(i.fechaHoraSolucion, '%d/%m/%Y %H:%i') fechaHoraSolucion FROM incidencias i, categorias c, severidades s, estadosincidencia e WHERE i.categoria = c.codigo AND i.severidad = s.codigo AND i.estado = e.codigo AND i.codigo = ?";
 		$stmt = DB::conexion()->prepare($sql);
 		$stmt->bind_param('i', $this->codigo);
 		$stmt->execute();
@@ -198,7 +203,6 @@ class Incidencia extends ClaseBase{
 
 		return $incidencia;
 	}
-
 	public function getEstadoVolquetaPendiente(){
 		$sql = "select count(*) cantidad from incidencias where numeroVolqueta = ? and categoria = ? and estado = 1";
 		$stmt = DB::conexion()->prepare($sql);
@@ -262,7 +266,7 @@ class Incidencia extends ClaseBase{
 	}
 
 	public function getAllIncidenciasAgrupadas($orden){
-		$sql = "SELECT i.numeroVolqueta, v.ubicacion, v.calleX, v.calleY, v.calleZ, c.descripcion categoria, i.categoria codigoCategoria, DATE_FORMAT(MIN(i.fechaHoraReporte), '%d/%m/%Y %H:%s') fecha, DATE_FORMAT(i.fechaHoraSolucion, '%d/%m/%Y %H:%s') fechaSolucion, i.estado, COUNT(*) cantidad FROM incidencias i, volquetas v, categorias c WHERE i.numeroVolqueta = v.numero AND i.categoria = c.codigo GROUP BY i.numeroVolqueta, i.categoria, i.estado, i.fechaHoraSolucion ORDER BY MIN(i.fechaHoraReporte) ".$orden;
+		$sql = "SELECT i.numeroVolqueta, v.ubicacion, v.calleX, v.calleY, v.calleZ, c.descripcion categoria, i.categoria codigoCategoria, DATE_FORMAT(MIN(i.fechaHoraReporte), '%d/%m/%Y %H:%i') fecha, DATE_FORMAT(i.fechaHoraSolucion, '%d/%m/%Y %H:%i') fechaSolucion, i.estado, COUNT(*) cantidad FROM incidencias i, volquetas v, categorias c WHERE i.numeroVolqueta = v.numero AND i.categoria = c.codigo GROUP BY i.numeroVolqueta, i.categoria, i.estado, i.fechaHoraSolucion ORDER BY MIN(i.fechaHoraReporte) ".$orden;
 
 		$stmt = DB::conexion()->prepare($sql);
 		$stmt->execute();
@@ -292,7 +296,7 @@ class Incidencia extends ClaseBase{
 	}
 
 	public function getIncidenciasAgrupadasPorEstado($estado, $orden){
-		$sql = "SELECT i.numeroVolqueta, v.ubicacion, v.calleX, v.calleY, v.calleZ, c.descripcion categoria, i.categoria codigoCategoria, DATE_FORMAT(MIN(i.fechaHoraReporte), '%d/%m/%Y %H:%s') fecha, DATE_FORMAT(i.fechaHoraSolucion, '%d/%m/%Y %H:%s') fechaSolucion, i.estado, COUNT(*) cantidad FROM incidencias i, volquetas v, categorias c WHERE i.numeroVolqueta = v.numero AND i.categoria = c.codigo AND i.estado = ? GROUP BY i.numeroVolqueta, i.categoria, i.estado, i.fechaHoraSolucion ORDER BY MIN(i.fechaHoraReporte) ".$orden;
+		$sql = "SELECT i.numeroVolqueta, v.ubicacion, v.calleX, v.calleY, v.calleZ, c.descripcion categoria, i.categoria codigoCategoria, DATE_FORMAT(MIN(i.fechaHoraReporte), '%d/%m/%Y %H:%i') fecha, DATE_FORMAT(i.fechaHoraSolucion, '%d/%m/%Y %H:%i') fechaSolucion, i.estado, COUNT(*) cantidad FROM incidencias i, volquetas v, categorias c WHERE i.numeroVolqueta = v.numero AND i.categoria = c.codigo AND i.estado = ? GROUP BY i.numeroVolqueta, i.categoria, i.estado, i.fechaHoraSolucion ORDER BY MIN(i.fechaHoraReporte) ".$orden;
 		$stmt = DB::conexion()->prepare($sql);
 		$stmt->bind_param('i', $estado);
 		$stmt->execute();
@@ -322,10 +326,12 @@ class Incidencia extends ClaseBase{
 	}
 
 	public function getVolquetasAgrupadas(){
-		$sql = "SELECT i.codigo, i.numeroVolqueta, i.ubicacionCorrecta, c.descripcion categoria, e.descripcion estado, DATE_FORMAT(i.fechaHoraReporte, '%d/%m/%Y %H:%s') fecha FROM incidencias i, volquetas v, categorias c, estadosVolqueta e	WHERE i.numeroVolqueta = v.numero AND i.categoria = c.codigo AND i.estado = e.codigo AND i.numeroVolqueta = ?	AND i.categoria = ?	AND i.estado = ? ";
+		$sql = "SELECT i.codigo, i.numeroVolqueta, i.ubicacionCorrecta, c.descripcion categoria, e.descripcion estado, DATE_FORMAT(i.fechaHoraReporte, '%d/%m/%Y %H:%i') fecha FROM incidencias i, volquetas v, categorias c, estadosIncidencia e WHERE i.numeroVolqueta = v.numero AND i.categoria = c.codigo AND i.estado = e.codigo AND i.numeroVolqueta = ?	AND i.categoria = ?	AND i.estado = ?";
 		if($this->fechaHoraSolucion != NULL)
-		 	$sql .= "AND i.fechaHoraSolucion = ?";
-		$sql .= "ORDER BY i.fechaHoraReporte ASC;";
+		 	$sql .= " AND DATE_FORMAT(i.fechaHoraSolucion, '%d/%m/%Y %H:%i') = ?";
+		$sql .= " ORDER BY i.fechaHoraReporte ASC;";
+		//var_dump($this);
+		//echo $sql;
 		$stmt = DB::conexion()->prepare($sql);
 		if($this->fechaHoraSolucion != NULL)
 			$stmt->bind_param('iiis', $this->numeroVolqueta, $this->categoria, $this->estado, $this->fechaHoraSolucion);
@@ -345,7 +351,49 @@ class Incidencia extends ClaseBase{
 		}
 
 		return $incidencias;
+		
+	}
 
+	public function updateEstado(){
+		$sql = "update incidencias set estado = ?, fechaHoraSolucion = ";
+		if($this->estadoUpdate == 3){
+			$sql .= "now() ";
+		}
+		else{
+			$sql .= "NULL ";
+		}
+		$sql .= "where numeroVolqueta = ? and categoria = ? and estado = ? ";
+		if($this->fechaHoraSolucion != NULL){
+			$sql .= "and DATE_FORMAT(fechaHoraSolucion, '%d/%m/%Y %H:%i') = ?";
+		}
+		$stmt = DB::conexion()->prepare($sql);
+		/*var_dump($this);
+		echo $sql;*/
+		if($this->fechaHoraSolucion == NULL)
+			$stmt->bind_param('iiii', $this->estadoUpdate, $this->numeroVolqueta, $this->categoria, $this->estado);
+		else
+			$stmt->bind_param('iiiis', $this->estadoUpdate, $this->numeroVolqueta, $this->categoria, $this->estado, $this->fechaHoraSolucion);
+		$stmt->execute();
+	}
+
+	public function getEstadoGrupo(){
+		$sql = "select * from incidencias where numeroVolqueta = ? and categoria = ?";
+		if($this->fechaHoraSolucion != NULL){
+			$sql .= " and DATE_FORMAT(i.fechaHoraSolucion, '%d/%m/%Y %H:%i') = ?";
+		}
+		$sql .= " limit 1";
+		$stmt = DB::conexion()->prepare($sql);
+		if($this->fechaHoraSolucion == NULL)
+			$stmt->bind_param('ii', $this->numeroVolqueta, $this->categoria);
+		else
+			$stmt->bind_param('iis', $this->numeroVolqueta, $this->categoria, $this->fechaHoraSolucion);
+		$stmt->execute();
+		$result = $stmt->get_result();
+		while($fila = $result->fetch_object()){
+			$estado = $fila->estado;
+		}
+
+		return $estado;
 	}
 
 }

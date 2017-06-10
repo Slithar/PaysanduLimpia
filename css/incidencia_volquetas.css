@@ -378,4 +378,21 @@
 
 .iconoConfirmarIncidencia:hover{
 	color: #269C1B;
+	cursor: pointer;
+}
+
+.contenedorComentario{
+	width: 80px;
+	display: inline-block;
+	position: relative;
+	top: 0;
+	margin-right: 35px;
+	float: left;
+}
+.datosComentario{
+	width: calc(100% - 125px);
+	margin-top: 0;
+	display: inline-block;
+	text-align: justify;
+	margin-bottom: 71px;
 }

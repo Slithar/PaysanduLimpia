@@ -6,6 +6,7 @@
 	<title>{$location} - Paysandú Limpia</title>
 	{include file = "leaflet_plugins.tpl"}
 	<link rel = "stylesheet" href = "css/incidencia_volquetas.css"/>
+	<script src = "js/incidencias.js"></script>
 </head>
 <body>
 
@@ -54,7 +55,7 @@
 								<td>{$incidencia.fechaHoraReporte}</td>
 								<td>{$incidencia.fechaHoraSolucion}</td>
 								<td>
-									<select class = "form-control cmbEstadoIncidencia" style = "margin-top: -7px; {if $incidencia.estado eq "1"}color: #E71D1D{/if}{if $incidencia.estado eq "2"}color: #E7B81D{/if}{if $incidencia.estado eq "3"}color: #269C1B{/if}">
+									<select class = "form-control cmbEstadoIncidencia" id = "select{$incidencia.numeroOrden}" style = "margin-top: -7px; {if $incidencia.estado eq "1"}color: #E71D1D{/if}{if $incidencia.estado eq "2"}color: #E7B81D{/if}{if $incidencia.estado eq "3"}color: #269C1B{/if}">
 										{foreach from = $estadosIncidencia item = estado}							
 											<option value = "{$estado.codigo}" {if $estado.codigo eq $incidencia.estado}selected{/if}>{$estado.descripcion}</option>	
 										{/foreach}
@@ -62,7 +63,7 @@
 								</td>
 								<td style = "text-align: right;">{$incidencia.cantidad}</td>
 								<td style = "text-align: center;"><a href = "/Volquetas/incidencia/verIncidenciasReportadas/{$incidencia.numeroVolqueta|substr:0:3|strip:''}/{$incidencia.codigoCategoria}/{$incidencia.estado}/{$incidencia.fechaHoraSolucion}" class = "iconoVerTodasLasIncidencias iconoVerGrupoIncidencias"><span class = "fa fa-eye"></span></a></td>
-								<td style = "text-align: center;"><a href = "#" class = "iconoVerTodasLasIncidencias iconoConfirmarIncidencia"><span class = "fa fa-pencil"></span></a></td>
+								<td style = "text-align: center;"><a onclick = "confirmarEstado({$incidencia.numeroVolqueta|substr:0:3|strip:''},{$incidencia.codigoCategoria}, {$incidencia.estado}, {$incidencia.numeroOrden}, '{$incidencia.fechaHoraSolucion}');" class = "iconoVerTodasLasIncidencias iconoConfirmarIncidencia"><span class = "fa fa-pencil"></span></a></td>
 							</tr>
 						{/foreach}
 						
