@@ -63,7 +63,11 @@
 								</td>
 								<td style = "text-align: right;">{$incidencia.cantidad}</td>
 								<td style = "text-align: center;"><a href = "/Volquetas/incidencia/verIncidenciasReportadas/{$incidencia.numeroVolqueta|substr:0:3|strip:''}/{$incidencia.codigoCategoria}/{$incidencia.estado}/{$incidencia.fechaHoraSolucion}" class = "iconoVerTodasLasIncidencias iconoVerGrupoIncidencias"><span class = "fa fa-eye"></span></a></td>
-								<td style = "text-align: center;"><a onclick = "confirmarEstado({$incidencia.numeroVolqueta|substr:0:3|strip:''},{$incidencia.codigoCategoria}, {$incidencia.estado}, {$incidencia.numeroOrden}, '{$incidencia.fechaHoraSolucion}');" class = "iconoVerTodasLasIncidencias iconoConfirmarIncidencia"><span class = "fa fa-pencil"></span></a></td>
+								<td style = "text-align: center;"><a onclick = "confirmarEstado({$incidencia.numeroVolqueta|substr:0:3|strip:''},{$incidencia.codigoCategoria}, {$incidencia.estado}, {$incidencia.numeroOrden}, '{$incidencia.fechaHoraSolucion}');" class = "iconoVerTodasLasIncidencias iconoConfirmarIncidencia" id = "link{$incidencia.numeroOrden}"><span class = "fa fa-pencil"></span></a>
+									<div  id = "spinner{$incidencia.numeroOrden}" style = "font-size: 18px; position: relative; top: -2px; display: none;">
+										<span class = "fa fa-spinner fa-spin"></span>
+									</div>
+								</td>
 							</tr>
 						{/foreach}
 						

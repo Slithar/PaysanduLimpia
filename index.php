@@ -4,6 +4,7 @@
 	require "clases/db.php";
 	require "vendor/autoload.php";
 	require "controladores/ctrl_index.php";
+	require "controladores/ctrl_usuario.php";
 	require_once('clases/template.php');
 	require_once("clases/severidad.php");
 	require_once("clases/categoria.php");
@@ -20,6 +21,14 @@
 	$estadosIncidencia = $estadoIncidencia->getEstadosIncidencia();
 	$estadoVolqueta = new EstadoVolqueta();
 	$estadosVolqueta = $estadoVolqueta->getEstadosVolqueta();
+	$controladorNotificaciones = "usuario";
+	$controlIndexNotificaciones = new ControladorUsuario();
+
+	$objetoControladorNotificaciones = $controlIndexNotificaciones->cargarControlador($controladorNotificaciones);
+	$method = "notificacionesDelUsuario";
+	$params = array();	
+	$controlIndexNotificaciones->ejecutarAccion($objetoControladorNotificaciones, $method, $params);
+
 	$controlIndex = new ControladorIndex();
 	/*if(isset($_COOKIE['ciUsuario']))
 		echo "si";

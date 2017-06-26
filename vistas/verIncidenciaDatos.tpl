@@ -103,8 +103,12 @@
 							<form>
 								<div class = "form-group">
 									<textarea style = "width: calc(100% - 125px); float: right; margin-top: 25px; min-height: 80px; max-height: 125px;" class = "form-control" placeholder="Escribe tu comentario" id = "txtComentario"></textarea>		
-								</div>					
+								</div>
+												
 								<button class = "btn btn-success" style = "width: 15%; float: right; margin-top: 25px;" id = "btnComentar"><span class = "fa fa-comment"></span>&nbsp;&nbsp;Comentar</button>
+								<div id = "divSpinner" style = "margin-top: 101px; margin-left: 42%; width: 32px; font-size: 24px; display: block; display: none; position: absolute;">
+									<span class = "fa fa-spinner fa-spin" style = "margin-top: 31.5px"></span>	
+								</div>
 							</form>
 						</div>
 						<div id = "contenedorAlert">							
@@ -116,7 +120,6 @@
 				</form>
 					
 			</div>
-				}
 		</div>
 		{include file = "footer.tpl"}
 	</div>

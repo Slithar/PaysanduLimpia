@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-06-08 08:41:15
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-06-12 06:00:33
          compiled from "vistas\verIncidencia.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:18977591f66066ac479-07021860%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '4bf0faa787e6d50cbed97426ae6ab46eb9d71025' => 
     array (
       0 => 'vistas\\verIncidencia.tpl',
-      1 => 1496911263,
+      1 => 1497247203,
       2 => 'file',
     ),
   ),
@@ -159,7 +159,7 @@ $_smarty_tpl->tpl_vars['imagen']->_loop = true;
 foreach ($_from as $_smarty_tpl->tpl_vars['c']->key => $_smarty_tpl->tpl_vars['c']->value) {
 $_smarty_tpl->tpl_vars['c']->_loop = true;
 ?>
-									<div style = "padding-top: 25px; box-sizing: border-box; height: auto;">
+									<div style = "padding-top: 25px; box-sizing: border-box; height: auto;" class = "divComentariosVerIncidencia">
 										<div class = "contenedorComentario">
 											<img src = "<?php echo $_smarty_tpl->tpl_vars['c']->value['fotoPerfil'];?>
 " style = "width: 80px; height: 80px; border-radius: 50%;"/>

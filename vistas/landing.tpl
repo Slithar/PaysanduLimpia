@@ -12,7 +12,7 @@
 	<!-- Incluir la vista del header al principio -->
 	<div class = "wrapper">		
 		{include file="header.tpl"}	
-		<div id = "main" class = "{$classMain} {$classLogueado}" style = "height: 200%">
+		<div id = "main" class = "{$classMain} {$classLogueado}">
 			<div id = "carousel" class = "carousel slide" data-ride = "carousel">
 				<ol class = "carousel-indicators">
 					<li data-target = "#carousel" data-slide-to = "0" class = "active"></li>
@@ -99,7 +99,8 @@
 			</div>
 			<br><br>
 			<button class = "btn btn-primary" style = "margin: auto;display: block; width: 22%; font-size: 17px; font-weight: bold; margin-top: 150px;" onclick = "window.location.href = '/Volquetas/incidencia/nuevaIncidencia'"><span class = "fa fa-bug"></span>&nbsp;&nbsp;¡Reporta tu incidencia!</button>
-		</div>
+		</div>		
+		
 		{include file="footer.tpl"}
 	</div>
 	<!-- Incluir la vista del footer último. Más abajo no debe haber más código -->

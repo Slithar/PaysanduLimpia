@@ -40,3 +40,11 @@
 <script type="text/javascript" src = "js/facebook.js"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script type="text/javascript" src = "js/google.js"></script>
+
+<script src = "js/notificaciones.js"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
+<!-- Jquery UI -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

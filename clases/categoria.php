@@ -37,13 +37,30 @@ class Categoria extends ClaseBase{
 
 		while($fila = $result->fetch_object()){
 			$categoria = array("codigo" => $fila->codigo,
-											"descripcion" => utf8_encode($fila->descripcion),);
+								"descripcion" => utf8_encode($fila->descripcion),);
 			$categorias[] = $categoria;
 		}
 
 		return $categorias;
 	}
+	public function getCategoriasObject(){
 
+		$sql = "SELECT * FROM categorias";
+
+		$stmt = DB::conexion()->prepare($sql);
+
+		$stmt->execute();
+
+		$result = $stmt->get_result();
+
+		while($fila = $result->fetch_object()){
+			$categoria = new Categoria(array("codigo" => $fila->codigo,
+											"descripcion" => utf8_encode($fila->descripcion),));
+			$categorias[] = $categoria;
+		}
+
+		return $categorias;
+	}
 	public function convertToArray(){
 		return array("codigo" => $this->codigo,
 					"descripcion" => $this->descripcion);

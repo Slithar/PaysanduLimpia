@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-06-09 03:09:58
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-06-13 23:28:07
          compiled from "vistas\verIncidenciaDatos.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:31907593880ca85f889-10177373%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'f85bc80c759b8390a3d29c48f80ac0b87ed98146' => 
     array (
       0 => 'vistas\\verIncidenciaDatos.tpl',
-      1 => 1496977782,
+      1 => 1497396482,
       2 => 'file',
     ),
   ),
@@ -184,8 +184,12 @@ $_smarty_tpl->tpl_vars['c']->_loop = true;
 							<form>
 								<div class = "form-group">
 									<textarea style = "width: calc(100% - 125px); float: right; margin-top: 25px; min-height: 80px; max-height: 125px;" class = "form-control" placeholder="Escribe tu comentario" id = "txtComentario"></textarea>		
-								</div>					
+								</div>
+												
 								<button class = "btn btn-success" style = "width: 15%; float: right; margin-top: 25px;" id = "btnComentar"><span class = "fa fa-comment"></span>&nbsp;&nbsp;Comentar</button>
+								<div id = "divSpinner" style = "margin-top: 101px; margin-left: 42%; width: 32px; font-size: 24px; display: block; display: none; position: absolute;">
+									<span class = "fa fa-spinner fa-spin" style = "margin-top: 31.5px"></span>	
+								</div>
 							</form>
 						</div>
 						<div id = "contenedorAlert">							
@@ -197,7 +201,6 @@ $_smarty_tpl->tpl_vars['c']->_loop = true;
 				</form>
 					
 			</div>
-				}
 		</div>
 		<?php echo $_smarty_tpl->getSubTemplate ("footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 

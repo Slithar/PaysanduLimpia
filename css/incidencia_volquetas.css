@@ -373,7 +373,7 @@
 }
 
 .iconoVerGrupoIncidencias:hover{
-	color: blue;
+	color: #3F87FB;
 }
 
 .iconoConfirmarIncidencia:hover{
@@ -395,4 +395,12 @@
 	display: inline-block;
 	text-align: justify;
 	margin-bottom: 71px;
+}
+
+.divComentariosVerIncidencia{
+	border-bottom: 2px solid #D8D8D8;
+}
+
+.divComentariosVerIncidencia:last-child{
+	border-bottom: none;
 }

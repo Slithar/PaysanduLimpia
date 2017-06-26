@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-06-08 00:41:27
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-06-26 00:04:26
          compiled from "vistas\landing.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2976558f930fb5c2c05-92729639%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'a0706fb32bac316ed1c105ddaff132ac46c6cd1d' => 
     array (
       0 => 'vistas\\landing.tpl',
-      1 => 1496882485,
+      1 => 1498435413,
       2 => 'file',
     ),
   ),
@@ -44,7 +44,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	
 		<div id = "main" class = "<?php echo $_smarty_tpl->tpl_vars['classMain']->value;?>
  <?php echo $_smarty_tpl->tpl_vars['classLogueado']->value;?>
-" style = "height: 200%">
+">
 			<div id = "carousel" class = "carousel slide" data-ride = "carousel">
 				<ol class = "carousel-indicators">
 					<li data-target = "#carousel" data-slide-to = "0" class = "active"></li>
@@ -131,7 +131,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			</div>
 			<br><br>
 			<button class = "btn btn-primary" style = "margin: auto;display: block; width: 22%; font-size: 17px; font-weight: bold; margin-top: 150px;" onclick = "window.location.href = '/Volquetas/incidencia/nuevaIncidencia'"><span class = "fa fa-bug"></span>&nbsp;&nbsp;¡Reporta tu incidencia!</button>
-		</div>
+		</div>		
+		
 		<?php echo $_smarty_tpl->getSubTemplate ("footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 
 	</div>

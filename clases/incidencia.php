@@ -181,7 +181,7 @@ class Incidencia extends ClaseBase{
 	}
 
 	public function getIncidenciaPorCodigo(){
-		$sql = "SELECT i.codigo, i.ciUsuario, i.numeroVolqueta, i.aplicacion, i.nombreUsuario, i.ubicacionCorrecta, c.descripcion categoria, s.descripcion severidad, e.descripcion estado, i.descripcion, DATE_FORMAT(i.fechaHoraReporte, '%d/%m/%Y %H:%i') fecha, DATE_FORMAT(i.fechaHoraSolucion, '%d/%m/%Y %H:%i') fechaHoraSolucion FROM incidencias i, categorias c, severidades s, estadosincidencia e WHERE i.categoria = c.codigo AND i.severidad = s.codigo AND i.estado = e.codigo AND i.codigo = ?";
+		$sql = "SELECT i.codigo, i.ciUsuario, i.numeroVolqueta, i.aplicacion, i.idAplicacion, i.nombreUsuario, i.ubicacionCorrecta, c.descripcion categoria, s.descripcion severidad, e.descripcion estado, i.descripcion, DATE_FORMAT(i.fechaHoraReporte, '%d/%m/%Y %H:%i') fecha, DATE_FORMAT(i.fechaHoraSolucion, '%d/%m/%Y %H:%i') fechaHoraSolucion FROM incidencias i, categorias c, severidades s, estadosincidencia e WHERE i.categoria = c.codigo AND i.severidad = s.codigo AND i.estado = e.codigo AND i.codigo = ?";
 		$stmt = DB::conexion()->prepare($sql);
 		$stmt->bind_param('i', $this->codigo);
 		$stmt->execute();
@@ -191,6 +191,7 @@ class Incidencia extends ClaseBase{
 												"ciUsuario" => $fila->ciUsuario,
 												"numeroVolqueta" => $fila->numeroVolqueta,
 												"aplicacion" => $fila->aplicacion,
+												"idAplicacion" => $fila->idAplicacion,
 												"nombreUsuario" => utf8_encode($fila->nombreUsuario),
 												"ubicacionCorrecta" => $fila->ubicacionCorrecta,
 												"categoria" => utf8_encode($fila->categoria),
@@ -326,7 +327,7 @@ class Incidencia extends ClaseBase{
 	}
 
 	public function getVolquetasAgrupadas(){
-		$sql = "SELECT i.codigo, i.numeroVolqueta, i.ubicacionCorrecta, c.descripcion categoria, e.descripcion estado, DATE_FORMAT(i.fechaHoraReporte, '%d/%m/%Y %H:%i') fecha FROM incidencias i, volquetas v, categorias c, estadosIncidencia e WHERE i.numeroVolqueta = v.numero AND i.categoria = c.codigo AND i.estado = e.codigo AND i.numeroVolqueta = ?	AND i.categoria = ?	AND i.estado = ?";
+		$sql = "SELECT i.codigo, i.ciUsuario, i.numeroVolqueta, i.aplicacion, i.idAplicacion, i.ubicacionCorrecta, c.descripcion categoria, e.descripcion estado, DATE_FORMAT(i.fechaHoraReporte, '%d/%m/%Y %H:%i') fecha FROM incidencias i, volquetas v, categorias c, estadosIncidencia e WHERE i.numeroVolqueta = v.numero AND i.categoria = c.codigo AND i.estado = e.codigo AND i.numeroVolqueta = ?	AND i.categoria = ?	AND i.estado = ?";
 		if($this->fechaHoraSolucion != NULL)
 		 	$sql .= " AND DATE_FORMAT(i.fechaHoraSolucion, '%d/%m/%Y %H:%i') = ?";
 		$sql .= " ORDER BY i.fechaHoraReporte ASC;";
@@ -342,7 +343,10 @@ class Incidencia extends ClaseBase{
 		$result = $stmt->get_result();
 		while($fila = $result->fetch_object()){
 			$incidencia = new Incidencia(array("codigo" => $fila->codigo,
+												"ciUsuario" => $fila->ciUsuario,
 												"numeroVolqueta" => $fila->numeroVolqueta,
+												"aplicacion" => $fila->aplicacion,
+												"idAplicacion" => $fila->idAplicacion,
 												"ubicacionCorrecta" => $fila->ubicacionCorrecta,
 												"categoria" => utf8_encode($fila->categoria),
 												"estado" => utf8_encode($fila->estado),

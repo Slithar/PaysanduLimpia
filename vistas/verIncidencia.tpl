@@ -88,7 +88,7 @@
 								</div>
 							{else}
 								{foreach from = $todosLosComentarios item = c}
-									<div style = "border-bottom: 2px solid #D8D8D8; padding-top: 25px; box-sizing: border-box; height: auto;">
+									<div style = "padding-top: 25px; box-sizing: border-box; height: auto;" class = "divComentariosVerIncidencia">
 										<div class = "contenedorComentario">
 											<img src = "{$c.fotoPerfil}" style = "width: 80px; height: 80px; border-radius: 50%;"/>
 										</div>

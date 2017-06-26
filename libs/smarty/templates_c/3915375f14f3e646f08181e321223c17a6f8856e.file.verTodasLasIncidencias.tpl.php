@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-06-09 20:05:06
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-06-11 04:40:42
          compiled from "vistas\verTodasLasIncidencias.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:10825935f82015f786-36142992%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '3915375f14f3e646f08181e321223c17a6f8856e' => 
     array (
       0 => 'vistas\\verTodasLasIncidencias.tpl',
-      1 => 1497038693,
+      1 => 1497155953,
       2 => 'file',
     ),
   ),
@@ -139,7 +139,13 @@ $_smarty_tpl->tpl_vars['estado']->_loop = true;
 , <?php echo $_smarty_tpl->tpl_vars['incidencia']->value['estado'];?>
 , <?php echo $_smarty_tpl->tpl_vars['incidencia']->value['numeroOrden'];?>
 , '<?php echo $_smarty_tpl->tpl_vars['incidencia']->value['fechaHoraSolucion'];?>
-');" class = "iconoVerTodasLasIncidencias iconoConfirmarIncidencia"><span class = "fa fa-pencil"></span></a></td>
+');" class = "iconoVerTodasLasIncidencias iconoConfirmarIncidencia" id = "link<?php echo $_smarty_tpl->tpl_vars['incidencia']->value['numeroOrden'];?>
+"><span class = "fa fa-pencil"></span></a>
+									<div  id = "spinner<?php echo $_smarty_tpl->tpl_vars['incidencia']->value['numeroOrden'];?>
+" style = "font-size: 18px; position: relative; top: -2px; display: none;">
+										<span class = "fa fa-spinner fa-spin"></span>
+									</div>
+								</td>
 							</tr>
 						<?php } ?>
 						

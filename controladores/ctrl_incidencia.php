@@ -13,6 +13,8 @@ require_once("clases/categoria.php");
 require_once("clases/estadoIncidencia.php");
 require_once("clases/session.php");
 require_once('clases/comentario.php');
+require_once('clases/utils.php');
+require_once('clases/notificacion.php');
 
 class ControladorIncidencia extends ControladorIndex{
 	public function nuevaIncidencia($params = array()){
@@ -665,7 +667,18 @@ class ControladorIncidencia extends ControladorIndex{
 											"comentario" =>$_POST['comentario'],
 											"ciUsuario" =>Session::get('ci')));
 		$comentario->insertarComentario();
-
+		$incidencia = new Incidencia(array("codigo" => $_POST['codigo']));
+		$i = $incidencia->getIncidenciaPorCodigo();
+		$usuario = new Usuario(array("ci" => $i->getCiUsuario()));
+		//var_dump($incidencia);
+		$u = $usuario->seleccionarUsuario();
+		if($u->getEnviarcorreo() && Session::exists('ci')){
+			$user = new Usuario(array("ci" => Session::get('ci')));
+			$us = $user->seleccionarUsuario();
+			$util = new Utils();			
+			$mensaje = 'Estimado/a '.$u->getNombre()." ".$u->getApellido().":<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>".$us->getNombre()." ".$us->getApellido()." </b>ha agregado un nuevo comentario a la incidencia n&uacute;mero <b>".$_POST['codigo']."</b><br><br>Le saluda atentamente<br>Equipo de Paysandú Limpia";
+			$util->enviarCorreoNotificacion($u->getEmail(), utf8_encode('Nuevo comentario'), $mensaje);
+		}
 		//una vez que está pronto el agregar, vamos a traer todos los datos de los comentarios
 		$comentarios = $comentario->getComentarios();
 		if($comentarios > 0){
@@ -685,6 +698,25 @@ class ControladorIncidencia extends ControladorIndex{
 		else{
 			$todosLosComentarios = array();
 		}
+		$codigoIncidencia = $_POST['codigo'];
+		$in = new Incidencia(array("codigo" => $codigoIncidencia));
+		$inc = $in->getIncidenciaPorCodigo();
+		//$usuario = new Usuario(array("ci" => Session::get('ci')));
+		//$u = $usuarioSeleccionado->seleccionarUsuario();
+		$ciReceptor = $inc->getCiUsuario();
+		$aplicacion = $i->getAplicacion();
+		$idAplicacion = $i->getIdAplicacion();		
+		$tipo = "comentario";
+		$usuarioSesion = new Usuario(array("ci" => Session::get('ci')));
+		$usr = $usuarioSesion->seleccionarUsuario();
+		$mensaje = "<b>".$usr->getNombre()." ".$usr->getApellido()."</b> agregó un comentario a la incidencia <b>".$_POST['codigo']."</b>";
+		$notificacion = new Notificacion(array("ciReceptor" => $ciReceptor,
+											 "aplicacion" =>$aplicacion,
+											  "idAplicacion" =>$idAplicacion,
+											  "mensaje" =>$mensaje,
+											   "codigoIncidencia"=> $codigoIncidencia,
+											   "tipo"=> $tipo));
+		$notificacion->teLaNotifico();
 		$respuesta = new Respuesta(array("code" => "ok",
 										"message" => $todosLosComentarios,
 										"content" => ""));
@@ -708,6 +740,68 @@ class ControladorIncidencia extends ControladorIndex{
 		
 			/*$estado = $incidencia->getEstadoGrupo();
 			$incidencia->setEstado($estado);*/
+			$incidencias = $incidencia->getVolquetasAgrupadas();
+			foreach ($incidencias as $i) {	
+				$codigoIncidencia = $i->getCodigo();
+				$ciReceptor = $i->getCiUsuario();
+				$aplicacion = $i->getAplicacion();
+				$idAplicacion = $i->getIdAplicacion();
+				$tipo = "estado";
+				if($_POST['estado'] == 1){
+					$e = "Pendiente";
+				}
+				else if($_POST['estado'] == 2){
+					$e = "En curso";
+				}
+				else{
+					$e = "Finalizada";
+				}
+
+				if($_POST['estadoUpdate'] == 1){
+					$eUpdate = "Pendiente";
+				}
+				else if($_POST['estadoUpdate'] == 2){
+					$eUpdate = "En curso";
+				}
+				else{
+					$eUpdate = "Finalizada";
+				}
+				$mensaje = "La incidencia <b>".$i->getCodigo()."</b> ha pasado de estado <b>'".$e."'</b> a <b>'".$eUpdate."'</b>";
+				$notificacion = new Notificacion(array("ciReceptor" => $ciReceptor,
+											 "aplicacion" =>$aplicacion,
+											  "idAplicacion" =>$idAplicacion,
+											  "mensaje" =>$mensaje,
+											   "codigoIncidencia"=> $codigoIncidencia,
+											   "tipo"=> $tipo));
+				$notificacion->teLaNotifico();
+
+				$usr = new Usuario(array("ci" => $ciReceptor));
+				$u = $usr->seleccionarUsuario();
+				if($u->getEnviarcorreo() && Session::exists('ci')){
+					$util = new Utils();			
+				  	$mensaje = 'Estimado/a '.$u->getNombre()." ".$u->getApellido().":<br><br>&nbsp;&nbsp;&nbsp;&nbsp;"."La incidencia número <b>".$i->getCodigo()."</b> ha pasado de estado <b>".$e."</b> a <b>".$eUpdate."</b>.<br><br>Le saluda atentamente<br>Equipo de Paysandú Limpia";
+					$util->enviarCorreoNotificacion($u->getEmail(), utf8_encode('Cambio de estado de incidencia'), $mensaje);
+
+				}
+
+				/*$mensaje = "La incidencia número <b>".$i->getCodigo()."</b> ha pasado de estado <b>".$e."</b> a <b>".$eUpdate."</b>";
+				$notificacion = new Notificacion(array("ciReceptor" => $ciReceptor,
+											 "aplicacion" =>$aplicacion,
+											  "idAplicacion" =>$idAplicacion,
+											  "mensaje" =>$mensaje,
+											   "codigoIncidencia"=> $codigoIncidencia,
+											   "tipo"=> $tipo));
+				$notificacion->teLaNotifico();
+				$usr = new Usuario(array("ci" => $ciReceptor));
+				$u = $usr->seleccionarUsuario();
+				if($u->getEnviarcorreo() && Session::exists('ci')){
+					$util = new Utils();			
+				  	$mensaje = 'Estimado/a '.$u->getNombre()." ".$u->getApellido().":<br><br>&nbsp;&nbsp;&nbsp;&nbsp;"."La incidencia número <b>".$i->getCodigo()."</b> ha pasado de estado <b>".$e."</b> a <b>".$eUpdate."</b>.<br><br>Le saluda atentamente<br>Equipo de Paysandú Limpia";
+					$util->enviarCorreoNotificacion($u->getEmail(), utf8_encode('CambioDeEstadoDeIncidencia'), $mensaje);
+
+				}*/
+
+			}
 			$incidencia->updateEstado();
 			$incidenciasPendientes = $incidencia->getEstadoPendienteTodasIncidencias();
 			$incidenciasEnCurso = $incidencia->getEstadoEnCursoTodasIncidencias();

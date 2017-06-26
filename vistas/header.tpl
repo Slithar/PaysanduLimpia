@@ -20,23 +20,33 @@
     {if $logueado eq 'si'}      
       <div class = "notificaciones">
         <span class = "fa fa-bell"></span>
-        <span class = "pendientes">9</span>
+        {if $cantidadNotificacionesNoVistas > 0}
+          <span class = "pendientes">{$cantidadNotificacionesNoVistas}</span>
+        {/if}
       </div>
       <ul class = "lstNotificaciones">
-        <li>
-          <span class = "fa fa-trash" style = "font-size: 42px; position: relative; top: 15px"></span>
-          La incidencia número 81 paso de estado "Pendiente" a "En curso"
-          <span class="subtexto">Notificado hace un rato</span>
-        </li>
-        <li>
-          Ocurrió un evento
-          <span class="subtexto">Notificado a las 10:00</span>
-        </li>
-        <li>
-          Se incendia una moto
-          <span class="subtexto">Notificado a las 9:30</span>
-        </li>
-  </ul>       
+        {if $cantidadNotificacionesTotal > 0}
+          {foreach from = $notificaciones item = notificacion}
+            <li class = "{if $notificacion.vista eq '1'}vista{else}noVista{/if}" onclick = "verNotificacion({$notificacion.codigo}, {$notificacion.codigoIncidencia});">          
+              <div style = "width: 17%; float: left;">
+                {if $notificacion.tipo eq "estado"}
+                  <span class = "fa fa-trash" style = "font-size: 38px;"></span>
+                {else}
+                  <span class = "fa fa-comment" style = "font-size: 38px;"></span>
+                {/if}
+              </div>
+              <div  style = "width: 83%; float: right; margin-top: 1.5px;">{$notificacion.mensaje}</div>
+              <br><br>
+              <span class="subtexto"><span class = "fa fa-clock-o"></span>&nbsp;&nbsp;{$notificacion.fechaHora}</span>
+            </li>
+          {/foreach}
+        {else}
+          <li class = "noVista">
+            <div style = "width: 100%; text-align: center"><span class = "fa fa-bell-slash" style = "font-size: 38px;"></span></div>
+            <div  style = "width: 100%; margin-top: 11px; text-align: center">Sin notificaciones nuevas</div>
+          </li>
+        {/if}
+      </ul>       
     {/if}
     <div class = "menu">
       <ul class = "ulMenu"> 
@@ -73,7 +83,7 @@
               {/if}
             </ul>    
           </li>
-          <li class = "opcionSubmenu"><a href = "#"><span class = "fa fa-bar-chart"></span>&nbsp;&nbsp;Estadísticas</a></li>
+          <li class = "opcionSubmenu"><a href = "/Volquetas/volqueta/estadisticas"><span class = "fa fa-bar-chart"></span>&nbsp;&nbsp;Estadísticas</a></li>
           <li class = "opcionSubmenu" id = "opcionUsuarios"><a><span class = "fa fa-user"></span>&nbsp;&nbsp;Cuentas de usuarios&nbsp;&nbsp;<span class = "fa fa-chevron-down" id = iconoDesplegarUsuarios></span></a>
             <ul class = "submenu submenuUsuarios">
               <li class = "opcionSubmenuUsuarios"><a href = "/Volquetas/usuario/verPerfil">Mi perfil</a></li>

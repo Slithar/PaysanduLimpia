@@ -31,6 +31,10 @@ jQuery(document).ready(function($) {
 				$('#alertLogin').addClass('alert-danger');
 				$("#alertLogin").html("<center><strong>ERROR</strong></center><center><p>No se han ingresado campos obligatorios</p></center>");
 				$('#alertLogin').css('display', 'block');
+				//$("html, body").animate({ scrollTop : $("#alertLogin").offset().top + 100 }, 750 );
+				setTimeout(function(){
+					$('#alertLogin').fadeOut();
+				}, 5000);
 			}
 		});
 		if(!error){
@@ -108,8 +112,9 @@ jQuery(document).ready(function($) {
 			if($(this).val() == ""){
 				error = true;
 				$("#alerta").css('display', 'block');
-				$("#alerta").html("<strong>ERROR: </strong>No se han completado campos obligatorios");
-				$(this).parent().addClass("has-error");
+				$("#alerta").html("<strong>ERROR: </strong>No se han completado campos obligatorios");			
+				$(this).parent().addClass("has-error");				
+				$("#main").animate({ scrollTop : $("#alerta").offset().top + 100 }, 750 );	
 				setTimeout(function(){
 					$("#alerta").css('display', 'none');
 				}, 5000);
@@ -125,6 +130,7 @@ jQuery(document).ready(function($) {
 		 	error = true;
 		 	$("#alerta").css('display', 'block');
 			$("#alerta").html("<strong>ERROR: </strong>La contraseña ingresada presenta un formato incorrecto");
+			$("#main").animate({ scrollTop : $("#alerta").offset().top + 100 }, 750 );
 			$("input[name=contraseniaUsuario]").focus();
 			//$(this).parent().addClass("has-error");
 			setTimeout(function(){
@@ -138,6 +144,7 @@ jQuery(document).ready(function($) {
 		 	error = true;
 		 	$("#alerta").css('display', 'block');
 			$("#alerta").html("<strong>ERROR: </strong>La contraseña ingresada no coincide con su confirmación");
+			$("#main").animate({ scrollTop : $("#alerta").offset().top + 100 }, 750 );
 			//$(this).parent().addClass("has-error");
 			$("input[name=contraseniaUsuario]").focus();
 			setTimeout(function(){
@@ -150,6 +157,7 @@ jQuery(document).ready(function($) {
 			error = true;
 			$("#alerta").css('display', 'block');
 			$("#alerta").html("<strong>ERROR: </strong>La cédula de identidad ingresada presenta un formato incorrecto");
+			$("#main").animate({ scrollTop : $("#alerta").offset().top + 100 }, 750 );
 			//$(this).parent().addClass("has-error");
 			$("#formSignup #ci").focus();
 			setTimeout(function(){
@@ -173,6 +181,7 @@ jQuery(document).ready(function($) {
 							error = true;
 							$("#alerta").css('display', 'block');
 							$("#alerta").html(response["message"]);
+							$("#main").animate({ scrollTop : $("#alerta").offset().top + 100 }, 750 );
 							//$(this).parent().addClass("has-error");
 							$("#formSignup #ci").focus();
 							setTimeout(function(){
@@ -185,6 +194,7 @@ jQuery(document).ready(function($) {
 							error = true;
 							$("#alerta").css('display', 'block');
 							$("#alerta").html(response["message"]);
+							$("#main").animate({ scrollTop : $("#alerta").offset().top + 100 }, 750 );
 							//$(this).parent().addClass("has-error");
 							$('input[type="email"]').focus();
 							setTimeout(function(){
@@ -617,20 +627,39 @@ jQuery(document).ready(function($) {
 				type:'POST',
 				dataType :'json',
 				data : {'codigo' : $('#codigo').val(),
-						 'comentario':$('#txtComentario').val(),}
+						 'comentario':$('#txtComentario').val(),},
+				beforeSend : function(){
+					$('#divSpinner').css('display', 'block');
+				}
 			})
 			.done(function(response){
+				//alert(response);
+				$('#divSpinner').css('display', 'none');
 				if(response['code'] == "ok"){
 					var comentarios = response['message'];
 					var content = "";
 					for(var i = 0; i < comentarios.length; i++){
-						content = content + '<div class = "contenedorComentario"><img src = "' + comentarios[i]['fotoPerfil'] + '" style = "width: 80px; height: 80px; border-radius: 50%;"/></div><div class = "datosComentario"><b>' + comentarios[i]['nombreUsuario'] + '</b> | <span style = "font-size: 12px">' + comentarios[i]['fechaHora'] + '</span><br><br>' + comentarios[i]['comentario'] + '</div>';
+						content = content + '<div style = "border-bottom: 2px solid #D8D8D8; padding-top: 25px; box-sizing: border-box; height: auto;"><div class = "contenedorComentario"><img src = "' + comentarios[i]['fotoPerfil'] + '" style = "width: 80px; height: 80px; border-radius: 50%;"/></div><div class = "datosComentario"><b>' + comentarios[i]['nombreUsuario'] + '</b> | <span style = "font-size: 12px">' + comentarios[i]['fechaHora'] + '</span><br><br>' + comentarios[i]['comentario'] + '</div></div>';
 					}
 					$('#divComentarios').html(content);
 					$('#txtComentario').val("");
 				}
+			}).
+			fail(function(error, err, e){
+				//alert(e);
 			});
 			
+		}
+	});
+	var notificaciones = false;
+	$('.notificaciones').on('click', function(){
+		if(!notificaciones){
+			$('.lstNotificaciones').fadeIn();
+			notificaciones = true;
+		}
+		else{
+			$('.lstNotificaciones').fadeOut();
+			notificaciones = false;
 		}
 	});
 });

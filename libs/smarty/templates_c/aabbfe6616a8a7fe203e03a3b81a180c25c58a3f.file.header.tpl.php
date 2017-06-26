@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-06-10 02:00:39
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-06-24 21:16:06
          compiled from "vistas\header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:415658f80da01afe57-50846233%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'aabbfe6616a8a7fe203e03a3b81a180c25c58a3f' => 
     array (
       0 => 'vistas\\header.tpl',
-      1 => 1497060037,
+      1 => 1498338952,
       2 => 'file',
     ),
   ),
@@ -20,6 +20,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'variables' => 
   array (
     'logueado' => 0,
+    'cantidadNotificacionesNoVistas' => 0,
+    'cantidadNotificacionesTotal' => 0,
+    'notificaciones' => 0,
+    'notificacion' => 0,
     'nombre' => 0,
     'fotoPerfil' => 0,
     'funcionario' => 0,
@@ -49,23 +53,42 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     <?php if ($_smarty_tpl->tpl_vars['logueado']->value=='si') {?>      
       <div class = "notificaciones">
         <span class = "fa fa-bell"></span>
-        <span class = "pendientes">9</span>
+        <?php if ($_smarty_tpl->tpl_vars['cantidadNotificacionesNoVistas']->value>0) {?>
+          <span class = "pendientes"><?php echo $_smarty_tpl->tpl_vars['cantidadNotificacionesNoVistas']->value;?>
+</span>
+        <?php }?>
       </div>
       <ul class = "lstNotificaciones">
-        <li>
-          <span class = "fa fa-trash" style = "font-size: 42px; position: relative; top: 15px"></span>
-          La incidencia número 81 paso de estado "Pendiente" a "En curso"
-          <span class="subtexto">Notificado hace un rato</span>
-        </li>
-        <li>
-          Ocurrió un evento
-          <span class="subtexto">Notificado a las 10:00</span>
-        </li>
-        <li>
-          Se incendia una moto
-          <span class="subtexto">Notificado a las 9:30</span>
-        </li>
-  </ul>       
+        <?php if ($_smarty_tpl->tpl_vars['cantidadNotificacionesTotal']->value>0) {?>
+          <?php  $_smarty_tpl->tpl_vars['notificacion'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['notificacion']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['notificaciones']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['notificacion']->key => $_smarty_tpl->tpl_vars['notificacion']->value) {
+$_smarty_tpl->tpl_vars['notificacion']->_loop = true;
+?>
+            <li class = "<?php if ($_smarty_tpl->tpl_vars['notificacion']->value['vista']=='1') {?>vista<?php } else { ?>noVista<?php }?>" onclick = "verNotificacion(<?php echo $_smarty_tpl->tpl_vars['notificacion']->value['codigo'];?>
+, <?php echo $_smarty_tpl->tpl_vars['notificacion']->value['codigoIncidencia'];?>
+);">          
+              <div style = "width: 17%; float: left;">
+                <?php if ($_smarty_tpl->tpl_vars['notificacion']->value['tipo']=="estado") {?>
+                  <span class = "fa fa-trash" style = "font-size: 38px;"></span>
+                <?php } else { ?>
+                  <span class = "fa fa-comment" style = "font-size: 38px;"></span>
+                <?php }?>
+              </div>
+              <div  style = "width: 83%; float: right; margin-top: 1.5px;"><?php echo $_smarty_tpl->tpl_vars['notificacion']->value['mensaje'];?>
+</div>
+              <br><br>
+              <span class="subtexto"><span class = "fa fa-clock-o"></span>&nbsp;&nbsp;<?php echo $_smarty_tpl->tpl_vars['notificacion']->value['fechaHora'];?>
+</span>
+            </li>
+          <?php } ?>
+        <?php } else { ?>
+          <li class = "noVista">
+            <div style = "width: 100%; text-align: center"><span class = "fa fa-bell-slash" style = "font-size: 38px;"></span></div>
+            <div  style = "width: 100%; margin-top: 11px; text-align: center">Sin notificaciones nuevas</div>
+          </li>
+        <?php }?>
+      </ul>       
     <?php }?>
     <div class = "menu">
       <ul class = "ulMenu"> 
@@ -104,7 +127,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
               <?php }?>
             </ul>    
           </li>
-          <li class = "opcionSubmenu"><a href = "#"><span class = "fa fa-bar-chart"></span>&nbsp;&nbsp;Estadísticas</a></li>
+          <li class = "opcionSubmenu"><a href = "/Volquetas/volqueta/estadisticas"><span class = "fa fa-bar-chart"></span>&nbsp;&nbsp;Estadísticas</a></li>
           <li class = "opcionSubmenu" id = "opcionUsuarios"><a><span class = "fa fa-user"></span>&nbsp;&nbsp;Cuentas de usuarios&nbsp;&nbsp;<span class = "fa fa-chevron-down" id = iconoDesplegarUsuarios></span></a>
             <ul class = "submenu submenuUsuarios">
               <li class = "opcionSubmenuUsuarios"><a href = "/Volquetas/usuario/verPerfil">Mi perfil</a></li>

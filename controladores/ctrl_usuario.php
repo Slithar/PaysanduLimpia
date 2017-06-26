@@ -5,6 +5,7 @@ require_once("clases/usuario.php");
 require_once("clases/respuesta.php");
 require_once("clases/Utils.php");
 require_once("clases/session.php");
+require_once('clases/notificacion.php');
 require_once('vendor/autoload.php');
 
 class ControladorUsuario extends ControladorIndex{
@@ -289,7 +290,7 @@ class ControladorUsuario extends ControladorIndex{
 		else{
 			$respuesta = new Respuesta(array("code" => "error",
 												"message" => array("alert" => "alert-danger",													
-																	"content" => "<strong><center>ERROR</center></strong><center>No se ha checkeado captcha. Por favor, selecciónelo para continuar.</center>",),
+																	"content" => "<strong><center>ERROR</center></strong><center>No se ha chequeado captcha. Por favor, selecciónelo para continuar.</center>",),
 												"content" => "",));
 				/*echo "error";*/
 			echo $respuesta->getResult();
@@ -436,6 +437,95 @@ class ControladorUsuario extends ControladorIndex{
 		$this->redirect('usuario', 'logout');
 
 	}	
+
+	public function notificacionesDelUsuario($params = array()){
+		Session::init();
+		/*$ciReceptor = Session::get('ci');
+		if($ciReceptor != "1" && $ciReceptor != "2"){
+			$aplicacion = "paysandulimpia";
+			$idAplicacion = "0";
+		}
+		else{
+			$aplicacion = Session::get('tipo');
+			$idAplicacion = Session::get('id');
+			if($aplicacion == "facebook")
+				$ciReceptor = "1";
+			else
+				$ciReceptor = "2";
+		}*/
+		$aplicacion = Session::get('tipo');
+
+		if($aplicacion == "paysandulimpia"){
+			$ciReceptor = Session::get('ci');
+			$idAplicacion = "0";
+		}
+		else if($aplicacion == "facebook"){
+			$ciReceptor = "1";
+			$idAplicacion = Session::get('id');
+		}
+		else if($aplicacion == "google"){
+			$ciReceptor = "2";
+			$idAplicacion = Session::get('id');
+		}
+
+		$notificacion = new notificacion(array("ciReceptor" => $ciReceptor,
+											"aplicacion" => $aplicacion,
+											"idAplicacion" => $idAplicacion));
+
+		$notificacionesNoVistas = $notificacion->getNotificacionesNoVistas();
+		$notificacionesVistas = $notificacion->getNotificacionesVistas();
+
+		$cantidadNotificacionesVistas = count($notificacionesVistas);
+		$cantidadNotificacionesNoVistas = count($notificacionesNoVistas);
+		$cantidadNotificacionesTotal = $cantidadNotificacionesVistas + $cantidadNotificacionesNoVistas;
+		if($cantidadNotificacionesNoVistas > 0){
+			foreach($notificacionesNoVistas as $noVista){
+				$datosNotificacion = array("codigo" => $noVista->getCodigo(),
+											"ciReceptor" => $noVista->getCiReceptor(),
+											"aplicacion" => $noVista->getAplicacion(),
+											"idAplicacion" => $noVista->getIdAplicacion(),
+											"mensaje" => $noVista->getMensaje(),
+											"codigoIncidencia" => $noVista->getCodigoIncidencia(),
+											"fechaHora" => $noVista->getFechaHora(),
+											"tipo" => $noVista->getTipo(),
+											"vista" => "0");
+				$notificaciones[] = $datosNotificacion;
+			}
+		}
+		if($cantidadNotificacionesNoVistas < 10){
+			for($i = 0; $i < 11 - $cantidadNotificacionesNoVistas; $i++){
+				if($notificacionesVistas[$i]){
+					$datosNotificacion = array("codigo" => $notificacionesVistas[$i]->getCodigo(),
+										"ciReceptor" => $notificacionesVistas[$i]->getCiReceptor(),
+										"aplicacion" => $notificacionesVistas[$i]->getAplicacion(),
+										"idAplicacion" => $notificacionesVistas[$i]->getIdAplicacion(),
+										"mensaje" => $notificacionesVistas[$i]->getMensaje(),
+										"codigoIncidencia" => $notificacionesVistas[$i]->getCodigoIncidencia(),
+										"fechaHora" => $notificacionesVistas[$i]->getFechaHora(),
+										"tipo" => $notificacionesVistas[$i]->getTipo(),
+										"vista" => "1");
+					$notificaciones[] = $datosNotificacion;
+				}
+				
+			}
+		}
+		//var_dump($cantidadNotificacionesNoVistas." - ".$cantidadNotificacionesVistas);
+		$tpl = Template::getInstance();
+		$tpl->asignar('notificaciones', $notificaciones);
+		$tpl->asignar('cantidadNotificacionesNoVistas', $cantidadNotificacionesNoVistas);
+		$tpl->asignar('cantidadNotificacionesVistas', $cantidadNotificacionesVistas);
+		$tpl->asignar('cantidadNotificacionesTotal', $cantidadNotificacionesTotal);
+		
+	}
+
+	public function notificacionAVista(){
+		$notificacion = new notificacion(array("codigo" => $_POST['codigo']));
+		$notificacion->notificacionAVista();
+		$respuesta = new Respuesta(array("code" => "ok",
+										"message" => "",
+										"content" => ""));
+		echo $respuesta->getResult();
+	}
 }
 
 ?>
