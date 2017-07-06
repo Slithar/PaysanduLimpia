@@ -333,7 +333,7 @@ class ControladorUsuario extends ControladorIndex{
 	}
 
 	public function logout(){
-		Auth::loggedIn();
+		//Auth::loggedIn();
 		Session::init();
 		unset($_COOKIE['ciUsuario']);
 		setcookie('ciUsuario', null, -1, '/');		

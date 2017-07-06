@@ -18,3 +18,39 @@ p{
 	text-align: justify;
 	font-size: 18px;
 }
+
+#contenedorAyuda{
+	max-width: 990px;
+	margin: auto;
+	margin-top: 70px;
+	margin-bottom: 101px;
+	/*border: 1px solid black;*/
+}
+
+#contenedorAyuda ul{
+	font-size: 18px;
+}
+
+
+@media (max-width:1110px){
+	#contenedorAyuda{
+	  max-width: 800px; 
+	  margin: 0 auto; 
+	  margin-top: 70px; 
+	  margin-bottom: 101px; 
+	}
+	.logoPaysanduLimpia{
+	margin-top:15px;
+	}
+}
+@media (max-width:850px){
+	#contenedorAyuda{
+		max-width: 600px;
+		margin: auto;
+		margin-bottom: 101px;
+		margin-top: 50px;
+	}
+	.logoPaysanduLimpia{
+		display: none;
+	}
+}

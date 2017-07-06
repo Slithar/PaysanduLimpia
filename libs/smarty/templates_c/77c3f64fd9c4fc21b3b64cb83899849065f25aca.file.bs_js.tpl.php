@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-06-25 03:00:08
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-07-04 22:31:25
          compiled from "vistas\bs_js.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:875158f80d754c4a77-94076578%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '77c3f64fd9c4fc21b3b64cb83899849065f25aca' => 
     array (
       0 => 'vistas\\bs_js.tpl',
-      1 => 1498359605,
+      1 => 1499207480,
       2 => 'file',
     ),
   ),
@@ -23,7 +23,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 <link rel="shortcut icon" type="image/ico" href="img/iconoPaysanduLimpia.ico" />
 
-
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0" />
 
 
 <?php echo '<script'; ?>
@@ -96,4 +96,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <?php echo '<script'; ?>
  src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"><?php echo '</script'; ?>
+>
+
+<?php echo '<script'; ?>
+>
+	/*alert(window.innerWidth)
+	if (window.innerWidth < 640){
+		alert("aca");
+		$( window ).width('640px');
+		alert(window.innerWidth);
+	}*/
+<?php echo '</script'; ?>
 ><?php }} ?>

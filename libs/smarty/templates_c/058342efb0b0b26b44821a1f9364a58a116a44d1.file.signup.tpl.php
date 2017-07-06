@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-06-07 22:30:39
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-07-01 18:21:49
          compiled from "vistas\signup.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1844658f80d752b5502-04667526%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '058342efb0b0b26b44821a1f9364a58a116a44d1' => 
     array (
       0 => 'vistas\\signup.tpl',
-      1 => 1496874624,
+      1 => 1498857850,
       2 => 'file',
     ),
   ),
@@ -129,12 +129,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 				<br><br>
 				<div class="row">
 					<div class="form-group col-sm-12" style="text-align: center;">
-						<button type="submit" name="subBoton" id="subBoton" class="btn btn-success"><b>Registrarme</b></button>
+						<button type="submit" name="subBoton" id="subBoton" class="btn btn-success" style = "width: 50%; padding: 7px;"><b>Registrarme</b></button>
 					</div>	
 				</div>
-				<br>
 				<div class="row">
-					<div class="col-sm-12 alert alert-danger" id="alerta" style="text-align: center; display: none;">
+					<div class="col-sm-12 alert alert-danger" id="alerta" style="text-align: center; display: none; margin-top: 21.4px;">
 						
 					</div>
 				</div>

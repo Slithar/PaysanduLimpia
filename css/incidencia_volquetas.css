@@ -3,20 +3,54 @@
 	height: 100%;
 }
 
+.contenedor{
+	overflow-x: hidden;
+}
+
+.contenedorNuevaIncidencia{
+	/*border: 1px solid black;*/
+	max-width: 1100px;
+	margin: auto;
+	display: block;
+}
+
 .referencias{
-	width: 17%;
-	height: 65%;
-	position: absolute;
+	width: 350px;
+	right: 0;
+	top: 0;
+	bottom: 30px;
+	position: fixed;
 	background: rgba(255, 255, 255, .85);
-	border-radius: 15px;
-	left: 73%;
-	top: 21%;
+	overflow-y: auto;
+	/*border-radius: 15px;*/
+	/*left: 73%;
+	top: 21%;*/
+}
+
+.referencias::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+.referencias::-webkit-scrollbar
+{
+	width: 7px;
+	background-color: #F5F5F5;
+}
+
+.referencias::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #A6A6A6;
 }
 
 .greenMarker{
 	width: 15%;
 	margin-left: 42%;
-	margin-top: 12%;
+	margin-top: 50%;
 }
 
 .lblGreenMarker{
@@ -32,6 +66,7 @@
 	font-weight: normal;
 	display: block;
 	text-align: center;
+	font-size: 18px;
 }
 
 .orangeMarker{
@@ -46,13 +81,13 @@
 	font-weight: bold;
 	font-size: 18px;
 	text-align: center;
-
 }
 
 #lblCantidadOrange{
 	font-weight: normal;
 	display: block;
 	text-align: center;
+	font-size: 18px;
 }
 
 .redMarker{
@@ -74,6 +109,7 @@
 	font-weight: normal;
 	display: block;
 	text-align: center;
+	font-size: 18px;
 }
 
 .contenedor{
@@ -108,7 +144,7 @@
 	font-size: 14px;
 }
 #direccionIncidencia{
-	/*border: 1px solid black;*/
+	/*sborder: 1px solid black;*/
 	margin-top: 35px;
 	margin-left: 5%;
 	width: 50%;
@@ -200,10 +236,14 @@
 }
 
 #lblBuscar{
-	margin-left: 33%;
+	margin-left: 33.5%;
 	margin-right: 37px;
 }
 
+#lblBuscarVerIncidencia{
+	margin-left: 33.5%;
+	margin-right: 37px;
+}
 .galeria{
 	margin-top: 35px;
 	width: 100%;
@@ -214,7 +254,8 @@
 }
 
 .galeria_item{
-	width: 22%;
+	/*width: 22%;*/
+	width: 241.1px;
 	margin: 20px 16.5px;
 }
 
@@ -225,6 +266,18 @@
 }
 
 .fondoNegro{
+	z-index: 10000;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, .9);
+	display: none;
+	overflow-y: auto;
+}
+
+.contNegro{
 	z-index: 10000;
 	position: fixed;
 	top: 0;
@@ -249,6 +302,19 @@
 	color: #b83636;
 }
 
+#btnCerrarContNegro{
+	font-size: 58px;
+	color: white;
+	cursor: pointer;
+	position: absolute;
+	left: 81%;
+	top: 3%;
+}
+
+#btnCerrarContNegro:hover{
+	color: #b83636;
+}
+
 #submitIncidencia{
 	font-weight: bold;
 	width: 30%;
@@ -266,6 +332,7 @@
 
 #imgModal{
 	border-radius: 15px;
+	border: 11px solid white;
 }
 
 .divBusqueda{
@@ -289,6 +356,10 @@
 #comboOrden{
 	width: 23.5%;
 	display: inline-block;
+}
+
+#lblEstadoFiltro{
+	margin-right: 7%;
 }
 
 .busquedaIncidencia{
@@ -403,4 +474,633 @@
 
 .divComentariosVerIncidencia:last-child{
 	border-bottom: none;
+}
+
+#btnReferencias{
+	display: none;
+}
+
+.markerTable{
+	width: 45px;
+	margin-left: 10px;
+	display: block;
+}
+
+.select2-container--default .select2-selection--single{
+	height: 34px;
+	padding: 3px;
+}
+
+.imagenVolquetaIncidencia{
+	width: 27%; 
+	height: 100%; 
+	border-radius: 15px 0 0 15px;
+}
+
+.datosIncidencia2{
+	width: 67%;
+	float: right;
+	height: 200px;
+	padding: 1% 1.5%;
+	display: none;
+}
+
+.datosIncidencia3{
+	width: 100%;
+	height: 200px;
+	padding: 1% 1.5%;
+	display: none;
+}
+
+.tableDatosIncidencia2{
+	width: 100%; 
+	margin-top: 0;
+	display: none;
+}
+
+#imgVolqueta{
+	width: 50%;
+	height: 75%;
+	border: 5px solid white;
+	border-radius: 15px;
+	margin-left: calc((100% - 595px) / 2);
+	margin-top: 15%;
+}
+
+#btnEliminarIncidencia{
+	width: 15%; 
+	float: right;	
+}
+
+#btnModificarIncidencia{
+	width: 15%; 
+	margin-right: 2%; 
+	float: right;
+}
+
+#contenedorInformacionIncidencia{
+	height:400px; 
+	margin-top: 15px; 
+	padding: 25px 45px; 
+	box-sizing: border-box;
+}
+
+#btnComentar{
+	width: 15%; 
+	float: right; 
+	margin-top: 25px;
+}
+
+#divSpinner{
+	margin-top: 101px; 
+	/*margin-left: 42%;*/
+	/*margin-right: calc(100% - 51px); */
+	width: 32px; 
+	font-size: 24px; 
+	display: none;
+	/*display: block;*/
+	/*position: absolute;*/
+	/*left: 68%;*/
+}
+
+#spinnerVerIncidenciaDatos{
+	margin-top: 31.5px;
+}
+
+#comboEstadoTodasIncidencias{
+	margin-right: 2%;
+}
+
+.busquedaIncidencia{
+	width: 41.5%;
+}
+
+.divBusquedaLG{
+	display: block;
+}
+
+.divBusquedaSM{
+	display: none;
+}
+
+.divBusquedaXS{
+	display: none;
+}
+
+.colredimension{
+	width: 40%;
+}
+
+#tblVerTodasLasIncidencias{
+	display: block;
+}
+
+#panelsVerTodasLasIncidencias{
+	display: none;
+}
+
+.tdOrdenarPor{
+	padding-left: 157px;
+}
+
+/***** Media queries de ver volquetas *****/
+
+@media (max-height: 1900px) and (min-height: 970px){
+	.greenMarker{
+		margin-top: 58.5%;
+	}
+}
+
+@media (max-height: 970px){
+	.greenMarker{
+		margin-top: 45%;
+	}
+
+	.referencias{
+		display: none;
+	}
+
+	#btnReferencias{
+		display: block;
+	}
+}
+
+@media (max-height: 775px){
+	.greenMarker{
+		margin-top: 35%;
+	}
+}
+
+@media (max-height: 700px){
+	.greenMarker{
+		margin-top: 35%;
+	}
+	.orangeMarker{
+		margin-top: 10%
+	}
+	.redMarker{
+		margin-top: 10%
+	}
+}
+
+
+
+/****** Media queries de nueva incidencia *****/
+
+@media (max-width: 1110px){
+	.contenedorNuevaIncidencia{
+		max-width: 960px;
+	}
+
+	#direccionIncidencia{
+		width: 50%;
+	}
+}
+
+@media (max-width: 970px){
+	.contenedorNuevaIncidencia{
+		max-width: 800px;
+	}
+
+	#direccionIncidencia{
+		width: 50%;
+	}
+
+	#lblBuscar{
+		width: 25%;
+		margin-left: 22.5%;
+	}
+
+	#lblQuitar{
+		width: 25%;
+	}
+
+	#imgModal{
+		border: 5px solid white;
+	}
+
+}
+
+@media (max-width: 810px){
+	.contenedorNuevaIncidencia{
+		max-width: 700px;
+	}
+
+	#direccionIncidencia{
+		width: 50%;
+	}
+}
+
+@media (max-width: 730px){
+	.contenedorNuevaIncidencia{
+		max-width: 600px;
+	}
+	#direccionIncidencia{
+		width: 50%;
+	}
+}
+
+
+
+
+/***** Media queries de mis incidencias = incidencias reportadas (ver todas las incidencias > selecciono un grupo) ******/
+
+@media (max-width: 1110px){
+	.contenedorMisIncidencias{
+		max-width: 960px;
+	}
+}
+
+@media (max-width: 970px){
+	.contenedorMisIncidencias{
+		max-width: 800px;
+	}
+
+	.imagenVolquetaIncidencia{
+		width: 33%; 
+	}
+
+	.datosIncidencia{
+		width: 67%;
+		padding-left: 15px;
+	}
+
+	#imgModal{
+		border: 5px solid white;
+	}
+
+}
+
+@media (max-width: 810px){
+	.contenedorMisIncidencias{
+		max-width: 700px;
+	}
+
+	.busquedaIncidencia{
+		width: 52%;
+	}
+
+	.datosIncidencia{
+		display: none;
+	}
+
+	.datosIncidencia2{
+		display: block;
+	}
+
+	.datosIncidencia3{
+		display: none;
+	}
+
+	#lblEstadoFiltro{
+		margin-right: 5%;
+	}
+
+	#comboEstado{
+		width: 17%;
+	}
+}
+
+@media (max-width: 720px){
+	.contenedorMisIncidencias{
+		max-width: 600px;
+	}
+
+	.busquedaIncidencia{
+		width: 45%;
+	}
+	.datosIncidencia{
+		display: none;
+	}
+
+	.datosIncidencia2{
+		display: none;
+		/*width: 100%;
+		margin-top: 15px;
+		text-align: center;*/
+	}
+
+	.datosIncidencia3{
+		display: block;
+		width: 100%;
+		margin-top: 15px;
+		text-align: center;
+	}
+
+	#comboEstado{
+		width: 20%;
+	}
+
+	.contenedorIncidencia{
+		width: 82%;
+		display: block;
+		margin: auto;
+		margin-top: 50px;
+		height: 535px;
+	}
+
+	.imagenVolquetaIncidencia{
+		width: 100%;
+		height: 55%; 
+		border-radius: 15px 15px 0 0;
+	}
+}
+
+
+
+
+
+
+/***** Media queries ver incidencia = ver todas las incidencias > selecciono un grupo > ver incidencia *****/
+
+
+@media (max-width: 1110px){
+	.contenedorVerIncidencia{
+		max-width: 960px;
+	}	
+}
+
+@media (max-width: 970px){
+	.contenedorVerIncidencia{
+		max-width: 800px;
+	}
+
+	.tableDatosIncidencia1{
+		display: none;
+	}
+
+	.tableDatosIncidencia2{
+		display: block;
+		width: 100%;
+		margin-top: -15px;
+		/*border: 1px solid black;*/
+		margin-left: 7%;
+	}
+
+	.tableDatosIncidencia2 tr td{
+		/*border: 1px solid black;*/
+		padding-right: 42px;
+	}
+
+	.imagenVerIncidencia{
+		display: none;
+	}
+
+	#imgVolqueta{
+		width: 595px;
+		height: 442px;
+		border: 5px solid white;
+		border-radius: 15px;
+		margin-left: calc((100% - 595px) / 2);
+		margin-top: 15%;
+	}
+
+	#btnCerrarContNegro{
+		font-size: 58px;
+		color: white;
+		cursor: pointer;
+		position: absolute;
+		left: 85%;
+		top: 3%;
+	}
+
+	#btnComentar{
+		width: 25%;
+	}
+
+	#imgModal{
+		border: 5px solid white;
+	}
+
+	.galeria_item{
+		margin: 20px 45px;
+	}
+
+	.galeria_img{
+		width: 200px;
+	}
+
+}
+
+@media (max-width: 810px){
+	.contenedorVerIncidencia{
+		max-width: 700px;
+	}
+
+	.tableDatosIncidencia1{
+		display: none;
+	}
+
+	.tableDatosIncidencia2{
+		display: block;
+		margin-left: -2.5%;
+		width: 150%;
+	}
+
+	.tableDatosIncidencia2 tr td{
+		padding-right: 52px;
+		/*border: 1px solid black;*/
+	}
+
+	.imagenVerIncidencia{
+		display: none;
+	}
+
+	#imgVolqueta{
+		width: 595px;
+		height: 442px;
+		
+	}
+
+	#btnCerrarContNegro{
+		font-size: 58px;
+		color: white;
+		cursor: pointer;
+		position: absolute;
+		left: 85%;
+		top: 3%;
+	}
+
+	#lblBuscarVerIncidencia{
+		width: 21%;
+		margin-left: 25%;
+	}
+
+	#lblSubir{
+		width: 21%;
+	}
+
+	#btnEliminarIncidencia{
+		width: 20%;
+
+	}
+
+	#btnModificarIncidencia{
+		width: 20%;
+	}
+
+	#btnCerrarContNegro{
+		left: 88.5%;
+	}
+
+	#btnComentar{
+		width: 27%;
+	}
+
+	.galeria_item{
+		margin: 20px 71px;
+	}
+
+	.galeria_img{
+		width: 200px;
+	}
+}
+
+@media (max-width: 720px){
+	.contenedorVerIncidencia{
+		width: 600px;
+	}
+
+	.contenedorVerIncidenciaDatos{
+		width: 100%;
+	}
+
+	.tableDatosIncidencia2{
+		display: block;
+		margin-left: -3.5%;
+		width: 112%;
+	}
+
+	.tableDatosIncidencia2 tr td{
+		padding-right: 22px;
+		/*border: 1px solid black;*/
+	}
+	#btnCerrarContNegro{
+		left: 88.5%;
+	}
+
+	#lblBuscarVerIncidencia{
+		width: 27%;
+		margin-left: 20%;
+	}
+
+	#lblSubir{
+		width: 27%;
+	}
+
+	#btnComentar{
+		width: 31%;
+	}
+
+	.galeria_item{
+		margin-left: 0;
+		margin-right: 150px;
+	}
+
+	.galeria_img{
+		width: 200px;
+	}
+}
+
+
+/******* Media queries de ver todas las incidencias  ********/
+
+@media (max-width: 1110px){
+
+	.contenedorVerTodasLasIncidencias{
+		width: 960px;
+	}
+
+	#comboEstadoTodasIncidencias{
+		margin-right: 2%;
+		width: 125px;
+	}
+
+	#comboOrden{
+		width: 193px;
+	}
+
+	.busquedaIncidencia{
+		width: 45%;
+	}
+
+	#tblVerTodasLasIncidencias{
+		display: block;
+	}
+
+	#panelsVerTodasLasIncidencias{
+		display: none;
+	}
+}
+
+@media (max-width: 970px){
+
+	.contenedorVerTodasLasIncidencias{
+		width: 800px;
+	}
+
+	.divBusquedaLG{
+		display: none;
+	}
+
+	.divBusquedaSM{
+		display: block;
+	}
+
+	.divBusquedaXS{
+		display: none;
+	}
+
+	#imgModal{
+		border: 5px solid white;
+	}
+
+	#tblVerTodasLasIncidencias{
+		display: none;
+	}
+
+	#panelsVerTodasLasIncidencias{
+		display: block;
+	}
+}
+
+@media (max-width: 810px){
+	.contenedorVerTodasLasIncidencias{
+		width: 700px;
+	}
+
+	.divBusquedaLG{
+		display: none;
+	}
+
+	.divBusquedaSM{
+		display: none;
+	}
+
+	.divBusquedaXS{
+		display: block;
+	}
+}
+
+@media (max-width: 720px){
+	.contenedorVerTodasLasIncidencias{
+		width: 600px;
+	}
+	
+	.divBusquedaLG{
+		display: none;
+	}
+
+	.divBusquedaSM{
+		display: none;
+	}
+
+	.divBusquedaXS{
+		display: block;
+	}
+
+
+	.tdOrdenarPor{
+		padding-left: 62px;
+	}
 }

@@ -1,7 +1,7 @@
 jQuery(document).ready(function($) {
 	var visibleIncidencias = false;
 	var visibleUsuarios = false;
-
+	$('.contenedorNegro').css('display', 'none');
 	//alert("hola");
 	/*
 		Función para el submit del formulario de Log In.
@@ -16,22 +16,27 @@ jQuery(document).ready(function($) {
 
 	//alert("aca");
 	$("#enviarFormLogin").on('click', function(event) {
+
+		//alert("aca");
 		event.preventDefault();
 		//alert("aca");
 		var error = false;
 		//alert("aca");
+
 		$("#cedulaUsuario, #passwordUsuario").map(function(){			
 			
 			$(this).parent().removeClass('has-error');
 			if($(this).val() == ""){
+				//alert("aca");
 				error = true;
 				$(this).parent().addClass('has-error');
-				//alert("aca");
 				$('#alertLogin').removeClass('alert-success');
 				$('#alertLogin').addClass('alert-danger');
 				$("#alertLogin").html("<center><strong>ERROR</strong></center><center><p>No se han ingresado campos obligatorios</p></center>");
 				$('#alertLogin').css('display', 'block');
-				//$("html, body").animate({ scrollTop : $("#alertLogin").offset().top + 100 }, 750 );
+				//console.log("llegue aca");
+				$("#main").animate({ scrollTop : $("#alertLogin").offset().top + 100 }, 750 );
+
 				setTimeout(function(){
 					$('#alertLogin').fadeOut();
 				}, 5000);
@@ -64,7 +69,9 @@ jQuery(document).ready(function($) {
 	});
 
 	$('#btnSubmitLogin').on('click', function(e){
+		//alert("aca");
 		e.preventDefault();
+		
 		if($('#ciHorizontal').val() == "" || $('#passwordHorizontal') == ""){
 			window.location.href = "/Volquetas/usuario/login/empty/" + $('#ciHorizontal').val().replace('undefined', '');
 		}
@@ -305,7 +312,7 @@ jQuery(document).ready(function($) {
 				$('#alertContacto').css('display', 'block');
 				$('#alertContacto').addClass(response['message']['alert']);
 				$('#alertContacto').html(response['message']['content']);
-				$('.footerLanding').css('height', '631px');
+				//$('.footerLanding').css('height', '631px');
 				setTimeout(function(){				
 					$("#spinnerEnviar").css('display', 'none');
 					$("#alertContacto").css('display', 'none');
@@ -315,8 +322,10 @@ jQuery(document).ready(function($) {
 					$('#mensaje').val("");
 					$('.footerLanding').css('height', '571px');
 					$('#alertContacto').removeClass(response['message']['alert']);
-					$('#captcha').remove();
+					//$('#captcha').remove();
+					//$('')
 					//grecaptcha.reset();
+					$('.footerLanding').css('bottom', '0');
 				}, 5000);
 			}
 			else{
@@ -325,12 +334,12 @@ jQuery(document).ready(function($) {
 				$('#alertContacto').css('display', 'block');
 				$('#alertContacto').addClass(response['message']['alert']);
 				$('#alertContacto').html(response['message']['content']);
-				$('.footerLanding').css('height', '631px');
+				//$('.footerLanding').css('height', '631px');
 				setTimeout(function(){				
 					$("#spinnerEnviar").css('display', 'none');
 					$("#alertContacto").css('display', 'none');
 					$('#btnEnviarCorreo').css('display', 'block');
-					$('.footerLanding').css('height', '571px');
+					//$('.footerLanding').css('height', '571px');
 					$('#alertContacto').removeClass(response['message']['alert']);
 				}, 5000);
 			}
@@ -376,6 +385,7 @@ jQuery(document).ready(function($) {
 				$("#alerta").css('display', 'block');
 				$("#alerta").html("<strong>ERROR: </strong>No se han completado campos obligatorios");
 				$(this).parent().addClass("has-error");
+				$("#main").animate({ scrollTop : $("#alerta").offset().top + 100 }, 750 );
 				setTimeout(function(){
 					$("#alerta").css('display', 'none');
 				}, 5000);
@@ -400,6 +410,7 @@ jQuery(document).ready(function($) {
 					$("#alerta").html(response["message"]["content"]);
 					//$(this).parent().addClass("has-error");
 					$('input[type="email"]').focus();
+					$("#main").animate({ scrollTop : $("#alerta").offset().top + 100 }, 750 );
 					setTimeout(function(){
 						$("#alerta").css('display', 'none');
 					}, 5000);
@@ -506,7 +517,6 @@ jQuery(document).ready(function($) {
 							'margin': 'auto',
 							'display': 'block',
 							'margin-top': '3%',
-							'border': '11px solid white',
 							'margin-bottom' : '50px'});
 			
 			
@@ -516,7 +526,6 @@ jQuery(document).ready(function($) {
 								'margin': 'auto',
 								'display': 'block',
 								'margin-top': '7%',
-								'border': '11px solid white',
 								'margin-bottom' : '50px'});
 		}
 		$('#imgModal').attr('src', e.target.src);	
@@ -555,6 +564,40 @@ jQuery(document).ready(function($) {
 	$('#txtBusquedaTodasIncidencias').on('keyup', function(e){
 		if(e.which == 13)
 			window.location.href = "/Volquetas/incidencia/verTodasLasIncidencias/" + $('#comboEstadoTodasIncidencias').val() + "/" + $('#comboOrden').val() + "/" + $('#txtBusquedaTodasIncidencias').val();
+	});
+
+	$('#comboEstadoTodasIncidenciasSM').on('change', function(){
+		window.location.href = "/Volquetas/incidencia/verTodasLasIncidencias/" + $('#comboEstadoTodasIncidenciasSM').val() + "/" + $('#comboOrdenSM').val() + "/" + $('#txtBusquedaTodasIncidenciasSM').val();
+	});
+
+	$('#comboOrdenSM').on('change', function(){
+		window.location.href = "/Volquetas/incidencia/verTodasLasIncidencias/" + $('#comboEstadoTodasIncidenciasSM').val() + "/" + $('#comboOrdenSM').val() + "/" + $('#txtBusquedaTodasIncidenciasSM').val();
+	});
+
+	$('#btnBuscarTodasIncidenciasSM').on('click', function(){
+		window.location.href = "/Volquetas/incidencia/verTodasLasIncidencias/" + $('#comboEstadoTodasIncidenciasSM').val() + "/" + $('#comboOrdenSM').val() + "/" + $('#txtBusquedaTodasIncidenciasSM').val();
+	});
+
+	$('#txtBusquedaTodasIncidenciasSM').on('keyup', function(e){
+		if(e.which == 13)
+			window.location.href = "/Volquetas/incidencia/verTodasLasIncidencias/" + $('#comboEstadoTodasIncidenciasSM').val() + "/" + $('#comboOrdenSM').val() + "/" + $('#txtBusquedaTodasIncidenciasSM').val();
+	});
+
+	$('#comboEstadoTodasIncidenciasXS').on('change', function(){
+		window.location.href = "/Volquetas/incidencia/verTodasLasIncidencias/" + $('#comboEstadoTodasIncidenciasXS').val() + "/" + $('#comboOrdenXS').val() + "/" + $('#txtBusquedaTodasIncidenciasXS').val();
+	});
+
+	$('#comboOrdenXS').on('change', function(){
+		window.location.href = "/Volquetas/incidencia/verTodasLasIncidencias/" + $('#comboEstadoTodasIncidenciasXS').val() + "/" + $('#comboOrdenXS').val() + "/" + $('#txtBusquedaTodasIncidenciasXS').val();
+	});
+
+	$('#btnBuscarTodasIncidenciasXS').on('click', function(){
+		window.location.href = "/Volquetas/incidencia/verTodasLasIncidencias/" + $('#comboEstadoTodasIncidenciasXS').val() + "/" + $('#comboOrdenXS').val() + "/" + $('#txtBusquedaTodasIncidenciasXS').val();
+	});
+
+	$('#txtBusquedaTodasIncidenciasXS').on('keyup', function(e){
+		if(e.which == 13)
+			window.location.href = "/Volquetas/incidencia/verTodasLasIncidencias/" + $('#comboEstadoTodasIncidenciasXS').val() + "/" + $('#comboOrdenXS').val() + "/" + $('#txtBusquedaTodasIncidenciasXS').val();
 	});
 
 	$('#lblSubir').on('click', function(){
@@ -606,6 +649,10 @@ jQuery(document).ready(function($) {
 	});
 
 	$('.divPerfil').on('click', function(){
+		window.location.href = "/Volquetas/usuario/verPerfil";
+	});	
+
+	$('.divPerfil2').on('click', function(){
 		window.location.href = "/Volquetas/usuario/verPerfil";
 	});	
 
@@ -662,6 +709,78 @@ jQuery(document).ready(function($) {
 			notificaciones = false;
 		}
 	});
+
+	var menuVertical = false;
+
+	$('.bars').on('click', function(){
+		//alert("hola");
+		if(menuVertical == false){
+			$('.ulMenuVertical').animate({
+				left : '0'
+			});
+			menuVertical = true;
+		}
+		else{
+			$('.ulMenuVertical').animate({
+				left : '-100%'
+			});
+			menuVertical = false;
+		}
+	})
+
+	var opcionIncidenciasVertical = false;
+
+	$('#opcionIncidenciasVertical').on('click', function(){
+		//alert("aca");
+		if(!opcionIncidenciasVertical){
+			$('.submenuIncidenciasVertical').slideDown();
+			opcionIncidenciasVertical = true;
+			$('#iconoDesplegarIncidenciasVertical').removeClass('fa-chevron-down');
+			$('#iconoDesplegarIncidenciasVertical').addClass('fa-chevron-up');
+		}
+		else{
+			$('.submenuIncidenciasVertical').slideUp();
+			opcionIncidenciasVertical = false;
+			$('#iconoDesplegarIncidenciasVertical').removeClass('fa-chevron-up');
+			$('#iconoDesplegarIncidenciasVertical').addClass('fa-chevron-down');
+		}
+	});
+
+	var opcionUsuariosVertical = false;
+
+	$('#opcionUsuariosVertical').on('click', function(){
+		//alert("aca");
+		if(!opcionUsuariosVertical){
+			$('.submenuUsuariosVertical').slideDown();
+			opcionUsuariosVertical = true;
+			$('#iconoDesplegarUsuariosVertical').removeClass('fa-chevron-down');
+			$('#iconoDesplegarUsuariosVertical').addClass('fa-chevron-up');
+		}
+		else{
+			$('.submenuUsuariosVertical').slideUp();
+			opcionUsuariosVertical = false;
+			$('#iconoDesplegarUsuariosVertical').removeClass('fa-chevron-up');
+			$('#iconoDesplegarUsuariosVertical').addClass('fa-chevron-down');
+		}
+	});
+
+	$('.btnCerrar').on('click', function(){
+		$('.contenedorNegro').fadeOut();
+	});
+
+	$('#opcionNotificaciones').on('click', function(){
+		//alert("aca");
+		$('.contenedorNegro').fadeIn();
+	});
+
+	$('#btnVolqueta').on('click', function(){
+		$('.contNegro').fadeIn();
+	});
+
+	$('#btnCerrarContNegro').on('click', function(){
+		$('.contNegro').fadeOut();
+	})
+
 });
 
 /*function removeError(){

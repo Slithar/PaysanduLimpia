@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-05-20 22:18:19
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-07-04 04:44:24
          compiled from "vistas\misIncidencias.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:31542591daddf102989-93287296%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'f006c35100b94241ef6a507b87b0ea370b930194' => 
     array (
       0 => 'vistas\\misIncidencias.tpl',
-      1 => 1495318695,
+      1 => 1499117655,
       2 => 'file',
     ),
   ),
@@ -52,11 +52,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		<div id = "main" class = "<?php echo $_smarty_tpl->tpl_vars['classMain']->value;?>
  <?php echo $_smarty_tpl->tpl_vars['classLogueado']->value;?>
 ">
-			<div class = "contenedor">
+			<div class = "contenedor contenedorMisIncidencias">
 				<div class = "divBusqueda">
-					<label style = "margin-right: 7%;">
+					<label id = "lblEstadoFiltro">
 						<?php if ($_smarty_tpl->tpl_vars['cantidad']->value=="0") {?>
-							No hay incidencias
+							Sin incidencias
 						<?php } elseif ($_smarty_tpl->tpl_vars['cantidad']->value=="1") {?>
 							1 incidencia
 						<?php } else { ?>
@@ -92,7 +92,7 @@ $_smarty_tpl->tpl_vars['incidencia']->_loop = true;
 ?>
 					<div class = "contenedorIncidencia">
 						<img src = "img/Volquetas/<?php echo $_smarty_tpl->tpl_vars['incidencia']->value['numeroVolqueta'];?>
-.png" style = "width: 27%; height: 100%; border-radius: 15px 0 0 15px">
+.png" class = "imagenVolquetaIncidencia">
 						<div class = "datosIncidencia">
 							<p style = "font-size: 18px; color: #0F3EA1; font-weight: bold;">Volqueta Nº <?php echo $_smarty_tpl->tpl_vars['incidencia']->value['numeroVolqueta'];?>
 : <?php echo $_smarty_tpl->tpl_vars['incidencia']->value['direccion'];?>
@@ -110,20 +110,39 @@ $_smarty_tpl->tpl_vars['incidencia']->_loop = true;
 							<p><a class = "btn btn-primary" href = "/Volquetas/incidencia/verIncidencia/<?php echo $_smarty_tpl->tpl_vars['incidencia']->value['codigo'];?>
 "><span class = "fa fa-eye"></span>&nbsp;&nbsp;Ver incidencia</a></p>
 						</div>
+						<div class = "datosIncidencia2">
+							<p style = "font-size: 18px; color: #0F3EA1; font-weight: bold;">Volqueta Nº <?php echo $_smarty_tpl->tpl_vars['incidencia']->value['numeroVolqueta'];?>
+: <?php echo $_smarty_tpl->tpl_vars['incidencia']->value['direccion'];?>
+</p>
+							<br>
+							<p style = "font-size: 15px;"><b>Código:</b> <?php echo $_smarty_tpl->tpl_vars['incidencia']->value['codigo'];?>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Categoría:</b> <?php echo $_smarty_tpl->tpl_vars['incidencia']->value['categoria'];?>
+</p>
+							<p><b>Estado:</b> <span class = "incidencia<?php echo $_smarty_tpl->tpl_vars['incidencia']->value['estado'];?>
+"><?php echo $_smarty_tpl->tpl_vars['incidencia']->value['estado'];?>
+</span></p>							
+							<br>
+							<p><a class = "btn btn-primary" href = "/Volquetas/incidencia/verIncidencia/<?php echo $_smarty_tpl->tpl_vars['incidencia']->value['codigo'];?>
+"><span class = "fa fa-eye"></span>&nbsp;&nbsp;Ver incidencia</a></p>
+						</div>
+						<div class = "datosIncidencia3">
+							<p style = "font-size: 18px; color: #0F3EA1; font-weight: bold;">Volqueta Nº <?php echo $_smarty_tpl->tpl_vars['incidencia']->value['numeroVolqueta'];?>
+: <?php echo $_smarty_tpl->tpl_vars['incidencia']->value['direccion'];?>
+</p>
+							<br>
+							<p style = "font-size: 15px;"><b>Código:</b> <?php echo $_smarty_tpl->tpl_vars['incidencia']->value['codigo'];?>
+</p>
+							<p><b>Categoría:</b> <?php echo $_smarty_tpl->tpl_vars['incidencia']->value['categoria'];?>
+</p>
+							<p><b>Estado:</b> <span class = "incidencia<?php echo $_smarty_tpl->tpl_vars['incidencia']->value['estado'];?>
+"><?php echo $_smarty_tpl->tpl_vars['incidencia']->value['estado'];?>
+</span></p>							
+							<br>
+							<p><a class = "btn btn-primary" href = "/Volquetas/incidencia/verIncidencia/<?php echo $_smarty_tpl->tpl_vars['incidencia']->value['codigo'];?>
+"><span class = "fa fa-eye"></span>&nbsp;&nbsp;Ver incidencia</a></p>
+						</div>
 					</div>
 				<?php } ?>
-				<!--
-				<div class = "contenedorIncidencia">
-					<img src = "img/Volquetas/27.png" style = "width: 27%; height: 100%; border-radius: 15px 0 0 15px">
-				</div>
-				<div class = "contenedorIncidencia">
-					<img src = "img/Volquetas/27.png" style = "width: 27%; height: 100%; border-radius: 15px 0 0 15px">
-				</div>
-				<div class = "contenedorIncidencia">
-					<img src = "img/Volquetas/27.png" style = "width: 27%; height: 100%; border-radius: 15px 0 0 15px">
-				</div>
-				-->
-
 			</div>
 		</div>
 		<?php echo '<script'; ?>

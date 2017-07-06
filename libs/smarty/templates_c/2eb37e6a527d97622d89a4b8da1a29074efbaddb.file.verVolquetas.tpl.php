@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-05-10 18:53:54
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-07-01 05:57:16
          compiled from "vistas\verVolquetas.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:530958fff7b674be24-08114819%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '2eb37e6a527d97622d89a4b8da1a29074efbaddb' => 
     array (
       0 => 'vistas\\verVolquetas.tpl',
-      1 => 1494442380,
+      1 => 1498888632,
       2 => 'file',
     ),
   ),
@@ -71,6 +71,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 				<label id = "lblCantidadRed"></label>
 			</div>
 		</div>
+		<button type = "button" class = "btn btn-primary" id = "btnReferencias"  data-toggle="modal" data-target="#modalReferencias" style = "position: fixed; bottom: 50px; right: 50px; font-size: 14px; padding: 7px; width: 205px;">
+			<b><span class = "fa fa-hand-o-right"></span>&nbsp;&nbsp;Referencias</b>
+		</button>
 		<?php echo '<script'; ?>
  src = "js/markers.js"><?php echo '</script'; ?>
 >
@@ -80,6 +83,50 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		<!-- Incluir la vista del footer último. Más abajo no debe haber más código -->	
 		<?php echo $_smarty_tpl->getSubTemplate ("footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 
+	</div>
+	<div id="modalReferencias" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Referencias</h4>
+	      </div>
+	      <div class="modal-body" style = "padding: 4% 7%; box-sizing: border-box;">
+	        <table class = "table table-striped">
+	        	<thead>
+	        		<tr>
+	        			<th>Marcador</th>
+	        			<th>Estado</th>
+	        			<th>Cantidad</th>
+	        		</tr>
+	        	</thead>
+	        	<tbody>
+	        		<tr>
+		        		<td style = "padding: 10px 0"><img src = "img/greenMarker.png" class = "markerTable"/></td>
+		        		<td style = "padding: 10px 0"><br><label>Trabajando sobre incidencias</label></td>
+		        		<td style = "padding: 10px 0"><br><label id = "lblCantidadGreenTable"></label></td>
+		        	</tr>
+		        	<tr>
+		        		<td style = "padding: 10px 0"><img src = "img/orangeMarker.png" class = "markerTable"/></td>
+						<td style = "padding: 10px 0"><br><label>Trabajando sobre incidencias</label></td>
+						<td style = "padding: 10px 0"><br><label id = "lblCantidadOrangeTable"></label></td>
+		        	</tr>
+		        	<tr>
+						<td style = "padding: 10px 0"><img src = "img/redMarker.png" class = "markerTable"/></td>
+						<td style = "padding: 10px 0"><br><label>Con incidencias pendientes</label></td>
+						<td style = "padding: 10px 0"><br><label id = "lblCantidadRedTable"></label></td>
+					</tr>
+	        	</tbody>	        	
+	        </table>
+	      </div>
+	      <div class="modal-footer">
+	         <button type="button" class="btn btn-danger" data-dismiss = "modal"><b>Cancelar</b></button>
+	         </div>
+	      </div>        
+	  </div>
+	  
 	</div>
 </body>
 </html><?php }} ?>

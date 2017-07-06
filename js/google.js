@@ -21,6 +21,7 @@ function onSignIn(googleUser) {
         //scope: 'additional_scope'
       });
       attachSignin(document.getElementById('g-login'));
+      attachSignin(document.getElementById('g-login2'));
     });
   }
 

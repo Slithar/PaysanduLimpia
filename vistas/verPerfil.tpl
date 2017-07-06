@@ -9,6 +9,9 @@
 	<title>{$location} - Paysandú Limpia</title>
 	<link rel = "stylesheet" href = "css/signup_login.css"/>
 	<script src = "js/signup_functions.js"></script>
+	{if $success eq "si"}
+		<script src = "js/verPerfil.js"></script>
+	{/if}
 </head> 
 <body>
 	<!-- Incluir la vista del header al principio -->
@@ -20,10 +23,11 @@
 				<form id="formModificar" action="/Volquetas/usuario/modificar" method="POST" enctype="multipart/form-data" accept-charset="utf-8" class="modificar">
 					<div class="row">
 						<div class="form-group col-sm-12">
-							<label for="ci" class="control-label" style = "font-size: 17px">Cédula de identidad: {$ci}</label>
+							<label for="ci" class="control-label" style = "font-size: 17px; margin-top: 5px">Cédula de identidad: {$ci}</label>
+							<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalCambiarContrasenia" style = "padding: 7px; float: right;"><span class = "fa fa-lock"></span>&nbsp;&nbsp;<b>Cambiar contraseña</b></button>
 						</div>
 					</div>	
-					<div class="row">
+					<div class="row" style = "margin-top: 15px">
 						<div class="form-group col-sm-6">
 							<label for="nombre" class="control-label">Nombre: </label>
 							<input type="text" id="nombreUsuario" name="nombre" class="form-control" value="{$nombreModificar}"  />
@@ -66,11 +70,12 @@
 					<br><br>
 					<div class="row">
 						<center>
-							<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalCambiarContrasenia" style = "width: 35%; margin-left: 0"><span class = "fa fa-lock"></span>&nbsp;&nbsp;<b>Cambiar contraseña</b></button>
-							&nbsp;&nbsp;&nbsp;&nbsp;
-					 		<button type="submit" class="btn btn-success" id = "btnModificarb" style = "width: 17%;"><span class = "fa fa-pencil"></span>&nbsp;&nbsp;<b>Modificar</b></button>
+							<!--
+							<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalCambiarContrasenia" style = "width: 35%; margin-left: 0; padding: 7px;"><span class = "fa fa-lock"></span>&nbsp;&nbsp;<b>Cambiar contraseña</b></button>
+							&nbsp;&nbsp;&nbsp;&nbsp;-->
+					 		<button type="submit" class="btn btn-success" id = "btnModificarb"><span class = "fa fa-pencil"></span>&nbsp;&nbsp;<b>Modificar</b></button>
 					 		&nbsp;&nbsp;&nbsp;&nbsp;	
-					 		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#eliminarUsuario" style = "width: 25%;"><span class = "fa fa-times"></span>&nbsp;&nbsp;<b>Borrar mi cuenta</b></button>
+					 		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#eliminarUsuario" id = "btnEliminarUsuario"><span class = "fa fa-times"></span>&nbsp;&nbsp;<b>Borrar mi cuenta</b></button>
 				 		</center>
 					</div>
 					<br>
@@ -78,7 +83,7 @@
 						<div class="alert alert-danger" id="alerta" style="text-align: center; display: none; margin-top: 30px;">
 							
 						</div>
-						<div class="alert alert-success" style="margin-top: 30px; text-align: center; display: {if $success eq "si"}block;{else}none;{/if}">
+						<div class="alert alert-success" id = "alertaSuccess" style="margin-top: 30px; text-align: center; display: {if $success eq "si"}block;{else}none;{/if}">
 							<strong>¡ÉXITO!</strong>&nbsp;&nbsp;Los cambios han sido realizado de manera correcta
 						</div>
 					</div>
@@ -89,8 +94,8 @@
 					<label style = "font-size: 18px; text-align: center; width: 100%;">En caso de no tener  dicha cuenta, por favor cerrar sesión actual para luego registrar.</label>
 					<br><br><br><br>
 					<div style = "width: 100%; display: block;" id = "divOpciones">
-						<button type = "button" class = "btn btn-danger" style = "margin: 0 auto; font-size: 18px; margin-left: 33%; width: 18%"  {if $tipo eq "google"}onclick = "LogOutGoogle();"{else}onclick = "logout();"{/if} id = "btnRegistrarPerfil"><span class = "fa fa-sign-out"></span>&nbsp;&nbsp;<b>Cerrar sesión</b></button>&nbsp;&nbsp;
-						<button type = "button" class = "btn btn-success" style = "margin: 0 auto; font-size: 18px; width: 18%" onclick = "window.location.href = '/Volquetas/usuario/landing'"><span class = "fa fa-check"></span>&nbsp;&nbsp;<b>Aceptar</b></button>
+						<button type = "button" class = "btn btn-danger" {if $tipo eq "google"}onclick = "LogOutGoogle();"{else}onclick = "logout();"{/if} id = "btnRegistrarPerfil"><span class = "fa fa-sign-out"></span>&nbsp;&nbsp;<b>Cerrar sesión</b></button>&nbsp;&nbsp;
+						<button type = "button" class = "btn btn-success" onclick = "window.location.href = '/Volquetas/usuario/landing'" id = "btnAceptarVerPerfil"><span class = "fa fa-check"></span>&nbsp;&nbsp;<b>Aceptar</b></button>
 						
 					</div>
 					

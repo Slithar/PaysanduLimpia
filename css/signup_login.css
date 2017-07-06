@@ -3,19 +3,21 @@
     position: relative;
 	top:5%;
 	padding: 15px;
-	width: 34.5%;
+	width: 700px;
 	background-color: #f9f9f9;
 	border-radius: 9px;
+    margin-bottom: 15px;
 }
 
 .login{
     margin: 0 auto;
     position: relative;
-    top:10%;
-    padding: 15px;
-    width: 25%;
+    top:4%;
+    padding: 7px 15px;
+    width: 960px;
     background-color: #f9f9f9;
     border-radius: 9px;
+    margin-bottom: 15px;
 }
 
 .modificar{
@@ -23,9 +25,10 @@
     position: relative;
     top:10%;
     padding: 15px;
-    width: 35%;
+    width: 700px;
     background-color: #f9f9f9;
     border-radius: 9px;
+    margin-bottom: 15px;
 }
 
 .has-feedback .form-control-feedback {
@@ -40,9 +43,240 @@
 }
 
 .logoPaysanduLimpia{
-    width: 15%;
+    width: 275px;
     margin: 0 auto;
-    position: relative;
-    left: 42%;
-    margin-top: 5%;
+    display: block;
+    /*left: 42%;*/
+    margin-top: 1.5%;
 }
+
+.contenedorCuentaLocal{
+    width: 50.5%;
+    float: right;
+}
+
+.contenedorCuentaExterna{
+    width: 45%;
+    float: left;
+    border-right: 2px solid #D8D8D8;
+    height: 320px;
+}
+
+.explicacionLogin{
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 45px;
+}
+
+#btnFacebook{
+    width: 90%; 
+    margin-right: 35px;
+    padding: 7px;
+    margin-bottom: 25px;
+    margin-top: 25px;
+}
+
+.fa-facebook{
+    font-size: 22px;
+    margin-right: 10px;
+}
+
+.fa-google{
+    font-size: 22px;
+    margin-right: 10px;
+}
+
+.contenedorBotones{
+    display: none;
+}
+
+#enviarFormLogin{
+    width: 75%; 
+    padding: 7px 0;
+}
+
+#btnRegistrarPerfil{
+    margin: 0 auto; 
+    font-size: 18px; 
+    margin-left: 33%; 
+    width: 18%
+}
+
+#btnRegistrarPerfil{
+    margin: 0 auto; 
+    font-size: 18px; 
+    margin-left: 33%; 
+    width: 18%
+}
+
+#btnAceptarVerPerfil{
+    margin: 0 auto; 
+    font-size: 18px; 
+    width: 18%;
+}
+
+#btnModificarb{
+    width: 25%; 
+    padding: 7px;
+}
+
+#btnEliminarUsuario{
+    width: 25%; 
+    padding: 7px; 
+    margin-right: 0;
+}
+
+
+/****** Media queries del registro y ver perfil *****/
+
+@media (max-width: 970px){
+    .midPage{
+        width: 550px; 
+    }
+
+    .modificar{
+        width: 550px;
+    }
+
+    #btnModificarb{
+        width: 35%; 
+    }
+
+    #btnEliminarUsuario{
+        width: 35%; 
+    }
+}
+
+
+/***** Media query de ver perfil (usuario con cuenta exterma)   *******/
+@media (max-width: 970px){
+
+
+    #btnRegistrarPerfil{
+        margin-left: 15.5%; 
+        width: 34%
+    }
+
+    #btnAceptarVerPerfil{
+        width: 34%;
+    }
+}
+
+
+/****** Media queries del login ******/
+@media (min-width: 810px) and (max-width: 970px){
+    .contenedorCuentaExterna{
+        display: none;
+    }
+
+    .explicacionLogin{
+        display: none;
+    }
+
+    .contenedorBotones{
+        display: block;
+    }
+
+    #btnFacebook{
+        margin-top: 0;
+        width: 35%;
+        display: inline-block;
+
+    }
+
+    .contenedorCuentaLocal{
+        width: 100%;
+    }
+
+    .login{
+        width: 50%;
+        top: 5%;
+    }
+    .logoPaysanduLimpia{
+        margin-top: 3%;
+    }
+
+    #enviarFormLogin{
+        width: 100%; 
+    }
+}
+
+@media (min-width: 730px) and (max-width: 810px){
+
+    .contenedorCuentaExterna{
+        display: none;
+    }
+
+    .explicacionLogin{
+        display: none;
+    }
+
+    .contenedorBotones{
+        display: block;
+    }
+
+    #btnFacebook{
+        margin-top: 0;
+        width: 35%;
+        display: inline-block;
+
+    }
+
+    .contenedorCuentaLocal{
+        width: 100%;
+    }
+
+    .login{
+        width: 58%;
+        top: 5%;
+    }
+    .logoPaysanduLimpia{
+        margin-top: 3%;
+    }
+
+    #enviarFormLogin{
+        width: 100%; 
+    }
+}
+
+@media (min-width: 625px) and (max-width: 730px){
+
+    .contenedorCuentaExterna{
+        display: none;
+    }
+
+    .explicacionLogin{
+        display: none;
+    }
+
+    .contenedorBotones{
+        display: block;
+    }
+
+    #btnFacebook{
+        margin-top: 0;
+        width: 35%;
+        display: inline-block;
+
+    }
+
+    .contenedorCuentaLocal{
+        width: 100%;
+    }
+
+    .login{
+        width: 71.5%;
+        top: 5%;
+    }
+    .logoPaysanduLimpia{
+        margin-top: 3%;
+    }
+
+    #enviarFormLogin{
+        width: 100%; 
+    }
+}
+
+
+
+

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-06-06 06:26:52
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-07-02 17:00:06
          compiled from "vistas\nuevaIncidencia.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2534759020b0516a345-85315128%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '81c2dedc5a49c24045e0b0a27575146e6d754ca2' => 
     array (
       0 => 'vistas\\nuevaIncidencia.tpl',
-      1 => 1496730399,
+      1 => 1499014802,
       2 => 'file',
     ),
   ),
@@ -51,7 +51,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		<div id = "main" class = "<?php echo $_smarty_tpl->tpl_vars['classMain']->value;?>
  <?php echo $_smarty_tpl->tpl_vars['classLogueado']->value;?>
 ">
-			<div class = "contenedor">
+			<div class = "contenedor contenedorNuevaIncidencia">
 				<?php if ($_smarty_tpl->tpl_vars['success']->value=="si") {?>
 					<div class = "alert alert-success fadeIn" id = "successNuevaIncidencia" style = "margin-bottom: 50px;">
 						<strong>¡ÉXITO!&nbsp;</strong>La nueva incidencia ha sido creada de manera correcta. Código: <?php echo $_smarty_tpl->tpl_vars['codigo']->value;?>

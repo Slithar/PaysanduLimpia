@@ -1,4 +1,4 @@
-function confirmarEstado(numeroVolqueta, categoria, estado, numero, fechaHora){
+function confirmarEstado(numeroVolqueta, categoria, estado, numero, fechaHora, pantalla){
 	//alert("aca");
 	//alert(numeroVolqueta + ", "  + categoria + ", " + estado + ", " + fechaHora);
 	/*if(fechaHora == null){
@@ -8,7 +8,13 @@ function confirmarEstado(numeroVolqueta, categoria, estado, numero, fechaHora){
 	alert($(selector).val());*/
 
 	//alert($('#select' + numero).val());
-	if(estado != $('#select' + numero).val()){
+	if(pantalla == "lg"){
+		estadoSeteado = $('#select' + numero).val();
+	}
+	else{
+		estadoSeteado = $('#selectSM' + numero).val();	
+	}
+	if(estado != estadoSeteado){
 		$.ajax({
 			url : '/Volquetas/incidencia/confirmarEstado',
 			type : 'POST',
@@ -16,11 +22,16 @@ function confirmarEstado(numeroVolqueta, categoria, estado, numero, fechaHora){
 			data : {'numeroVolqueta' : numeroVolqueta,
 					'categoria' : categoria,
 					'estado' : estado,
-					'estadoUpdate' : $('#select' + numero).val(),
+					'estadoUpdate' : estadoSeteado,
 					'fechaHoraSolucion' : fechaHora},
 			beforeSend: function(){
-				$('#link' + numero).css('display', 'none');
-				$('#spinner' + numero).css('display', 'block');
+				if(pantalla == "lg"){
+					$('#link' + numero).css('display', 'none');
+					$('#spinner' + numero).css('display', 'block');
+				}
+				else{
+					$('#spinnerSM' + numero).css('display', 'block');
+				}
 			}
 		})
 		.done(function(response){

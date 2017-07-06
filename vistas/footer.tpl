@@ -8,6 +8,15 @@
 					<label class = "anio">2017</label>
 				</div>
 			</div>
+			
+			
+			<div class = "divInformacion2">
+				<div class = "informacion2">
+					<label class = "paysanduLimpia">Paysandú Limpia</label>
+					<label class = "sistemaPara">Sistema para control de estado y asistencia de volquetas recolectoras de residuos</label>
+					<label class = "anio">2017</label>
+				</div>
+			</div>
 			<div class = "divContacto">
 				<form id = "formContacto">
 					
@@ -25,6 +34,7 @@
 					</div>
 				</form>
 			</div>
+			
 		</div>
 	</footer>
 {else}

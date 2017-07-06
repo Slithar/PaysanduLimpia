@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-06-26 00:17:34
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-07-02 08:11:55
          compiled from "vistas\estadisticas.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:20892594ed6a1bbf8d9-56030943%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'a20167c924b31b25f0b8c1085d166a48a7cd3506' => 
     array (
       0 => 'vistas\\estadisticas.tpl',
-      1 => 1498436250,
+      1 => 1498983093,
       2 => 'file',
     ),
   ),
@@ -48,18 +48,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	
 		<div id = "main" class = "<?php echo $_smarty_tpl->tpl_vars['classMain']->value;?>
  <?php echo $_smarty_tpl->tpl_vars['classLogueado']->value;?>
-"  style = "height: 85.3%;">
-			<div class = "contenedor" style = "max-width: 1100px; height: 100%; margin: auto">
-				<!--
-				<select id="selectEstadistica" style="margin: auto;">
-					<option id="estadoVolquetas">Ver el estado de las volquetas</option>
-					<option id="tiempo">Búsqueda en un período de tiempo</option>
-					<option id="tPromedio">Tiempo promedio en resolver incidencias</option>
-					<option id="timr">Tipo de incidencia más reportado</option>
-					<option id="rvmi">Ránking de volquetas con más incidencias</option>
-				</select>
-				-->
-
+">
+			<div class = "contenedor">
 				<div id="estadoVolquetaDiv"  class = "contenedorEstadistica estadisticaCorrida">
 					<p style = "font-size: 18px; color: #0F3EA1; font-weight: bold; text-align: center;">Cantidad de volquetas por estado</p>
 					<br>
@@ -68,12 +58,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 					</canvas>
 				</div>
 
-				<div id="timeDiv" class = "contenedorEstadistica derecho">
+				<div id="timeDiv" class = "contenedorEstadistica derecho contenedor2">
 					<p style = "font-size: 18px; color: #0F3EA1; font-weight: bold; text-align: center;">Cantidad de incidencias en un período de tiempo</p>
 					<br>
-					<div style = "margin: 0 auto; width: 70%">
-						<b>Desde</b>&nbsp;&nbsp;<input type="text" id="dpickerFrom" class = "form-control txtFecha" readonly/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<b>Hasta</b>&nbsp;&nbsp;<input type="text" id="dpickerTill" class = "form-control txtFecha" readonly/>
+					<div id = "desdeHastaCantidadInicidencias">
+						<b>Desde:</b>&nbsp;&nbsp;<input type="text" id="dpickerFrom" class = "form-control txtFecha" readonly/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<b>Hasta:</b>&nbsp;&nbsp;<input type="text" id="dpickerTill" class = "form-control txtFecha" readonly/>
 						
 					</div>
 					<br>
@@ -82,7 +72,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 					</canvas>
 				</div>
 
-				<div id="inMasRepDiv" class = "contenedorEstadistica">
+				<div id="vMasRepDiv" class = "contenedorEstadistica">
+					<p style = "font-size: 18px; color: #0F3EA1; font-weight: bold; text-align: center;">Ranking de volquetas con más incidencias</p>
+					<br>
+					<canvas id="masReportadas">
+						
+					</canvas>
+				</div>
+
+				<div id="inMasRepDiv" class = "contenedorEstadistica derecho">
 					<p style = "font-size: 18px; color: #0F3EA1; font-weight: bold; text-align: center;">Cantidad de reportes por tipo de incidencia</p>
 					<br>
 					<canvas id="catMasReportadas">
@@ -90,6 +88,16 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 					</canvas>
 				</div>
 
+				<div id="tiempoPromedioPorCategoriaReporte" class = "contenedorEstadistica contenedor6">
+					<p style = "font-size: 18px; color: #0F3EA1; font-weight: bold; text-align: center;">Horas promedio en reportar cada tipo de incidencia</p>
+					<br>
+					<div id = "desdeHorasPromedioPorIncidenciaReporte">
+						<b>Desde:</b>&nbsp;&nbsp;<input type="text" id="dpickerDesdeHorasPromedioReportes" class = "form-control txtFecha" readonly/>						
+					</div>
+					<canvas id="TimeframePorCategoriaReporte">
+						
+					</canvas>
+				</div>
 
 				<div id="tiempoPromedioPorCategoria" class = "contenedorEstadistica derecho">
 					<p style = "font-size: 18px; color: #0F3EA1; font-weight: bold; text-align: center;">Horas promedio en resolver cada tipo de incidencia</p>
@@ -104,22 +112,28 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 				</div>
 
 				<div id="tpromDiv" class = "contenedorEstadistica">
-					<p style = "font-size: 18px; color: #0F3EA1; font-weight: bold; text-align: center;">Tiempo promedio para solucionar una incidencia</p>
+					<p style = "font-size: 18px; color: #0F3EA1; font-weight: bold; text-align: center;">Tiempo promedio de reporte</p>
+					<br><br>
+					<p style = "font-size: 17px; text-align: center">El tiempo promedio en reportar una nueva incidencia es:</p> 
+					<br><br>
+					<p style = "font-size: 28px; font-weight: bold; text-align: center;"><span id="tiempoPromedioReporte"></span></p>
+					<p style = "font-size: 17px; text-align: center;">&nbsp;&nbsp;&nbsp;&nbsp;Horas&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Minutos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Segundos&nbsp;</p>
+					<!--<br><br><br>-->
+					<div id = "desdePromedioReporte">
+						<b>Desde:</b>&nbsp;&nbsp;<input type="text" id="dpickerDesdeTiempoPromedio" class = "form-control txtFecha" readonly/>		
+					</div>
+				</div>
+
+				<div id="tpromDiv" class = "contenedorEstadistica derecho contenedor8">
+					<p style = "font-size: 18px; color: #0F3EA1; font-weight: bold; text-align: center;">Tiempo promedio de solución</p>
 					<br><br>
 					<p style = "font-size: 17px; text-align: center">El tiempo promedio para solucionar incidencias es:</p> 
 					<br><br>
 					<p style = "font-size: 28px; font-weight: bold; text-align: center;"><span id="tiempoPromedio"></span></p>
 					<p style = "font-size: 17px; text-align: center;">&nbsp;&nbsp;&nbsp;&nbsp;Horas&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Minutos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Segundos&nbsp;</p>
 				</div>
-
-				<div id="vMasRepDiv" class = "contenedorEstadistica derecho">
-					<p style = "font-size: 18px; color: #0F3EA1; font-weight: bold; text-align: center;">Ranking de volquetas con más incidencias</p>
-					<br>
-					<canvas id="masReportadas">
-						
-					</canvas>
-				</div>
-				<button type = "button" class = "btn btn-danger" id = "btnExportar"><span class = "fa fa-file-pdf-o"></span>&nbsp;&nbsp;&nbsp;Exportar a PDF</button>
+				
+				<button class = "btn btn-danger" id = "btnExportar"><span class = "fa fa-file-pdf-o"></span>&nbsp;&nbsp;&nbsp;Exportar a PDF</button>
 			</div>
 			
 		</div>

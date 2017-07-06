@@ -1,6 +1,12 @@
+.contenedor{
+	max-width: 1100px; 
+	height: 100%; 
+	margin: auto;
+}
+
 .contenedorEstadistica{
 	width: 48%; 
-	height: 350px; 
+	height: 370px; 
 	border-radius: 15px; 
 	/*border: 1px solid #D8D8D8;*/
 	-webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3),0 0 40px rgba(0, 0, 0, 0.1) inset;
@@ -46,6 +52,7 @@ canvas{
 	width: 100px;
 	display: inline-block;
 	text-align: center;
+	cursor: pointer;
 }
 
 #Timeframe{
@@ -53,10 +60,160 @@ canvas{
 }
 
 #btnExportar{
-	width: 15%;
+	width: 25%;
 	margin: 0 auto;
 	display: block;
 	top: 75px;
 	position: relative;
 	margin-bottom: 85px;
+	padding: 7px;
+}
+
+#desdePromedioReporte{
+	margin-top: 71px;
+	width: 100%; 
+	text-align: center;
+}
+
+#desdeHorasPromedioPorIncidenciaReporte{
+	width: 100%; 
+	text-align: center;
+}
+
+#desdeHastaCantidadInicidencias{
+	margin: 0 auto; 
+	width: 70%;
+}
+
+#TimeframePorCategoria{
+	margin-top: 35px;
+}
+
+@media (max-width: 1120px){
+	.contenedor{
+		width: 960px;
+	}
+
+	#desdeHastaCantidadInicidencias{
+		width: 85%;
+	}
+
+	#desdePromedioReporte{
+		margin-top: 51px;
+	}
+
+	#myChart{
+		margin-top: 32px;
+	}
+
+	#masReportadas{
+		margin-top: 32px;
+	}
+
+	#catMasReportadas{
+		margin-top: 32px;
+	}
+}
+
+
+@media (max-width: 980px){
+	.contenedorEstadistica{
+		width:75%; 
+		display: block;
+		margin-left: 12.5%;
+	}
+
+	.contenedorReferencias{
+		width:75%; 
+		display: block;
+		margin-left: 12.5%;
+		margin-top: 50px; 
+		padding: 25px;
+	}
+
+	.derecho{
+		float: left;
+	}
+
+	.contenedor{
+		max-width: 800px;
+	}
+
+
+	#myChart{
+		margin-top: 0;
+	}
+
+	#masReportadas{
+		margin-top: 0;
+	}
+
+	#catMasReportadas{
+		margin-top: 0;
+	}
+
+	#desdeHastaCantidadInicidencias{
+		width: 65%;
+	}
+
+	#TimeframePorCategoria{
+		margin-top: 0;
+	}
+
+	.contenedor6{
+		height: 400px;
+	}
+
+	.contenedor8{
+		height: 300px;
+	}
+
+}
+
+@media (max-width: 810px){
+	.contenedorEstadistica{
+		width:82%; 
+		display: block;
+		margin-left: 9%;
+	}
+
+	.contenedorReferencias{
+		width:82%; 
+		display: block;
+		margin-left: 9%;
+		margin-top: 50px; 
+		padding: 25px;
+	}
+
+	.contenedor{
+		max-width: 700px;
+	}
+
+	.contenedor2{
+		height: 400px;
+	}
+}
+
+@media (max-width: 700px){
+	.contenedorEstadistica{
+		width:82%; 
+		display: block;
+		margin-left: 9%;
+	}
+
+	.contenedorReferencias{
+		width:82%; 
+		display: block;
+		margin-left: 9%;
+		margin-top: 50px; 
+		padding: 35px;
+	}
+
+	.contenedor{
+		max-width: 640px;
+	}
+
+	#desdeHastaCantidadInicidencias{
+		width: 70%;
+	}
 }

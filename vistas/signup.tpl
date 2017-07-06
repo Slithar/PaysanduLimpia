@@ -88,12 +88,11 @@
 				<br><br>
 				<div class="row">
 					<div class="form-group col-sm-12" style="text-align: center;">
-						<button type="submit" name="subBoton" id="subBoton" class="btn btn-success"><b>Registrarme</b></button>
+						<button type="submit" name="subBoton" id="subBoton" class="btn btn-success" style = "width: 50%; padding: 7px;"><b>Registrarme</b></button>
 					</div>	
 				</div>
-				<br>
 				<div class="row">
-					<div class="col-sm-12 alert alert-danger" id="alerta" style="text-align: center; display: none;">
+					<div class="col-sm-12 alert alert-danger" id="alerta" style="text-align: center; display: none; margin-top: 21.4px;">
 						
 					</div>
 				</div>

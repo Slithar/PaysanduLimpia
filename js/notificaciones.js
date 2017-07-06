@@ -1,5 +1,5 @@
 function verNotificacion(codigo, codigoIncidencia){
-	//alert("aca");
+	//alert("aca " + codigo + " " + codigoIncidencia);
 	$.ajax({
 		url : '/Volquetas/usuario/notificacionAVista',
 		type : 'POST',

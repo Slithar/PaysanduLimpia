@@ -146,6 +146,7 @@ class ControladorIncidencia extends ControladorIndex{
 
 	public function misIncidencias($params = array()){
 		$tpl = Template::getInstance();
+		Auth::loggedIn();
 		Session::init();
 		$aplicacion = Session::get('tipo');
 		if($aplicacion == "paysandulimpia"){
@@ -274,6 +275,7 @@ class ControladorIncidencia extends ControladorIndex{
 										"estado" => $result->getEstado(),
 										"descripcion" => $result->getDescripcion(),
 										"fecha" => $result->getFechaHoraReporte(),
+										"fechaSolucion" => $result->getFechaHoraSolucion(),
 										"direccion" => $direccion);
 			$imagen = new ImagenDeIncidencia(array("codigoIncidencia" => $result->getCodigo()));
 			$imagenes = $imagen->getImagenesIncidencia();
@@ -305,12 +307,20 @@ class ControladorIncidencia extends ControladorIndex{
 			}
 			else{
 				$todosLosComentarios = array();
+			}
+
+			if(isset($datosIncidencia['fechaSolucion'])){
+				$fechaSolucion = $datosIncidencia['fechaSolucion'];
+			}
+			else{
+				$fechaSolucion = "Incidencia no resuelta";
 			}			
 		}
 		else{
 			$success = "no";
 		}
 		$tpl = Template::getInstance();
+		Auth::loggedIn();
 		$tpl->asignar('location', 'Ver incidencia');
 		$tpl->asignar('landing', 'no');		
 		$tpl->asignar('classMain', 'mainNoLanding');
@@ -322,6 +332,7 @@ class ControladorIncidencia extends ControladorIndex{
 		$tpl->asignar('estado', $datosIncidencia['estado']);
 		$tpl->asignar('descripcion', $datosIncidencia['descripcion']);
 		$tpl->asignar('fecha', $datosIncidencia['fecha']);
+		$tpl->asignar('fechaSolucion', $fechaSolucion);
 		$tpl->asignar('direccion', $datosIncidencia['direccion']);
 		//$tpl->asignar('asignada', $a);
 		//echo(count($imagenes));
@@ -501,6 +512,7 @@ class ControladorIncidencia extends ControladorIndex{
 	}
 
 	public function verIncidenciasReportadas($params = array()){
+		Auth::loggedIn();
 		$tpl = Template::getInstance();
 		$tpl->asignar('location', 'Ver incidencias');
 		$tpl->asignar('landing', 'no');		
@@ -547,6 +559,7 @@ class ControladorIncidencia extends ControladorIndex{
 	}
 
 	public function verIncidenciaDatos($params = array()){
+		Auth::loggedIn();
 		if(isset($params[0]) && $params[0] != ""){
 			$incidencia = new Incidencia(array("codigo" => $params[0]));
 			$result = $incidencia->getIncidenciaPorCodigo();
@@ -676,7 +689,7 @@ class ControladorIncidencia extends ControladorIndex{
 			$user = new Usuario(array("ci" => Session::get('ci')));
 			$us = $user->seleccionarUsuario();
 			$util = new Utils();			
-			$mensaje = 'Estimado/a '.$u->getNombre()." ".$u->getApellido().":<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>".$us->getNombre()." ".$us->getApellido()." </b>ha agregado un nuevo comentario a la incidencia n&uacute;mero <b>".$_POST['codigo']."</b><br><br>Le saluda atentamente<br>Equipo de Paysandú Limpia";
+			$mensaje = 'Estimado/a '.$u->getNombre()." ".$u->getApellido().":<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>".$us->getNombre()." ".$us->getApellido()." </b>ha agregado un nuevo comentario a la incidencia n&uacute;mero <b>".$_POST['codigo']."</b>. <a href = 'http://".$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/Volquetas/incidencia/verIncidencia/".$_POST['codigo']."'>Ver incidencia</a><br><br>Le saluda atentamente<br>Equipo de Paysandú Limpia";
 			$util->enviarCorreoNotificacion($u->getEmail(), utf8_encode('Nuevo comentario'), $mensaje);
 		}
 		//una vez que está pronto el agregar, vamos a traer todos los datos de los comentarios
@@ -779,10 +792,14 @@ class ControladorIncidencia extends ControladorIndex{
 				$u = $usr->seleccionarUsuario();
 				if($u->getEnviarcorreo() && Session::exists('ci')){
 					$util = new Utils();			
-				  	$mensaje = 'Estimado/a '.$u->getNombre()." ".$u->getApellido().":<br><br>&nbsp;&nbsp;&nbsp;&nbsp;"."La incidencia número <b>".$i->getCodigo()."</b> ha pasado de estado <b>".$e."</b> a <b>".$eUpdate."</b>.<br><br>Le saluda atentamente<br>Equipo de Paysandú Limpia";
+				  	$mensaje = 'Estimado/a '.$u->getNombre()." ".$u->getApellido().":<br><br>&nbsp;&nbsp;&nbsp;&nbsp;"."La incidencia número <b>".$i->getCodigo()."</b> ha pasado de estado <b>".$e."</b> a <b>".$eUpdate."</b>. <a href = 'http://".$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/Volquetas/incidencia/verIncidencia/".$codigoIncidencia."'>Ver incidencia</a><br><br>Le saluda atentamente<br>Equipo de Paysandú Limpia";
 					$util->enviarCorreoNotificacion($u->getEmail(), utf8_encode('Cambio de estado de incidencia'), $mensaje);
 
 				}
+				//<br><br><a href = 'http://".$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/Volquetas/incidencia/verIncidencia/".$codigoIncidencia."'>Ver incidencia</a>
+
+
+
 
 				/*$mensaje = "La incidencia número <b>".$i->getCodigo()."</b> ha pasado de estado <b>".$e."</b> a <b>".$eUpdate."</b>";
 				$notificacion = new Notificacion(array("ciReceptor" => $ciReceptor,

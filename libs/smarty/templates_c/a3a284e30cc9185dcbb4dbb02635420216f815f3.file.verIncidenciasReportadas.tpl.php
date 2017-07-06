@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-06-07 22:40:08
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-07-03 21:38:44
          compiled from "vistas\verIncidenciasReportadas.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:235455937411a42b1a2-35119636%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'a3a284e30cc9185dcbb4dbb02635420216f815f3' => 
     array (
       0 => 'vistas\\verIncidenciasReportadas.tpl',
-      1 => 1496875206,
+      1 => 1499117453,
       2 => 'file',
     ),
   ),
@@ -47,8 +47,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		<div id = "main" class = "<?php echo $_smarty_tpl->tpl_vars['classMain']->value;?>
  <?php echo $_smarty_tpl->tpl_vars['classLogueado']->value;?>
 ">
-			<div class = "contenedor" style = "padding-top: 15px">
-				<!--
+			<div class = "contenedor contenedorMisIncidencias" style = "padding-top: 15px" >
 				<?php  $_smarty_tpl->tpl_vars['incidencia'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['incidencia']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['incidencias']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['incidencia']->key => $_smarty_tpl->tpl_vars['incidencia']->value) {
@@ -56,7 +55,7 @@ $_smarty_tpl->tpl_vars['incidencia']->_loop = true;
 ?>
 					<div class = "contenedorIncidencia">
 						<img src = "img/Volquetas/<?php echo $_smarty_tpl->tpl_vars['incidencia']->value['numeroVolqueta'];?>
-.png" style = "width: 27%; height: 100%; border-radius: 15px 0 0 15px">
+.png" class = "imagenVolquetaIncidencia">
 						<div class = "datosIncidencia">
 							<p style = "font-size: 18px; color: #0F3EA1; font-weight: bold;">Volqueta Nº <?php echo $_smarty_tpl->tpl_vars['incidencia']->value['numeroVolqueta'];?>
 : <?php echo $_smarty_tpl->tpl_vars['incidencia']->value['direccion'];?>
@@ -70,33 +69,37 @@ $_smarty_tpl->tpl_vars['incidencia']->_loop = true;
 "><?php echo $_smarty_tpl->tpl_vars['incidencia']->value['estado'];?>
 </span></p>
 							
+							<br>
+							<p><a class = "btn btn-primary" href = "/Volquetas/incidencia/verIncidenciaDatos/<?php echo $_smarty_tpl->tpl_vars['incidencia']->value['codigo'];?>
+"><span class = "fa fa-eye"></span>&nbsp;&nbsp;Ver incidencia</a></p>
+						</div>
+						<div class = "datosIncidencia2">
+							<p style = "font-size: 18px; color: #0F3EA1; font-weight: bold;">Volqueta Nº <?php echo $_smarty_tpl->tpl_vars['incidencia']->value['numeroVolqueta'];?>
+: <?php echo $_smarty_tpl->tpl_vars['incidencia']->value['direccion'];?>
+</p>
+							<br>
+							<p style = "font-size: 15px;"><b>Código:</b> <?php echo $_smarty_tpl->tpl_vars['incidencia']->value['codigo'];?>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Categoría:</b> <?php echo $_smarty_tpl->tpl_vars['incidencia']->value['categoria'];?>
+</p>
+							<p><b>Estado:</b> <span class = "incidencia<?php echo $_smarty_tpl->tpl_vars['incidencia']->value['estado'];?>
+"><?php echo $_smarty_tpl->tpl_vars['incidencia']->value['estado'];?>
+</span></p>							
 							<br>
 							<p><a class = "btn btn-primary" href = "/Volquetas/incidencia/verIncidencia/<?php echo $_smarty_tpl->tpl_vars['incidencia']->value['codigo'];?>
 "><span class = "fa fa-eye"></span>&nbsp;&nbsp;Ver incidencia</a></p>
 						</div>
-					</div>
-				<?php } ?>-->
-				<?php  $_smarty_tpl->tpl_vars['incidencia'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['incidencia']->_loop = false;
- $_from = $_smarty_tpl->tpl_vars['incidencias']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
-foreach ($_from as $_smarty_tpl->tpl_vars['incidencia']->key => $_smarty_tpl->tpl_vars['incidencia']->value) {
-$_smarty_tpl->tpl_vars['incidencia']->_loop = true;
-?>
-					<div class = "contenedorIncidencia">
-						<img src = "img/Volquetas/<?php echo $_smarty_tpl->tpl_vars['incidencia']->value['numeroVolqueta'];?>
-.png" style = "width: 27%; height: 100%; border-radius: 15px 0 0 15px">
-						<div class = "datosIncidencia">
+						<div class = "datosIncidencia3">
 							<p style = "font-size: 18px; color: #0F3EA1; font-weight: bold;">Volqueta Nº <?php echo $_smarty_tpl->tpl_vars['incidencia']->value['numeroVolqueta'];?>
 : <?php echo $_smarty_tpl->tpl_vars['incidencia']->value['direccion'];?>
 </p>
 							<br>
 							<p style = "font-size: 15px;"><b>Código:</b> <?php echo $_smarty_tpl->tpl_vars['incidencia']->value['codigo'];?>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Categoría:</b> <?php echo $_smarty_tpl->tpl_vars['incidencia']->value['categoria'];?>
 </p>
-							<p style = "font-size: 15px;"><b>Fecha y hora de reporte:</b> <?php echo $_smarty_tpl->tpl_vars['incidencia']->value['fecha'];?>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Estado:</b> <span class = "incidencia<?php echo $_smarty_tpl->tpl_vars['incidencia']->value['estado'];?>
+							<p><b>Categoría:</b> <?php echo $_smarty_tpl->tpl_vars['incidencia']->value['categoria'];?>
+</p>
+							<p><b>Estado:</b> <span class = "incidencia<?php echo $_smarty_tpl->tpl_vars['incidencia']->value['estado'];?>
 "><?php echo $_smarty_tpl->tpl_vars['incidencia']->value['estado'];?>
-</span></p>
-							
+</span></p>							
 							<br>
 							<p><a class = "btn btn-primary" href = "/Volquetas/incidencia/verIncidenciaDatos/<?php echo $_smarty_tpl->tpl_vars['incidencia']->value['codigo'];?>
 "><span class = "fa fa-eye"></span>&nbsp;&nbsp;Ver incidencia</a></p>

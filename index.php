@@ -58,21 +58,25 @@
 		$tpl->asignar('funcionario', 'false');		
 		$tpl->asignar('tipo', '');
 		if(isset($_COOKIE['ciUsuario'])){
+			//echo "aca";
 			$tpl->asignar('logueado', 'si');		
 			$tpl->asignar('classLogueado', 'logueado');
+			if(isset($_COOKIE['ciUsuario'])){
 			Session::set('ci', $_COOKIE['ciUsuario']);
-
-			$u = new Usuario(array("ci" => $_COOKIE['ciUsuario']));
-			$user = $u->seleccionarUsuario();
-			$funcionario = $user->getFuncionario() ? "true" : "false";
-			Session::set('funcionario', $funcionario);
-			//echo "Nombre: ".$user->getNombre();
-			Session::set('nombre', $user->getNombre());
-			Session::set('fotoPerfil', $user->getFotoperfil());
-			$tpl->asignar('ci', Session::get('ci'));
-			$tpl->asignar('nombre', $user->getNombre());
-			$tpl->asignar('fotoPerfil', $user->getFotoperfil());
-			$tpl->asignar('funcionario', $funcionario);		
+			//if(isset($_COOKIE['ciUsuario'])){
+				$u = new Usuario(array("ci" => $_COOKIE['ciUsuario']));
+				$user = $u->seleccionarUsuario();			
+				$funcionario = $user->getFuncionario() ? "true" : "false";
+				Session::set('funcionario', $funcionario);
+				//echo "Nombre: ".$user->getNombre();
+				Session::set('nombre', $user->getNombre());
+				Session::set('fotoPerfil', $user->getFotoperfil());
+				$tpl->asignar('ci', Session::get('ci'));
+				$tpl->asignar('nombre', $user->getNombre());
+				$tpl->asignar('fotoPerfil', $user->getFotoperfil());
+				$tpl->asignar('funcionario', $funcionario);	
+			}
+				
 		}
 	}
 	$tpl->asignar('severidades', $severidades);

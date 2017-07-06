@@ -2,7 +2,7 @@
 
 <link rel="shortcut icon" type="image/ico" href="img/iconoPaysanduLimpia.ico" />
 
-
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0" />
 
 
 <script src="js/jquery-3.2.1.js"></script>
@@ -48,3 +48,12 @@
 <!-- Jquery UI -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+	/*alert(window.innerWidth)
+	if (window.innerWidth < 640){
+		alert("aca");
+		$( window ).width('640px');
+		alert(window.innerWidth);
+	}*/
+</script>

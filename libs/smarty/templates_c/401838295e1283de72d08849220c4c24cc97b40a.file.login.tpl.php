@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-06-08 00:41:34
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-07-01 21:13:13
          compiled from "vistas\login.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1922358f92460e8c0a9-93187157%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '401838295e1283de72d08849220c4c24cc97b40a' => 
     array (
       0 => 'vistas\\login.tpl',
-      1 => 1496874633,
+      1 => 1498943590,
       2 => 'file',
     ),
   ),
@@ -37,6 +37,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	<?php echo $_smarty_tpl->getSubTemplate ("bs_js.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 
 	<link rel = "stylesheet" href = "css/signup_login.css"/>
+	<?php echo '<script'; ?>
+ src = "js/login.js"><?php echo '</script'; ?>
+>
 	<!--<?php echo '<script'; ?>
  src="https://apis.google.com/js/platform.js" async defer><?php echo '</script'; ?>
 >-->
@@ -60,55 +63,68 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	
 		<div id = "main" class = "<?php echo $_smarty_tpl->tpl_vars['classMain']->value;?>
  <?php echo $_smarty_tpl->tpl_vars['classLogueado']->value;?>
-"  style = "height: 88.7%;">
+">
 			<img src = "img/Logo Paysandú Limpia.png" class = "logoPaysanduLimpia"/>
 			<div class = "container-fluid login">				
 				<div class="row">
 					<form id="formLogin" method="POST" accept-charset="utf-8" class="col-sm-12">
 						<br>
+						<!--
 						<button type = "button" class = "btn btn-primary" style = "width: 47%;" id = "btnFacebook"><span class = "fa fa-facebook"></span>&nbsp;&nbsp;Conectarse a Facebook</button>
 
-						<div id="g-login" data-onsuccess="onSignIn" type = "button" class = "btn btn-danger" style = "float: right; width: 47%;"><span class = "fa fa-google"></span>&nbsp;&nbsp;Conectarse a Google</div >
-						<!--
-						<div onclick="LogOutGoogle();">
-							Desconectar Google
-						</div>
-						-->
+						<div id="g-login" data-onsuccess="onSignIn" type = "button" class = "btn btn-danger" style = "float: right; width: 47%;"><span class = "fa fa-google"></span>&nbsp;&nbsp;Conectarse a Google</div>
+						
 
-						<br><br><br><br>
-						<div class="row">
-							<div class="form-group col-sm-12 has-feedback <?php if ($_smarty_tpl->tpl_vars['success']->value=='no') {?>has-error<?php }?>">
-								<label class="control-label" for="cedulaUsuario">Cédula de Identidad</label>
-								<input type="text" id="cedulaUsuario" class="form-control" name="cedulaUsuario" maxlength="8" value = "<?php echo $_smarty_tpl->tpl_vars['ci']->value;?>
+						<br><br><br>-->
+						<div class = "contenedorCuentaExterna">
+							<p class = "explicacionLogin">Puedes hacerlo con un servicio externo</p>
+							<button type = "button" class = "btn btn-primary" id = "btnFacebook"><span class = "fa fa-facebook"></span>&nbsp;&nbsp;Conectarse a Facebook</button>
+
+							<div id="g-login" data-onsuccess="onSignIn" type = "button" class = "btn btn-danger" style = "width: 90%;"><span class = "fa fa-google"></span>&nbsp;&nbsp;Conectarse a Google</div>
+						</div>
+						<div class = "contenedorCuentaLocal">
+							<p class = "explicacionLogin">O con tu cuenta de usuario de Paysandú Limpia</p>
+							<div class = "contenedorBotones">
+								<button type = "button" class = "btn btn-primary" style = "width: 47%;" id = "btnFacebook2"><span class = "fa fa-facebook"></span></button>
+
+								<div id="g-login2" data-onsuccess="onSignIn" type = "button" class = "btn btn-danger" style = "width: 47%; float: right;"><span class = "fa fa-google"></span></div>
+								
+
+								<br><br><br>
+							</div>
+							<div class="row">
+								<div class="form-group col-sm-12 has-feedback <?php if ($_smarty_tpl->tpl_vars['success']->value=='no') {?>has-error<?php }?>">
+									<label class="control-label" for="cedulaUsuario">Cédula de Identidad</label>
+									<input type="text" id="cedulaUsuario" class="form-control" name="cedulaUsuario" maxlength="8" value = "<?php echo $_smarty_tpl->tpl_vars['ci']->value;?>
 "/>
-								<span class="glyphicon glyphicon-user form-control-feedback"></span>
+									<span class="glyphicon glyphicon-user form-control-feedback"></span>
+								</div>
 							</div>
-						</div>
-						<div class="row">
-							<div class="form-group col-sm-12 has-feedback <?php if ($_smarty_tpl->tpl_vars['success']->value=='no') {?>has-error<?php }?>">
-								<label class="control-label" for="passwordUsuario">Contraseña</label>
-								<input type="password" id="passwordUsuario" class="form-control" name="passwordUsuario" value = ""/>
-								<span class="glyphicon glyphicon-lock form-control-feedback"></span>
+							<div class="row">
+								<div class="form-group col-sm-12 has-feedback <?php if ($_smarty_tpl->tpl_vars['success']->value=='no') {?>has-error<?php }?>">
+									<label class="control-label" for="passwordUsuario">Contraseña</label>
+									<input type="password" id="passwordUsuario" class="form-control" name="passwordUsuario" value = ""/>
+									<span class="glyphicon glyphicon-lock form-control-feedback"></span>
+								</div>
 							</div>
-						</div>
-						<div class = "checkbox">
-				            <label id = "lblRecordarme" style = "color: black;"><input type = "checkbox" name = "recordarme" id = "recordarme"/>&nbsp;<b>Recordarme</b></label>
-				        </div>  
-						<br>
-						<div class="row">
-							<div class="form-group col-sm-12" style="text-align: center;">
-								<button type="submit" id="enviarFormLogin" class="btn btn-success"><b>Iniciar sesión</b></button>
+							<div class = "checkbox">
+					            <label id = "lblRecordarme" style = "color: black;"><input type = "checkbox" name = "recordarme" id = "recordarme"/>&nbsp;<b>Recordarme</b></label>
+					        </div>  
+							<br>
+							<div class="row">
+								<div class="form-group col-sm-12" style="text-align: center;">
+									<button type="submit" id="enviarFormLogin" class="btn btn-success" style = ""><b>Iniciar sesión</b></button>
+								</div>
 							</div>
 						</div>
 					</form>
 				</div>
-				<br>
-				<?php if ($_smarty_tpl->tpl_vars['success']->value=="si") {?>
+				<?php if ($_smarty_tpl->tpl_vars['success']->value=="si") {?>					
 					<div class="alert alert-success row" id = "alertLogin" style="display: <?php echo $_smarty_tpl->tpl_vars['alert']->value;?>
-; text-align:center;">
-				<?php } else { ?>
+; text-align:center; margin-top: 9px;">
+				<?php } else { ?>					
 					<div class="alert alert-danger row" id = "alertLogin" style="display: <?php echo $_smarty_tpl->tpl_vars['alert']->value;?>
-; text-align:center;">
+; text-align:center; margin-top: 9px;">
 				<?php }?>
 					<div class="col-sm-12">
 						<?php if ($_smarty_tpl->tpl_vars['success']->value=="si") {?>

@@ -153,7 +153,8 @@ class Volqueta extends ClaseBase{
 
 	public function getVolquetasAverageTime($params=array()){
 
-		$sql = "SELECT TIME_TO_SEC(TIMEDIFF(fechaHoraSolucion, fechaHoraReporte)) as diff FROM incidencias WHERE fechaHoraSolucion IS NOT NULL";
+		//$sql = "SELECT TIME_TO_SEC(TIMEDIFF(fechaHoraSolucion, fechaHoraReporte)) as diff FROM incidencias WHERE fechaHoraSolucion IS NOT NULL";
+		$sql = "SELECT TIMESTAMPDIFF(SECOND, fechaHoraReporte, fechaHoraSolucion) as diff FROM incidencias WHERE fechaHoraSolucion IS NOT NULL";
 
 		$sql2 = "SELECT count(*) as CantidadIncidencias FROM incidencias WHERE fechaHoraSolucion IS NOT NULL";
 
@@ -279,6 +280,51 @@ class Volqueta extends ClaseBase{
 		return $ret;
 
 	}
+
+	public function getDiferenciaReporte($fechaInicio, $codigoIncidencia2, $codigoIncidencia1 = NULL){
+		if($codigoIncidencia1 == NULL){
+			//$sql = "SELECT TIME_TO_SEC(TIMEDIFF(fechaHoraReporte, ?)) AS diff FROM incidencias WHERE codigo = ?";
+			$sql = "SELECT TIMESTAMPDIFF(SECOND, ?, fechaHoraReporte) AS diff FROM incidencias WHERE codigo = ?";
+			$stmt = DB::conexion()->prepare($sql);
+			$stmt->bind_param('si', $fechaInicio, $codigoIncidencia2);
+		}
+		else{
+			//$sql = "SELECT TIME_TO_SEC(TIMEDIFF(i2.fechaHoraReporte, i1.fechaHoraReporte)) AS diff FROM incidencias i1, incidencias i2 WHERE i1.codigo = ? AND i2.codigo = ?";
+			$sql = "SELECT TIMESTAMPDIFF(SECOND, i1.fechaHoraReporte, i2.fechaHoraReporte) AS diff FROM incidencias i1, incidencias i2 WHERE i1.codigo = ? AND i2.codigo = ?";
+			$stmt = DB::conexion()->prepare($sql);
+			$stmt->bind_param('ii', $codigoIncidencia1, $codigoIncidencia2);
+		}
+
+		$stmt->execute();
+		$result = $stmt->get_result();
+		while($fila = $result->fetch_object()){
+			$resultado = $fila->diff;
+		}
+		return $resultado;
+	}
+
+	public function getDiferenciaHorasReporte($fechaInicio, $codigoIncidencia2, $codigoIncidencia1 = NULL){
+		if($codigoIncidencia1 == NULL){
+			$sql = "SELECT TIMESTAMPDIFF(HOUR, ?, fechaHoraReporte) AS diff FROM incidencias WHERE codigo = ?";
+			$stmt = DB::conexion()->prepare($sql);
+			$stmt->bind_param('si', $fechaInicio, $codigoIncidencia2);
+		}
+		else{
+			$sql = "SELECT TIMESTAMPDIFF(HOUR, i1.fechaHoraReporte, i2.fechaHoraReporte) AS diff FROM incidencias i1, incidencias i2 WHERE i1.codigo = ? AND i2.codigo = ?";
+			$stmt = DB::conexion()->prepare($sql);
+			$stmt->bind_param('ii', $codigoIncidencia1, $codigoIncidencia2);
+		}
+
+		$stmt->execute();
+		$result = $stmt->get_result();
+		while($fila = $result->fetch_object()){
+			$resultado = $fila->diff;
+		}
+		return $resultado;
+	}
+
+
+	
 
 }
 

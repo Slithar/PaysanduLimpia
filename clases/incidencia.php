@@ -400,6 +400,54 @@ class Incidencia extends ClaseBase{
 		return $estado;
 	}
 
+	public function getAllIncidenciasPorFechaDesde(){
+		$sql = "SELECT i.codigo, i.ciUsuario, i.numeroVolqueta, i.aplicacion, i.idAplicacion, i.nombreUsuario, i.ubicacionCorrecta, c.descripcion categoria, s.descripcion severidad, e.descripcion estado, i.descripcion, DATE_FORMAT(i.fechaHoraReporte, '%d/%m/%Y %H:%i') fecha, DATE_FORMAT(i.fechaHoraSolucion, '%d/%m/%Y %H:%i') fechaHoraSolucion FROM incidencias i, categorias c, severidades s, estadosincidencia e WHERE i.categoria = c.codigo AND i.severidad = s.codigo AND i.estado = e.codigo and i.fechaHoraReporte >= ? ORDER BY i.fechaHoraReporte";
+		$stmt = DB::conexion()->prepare($sql);
+		$stmt->bind_param('s', $this->fechaHoraReporte);
+		$stmt->execute();
+		$result = $stmt->get_result();
+		while($fila = $result->fetch_object()){
+			$incidencias[] = new Incidencia(array("codigo" => $fila->codigo,
+												"ciUsuario" => $fila->ciUsuario,
+												"numeroVolqueta" => $fila->numeroVolqueta,
+												"aplicacion" => $fila->aplicacion,
+												"idAplicacion" => $fila->idAplicacion,
+												"nombreUsuario" => utf8_encode($fila->nombreUsuario),
+												"ubicacionCorrecta" => $fila->ubicacionCorrecta,
+												"categoria" => utf8_encode($fila->categoria),
+												"severidad" => utf8_encode($fila->severidad),
+												"estado" => utf8_encode($fila->estado),
+												"descripcion" => htmlentities($fila->descripcion, ENT_QUOTES),
+												"fechaHoraReporte" => $fila->fecha,
+												"fechaHoraSolucion" => $fila->fechaHoraSolucion));
+		}
+		return $incidencias;
+	}
+
+	public function getAllIncidenciasPorFechaDesdeCategoria(){
+		$sql = "SELECT i.codigo, i.ciUsuario, i.numeroVolqueta, i.aplicacion, i.idAplicacion, i.nombreUsuario, i.ubicacionCorrecta, c.descripcion categoria, s.descripcion severidad, e.descripcion estado, i.descripcion, DATE_FORMAT(i.fechaHoraReporte, '%d/%m/%Y %H:%i') fecha, DATE_FORMAT(i.fechaHoraSolucion, '%d/%m/%Y %H:%i') fechaHoraSolucion FROM incidencias i, categorias c, severidades s, estadosincidencia e WHERE i.categoria = c.codigo AND i.severidad = s.codigo AND i.estado = e.codigo and i.fechaHoraReporte >= ? and i.categoria = ? ORDER BY i.fechaHoraReporte";
+		$stmt = DB::conexion()->prepare($sql);
+		$stmt->bind_param('si', $this->fechaHoraReporte, $this->categoria);
+		$stmt->execute();
+		$result = $stmt->get_result();
+		while($fila = $result->fetch_object()){
+			$incidencias[] = new Incidencia(array("codigo" => $fila->codigo,
+												"ciUsuario" => $fila->ciUsuario,
+												"numeroVolqueta" => $fila->numeroVolqueta,
+												"aplicacion" => $fila->aplicacion,
+												"idAplicacion" => $fila->idAplicacion,
+												"nombreUsuario" => utf8_encode($fila->nombreUsuario),
+												"ubicacionCorrecta" => $fila->ubicacionCorrecta,
+												"categoria" => utf8_encode($fila->categoria),
+												"severidad" => utf8_encode($fila->severidad),
+												"estado" => utf8_encode($fila->estado),
+												"descripcion" => htmlentities($fila->descripcion, ENT_QUOTES),
+												"fechaHoraReporte" => $fila->fecha,
+												"fechaHoraSolucion" => $fila->fechaHoraSolucion));
+		}
+		return $incidencias;
+	}
+
 }
 
 ?>

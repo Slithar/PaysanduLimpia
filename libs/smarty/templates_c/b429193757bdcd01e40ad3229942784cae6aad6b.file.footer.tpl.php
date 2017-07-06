@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-05-10 18:53:54
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-07-03 12:25:15
          compiled from "vistas\footer.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2502958f80da01e1242-84629123%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'b429193757bdcd01e40ad3229942784cae6aad6b' => 
     array (
       0 => 'vistas\\footer.tpl',
-      1 => 1494442380,
+      1 => 1499084705,
       2 => 'file',
     ),
   ),
@@ -33,6 +33,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 					<label class = "anio">2017</label>
 				</div>
 			</div>
+			
+			
+			<div class = "divInformacion2">
+				<div class = "informacion2">
+					<label class = "paysanduLimpia">Paysandú Limpia</label>
+					<label class = "sistemaPara">Sistema para control de estado y asistencia de volquetas recolectoras de residuos</label>
+					<label class = "anio">2017</label>
+				</div>
+			</div>
 			<div class = "divContacto">
 				<form id = "formContacto">
 					
@@ -50,6 +59,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 					</div>
 				</form>
 			</div>
+			
 		</div>
 	</footer>
 <?php } else { ?>

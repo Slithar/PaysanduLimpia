@@ -12,7 +12,7 @@
 	<div class = "wrapper">
 		{include file = "header.tpl"}
 		<div id = "main" class = "{$classMain} {$classLogueado}">
-			<div class = "contenedor">
+			<div class = "contenedor contenedorNuevaIncidencia">
 				{if $success eq "si"}
 					<div class = "alert alert-success fadeIn" id = "successNuevaIncidencia" style = "margin-bottom: 50px;">
 						<strong>¡ÉXITO!&nbsp;</strong>La nueva incidencia ha sido creada de manera correcta. Código: {$codigo}

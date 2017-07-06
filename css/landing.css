@@ -149,3 +149,315 @@
 	margin-top: 25px;
 	display: none;
 }
+
+.divInformacion2{
+	display: none;
+}
+
+.contenedorCarousel2{
+	display: none;
+}
+
+#carousel2{
+	display: none;
+}
+
+@media (max-width: 1110px) and (min-width: 970px){
+	.divContacto{
+		/*border: 1px solid black;*/
+		width: 35%;
+		margin-right: 60%;
+	}
+
+}
+
+@media (min-width: 810px) and (max-width: 970px){
+	.divContacto{
+		/*border: 1px solid black;*/
+		width: 80%;
+		position: absolute;
+		left: 10%;
+		border-bottom: 1px solid white;
+		margin: auto;
+		padding-bottom: 85px;
+		height: 450px;
+	}
+
+	#formContacto{
+		width: 70%;
+		margin: auto;
+	}
+
+	.divInformacion{
+		width: 100%;
+		position: absolute;
+		bottom: 87%;
+		/*display: none;*/
+	}
+
+	.divInformacion2{
+		display: block;		
+		position: absolute;
+		margin-top: 425px;
+		width: 50%;
+		left: 25%;
+	}
+
+	#carousel{
+		display: none;
+	}
+
+	.contenedorCarousel2{
+		display: block;
+	}
+
+	#carousel2{
+		display: block;
+	}
+
+	.divMain{
+		width: 90%;
+	}
+
+	.textoPaso{
+		text-align: justify;
+	}
+
+	.imgPaso2{
+		width: 25%;
+		float: right;
+		margin-left: 7%;
+		margin-top: 50px;
+	}
+
+	.imgPaso3{
+		width: 25%;
+		float: left;
+		margin-right: 7%;
+		margin-top: 20px;
+	}
+
+	.imgPaso4{
+		width: 30%;
+		float: right;
+		margin-left: 7%;
+		margin-top: 40px;
+	}
+
+	.imgPaso5{
+		width: 25%;
+		float: left;
+		margin-right: 7%;
+		margin-top: 40px;
+	}
+}
+
+
+@media (min-width: 730px) and (max-width: 810px){
+	.divContacto{
+		/*border: 1px solid black;*/
+		width: 80%;
+		position: absolute;
+		left: 10%;
+		border-bottom: 1px solid white;
+		margin: auto;
+		padding-bottom: 85px;
+		height: 450px;
+	}
+
+	#formContacto{
+		width: 70%;
+		margin: auto;
+	}
+
+	.divInformacion{
+		width: 100%;
+		position: absolute;
+		bottom: 87%;
+		/*display: none;*/
+	}
+
+	.divInformacion2{
+		display: block;		
+		position: absolute;
+		margin-top: 425px;
+		width: 50%;
+		left: 25%;
+	}
+
+	#carousel{
+		display: none;
+	}
+
+	.contenedorCarousel2{
+		display: block;
+	}
+
+	#carousel2{
+		display: block;
+	}
+
+	.divMain{
+		width: 90%;
+	}
+
+	.divP{
+		margin-top: 20%;
+	}
+	.divOtras{
+		margin-top: 30%;
+	}
+
+	.textoPaso{
+		text-align: justify;
+	}
+
+	.imgPaso1{
+		width: 25%;
+		float: left;
+		margin-right: 7%;		
+		margin-top: 20px;
+	}
+
+	.imgPaso2{
+		width: 25%;
+		float: right;
+		margin-left: 7%;
+		margin-top: 50px;
+	}
+
+	.imgPaso3{
+		width: 25%;
+		float: left;
+		margin-right: 7%;
+		margin-top: 30px;
+	}
+
+	.imgPaso4{
+		width: 30%;
+		float: right;
+		margin-left: 7%;
+		margin-top: 40px;
+	}
+
+	.imgPaso5{
+		width: 25%;
+		float: left;
+		margin-right: 7%;
+		margin-top: 40px;
+	}
+}
+
+@media (min-width: 625px) and (max-width: 730px){
+	.divContacto{
+		/*border: 1px solid black;*/
+		width: 80%;
+		position: absolute;
+		left: 10%;
+		border-bottom: 1px solid white;
+		margin: auto;
+		padding-bottom: 85px;
+		height: 450px;
+	}
+
+	#formContacto{
+		width: 70%;
+		margin: auto;
+	}
+
+	.divInformacion{
+		width: 100%;
+		position: absolute;
+		bottom: 87%;
+		/*display: none;*/
+	}
+
+	.divInformacion2{
+		display: block;		
+		position: absolute;
+		margin-top: 425px;
+		width: 58%;
+		left: 21%;
+	}
+
+	#carousel{
+		display: none;
+	}
+
+	.contenedorCarousel2{
+		display: block;
+	}
+
+	#carousel2{
+		display: block;
+	}
+
+	.divMain{
+		width: 90%;
+	}
+
+	.divP{
+		margin-top: 20%;
+	}
+	.divOtras{
+		margin-top: 30%;
+	}
+
+	.textoPaso{
+		text-align: justify;
+	}
+
+	.imgPaso1{
+		width: 25%;
+		float: left;
+		margin-right: 7%;		
+		margin-top: 20px;
+	}
+
+	.imgPaso2{
+		width: 25%;
+		float: right;
+		margin-left: 7%;
+		margin-top: 50px;
+	}
+
+	.imgPaso3{
+		width: 25%;
+		float: left;
+		margin-right: 7%;
+		margin-top: 30px;
+	}
+
+	.imgPaso4{
+		width: 30%;
+		float: right;
+		margin-left: 7%;
+		margin-top: 40px;
+	}
+
+	.imgPaso5{
+		width: 25%;
+		float: left;
+		margin-right: 7%;
+		margin-top: 40px;
+	}
+
+	.mainTexto{
+		font-size: 25px;
+	}
+	.segundoTexto{
+		font-size: 21px;
+	}
+
+	.titulo{
+		font-size: 21px;
+	}
+	.textoPaso{
+		font-size: 19px;
+	}
+
+	.textoPaso4{
+		font-size: 19px;
+		text-align: justify;
+	}
+}

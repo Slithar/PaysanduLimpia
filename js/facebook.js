@@ -80,20 +80,28 @@ function facebookLogin() {
 }
 
 function logout(){
-
+	//window.location.href = "/Volquetas/usuario/logout";
 	FB.getLoginStatus(function(response) {
 		console.log(response);
-        //if (response.status === 'connected') {
-            FB.logout(function(response){console.log("Deslogueado");});
-       // }
+        if (response.status === 'connected') {
+        	FB.logout(function(response){console.log("Deslogueado");});
+        	window.location.href = "/Volquetas/usuario/logout";
+        }
+        else{
+        	window.location.href = "/Volquetas/usuario/logout";
+        }
     });
 	//alert("aca");
-	window.location.href = "/Volquetas/usuario/logout";
+	
 	
 		
 }
  
 $('#btnFacebook').on('click', function(){
+	facebookLogin();
+});
+
+$('#btnFacebook2').on('click', function(){
 	facebookLogin();
 });
 

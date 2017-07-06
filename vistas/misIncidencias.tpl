@@ -12,11 +12,11 @@
 	<div class = "wrapper">
 		{include file = "header.tpl"}
 		<div id = "main" class = "{$classMain} {$classLogueado}">
-			<div class = "contenedor">
+			<div class = "contenedor contenedorMisIncidencias">
 				<div class = "divBusqueda">
-					<label style = "margin-right: 7%;">
+					<label id = "lblEstadoFiltro">
 						{if $cantidad eq "0"}
-							No hay incidencias
+							Sin incidencias
 						{else if $cantidad eq "1"}
 							1 incidencia
 						{else}
@@ -39,7 +39,7 @@
 				</div>
 				{foreach from = $incidencias item = incidencia}
 					<div class = "contenedorIncidencia">
-						<img src = "img/Volquetas/{$incidencia.numeroVolqueta}.png" style = "width: 27%; height: 100%; border-radius: 15px 0 0 15px">
+						<img src = "img/Volquetas/{$incidencia.numeroVolqueta}.png" class = "imagenVolquetaIncidencia">
 						<div class = "datosIncidencia">
 							<p style = "font-size: 18px; color: #0F3EA1; font-weight: bold;">Volqueta Nº {$incidencia.numeroVolqueta}: {$incidencia.direccion}</p>
 							<br>
@@ -49,20 +49,25 @@
 							<br>
 							<p><a class = "btn btn-primary" href = "/Volquetas/incidencia/verIncidencia/{$incidencia.codigo}"><span class = "fa fa-eye"></span>&nbsp;&nbsp;Ver incidencia</a></p>
 						</div>
+						<div class = "datosIncidencia2">
+							<p style = "font-size: 18px; color: #0F3EA1; font-weight: bold;">Volqueta Nº {$incidencia.numeroVolqueta}: {$incidencia.direccion}</p>
+							<br>
+							<p style = "font-size: 15px;"><b>Código:</b> {$incidencia.codigo}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Categoría:</b> {$incidencia.categoria}</p>
+							<p><b>Estado:</b> <span class = "incidencia{$incidencia.estado}">{$incidencia.estado}</span></p>							
+							<br>
+							<p><a class = "btn btn-primary" href = "/Volquetas/incidencia/verIncidencia/{$incidencia.codigo}"><span class = "fa fa-eye"></span>&nbsp;&nbsp;Ver incidencia</a></p>
+						</div>
+						<div class = "datosIncidencia3">
+							<p style = "font-size: 18px; color: #0F3EA1; font-weight: bold;">Volqueta Nº {$incidencia.numeroVolqueta}: {$incidencia.direccion}</p>
+							<br>
+							<p style = "font-size: 15px;"><b>Código:</b> {$incidencia.codigo}</p>
+							<p><b>Categoría:</b> {$incidencia.categoria}</p>
+							<p><b>Estado:</b> <span class = "incidencia{$incidencia.estado}">{$incidencia.estado}</span></p>							
+							<br>
+							<p><a class = "btn btn-primary" href = "/Volquetas/incidencia/verIncidencia/{$incidencia.codigo}"><span class = "fa fa-eye"></span>&nbsp;&nbsp;Ver incidencia</a></p>
+						</div>
 					</div>
 				{/foreach}
-				<!--
-				<div class = "contenedorIncidencia">
-					<img src = "img/Volquetas/27.png" style = "width: 27%; height: 100%; border-radius: 15px 0 0 15px">
-				</div>
-				<div class = "contenedorIncidencia">
-					<img src = "img/Volquetas/27.png" style = "width: 27%; height: 100%; border-radius: 15px 0 0 15px">
-				</div>
-				<div class = "contenedorIncidencia">
-					<img src = "img/Volquetas/27.png" style = "width: 27%; height: 100%; border-radius: 15px 0 0 15px">
-				</div>
-				-->
-
 			</div>
 		</div>
 		<script src = "js/markers.js"></script>

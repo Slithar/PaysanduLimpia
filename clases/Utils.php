@@ -24,7 +24,7 @@ class Utils{
 	$mail->Host = 'smtp.gmail.com';
 
 	//Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
-	$mail->Port = 587;
+	$mail->Port = 25;
 
 	//Set the encryption system to use - ssl (deprecated) or tls
 	$mail->SMTPSecure = 'tls';
@@ -36,7 +36,7 @@ class Utils{
 	$mail->Username = "paysandulimpia@gmail.com";
 
 	//Password to use for SMTP authentication
-	$mail->Password = "Paysandulimpia2017";
+	$mail->Password = "Paysandulimpia201707";
 
 	//Set who the message is to be sent from
 	$mail->setFrom('paysandulimpia@gmail.com', 'Paysandu Limpia');
@@ -107,7 +107,7 @@ class Utils{
 	$mail->Username = "paysandulimpia@gmail.com";
 
 	//Password to use for SMTP authentication
-	$mail->Password = "Paysandulimpia2017";
+	$mail->Password = "Paysandulimpia201707";
 
 	//Set who the message is to be sent from
 	$mail->setFrom('paysandulimpia@gmail.com', 'Paysandu Limpia');

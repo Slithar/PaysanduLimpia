@@ -5,6 +5,8 @@ jQuery(document).ready(function($) {
 	
 	$("#dpickerFrom").datepicker({ dateFormat: "dd/mm/yy"});
 	$("#dpickerTill").datepicker({ dateFormat: "dd/mm/yy"});
+	$('#dpickerDesdeTiempoPromedio').datepicker({ dateFormat: "dd/mm/yy"});
+	$('#dpickerDesdeHorasPromedioReportes').datepicker({ dateFormat: "dd/mm/yy"});
 
 
 
@@ -14,14 +16,18 @@ jQuery(document).ready(function($) {
 	var mm = (f.getMonth() + 1) < 10 ? "0" + (f.getMonth() + 1) : (f.getMonth() + 1);
 	$('#dpickerFrom').val(dd + "/" + mm + "/" + f.getFullYear());
 	$('#dpickerTill').val(dd + "/" + mm + "/" + f.getFullYear());
+	$('#dpickerDesdeTiempoPromedio').val("01/" + mm + "/" + f.getFullYear());
+	$('#dpickerDesdeHorasPromedioReportes').val("01/" + mm + "/" + f.getFullYear());
 
 	//Inicializamos gráficas
 	graficarEstadosVolquetas();
 	graficarPeriodoDeTiempo();
 	tiempoPromedioGeneral();
 	graficarRankingVolquetas();
-	graficarReportesDeCategoriasPromedio();
+	graficarResolucionesDeCategoriasPromedio();
 	graficarReportesDeCategorias();
+	tiempoPromedioGeneralIncidencias();
+	graficarReportesDeCategoriasPromedio();
 
 	//Eventos al cambiar la fecha
 	$('#dpickerFrom').on('change', function(){
@@ -32,17 +38,31 @@ jQuery(document).ready(function($) {
 		graficarPeriodoDeTiempo();
 	});
 
+	$('#dpickerDesdeTiempoPromedio').on('change', function(){
+		tiempoPromedioGeneralIncidencias();
+	});
+
+	$('#dpickerDesdeHorasPromedioReportes').on('change', function(){
+		graficarReportesDeCategoriasPromedio();
+	});
+
 	//Exportar a PDF
 	$('#btnExportar').on('click', function(){
 		var desde = $("#dpickerFrom").val();
 		var hasta = $("#dpickerTill").val();
+		var desdeReportes = $('#dpickerDesdeHorasPromedioReportes').val();
+		var desdeReporteGeneral = $('#dpickerDesdeTiempoPromedio').val();
 		var desdeSplit = desde.split("/");
 		var hastaSplit = hasta.split("/");
+		var desdeReportesSplit = desdeReportes.split("/");
+		var desdeReportesGeneralSplit = desdeReporteGeneral.split("/");
 		var from = desdeSplit[2] + "-" + desdeSplit[1] + "-" + desdeSplit[0];
 		var till = hastaSplit[2] + "-" + hastaSplit[1] + "-" + hastaSplit[0];
+		var fromReportes = desdeReportesSplit[2] + "-" + desdeReportesSplit[1] + "-" + desdeReportesSplit[0];
+		var fromReportesGeneral = desdeReportesGeneralSplit[2] + "-" + desdeReportesGeneralSplit[1] + "-" + desdeReportesGeneralSplit[0];
 		var a = document.createElement('a');
 		a.target = "_blank";
-		a.href = "/Volquetas/volqueta/exportarPDF/" + from + "/" + till + "/Paysandú Limpia - Estadísticas de servicios";
+		a.href = "/Volquetas/volqueta/exportarPDF/" + from + "/" + till + "/" + fromReportes + "/" + fromReportesGeneral + "/Paysandú Limpia - Estadísticas de servicios";
 		a.click(); 
 	});
 
@@ -59,8 +79,9 @@ function graficarEstadosVolquetas(){
 		async: false
 	})
 	.done(function(json) {
-		console.log(JSON.stringify(json));
-		data = json;
+		//console.log(JSON.stringify(json));
+		if(json["code"] == "ok")
+			data = json["message"];
 	});
 
 
@@ -102,7 +123,8 @@ function graficarPeriodoDeTiempo(){
 		async: false
 	})
 	.done(function(json) {
-		data = json;
+		if(json["code"] == "ok")
+			data = json["message"];
 	});
 	
 
@@ -129,29 +151,75 @@ function tiempoPromedioGeneral(){
 		dataType: 'json',
 	})
 	.done(function(json) {
-		var datos = json.split(":");	
-		if(datos[2] == null){
-			datos[2] == 00;
-			datos[1] == 00;
-			datos[0] == 00;
-		}
-		else if(datos[1] == null){
-			datos[0] == 00;
-			datos[1] == 00;
-		}	
-		else if(datos[0] == null){
-			datos[0] == 00;
-		}
-
-		for(var i = 0; i < 3; i++){
-			if(datos[i] < 10){
-				datos[i] = "0" + datos[i];
+		if(json["code"] == "ok"){
+			var datos = json["message"].split(":");	
+			if(datos[2] == null){
+				datos[2] == 00;
+				datos[1] == 00;
+				datos[0] == 00;
 			}
+			else if(datos[1] == null){
+				datos[0] == 00;
+				datos[1] == 00;
+			}	
+			else if(datos[0] == null){
+				datos[0] == 00;
+			}
+
+			/*for(var i = 0; i < 3; i++){
+				if(datos[i] < 10 && datos[i] > 0){
+					datos[i] = "0" + datos[i];
+				}
+			}*/
+			
+			var hora = datos[0] + "&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;" + datos[1] + "&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;" + datos[2];
+			$("#tiempoPromedio").html(hora);
 		}
 		
-		var hora = datos[0] + "&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;" + datos[1] + "&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;" + datos[2];
-		$("#tiempoPromedio").html(hora);
 	});
+
+}
+
+function tiempoPromedioGeneralIncidencias(){
+	var desde = $("#dpickerDesdeTiempoPromedio").val();
+	var desdeSplit = desde.split("/");
+	var from = desdeSplit[2] + "-" + desdeSplit[1] + "-" + desdeSplit[0];
+	$.ajax({
+		url: '/Volquetas/volqueta/getIncidenciasAvegareTimeGeneral/' + from + ' 00:00:00',
+		type: 'POST',
+		dataType: 'json',
+	})
+	.done(function(json) {
+		if(json["code"] == "ok"){
+			var datos = json["message"].split(":");	
+			if(datos[2] == null){
+				datos[2] == 00;
+				datos[1] == 00;
+				datos[0] == 00;
+			}
+			else if(datos[1] == null){
+				datos[0] == 00;
+				datos[1] == 00;
+			}	
+			else if(datos[0] == null){
+				datos[0] == 00;
+			}
+			//alert(json["content"]);
+			/*for(var i = 0; i < 3; i++){
+				if(datos[i] < 10 && datos[i] > 0){
+					datos[i] = "0" + datos[i];
+				}
+			}*/
+			
+			var hora = datos[0] + "&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;" + datos[1] + "&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;" + datos[2];
+			$("#tiempoPromedioReporte").html(hora);
+		}
+		
+	})
+
+	.fail(function(error, err, e){
+		alert(e);
+	});;
 
 }
 
@@ -166,7 +234,8 @@ function graficarRankingVolquetas(){
 		async: false
 	})
 	.done(function(json) {
-		dataMR = json;
+		if(json["code"] == "ok")
+			dataMR = json["message"];
 	});
 
 	var myChart = new Chart(masRep, {
@@ -184,7 +253,7 @@ function graficarRankingVolquetas(){
 	});
 }
 
-function graficarReportesDeCategoriasPromedio(){
+function graficarResolucionesDeCategoriasPromedio(){
 	var tfPorCategoria = document.getElementById("TimeframePorCategoria").getContext('2d');
 	var dataTFPorCategoria ="";
 	$.ajax({
@@ -194,8 +263,45 @@ function graficarReportesDeCategoriasPromedio(){
 		async: false
 	})
 	.done(function(json) {
-		//console.log(JSON.stringify(json));
-		dataTFPorCategoria = json;
+		if(json["code"] == "ok")
+			dataTFPorCategoria = json["message"];
+	});
+
+
+	var myChart = new Chart(tfPorCategoria, {
+	    type: 'bar',
+	    data: dataTFPorCategoria,
+	    options: {
+	        scales: {
+	            yAxes: [{
+	                ticks: {
+	                    beginAtZero:true
+	                }
+	            }]
+	        }
+	    }
+	});
+}
+
+function graficarReportesDeCategoriasPromedio(){
+	$('#TimeframePorCategoriaReporte').remove();
+	$('#tiempoPromedioPorCategoriaReporte').append("<canvas id = 'TimeframePorCategoriaReporte'></canvas>");
+
+	var desde = $("#dpickerDesdeHorasPromedioReportes").val();
+	var desdeSplit = desde.split("/");
+	var from = desdeSplit[2] + "-" + desdeSplit[1] + "-" + desdeSplit[0];
+
+	var tfPorCategoria = document.getElementById("TimeframePorCategoriaReporte").getContext('2d');
+	var dataTFPorCategoria ="";
+	$.ajax({
+		url: '/Volquetas/volqueta/getIncidenciasAvegareTimePorHorasCategorias/' + from + ' 00:00:00',
+		type: 'POST',
+		dataType: 'json',
+		async: false
+	})
+	.done(function(json) {
+		if(json["code"] == "ok")
+			dataTFPorCategoria = json["message"];
 	});
 
 
@@ -224,8 +330,8 @@ function graficarReportesDeCategorias(){
 		async : false
 	})
 	.done(function(json) {
-		dataMRT = json;
-		console.log(JSON.stringify(json));
+		if(json["code"] == "ok")
+			dataMRT = json["message"];
 		// var i = 0;
 		// while(i < json.length){
 		// 	console.log(json[i]["cantidad"] + " " +json[i]["nroVol"] );

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-05-24 22:33:34
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-07-02 05:08:19
          compiled from "vistas\verPerfil.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:98985909fdca410ba6-42760465%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ef553e8fa02bc01f45e4c087fe2a05a914b2010a' => 
     array (
       0 => 'vistas\\verPerfil.tpl',
-      1 => 1495665212,
+      1 => 1498972093,
       2 => 'file',
     ),
   ),
@@ -20,6 +20,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'variables' => 
   array (
     'location' => 0,
+    'success' => 0,
     'classMain' => 0,
     'classLogueado' => 0,
     'tipo' => 0,
@@ -29,7 +30,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'email' => 0,
     'fotoPerfil' => 0,
     'enviarCorreo' => 0,
-    'success' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -48,6 +48,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	<?php echo '<script'; ?>
  src = "js/signup_functions.js"><?php echo '</script'; ?>
 >
+	<?php if ($_smarty_tpl->tpl_vars['success']->value=="si") {?>
+		<?php echo '<script'; ?>
+ src = "js/verPerfil.js"><?php echo '</script'; ?>
+>
+	<?php }?>
 </head> 
 <body>
 	<!-- Incluir la vista del header al principio -->
@@ -62,11 +67,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 				<form id="formModificar" action="/Volquetas/usuario/modificar" method="POST" enctype="multipart/form-data" accept-charset="utf-8" class="modificar">
 					<div class="row">
 						<div class="form-group col-sm-12">
-							<label for="ci" class="control-label" style = "font-size: 17px">Cédula de identidad: <?php echo $_smarty_tpl->tpl_vars['ci']->value;?>
+							<label for="ci" class="control-label" style = "font-size: 17px; margin-top: 5px">Cédula de identidad: <?php echo $_smarty_tpl->tpl_vars['ci']->value;?>
 </label>
+							<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalCambiarContrasenia" style = "padding: 7px; float: right;"><span class = "fa fa-lock"></span>&nbsp;&nbsp;<b>Cambiar contraseña</b></button>
 						</div>
 					</div>	
-					<div class="row">
+					<div class="row" style = "margin-top: 15px">
 						<div class="form-group col-sm-6">
 							<label for="nombre" class="control-label">Nombre: </label>
 							<input type="text" id="nombreUsuario" name="nombre" class="form-control" value="<?php echo $_smarty_tpl->tpl_vars['nombreModificar']->value;?>
@@ -113,11 +119,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 					<br><br>
 					<div class="row">
 						<center>
-							<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalCambiarContrasenia" style = "width: 35%; margin-left: 0"><span class = "fa fa-lock"></span>&nbsp;&nbsp;<b>Cambiar contraseña</b></button>
-							&nbsp;&nbsp;&nbsp;&nbsp;
-					 		<button type="submit" class="btn btn-success" id = "btnModificarb" style = "width: 17%;"><span class = "fa fa-pencil"></span>&nbsp;&nbsp;<b>Modificar</b></button>
+							<!--
+							<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalCambiarContrasenia" style = "width: 35%; margin-left: 0; padding: 7px;"><span class = "fa fa-lock"></span>&nbsp;&nbsp;<b>Cambiar contraseña</b></button>
+							&nbsp;&nbsp;&nbsp;&nbsp;-->
+					 		<button type="submit" class="btn btn-success" id = "btnModificarb"><span class = "fa fa-pencil"></span>&nbsp;&nbsp;<b>Modificar</b></button>
 					 		&nbsp;&nbsp;&nbsp;&nbsp;	
-					 		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#eliminarUsuario" style = "width: 25%;"><span class = "fa fa-times"></span>&nbsp;&nbsp;<b>Borrar mi cuenta</b></button>
+					 		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#eliminarUsuario" id = "btnEliminarUsuario"><span class = "fa fa-times"></span>&nbsp;&nbsp;<b>Borrar mi cuenta</b></button>
 				 		</center>
 					</div>
 					<br>
@@ -125,7 +132,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 						<div class="alert alert-danger" id="alerta" style="text-align: center; display: none; margin-top: 30px;">
 							
 						</div>
-						<div class="alert alert-success" style="margin-top: 30px; text-align: center; display: <?php if ($_smarty_tpl->tpl_vars['success']->value=="si") {?>block;<?php } else { ?>none;<?php }?>">
+						<div class="alert alert-success" id = "alertaSuccess" style="margin-top: 30px; text-align: center; display: <?php if ($_smarty_tpl->tpl_vars['success']->value=="si") {?>block;<?php } else { ?>none;<?php }?>">
 							<strong>¡ÉXITO!</strong>&nbsp;&nbsp;Los cambios han sido realizado de manera correcta
 						</div>
 					</div>
@@ -136,8 +143,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 					<label style = "font-size: 18px; text-align: center; width: 100%;">En caso de no tener  dicha cuenta, por favor cerrar sesión actual para luego registrar.</label>
 					<br><br><br><br>
 					<div style = "width: 100%; display: block;" id = "divOpciones">
-						<button type = "button" class = "btn btn-danger" style = "margin: 0 auto; font-size: 18px; margin-left: 33%; width: 18%"  <?php if ($_smarty_tpl->tpl_vars['tipo']->value=="google") {?>onclick = "LogOutGoogle();"<?php } else { ?>onclick = "logout();"<?php }?> id = "btnRegistrarPerfil"><span class = "fa fa-sign-out"></span>&nbsp;&nbsp;<b>Cerrar sesión</b></button>&nbsp;&nbsp;
-						<button type = "button" class = "btn btn-success" style = "margin: 0 auto; font-size: 18px; width: 18%" onclick = "window.location.href = '/Volquetas/usuario/landing'"><span class = "fa fa-check"></span>&nbsp;&nbsp;<b>Aceptar</b></button>
+						<button type = "button" class = "btn btn-danger" <?php if ($_smarty_tpl->tpl_vars['tipo']->value=="google") {?>onclick = "LogOutGoogle();"<?php } else { ?>onclick = "logout();"<?php }?> id = "btnRegistrarPerfil"><span class = "fa fa-sign-out"></span>&nbsp;&nbsp;<b>Cerrar sesión</b></button>&nbsp;&nbsp;
+						<button type = "button" class = "btn btn-success" onclick = "window.location.href = '/Volquetas/usuario/landing'" id = "btnAceptarVerPerfil"><span class = "fa fa-check"></span>&nbsp;&nbsp;<b>Aceptar</b></button>
 						
 					</div>
 					

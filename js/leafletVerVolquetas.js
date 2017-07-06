@@ -46,9 +46,12 @@ $.ajax({
 			}
 			marker.addTo(map);
 
-			$('#lblCantidadGreen').html("Cantidad de volquetas: " + green);
-			$('#lblCantidadOrange').html("Cantidad de volquetas: " + orange);
-			$('#lblCantidadRed').html("Cantidad de volquetas: " + red);
+			$('#lblCantidadGreen').html("Cantidad de volquetas: <b>" + green + "</b>");
+			$('#lblCantidadOrange').html("Cantidad de volquetas: <b>" + orange + "</b>");
+			$('#lblCantidadRed').html("Cantidad de volquetas: <b>" + red + "</b>");
+			$('#lblCantidadGreenTable').html(green);
+			$('#lblCantidadOrangeTable').html(orange);
+			$('#lblCantidadRedTable').html(red);
 		}
 	}
 	

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-06-12 06:00:33
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-07-03 11:06:29
          compiled from "vistas\verIncidencia.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:18977591f66066ac479-07021860%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '4bf0faa787e6d50cbed97426ae6ab46eb9d71025' => 
     array (
       0 => 'vistas\\verIncidencia.tpl',
-      1 => 1497247203,
+      1 => 1499079979,
       2 => 'file',
     ),
   ),
@@ -28,9 +28,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'estado' => 0,
     'direccion' => 0,
     'ubicacionCorrecta' => 0,
-    'fecha' => 0,
     'severidad' => 0,
     'categoria' => 0,
+    'fecha' => 0,
+    'fechaSolucion' => 0,
     'descripcion' => 0,
     'cantidadImagenes' => 0,
     'imagenes' => 0,
@@ -62,19 +63,19 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		<div id = "main" class = "<?php echo $_smarty_tpl->tpl_vars['classMain']->value;?>
  <?php echo $_smarty_tpl->tpl_vars['classLogueado']->value;?>
 ">
-			<div class = "contenedor">
+			<div class = "contenedor contenedorVerIncidencia">
 				<div class="alert alert-success" style="display: <?php if ($_smarty_tpl->tpl_vars['success']->value=="si") {?>block;<?php } else { ?>none;<?php }?>">
 					<strong>¡ÉXITO!</strong>&nbsp;&nbsp;Los cambios han sido realizado de manera correcta
 				</div>
 				<form id = "frmVerIncidencia" method = "POST" action = "/Volquetas/incidencia/agregarFotos"  enctype="multipart/form-data">
 					<input type = "hidden" name = "codigo" value = "<?php echo $_smarty_tpl->tpl_vars['codigo']->value;?>
 " id = "codigo">
-					<div class = "contenedorIncidencia" style = "height:400px; margin-top: 15px; padding: 25px 45px; box-sizing: border-box;">
+					<div class = "contenedorIncidencia contenedorVerIncidenciaDatos" id = "contenedorInformacionIncidencia">
 						<p style = "font-size: 24px; color: #0F3EA1; font-weight: bold; text-align: center;">Información básica</p>
 						<br>
 						<img class = "imagenVerIncidencia" src = "img/Volquetas/<?php echo $_smarty_tpl->tpl_vars['numeroVolqueta']->value;?>
 .png"/>
-						<table style = "float:left; width: 68%; margin-top: 19px">
+						<table class = "tableDatosIncidencia1" style = "float:left; width: 68%; margin-top: 0">
 							<tr>
 								<td colspan = "2" style = "font-size: 18px; font-weight: bold;">Código de incidencia: <?php echo $_smarty_tpl->tpl_vars['codigo']->value;?>
 </td>
@@ -91,16 +92,49 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 								<td class = "col3"><br><br><b>¿Corrida?</b><br><?php if ($_smarty_tpl->tpl_vars['ubicacionCorrecta']->value=="1") {?>No<?php } else { ?>Sí<?php }?></td>
 							</tr>
 							<tr>
+								<td class = "col1"><br><b>Severidad:</b><br><?php echo $_smarty_tpl->tpl_vars['severidad']->value;?>
+</td>
+								<td colspan = "2" class = "col2"><br><b>Categoría:</b><br><?php echo $_smarty_tpl->tpl_vars['categoria']->value;?>
+</td>
+							</tr>
+							<tr>								
 								<td class = "col1"><br><b>Fecha y hora de reporte:</b><br><?php echo $_smarty_tpl->tpl_vars['fecha']->value;?>
 </td>
-								<td class = "col2"><br><b>Severidad:</b><br><?php echo $_smarty_tpl->tpl_vars['severidad']->value;?>
-</td>
-								<td class = "col3"><br><b>Categoría:</b><br><?php echo $_smarty_tpl->tpl_vars['categoria']->value;?>
+								<td colspan = "2" class = "col2"><br><b>Fecha y hora de solución:</b><br><?php echo $_smarty_tpl->tpl_vars['fechaSolucion']->value;?>
 </td>
 							</tr>
 						</table>
+						<table class = "tableDatosIncidencia2">
+							<tr style = "width: 100%">
+								<td colspan = "2" style = "font-size: 18px; font-weight: bold;">Código de incidencia: <?php echo $_smarty_tpl->tpl_vars['codigo']->value;?>
+</td>
+								<td style = "font-size: 18px; font-weight: bold;">Estado: <span class = "incidencia<?php echo $_smarty_tpl->tpl_vars['estado']->value;?>
+"><?php echo $_smarty_tpl->tpl_vars['estado']->value;?>
+</span></td>
+							</tr>
+							<tr style = "width: 100%">
+								<td><br><br><b>Número de volqueta:</b><br><?php echo $_smarty_tpl->tpl_vars['numeroVolqueta']->value;?>
+</td>
+								<td><br><br><b>Dirección:</b><br><?php echo $_smarty_tpl->tpl_vars['direccion']->value;?>
+</td>
+							</tr style = "width: 100%">
+							<tr>								
+								<td><br><br><b>¿Corrida?</b><br><?php if ($_smarty_tpl->tpl_vars['ubicacionCorrecta']->value=="1") {?>No<?php } else { ?>Sí<?php }?></td>
+								<td><br><b>Severidad:</b><br><?php echo $_smarty_tpl->tpl_vars['severidad']->value;?>
+</td>
+								<td><br><b>Categoría:</b><br><?php echo $_smarty_tpl->tpl_vars['categoria']->value;?>
+</td>
+							</tr>
+							<tr>								
+								<td><br><b>Fecha y hora de reporte:</b><br><?php echo $_smarty_tpl->tpl_vars['fecha']->value;?>
+</td>
+								<td><br><b>Fecha y hora de solución:</b><br><?php echo $_smarty_tpl->tpl_vars['fechaSolucion']->value;?>
+</td>
+								<td><br><button type = "button" class = "btn btn-primary" id = "btnVolqueta" style = "width: 100%;"><span class = "fa fa-trash"></span>&nbsp;&nbsp;Ver volqueta</button></td>
+							</tr>
+						</table>
 					</div>		
-					<div class = "contenedorIncidencia" style = "height:auto; margin-top: 40px; padding: 25px 45px; box-sizing: border-box;">
+					<div class = "contenedorIncidencia contenedorVerIncidenciaDatos" style = "height:auto; margin-top: 40px; padding: 25px 45px; box-sizing: border-box;">
 						<p style = "font-size: 24px; color: #0F3EA1; font-weight: bold; text-align: center;">Datos adicionales</p>
 						<br><br>
 						<div class = "form-group" id = "divDescripcion">
@@ -135,7 +169,7 @@ $_smarty_tpl->tpl_vars['imagen']->_loop = true;
 							</ul>
 						<?php }?>
 						<?php if ($_smarty_tpl->tpl_vars['estado']->value=="Pendiente") {?>
-							<label class="btn btn-default btn-file" id ="lblBuscar">
+							<label class="btn btn-default btn-file" id ="lblBuscarVerIncidencia">
 							    <span class = "fa fa-folder"></span>&nbsp;&nbsp;<b>Buscar</b><input type="file" multiple="true" name = "imagenes[]" id = "fileImagen" onchange = "readURLIncidencia(this);" accept="image/jpg,image/png,image/jpg,image/gif,image/jpg,image/jpeg,image/bmp"/>
 							</label>
 
@@ -145,7 +179,7 @@ $_smarty_tpl->tpl_vars['imagen']->_loop = true;
 							</ul>
 						<?php }?>
 					</div>
-					<div class = "contenedorIncidencia" style = "height:auto; margin-top: 40px; padding: 25px 45px; box-sizing: border-box;">
+					<div class = "contenedorIncidencia contenedorVerIncidenciaDatos" style = "height:auto; margin-top: 40px; padding: 25px 45px; box-sizing: border-box;">
 						<p style = "font-size: 24px; color: #0F3EA1; font-weight: bold; text-align: center;">Comentarios</p>
 						<br><br>
 						<div id = "divComentarios">
@@ -181,9 +215,9 @@ $_smarty_tpl->tpl_vars['c']->_loop = true;
 				</form>
 				<?php if ($_smarty_tpl->tpl_vars['estado']->value=="Pendiente") {?>
 					<div style = "width: 100%; margin-top: 75px;">
-						<button type = "button" class = "btn btn-danger" style = "width: 15%; float: right" id = "btnEliminarIncidencia" onclick = "window.location.href = '/Volquetas/incidencia/eliminarIncidencia/<?php echo $_smarty_tpl->tpl_vars['codigo']->value;?>
+						<button type = "button" class = "btn btn-danger" id = "btnEliminarIncidencia" onclick = "window.location.href = '/Volquetas/incidencia/eliminarIncidencia/<?php echo $_smarty_tpl->tpl_vars['codigo']->value;?>
 '"><span class = "fa fa-times"></span>&nbsp;&nbsp;<b>Eliminar</b></button>
-						<button type = "button" class = "btn btn-success" style = "width: 15%; margin-right: 2%; float: right;" id = "btnModificarIncidencia"><span class = "fa fa-pencil"></span>&nbsp;&nbsp;<b>Modificar</b></button>
+						<button type = "button" class = "btn btn-success" id = "btnModificarIncidencia"><span class = "fa fa-pencil"></span>&nbsp;&nbsp;<b>Modificar</b></button>
 						
 					</div>
 					<div class = "alert alert-danger fadeIn" style = "margin-top: 200px; display: none;" id = "dangerVerIncidencia">
@@ -201,6 +235,12 @@ $_smarty_tpl->tpl_vars['c']->_loop = true;
 	<div class = "fondoNegro" id = "fondoNegro">
 		<span class = "fa fa-times-circle-o" id = "btnCerrar"></span>
 		<img src = "img/img1.jpg" id = "imgModal"/>
+	</div>
+
+	<div class = "contNegro">
+		<span class = "fa fa-times-circle-o" id = "btnCerrarContNegro"></span>
+		<img src = "img/Volquetas/<?php echo $_smarty_tpl->tpl_vars['numeroVolqueta']->value;?>
+.png" id = "imgVolqueta"/>
 	</div>
 </body>
 </html><?php }} ?>
