@@ -50,7 +50,7 @@
 .greenMarker{
 	width: 15%;
 	margin-left: 42%;
-	margin-top: 50%;
+	margin-top: 58.5%;
 }
 
 .lblGreenMarker{
@@ -605,27 +605,27 @@
 
 /***** Media queries de ver volquetas *****/
 
-@media (max-height: 1900px) and (min-height: 970px){
+/*@media (max-height: 1900px) and (min-height: 970px){
 	.greenMarker{
 		margin-top: 58.5%;
 	}
-}
+}*/
 
-@media (max-height: 970px){
+@media (max-height: 970px) and (min-height: 775px){
 	.greenMarker{
 		margin-top: 45%;
 	}
 
-	.referencias{
+	/*.referencias{
 		display: none;
 	}
 
 	#btnReferencias{
 		display: block;
-	}
+	}*/
 }
 
-@media (max-height: 775px){
+@media (max-height: 775px) and (min-height: 700px){
 	.greenMarker{
 		margin-top: 35%;
 	}
@@ -640,6 +640,16 @@
 	}
 	.redMarker{
 		margin-top: 10%
+	}
+}
+
+@media (max-width: 970px){	
+	.referencias{
+		display: none;
+	}
+
+	#btnReferencias{
+		display: block;
 	}
 }
 

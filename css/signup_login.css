@@ -164,7 +164,7 @@
 
 
 /****** Media queries del login ******/
-@media (min-width: 810px) and (max-width: 970px){
+@media (max-width: 970px){
     .contenedorCuentaExterna{
         display: none;
     }
@@ -201,7 +201,7 @@
     }
 }
 
-@media (min-width: 730px) and (max-width: 810px){
+@media (max-width: 810px){
 
     .contenedorCuentaExterna{
         display: none;
@@ -239,7 +239,7 @@
     }
 }
 
-@media (min-width: 625px) and (max-width: 730px){
+@media (max-width: 730px){
 
     .contenedorCuentaExterna{
         display: none;
